@@ -1,24 +1,7 @@
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.ImageIcon;
-import java.awt.Component;
-import javax.swing.Box;
-import javax.swing.JButton;
-import java.awt.Color;
-import java.awt.CardLayout;
-import java.awt.event.ActionListener;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
-import javax.swing.JPanel;
-import javax.swing.SwingConstants;
-import java.awt.Cursor;
-import javax.swing.JToggleButton;
-import javax.swing.ButtonGroup;
-import javax.swing.JTextField;
-import java.awt.Font;
-import javax.swing.JProgressBar;
-import java.awt.Toolkit;
+import java.awt.event.ActionListener;
 
 
 public class GUI_Title {
