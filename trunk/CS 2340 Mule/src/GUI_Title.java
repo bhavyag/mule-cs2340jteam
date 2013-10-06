@@ -18,6 +18,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.JTextField;
 import java.awt.Font;
 import javax.swing.JProgressBar;
+import java.awt.Toolkit;
 
 
 public class GUI_Title {
@@ -59,6 +60,7 @@ public class GUI_Title {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(GUI_Title.class.getResource("/sprites/muleIcon.png")));
 		frame.setResizable(false);
 		frame.setBounds(100, 100, 1006, 592);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
