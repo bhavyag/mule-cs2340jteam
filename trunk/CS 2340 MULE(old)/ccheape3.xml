@@ -1,0 +1,125 @@
+
+<project name="MULE" basedir="." default="all">
+	<property name="src.dir" value="src/"/>
+	<property name="build.dir" value="build/"/>
+	<property name="apidoc.dir" value="apidoc/"/>
+	<property name="lib.dir" value="lib/"/>
+	<property name="main-class" value="AntLabMain.java"/>
+	<property name="jar" value="AntLabRun.jar"/>
+
+
+	<target name= "prepare">
+		<mkdir dir="${build.dir}" />
+        <mkdir dir="${apidoc.dir}" />
+	</target>
+
+	<target name="compile">
+		<javac srcdir="${src.dir}" destdir="${build.dir}" classpath="lib/resources.jar"/>
+	</target>
+
+	<target name="jar">
+			<jar basedir="${build.dir}" destfile="${jar}" >
+					<manifest>
+						<attribute name="main-class" value="edu.gatech.oad.antlab.pkg1.AntLabMain"/>
+                        <attribute name="Class-Path" value="${lib.dir}/resources.jar"/>
+					</manifest>
+			</jar>
+	</target>
+
+	<target name="javadoc">
+		<javadoc sourcepath="${src.dir}" destdir="${apidoc.dir}"  classpath="lib/resources.jar">
+			<fileset dir="${src.dir}">
+				<include name="**/*.jar"/>
+			</fileset>
+			
+		</javadoc>
+	</target>
+
+	<target name ="run">
+		<java jar ="${jar}" fork="true"/>
+	</target>
+
+	<target name ="clean">
+		<delete dir="${build.dir}" />
+        <delete dir="${apidoc.dir}" />
+        <delete file="${jar}" />
+	</target>
+
+	<target name="all">
+                <antcall target="clean" />
+                <antcall target="prepare" />
+                <antcall target="compile" />
+                <antcall target="javadoc" />
+                <antcall target="jar" />
+                <antcall target="run" />
+        </target>
+</project>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
