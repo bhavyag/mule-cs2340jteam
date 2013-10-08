@@ -6,10 +6,6 @@
  * To change this template use File | Settings | File Templates.
  */
 public class Player {
-    private String name;
-    private Color color;
-    private Race race;
-
     public static enum Color {
         RED, YELLOW, GREEN, PURPLE
     }
@@ -17,9 +13,19 @@ public class Player {
         BUZZITE, UGAITE, BONZIOD, FLAPPER, HUMAN
     }
 
-    public Player(String name, Color color, Race race) {
+    private String name;
+    private Color color;
+    private Race race;
+
+    public void setName(String name) {
         this.name = name;
+    }
+
+    public void setColor(Color color) {
         this.color = color;
+    }
+
+    public void setRace(Race race) {
         this.race = race;
     }
 }
