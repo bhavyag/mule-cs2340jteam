@@ -6,4 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 public class Events {
+    public void setDifficulty() {
+
+    }
 }

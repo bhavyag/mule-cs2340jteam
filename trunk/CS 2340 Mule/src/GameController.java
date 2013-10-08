@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.util.ArrayList;
 
 /**
  * Created with IntelliJ IDEA.
@@ -8,10 +9,16 @@ import java.awt.*;
  * To change this template use File | Settings | File Templates.
  */
 public class GameController {
-    /**
-     * Launch the application.
-     */
-    public static void main(String[] args) {
+    private int difficulty;
+    private ArrayList<Player> players;
+    private int currentPlayer;
+
+    public GameController() {
+        this.players = new ArrayList<Player>();
+        this.currentPlayer = 0;
+    }
+
+    public void startGame() {
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
@@ -22,5 +29,19 @@ public class GameController {
                 }
             }
         });
+    }
+
+    public void configurePlayers() {
+        for (Player player : players) {
+
+        }
+    }
+
+    /**
+     * Launch the application.
+     */
+    public static void main(String[] args) {
+        GameController gc = new GameController();
+        gc.startGame();
     }
 }
