@@ -35,7 +35,7 @@ public class GUI_Title {
 	private JTextField nameTextField;
 	private final ButtonGroup color1ButtonGroup = new ButtonGroup();
 	private CardLayout cardLayout = new CardLayout();
-	private final String title = "GUI Title", gameConfig = "Game Conig", playerConfig = "Player Config";
+	private final String title = "GUI Title", gameConfig = "Game Config", playerConfig = "Player Config";
 
 	/**
 	 * Launch the application.
