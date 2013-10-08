@@ -28,44 +28,36 @@ import javax.swing.Action;
 public class GUI_Title {
 
 	private JFrame frame;
-	private final ButtonGroup mapButtonGroup = new ButtonGroup();
-	private final ButtonGroup difficultyButtonGroup = new ButtonGroup();
-	private final ButtonGroup playerButtonGroup = new ButtonGroup();
-	private final ButtonGroup raceButtonGroup = new ButtonGroup();
+	private final ButtonGroup mapButtonGroup;
+	private final ButtonGroup difficultyButtonGroup;
+	private final ButtonGroup playerButtonGroup;
+	private final ButtonGroup raceButtonGroup;
 	private JTextField nameTextField;
-	private final ButtonGroup color1ButtonGroup = new ButtonGroup();
-	private CardLayout cardLayout = new CardLayout();
+	private final ButtonGroup color1ButtonGroup;
+	private CardLayout cardLayout;
 	private final String title = "GUI Title", gameConfig = "Game Config", playerConfig = "Player Config";
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				try {
-					GUI_Title window = new GUI_Title();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the application.
 	 */
 	public GUI_Title() {
-		initialize();
+        this.frame = new JFrame();
+        this.mapButtonGroup = new ButtonGroup();
+        this.difficultyButtonGroup = new ButtonGroup();
+        this.playerButtonGroup = new ButtonGroup();
+        this.raceButtonGroup = new ButtonGroup();
+        this.nameTextField = new JTextField();
+        this.color1ButtonGroup = new ButtonGroup();
+        this.cardLayout = new CardLayout();
+
+        initialize();
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
+        frame.setVisible(true);
 		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(GUI_Title.class.getResource("/sprites/muleIcon.png")));
 		frame.setResizable(false);
 		frame.setBounds(100, 100, 1006, 592);
@@ -294,7 +286,6 @@ public class GUI_Title {
 		purpleButton.setBounds(799, 240, 48, 48);
 		Player1ConfigPanel.add(purpleButton);
 		
-		nameTextField = new JTextField();
 		nameTextField.setBackground(new Color(66, 93, 140));
 		nameTextField.setForeground(Color.WHITE);
 		nameTextField.setFont(new Font("Impact", Font.PLAIN, 30));
