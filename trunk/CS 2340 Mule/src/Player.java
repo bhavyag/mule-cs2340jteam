@@ -13,9 +13,24 @@ public class Player {
         BUZZITE, UGAITE, BONZIOD, FLAPPER, HUMAN
     }
 
+    private static int totalPlayers = 0;
+    private int playerNum;
     private String name;
     private Color color;
     private Race race;
+
+    public Player() {
+        this.playerNum = totalPlayers;
+        totalPlayers ++;
+    }
+
+    public static int getTotalPlayers() {
+        return totalPlayers;
+    }
+
+    public int getPlayerNum() {
+        return playerNum;
+    }
 
     public void setName(String name) {
         this.name = name;
