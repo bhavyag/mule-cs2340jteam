@@ -1,4 +1,6 @@
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 /**
@@ -9,28 +11,23 @@ import java.util.ArrayList;
  * To change this template use File | Settings | File Templates.
  */
 public class GameController {
+    private GUI_Title view;
     private int difficulty;
     private ArrayList<Player> players;
     private int currentPlayer;
 
-    public GameController() {
+    public GameController(GUI_Title view) {
+        this.view = view;
         this.players = new ArrayList<Player>();
         this.currentPlayer = 0;
     }
-
-    public static void triggerStartGame() {
-    	startGame();
-    }
     
     private void startTitleScreen() {
-        EventQueue.invokeLater(new Runnable() {
+        view.showTitlePanel();
+        view.getTitlePanel().listenForStartBtn(new MouseAdapter() {
             @Override
-            public void run() {
-                try {
-                    GUI_Title window = new GUI_Title();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+            public void mouseClicked(MouseEvent e) {
+                System.out.println("worked");
             }
         });
     }
@@ -60,7 +57,7 @@ public class GameController {
      * Launch the application.
      */
     public static void main(String[] args) {
-        GameController gc = new GameController();
+        GameController gc = new GameController(new GUI_Title());
         gc.startTitleScreen();
     }
 }

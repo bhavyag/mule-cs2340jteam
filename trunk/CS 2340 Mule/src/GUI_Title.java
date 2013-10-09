@@ -1,3 +1,5 @@
+import view.TitlePanel;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -28,7 +30,8 @@ import javax.swing.Action;
 public class GUI_Title {
 
 	private JFrame frame;
-	private JPanel TitlePanel, GameConfigPanel, Player1ConfigPanel;
+    private TitlePanel titlePanel;
+	private JPanel GameConfigPanel, Player1ConfigPanel;
 	private final ButtonGroup mapButtonGroup;
 	private final ButtonGroup difficultyButtonGroup;
 	private final ButtonGroup playerButtonGroup;
@@ -38,13 +41,17 @@ public class GUI_Title {
 	private JButton btnStart;
 	private JToggleButton nextButton;
 	private CardLayout cardLayout;
-	private final String title = "GUI Title", gameConfig = "Game Config", playerConfig = "Player Config";
+	private final String
+            TITLE = "Title",
+            GAME_CONFIG = "Game Config",
+            PLAYER_CONFIG = "Player Config";
 
 	/**
 	 * Create the application.
 	 */
 	public GUI_Title() {
 		this.frame = new JFrame();
+        this.titlePanel = new TitlePanel();
 		this.mapButtonGroup = new ButtonGroup();
 		this.difficultyButtonGroup = new ButtonGroup();
 		this.playerButtonGroup = new ButtonGroup();
@@ -56,68 +63,33 @@ public class GUI_Title {
 		initialize();
 	}
 
-	private void initialize() {
-		initializeFrame();
-		initializeTitlePanel();
-		initializeGameConfigPanel();
-		initializePlayerConfigPanel();
-	}
-
 	/**
 	 * Initialize the contents of the frame.
 	 */
 
-	private void initializeFrame() {
+	private void initialize() {
 		frame.setVisible(true);
 		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(GUI_Title.class.getResource("/sprites/muleIcon.png")));
 		frame.setResizable(false);
 		frame.setBounds(100, 100, 1006, 592);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(cardLayout);
-
+        frame.getContentPane().add(titlePanel.getPanel(), TITLE);
 	}
 
-	private void initializeTitlePanel() {
-		JLabel titleLabel = new JLabel("");
-		titleLabel.setBounds(0, 0, 1000, 563);
-		titleLabel.setIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/mule-title-1000x563.png")));
+    public TitlePanel getTitlePanel() {
+        return titlePanel;
+    }
 
-		TitlePanel = new JPanel();
-		frame.getContentPane().add(TitlePanel, title);
-		TitlePanel.setLayout(null);
-
-		btnStart = new JButton("");
-		btnStart.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-
-		btnStart.setSelectedIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/start-button-selected.png")));
-		btnStart.setRolloverSelectedIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/start-button-selected.png")));
-		btnStart.setRolloverIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/start-button-selected.png")));
-		btnStart.setBounds(375, 343, 250, 80);
-		TitlePanel.add(btnStart);
-
-		btnStart.setForeground(Color.WHITE);
-		btnStart.setIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/start-button.png")));
-		btnStart.setPressedIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/start-button-selected.png")));
-		btnStart.setOpaque(false);
-		btnStart.setContentAreaFilled(false);
-		btnStart.setBorderPainted(false);
-		btnStart.setFocusPainted(false);
-
-		TitlePanel.add(titleLabel);
-	}
+    public void showTitlePanel() {
+        cardLayout.show(frame.getContentPane(), TITLE);
+    }
 
 	private void initializeGameConfigPanel() {
-
 		GameConfigPanel = new JPanel();
 		GameConfigPanel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		frame.getContentPane().add(GameConfigPanel, gameConfig);
+		frame.getContentPane().add(GameConfigPanel, GAME_CONFIG);
 		GameConfigPanel.setLayout(null);
-
-		btnStart.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				cardLayout.show(frame.getContentPane(), gameConfig);			}
-		});
 
 		nextButton = new JToggleButton("");
 
@@ -242,22 +214,22 @@ public class GUI_Title {
 
 		Player1ConfigPanel = new JPanel();
 		Player1ConfigPanel.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-		frame.getContentPane().add(Player1ConfigPanel, playerConfig);
+		frame.getContentPane().add(Player1ConfigPanel, PLAYER_CONFIG);
 		Player1ConfigPanel.setLayout(null);
 
 		nextButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				cardLayout.show(frame.getContentPane(), playerConfig);	
+				cardLayout.show(frame.getContentPane(), PLAYER_CONFIG);
 			}
 		});
-		
+
 		JToggleButton nextButtonToStart = new JToggleButton("");
 		nextButtonToStart.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				frame.dispose();
-				GameController.triggerStartGame();
+//				GameController.triggerStartGame();
 			}
 		});
 		nextButtonToStart.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
