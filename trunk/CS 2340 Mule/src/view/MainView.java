@@ -22,13 +22,10 @@ public class MainView {
 	private JFrame frame;
     private TitlePanel titlePanel;
     private GameConfigPanel gameConfigPanel;
-    private JPanel Player1ConfigPanel;
-	private final ButtonGroup raceButtonGroup;
-	private final ButtonGroup color1ButtonGroup;
-	private JTextField nameTextField;
-	private JButton btnStart;
-	private JToggleButton nextButton;
+    private PlayerConfigPanel playerConfigPanel;
+
 	private CardLayout cardLayout;
+
 	private final String
             TITLE = "Title",
             GAME_CONFIG = "Game Config",
@@ -41,9 +38,7 @@ public class MainView {
 		this.frame = new JFrame();
         this.titlePanel = new TitlePanel();
         this.gameConfigPanel = new GameConfigPanel();
-		this.raceButtonGroup = new ButtonGroup();
-		this.nameTextField = new JTextField();
-		this.color1ButtonGroup = new ButtonGroup();
+        this.playerConfigPanel = new PlayerConfigPanel();
 		this.cardLayout = new CardLayout();
 
 		initialize();
@@ -62,6 +57,7 @@ public class MainView {
 		frame.getContentPane().setLayout(cardLayout);
         frame.getContentPane().add(titlePanel, TITLE);
         frame.getContentPane().add(gameConfigPanel, GAME_CONFIG);
+        frame.getContentPane().add(playerConfigPanel, PLAYER_CONFIG);
 	}
 
     public TitlePanel getTitlePanel() {
@@ -80,177 +76,12 @@ public class MainView {
         cardLayout.show(frame.getContentPane(), GAME_CONFIG);
     }
 
-	private void initializePlayerConfigPanel() {
+    public PlayerConfigPanel getPlayerConfigPanel() {
+        return playerConfigPanel;
+    }
 
-		Player1ConfigPanel = new JPanel();
-		Player1ConfigPanel.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-		frame.getContentPane().add(Player1ConfigPanel, PLAYER_CONFIG);
-		Player1ConfigPanel.setLayout(null);
-
-		nextButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				cardLayout.show(frame.getContentPane(), PLAYER_CONFIG);
-			}
-		});
-
-		JToggleButton nextButtonToStart = new JToggleButton("");
-		nextButtonToStart.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				frame.dispose();
-//				GameController.triggerStartGame();
-			}
-		});
-		nextButtonToStart.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		nextButtonToStart.setIcon(new ImageIcon(MainView.class.getResource("/sprites/SPRITES/next-unselect.png")));
-		nextButtonToStart.setPressedIcon(new ImageIcon(MainView.class.getResource("/sprites/SPRITES/next.png")));
-		nextButtonToStart.setRolloverIcon(new ImageIcon(MainView.class.getResource("/sprites/SPRITES/next.png")));
-		nextButtonToStart.setSelectedIcon(new ImageIcon(MainView.class.getResource("/sprites/SPRITES/next.png")));
-		nextButtonToStart.setRolloverSelectedIcon(new ImageIcon(MainView.class.getResource("/sprites/SPRITES/next.png")));
-		nextButtonToStart.setFocusPainted(false);
-		nextButtonToStart.setBorderPainted(false);
-		nextButtonToStart.setBorder(null);
-		nextButtonToStart.setBounds(807, 491, 150, 48);
-		Player1ConfigPanel.add(nextButtonToStart);
-
-		JToggleButton redButton = new JToggleButton("");
-		redButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		color1ButtonGroup.add(redButton);
-		redButton.setIcon(new ImageIcon(MainView.class.getResource("/sprites/colors/red-unselected.png")));
-		redButton.setPressedIcon(new ImageIcon(MainView.class.getResource("/sprites/colors/red.png")));
-		redButton.setRolloverIcon(new ImageIcon(MainView.class.getResource("/sprites/colors/red.png")));
-		redButton.setRolloverSelectedIcon(new ImageIcon(MainView.class.getResource("/sprites/colors/red.png")));
-		redButton.setSelectedIcon(new ImageIcon(MainView.class.getResource("/sprites/colors/red.png")));
-		redButton.setFocusPainted(false);
-		redButton.setBorderPainted(false);
-		redButton.setBorder(null);
-		redButton.setBounds(235, 240, 48, 48);
-		Player1ConfigPanel.add(redButton);
-
-		JToggleButton yellowButton = new JToggleButton("");
-		yellowButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		color1ButtonGroup.add(yellowButton);
-		yellowButton.setIcon(new ImageIcon(MainView.class.getResource("/sprites/colors/yellow-unselected.png")));
-		yellowButton.setPressedIcon(new ImageIcon(MainView.class.getResource("/sprites/colors/yellow.png")));
-		yellowButton.setRolloverIcon(new ImageIcon(MainView.class.getResource("/sprites/colors/yellow.png")));
-		yellowButton.setRolloverSelectedIcon(new ImageIcon(MainView.class.getResource("/sprites/colors/yellow.png")));
-		yellowButton.setSelectedIcon(new ImageIcon(MainView.class.getResource("/sprites/colors/yellow.png")));
-		yellowButton.setFocusPainted(false);
-		yellowButton.setBorderPainted(false);
-		yellowButton.setBorder(null);
-		yellowButton.setBounds(427, 240, 48, 48);
-		Player1ConfigPanel.add(yellowButton);
-
-		JToggleButton greenButton = new JToggleButton("");
-		greenButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		color1ButtonGroup.add(greenButton);
-		greenButton.setIcon(new ImageIcon(MainView.class.getResource("/sprites/colors/green-unselected.png")));
-		greenButton.setPressedIcon(new ImageIcon(MainView.class.getResource("/sprites/colors/green.png")));
-		greenButton.setRolloverIcon(new ImageIcon(MainView.class.getResource("/sprites/colors/green.png")));
-		greenButton.setRolloverSelectedIcon(new ImageIcon(MainView.class.getResource("/sprites/colors/green.png")));
-		greenButton.setSelectedIcon(new ImageIcon(MainView.class.getResource("/sprites/colors/green.png")));
-		greenButton.setFocusPainted(false);
-		greenButton.setBorderPainted(false);
-		greenButton.setBorder(null);
-		greenButton.setBounds(606, 240, 48, 48);
-		Player1ConfigPanel.add(greenButton);
-
-		JToggleButton purpleButton = new JToggleButton("");
-		purpleButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		color1ButtonGroup.add(purpleButton);
-		purpleButton.setIcon(new ImageIcon(MainView.class.getResource("/sprites/colors/purple-unselected.png")));
-		purpleButton.setPressedIcon(new ImageIcon(MainView.class.getResource("/sprites/colors/purple.png")));
-		purpleButton.setRolloverIcon(new ImageIcon(MainView.class.getResource("/sprites/colors/purple.png")));
-		purpleButton.setRolloverSelectedIcon(new ImageIcon(MainView.class.getResource("/sprites/colors/purple.png")));
-		purpleButton.setSelectedIcon(new ImageIcon(MainView.class.getResource("/sprites/colors/purple.png")));
-		purpleButton.setFocusPainted(false);
-		purpleButton.setBorderPainted(false);
-		purpleButton.setBorder(null);
-		purpleButton.setBounds(799, 240, 48, 48);
-		Player1ConfigPanel.add(purpleButton);
-
-		nameTextField.setBackground(new Color(66, 93, 140));
-		nameTextField.setForeground(Color.WHITE);
-		nameTextField.setFont(new Font("Impact", Font.PLAIN, 30));
-		nameTextField.setBounds(235, 164, 240, 37);
-		Player1ConfigPanel.add(nameTextField);
-		nameTextField.setColumns(10);
-
-		JToggleButton humanButton1 = new JToggleButton("");
-		humanButton1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		raceButtonGroup.add(humanButton1);
-		humanButton1.setIcon(new ImageIcon(MainView.class.getResource("/sprites/Races/human-unselect.png")));
-		humanButton1.setPressedIcon(new ImageIcon(MainView.class.getResource("/sprites/Races/human.png")));
-		humanButton1.setRolloverIcon(new ImageIcon(MainView.class.getResource("/sprites/Races/human.png")));
-		humanButton1.setRolloverSelectedIcon(new ImageIcon(MainView.class.getResource("/sprites/Races/human.png")));
-		humanButton1.setSelectedIcon(new ImageIcon(MainView.class.getResource("/sprites/Races/human.png")));
-		humanButton1.setFocusPainted(false);
-		humanButton1.setBorderPainted(false);
-		humanButton1.setBorder(null);
-		humanButton1.setBounds(781, 372, 150, 48);
-		Player1ConfigPanel.add(humanButton1);
-
-		JToggleButton flapperButton1 = new JToggleButton("");
-		flapperButton1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		raceButtonGroup.add(flapperButton1);
-		flapperButton1.setIcon(new ImageIcon(MainView.class.getResource("/sprites/Races/flapper-unselect.png")));
-		flapperButton1.setPressedIcon(new ImageIcon(MainView.class.getResource("/sprites/Races/flapper.png")));
-		flapperButton1.setRolloverIcon(new ImageIcon(MainView.class.getResource("/sprites/Races/flapper.png")));
-		flapperButton1.setRolloverSelectedIcon(new ImageIcon(MainView.class.getResource("/sprites/Races/flapper.png")));
-		flapperButton1.setSelectedIcon(new ImageIcon(MainView.class.getResource("/sprites/Races/flapper.png")));
-		flapperButton1.setFocusPainted(false);
-		flapperButton1.setBorderPainted(false);
-		flapperButton1.setBorder(null);
-		flapperButton1.setBounds(606, 372, 150, 48);
-		Player1ConfigPanel.add(flapperButton1);
-
-		JToggleButton bonzoidButton1 = new JToggleButton("");
-		bonzoidButton1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		raceButtonGroup.add(bonzoidButton1);
-		bonzoidButton1.setIcon(new ImageIcon(MainView.class.getResource("/sprites/Races/bonzoid-unselect.png")));
-		bonzoidButton1.setPressedIcon(new ImageIcon(MainView.class.getResource("/sprites/Races/bonzoid.png")));
-		bonzoidButton1.setRolloverIcon(new ImageIcon(MainView.class.getResource("/sprites/Races/bonzoid.png")));
-		bonzoidButton1.setRolloverSelectedIcon(new ImageIcon(MainView.class.getResource("/sprites/Races/bonzoid.png")));
-		bonzoidButton1.setSelectedIcon(new ImageIcon(MainView.class.getResource("/sprites/Races/bonzoid.png")));
-		bonzoidButton1.setFocusPainted(false);
-		bonzoidButton1.setBorderPainted(false);
-		bonzoidButton1.setBorder(null);
-		bonzoidButton1.setBounds(427, 372, 150, 48);
-		Player1ConfigPanel.add(bonzoidButton1);
-
-		JToggleButton ugaiteButton1 = new JToggleButton("");
-		ugaiteButton1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		raceButtonGroup.add(ugaiteButton1);
-		ugaiteButton1.setIcon(new ImageIcon(MainView.class.getResource("/sprites/Races/ugaite-unselect.png")));
-		ugaiteButton1.setPressedIcon(new ImageIcon(MainView.class.getResource("/sprites/Races/ugaite.png")));
-		ugaiteButton1.setRolloverIcon(new ImageIcon(MainView.class.getResource("/sprites/Races/ugaite.png")));
-		ugaiteButton1.setRolloverSelectedIcon(new ImageIcon(MainView.class.getResource("/sprites/Races/ugaite.png")));
-		ugaiteButton1.setSelectedIcon(new ImageIcon(MainView.class.getResource("/sprites/Races/ugaite.png")));
-		ugaiteButton1.setFocusPainted(false);
-		ugaiteButton1.setBorderPainted(false);
-		ugaiteButton1.setBorder(null);
-		ugaiteButton1.setBounds(246, 372, 150, 48);
-		Player1ConfigPanel.add(ugaiteButton1);
-
-		JToggleButton buzziteButton1 = new JToggleButton("");
-		buzziteButton1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		raceButtonGroup.add(buzziteButton1);
-		buzziteButton1.setIcon(new ImageIcon(MainView.class.getResource("/sprites/Races/buzzite-unselect.png")));
-		buzziteButton1.setPressedIcon(new ImageIcon(MainView.class.getResource("/sprites/Races/buzzite.png")));
-		buzziteButton1.setRolloverIcon(new ImageIcon(MainView.class.getResource("/sprites/Races/buzzite.png")));
-		buzziteButton1.setRolloverSelectedIcon(new ImageIcon(MainView.class.getResource("/sprites/Races/buzzite.png")));
-		buzziteButton1.setSelectedIcon(new ImageIcon(MainView.class.getResource("/sprites/Races/buzzite.png")));
-		buzziteButton1.setFocusPainted(false);
-		buzziteButton1.setBorderPainted(false);
-		buzziteButton1.setBorder(null);
-		buzziteButton1.setBounds(65, 372, 150, 48);
-		Player1ConfigPanel.add(buzziteButton1);
-
-		JLabel playerConfigLabel1 = new JLabel("");
-		playerConfigLabel1.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-		playerConfigLabel1.setIcon(new ImageIcon(MainView.class.getResource("/sprites/player-config1.png")));
-		playerConfigLabel1.setBounds(0, 0, 1000, 563);
-		Player1ConfigPanel.add(playerConfigLabel1);
-	}
+    public void showPlayerConfigPanel(int playerNum) {
+        playerConfigPanel.setPlayerNum(playerNum);
+        cardLayout.show(frame.getContentPane(), PLAYER_CONFIG);
+    }
 }

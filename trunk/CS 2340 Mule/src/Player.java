@@ -20,8 +20,8 @@ public class Player {
     private Race race;
 
     public Player() {
-        this.playerNum = totalPlayers;
         totalPlayers ++;
+        this.playerNum = totalPlayers;
     }
 
     public static int getTotalPlayers() {

@@ -1,5 +1,6 @@
 import view.GameConfigPanel;
 import view.MainView;
+import view.PlayerConfigPanel;
 
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -44,15 +45,29 @@ public class GameController {
                         players.add(new Player());
                     }
                     difficulty = gameConfigPanel.getDifficulty();
+                    configureNextPlayer();
                 }
             }
         );
     }
 
-    private void configurePlayers() {
-        for (Player player : players) {
+    private void configureNextPlayer() {
+        view.showPlayerConfigPanel(players.get(currentPlayer).getPlayerNum());
+        currentPlayer ++;
 
-        }
+        final PlayerConfigPanel playerConfigPanel = view.getPlayerConfigPanel();
+        playerConfigPanel.onClickNext(
+            new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    if (currentPlayer < players.size()) {
+                        configureNextPlayer();
+                    } else {
+                        currentPlayer = 0;
+                    }
+                }
+            }
+        );
     }
 
     private static void startGame() {
