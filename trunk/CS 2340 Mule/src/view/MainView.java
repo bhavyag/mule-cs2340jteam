@@ -1,42 +1,28 @@
-import view.GameConfigPanel;
-import view.TitlePanel;
-
-import java.awt.EventQueue;
+package view;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
-import java.awt.Component;
-import javax.swing.Box;
 import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.CardLayout;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
 import java.awt.Cursor;
 import javax.swing.JToggleButton;
 import javax.swing.ButtonGroup;
 import javax.swing.JTextField;
 import java.awt.Font;
-import javax.swing.JProgressBar;
 import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.AbstractAction;
-import javax.swing.Action;
 
 
-public class GUI_Title {
+public class MainView {
 
 	private JFrame frame;
     private TitlePanel titlePanel;
     private GameConfigPanel gameConfigPanel;
     private JPanel Player1ConfigPanel;
-	private final ButtonGroup mapButtonGroup;
-	private final ButtonGroup difficultyButtonGroup;
-	private final ButtonGroup playerButtonGroup;
 	private final ButtonGroup raceButtonGroup;
 	private final ButtonGroup color1ButtonGroup;
 	private JTextField nameTextField;
@@ -51,13 +37,10 @@ public class GUI_Title {
 	/**
 	 * Create the application.
 	 */
-	public GUI_Title() {
+	public MainView() {
 		this.frame = new JFrame();
         this.titlePanel = new TitlePanel();
         this.gameConfigPanel = new GameConfigPanel();
-		this.mapButtonGroup = new ButtonGroup();
-		this.difficultyButtonGroup = new ButtonGroup();
-		this.playerButtonGroup = new ButtonGroup();
 		this.raceButtonGroup = new ButtonGroup();
 		this.nameTextField = new JTextField();
 		this.color1ButtonGroup = new ButtonGroup();
@@ -72,7 +55,7 @@ public class GUI_Title {
 
 	private void initialize() {
 		frame.setVisible(true);
-		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(GUI_Title.class.getResource("/sprites/muleIcon.png")));
+		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(MainView.class.getResource("/sprites/muleIcon.png")));
 		frame.setResizable(false);
 		frame.setBounds(100, 100, 1006, 592);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -120,11 +103,11 @@ public class GUI_Title {
 			}
 		});
 		nextButtonToStart.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		nextButtonToStart.setIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/SPRITES/next-unselect.png")));
-		nextButtonToStart.setPressedIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/SPRITES/next.png")));
-		nextButtonToStart.setRolloverIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/SPRITES/next.png")));
-		nextButtonToStart.setSelectedIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/SPRITES/next.png")));
-		nextButtonToStart.setRolloverSelectedIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/SPRITES/next.png")));
+		nextButtonToStart.setIcon(new ImageIcon(MainView.class.getResource("/sprites/SPRITES/next-unselect.png")));
+		nextButtonToStart.setPressedIcon(new ImageIcon(MainView.class.getResource("/sprites/SPRITES/next.png")));
+		nextButtonToStart.setRolloverIcon(new ImageIcon(MainView.class.getResource("/sprites/SPRITES/next.png")));
+		nextButtonToStart.setSelectedIcon(new ImageIcon(MainView.class.getResource("/sprites/SPRITES/next.png")));
+		nextButtonToStart.setRolloverSelectedIcon(new ImageIcon(MainView.class.getResource("/sprites/SPRITES/next.png")));
 		nextButtonToStart.setFocusPainted(false);
 		nextButtonToStart.setBorderPainted(false);
 		nextButtonToStart.setBorder(null);
@@ -134,11 +117,11 @@ public class GUI_Title {
 		JToggleButton redButton = new JToggleButton("");
 		redButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		color1ButtonGroup.add(redButton);
-		redButton.setIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/colors/red-unselected.png")));
-		redButton.setPressedIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/colors/red.png")));
-		redButton.setRolloverIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/colors/red.png")));
-		redButton.setRolloverSelectedIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/colors/red.png")));
-		redButton.setSelectedIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/colors/red.png")));
+		redButton.setIcon(new ImageIcon(MainView.class.getResource("/sprites/colors/red-unselected.png")));
+		redButton.setPressedIcon(new ImageIcon(MainView.class.getResource("/sprites/colors/red.png")));
+		redButton.setRolloverIcon(new ImageIcon(MainView.class.getResource("/sprites/colors/red.png")));
+		redButton.setRolloverSelectedIcon(new ImageIcon(MainView.class.getResource("/sprites/colors/red.png")));
+		redButton.setSelectedIcon(new ImageIcon(MainView.class.getResource("/sprites/colors/red.png")));
 		redButton.setFocusPainted(false);
 		redButton.setBorderPainted(false);
 		redButton.setBorder(null);
@@ -148,11 +131,11 @@ public class GUI_Title {
 		JToggleButton yellowButton = new JToggleButton("");
 		yellowButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		color1ButtonGroup.add(yellowButton);
-		yellowButton.setIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/colors/yellow-unselected.png")));
-		yellowButton.setPressedIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/colors/yellow.png")));
-		yellowButton.setRolloverIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/colors/yellow.png")));
-		yellowButton.setRolloverSelectedIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/colors/yellow.png")));
-		yellowButton.setSelectedIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/colors/yellow.png")));
+		yellowButton.setIcon(new ImageIcon(MainView.class.getResource("/sprites/colors/yellow-unselected.png")));
+		yellowButton.setPressedIcon(new ImageIcon(MainView.class.getResource("/sprites/colors/yellow.png")));
+		yellowButton.setRolloverIcon(new ImageIcon(MainView.class.getResource("/sprites/colors/yellow.png")));
+		yellowButton.setRolloverSelectedIcon(new ImageIcon(MainView.class.getResource("/sprites/colors/yellow.png")));
+		yellowButton.setSelectedIcon(new ImageIcon(MainView.class.getResource("/sprites/colors/yellow.png")));
 		yellowButton.setFocusPainted(false);
 		yellowButton.setBorderPainted(false);
 		yellowButton.setBorder(null);
@@ -162,11 +145,11 @@ public class GUI_Title {
 		JToggleButton greenButton = new JToggleButton("");
 		greenButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		color1ButtonGroup.add(greenButton);
-		greenButton.setIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/colors/green-unselected.png")));
-		greenButton.setPressedIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/colors/green.png")));
-		greenButton.setRolloverIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/colors/green.png")));
-		greenButton.setRolloverSelectedIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/colors/green.png")));
-		greenButton.setSelectedIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/colors/green.png")));
+		greenButton.setIcon(new ImageIcon(MainView.class.getResource("/sprites/colors/green-unselected.png")));
+		greenButton.setPressedIcon(new ImageIcon(MainView.class.getResource("/sprites/colors/green.png")));
+		greenButton.setRolloverIcon(new ImageIcon(MainView.class.getResource("/sprites/colors/green.png")));
+		greenButton.setRolloverSelectedIcon(new ImageIcon(MainView.class.getResource("/sprites/colors/green.png")));
+		greenButton.setSelectedIcon(new ImageIcon(MainView.class.getResource("/sprites/colors/green.png")));
 		greenButton.setFocusPainted(false);
 		greenButton.setBorderPainted(false);
 		greenButton.setBorder(null);
@@ -176,11 +159,11 @@ public class GUI_Title {
 		JToggleButton purpleButton = new JToggleButton("");
 		purpleButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		color1ButtonGroup.add(purpleButton);
-		purpleButton.setIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/colors/purple-unselected.png")));
-		purpleButton.setPressedIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/colors/purple.png")));
-		purpleButton.setRolloverIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/colors/purple.png")));
-		purpleButton.setRolloverSelectedIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/colors/purple.png")));
-		purpleButton.setSelectedIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/colors/purple.png")));
+		purpleButton.setIcon(new ImageIcon(MainView.class.getResource("/sprites/colors/purple-unselected.png")));
+		purpleButton.setPressedIcon(new ImageIcon(MainView.class.getResource("/sprites/colors/purple.png")));
+		purpleButton.setRolloverIcon(new ImageIcon(MainView.class.getResource("/sprites/colors/purple.png")));
+		purpleButton.setRolloverSelectedIcon(new ImageIcon(MainView.class.getResource("/sprites/colors/purple.png")));
+		purpleButton.setSelectedIcon(new ImageIcon(MainView.class.getResource("/sprites/colors/purple.png")));
 		purpleButton.setFocusPainted(false);
 		purpleButton.setBorderPainted(false);
 		purpleButton.setBorder(null);
@@ -197,11 +180,11 @@ public class GUI_Title {
 		JToggleButton humanButton1 = new JToggleButton("");
 		humanButton1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		raceButtonGroup.add(humanButton1);
-		humanButton1.setIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/Races/human-unselect.png")));
-		humanButton1.setPressedIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/Races/human.png")));
-		humanButton1.setRolloverIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/Races/human.png")));
-		humanButton1.setRolloverSelectedIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/Races/human.png")));
-		humanButton1.setSelectedIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/Races/human.png")));
+		humanButton1.setIcon(new ImageIcon(MainView.class.getResource("/sprites/Races/human-unselect.png")));
+		humanButton1.setPressedIcon(new ImageIcon(MainView.class.getResource("/sprites/Races/human.png")));
+		humanButton1.setRolloverIcon(new ImageIcon(MainView.class.getResource("/sprites/Races/human.png")));
+		humanButton1.setRolloverSelectedIcon(new ImageIcon(MainView.class.getResource("/sprites/Races/human.png")));
+		humanButton1.setSelectedIcon(new ImageIcon(MainView.class.getResource("/sprites/Races/human.png")));
 		humanButton1.setFocusPainted(false);
 		humanButton1.setBorderPainted(false);
 		humanButton1.setBorder(null);
@@ -211,11 +194,11 @@ public class GUI_Title {
 		JToggleButton flapperButton1 = new JToggleButton("");
 		flapperButton1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		raceButtonGroup.add(flapperButton1);
-		flapperButton1.setIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/Races/flapper-unselect.png")));
-		flapperButton1.setPressedIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/Races/flapper.png")));
-		flapperButton1.setRolloverIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/Races/flapper.png")));
-		flapperButton1.setRolloverSelectedIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/Races/flapper.png")));
-		flapperButton1.setSelectedIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/Races/flapper.png")));
+		flapperButton1.setIcon(new ImageIcon(MainView.class.getResource("/sprites/Races/flapper-unselect.png")));
+		flapperButton1.setPressedIcon(new ImageIcon(MainView.class.getResource("/sprites/Races/flapper.png")));
+		flapperButton1.setRolloverIcon(new ImageIcon(MainView.class.getResource("/sprites/Races/flapper.png")));
+		flapperButton1.setRolloverSelectedIcon(new ImageIcon(MainView.class.getResource("/sprites/Races/flapper.png")));
+		flapperButton1.setSelectedIcon(new ImageIcon(MainView.class.getResource("/sprites/Races/flapper.png")));
 		flapperButton1.setFocusPainted(false);
 		flapperButton1.setBorderPainted(false);
 		flapperButton1.setBorder(null);
@@ -225,11 +208,11 @@ public class GUI_Title {
 		JToggleButton bonzoidButton1 = new JToggleButton("");
 		bonzoidButton1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		raceButtonGroup.add(bonzoidButton1);
-		bonzoidButton1.setIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/Races/bonzoid-unselect.png")));
-		bonzoidButton1.setPressedIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/Races/bonzoid.png")));
-		bonzoidButton1.setRolloverIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/Races/bonzoid.png")));
-		bonzoidButton1.setRolloverSelectedIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/Races/bonzoid.png")));
-		bonzoidButton1.setSelectedIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/Races/bonzoid.png")));
+		bonzoidButton1.setIcon(new ImageIcon(MainView.class.getResource("/sprites/Races/bonzoid-unselect.png")));
+		bonzoidButton1.setPressedIcon(new ImageIcon(MainView.class.getResource("/sprites/Races/bonzoid.png")));
+		bonzoidButton1.setRolloverIcon(new ImageIcon(MainView.class.getResource("/sprites/Races/bonzoid.png")));
+		bonzoidButton1.setRolloverSelectedIcon(new ImageIcon(MainView.class.getResource("/sprites/Races/bonzoid.png")));
+		bonzoidButton1.setSelectedIcon(new ImageIcon(MainView.class.getResource("/sprites/Races/bonzoid.png")));
 		bonzoidButton1.setFocusPainted(false);
 		bonzoidButton1.setBorderPainted(false);
 		bonzoidButton1.setBorder(null);
@@ -239,11 +222,11 @@ public class GUI_Title {
 		JToggleButton ugaiteButton1 = new JToggleButton("");
 		ugaiteButton1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		raceButtonGroup.add(ugaiteButton1);
-		ugaiteButton1.setIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/Races/ugaite-unselect.png")));
-		ugaiteButton1.setPressedIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/Races/ugaite.png")));
-		ugaiteButton1.setRolloverIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/Races/ugaite.png")));
-		ugaiteButton1.setRolloverSelectedIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/Races/ugaite.png")));
-		ugaiteButton1.setSelectedIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/Races/ugaite.png")));
+		ugaiteButton1.setIcon(new ImageIcon(MainView.class.getResource("/sprites/Races/ugaite-unselect.png")));
+		ugaiteButton1.setPressedIcon(new ImageIcon(MainView.class.getResource("/sprites/Races/ugaite.png")));
+		ugaiteButton1.setRolloverIcon(new ImageIcon(MainView.class.getResource("/sprites/Races/ugaite.png")));
+		ugaiteButton1.setRolloverSelectedIcon(new ImageIcon(MainView.class.getResource("/sprites/Races/ugaite.png")));
+		ugaiteButton1.setSelectedIcon(new ImageIcon(MainView.class.getResource("/sprites/Races/ugaite.png")));
 		ugaiteButton1.setFocusPainted(false);
 		ugaiteButton1.setBorderPainted(false);
 		ugaiteButton1.setBorder(null);
@@ -253,11 +236,11 @@ public class GUI_Title {
 		JToggleButton buzziteButton1 = new JToggleButton("");
 		buzziteButton1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		raceButtonGroup.add(buzziteButton1);
-		buzziteButton1.setIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/Races/buzzite-unselect.png")));
-		buzziteButton1.setPressedIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/Races/buzzite.png")));
-		buzziteButton1.setRolloverIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/Races/buzzite.png")));
-		buzziteButton1.setRolloverSelectedIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/Races/buzzite.png")));
-		buzziteButton1.setSelectedIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/Races/buzzite.png")));
+		buzziteButton1.setIcon(new ImageIcon(MainView.class.getResource("/sprites/Races/buzzite-unselect.png")));
+		buzziteButton1.setPressedIcon(new ImageIcon(MainView.class.getResource("/sprites/Races/buzzite.png")));
+		buzziteButton1.setRolloverIcon(new ImageIcon(MainView.class.getResource("/sprites/Races/buzzite.png")));
+		buzziteButton1.setRolloverSelectedIcon(new ImageIcon(MainView.class.getResource("/sprites/Races/buzzite.png")));
+		buzziteButton1.setSelectedIcon(new ImageIcon(MainView.class.getResource("/sprites/Races/buzzite.png")));
 		buzziteButton1.setFocusPainted(false);
 		buzziteButton1.setBorderPainted(false);
 		buzziteButton1.setBorder(null);
@@ -266,7 +249,7 @@ public class GUI_Title {
 
 		JLabel playerConfigLabel1 = new JLabel("");
 		playerConfigLabel1.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-		playerConfigLabel1.setIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/player-config1.png")));
+		playerConfigLabel1.setIcon(new ImageIcon(MainView.class.getResource("/sprites/player-config1.png")));
 		playerConfigLabel1.setBounds(0, 0, 1000, 563);
 		Player1ConfigPanel.add(playerConfigLabel1);
 	}
