@@ -27,7 +27,7 @@ public class GameController {
         view.getTitlePanel().listenForStartBtn(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                System.out.println("worked");
+                view.showGameConfigPanel();
             }
         });
     }
