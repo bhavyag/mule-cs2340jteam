@@ -8,7 +8,7 @@ public class TitlePanel extends JPanel {
     private JLabel titleLabel;
     private JButton btnStart;
 
-    public TitlePanel() {
+    protected TitlePanel() {
         titleLabel = new JLabel("");
         btnStart = new JButton("");
 
@@ -37,7 +37,7 @@ public class TitlePanel extends JPanel {
         btnStart.setFocusPainted(false);
     }
 
-    public void listenForStartBtn(MouseAdapter mouseAdapter) {
+    public void onClickStart(MouseAdapter mouseAdapter) {
         btnStart.addMouseListener(mouseAdapter);
     }
 }

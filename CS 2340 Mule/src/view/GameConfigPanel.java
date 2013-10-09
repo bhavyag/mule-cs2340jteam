@@ -23,7 +23,7 @@ public class GameConfigPanel extends JPanel {
 
     private JLabel gameConfigLabel;
 
-    public GameConfigPanel() {
+    protected GameConfigPanel() {
         mapButtonGroup = new ButtonGroup();
         difficultyButtonGroup = new ButtonGroup();
         playerButtonGroup = new ButtonGroup();
@@ -190,5 +190,9 @@ public class GameConfigPanel extends JPanel {
         } else {
             return -1;
         }
+    }
+
+    public void onClickNext(MouseAdapter mouseAdapter) {
+        nextButton.addMouseListener(mouseAdapter);
     }
 }
