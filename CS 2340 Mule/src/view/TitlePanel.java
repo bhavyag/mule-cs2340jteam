@@ -2,7 +2,7 @@ package view;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.File;
+import java.awt.event.MouseAdapter;
 
 public class TitlePanel {
     private JPanel titlePanel;
@@ -13,6 +13,8 @@ public class TitlePanel {
         titleLabel = new JLabel("");
         titlePanel = new JPanel();
         btnStart = new JButton("");
+
+        initialize();
     }
 
     private void initialize() {
@@ -38,5 +40,9 @@ public class TitlePanel {
 
     public JPanel getPanel() {
         return titlePanel;
+    }
+
+    public void listenForStartBtn(MouseAdapter mouseAdapter) {
+        btnStart.addMouseListener(mouseAdapter);
     }
 }
