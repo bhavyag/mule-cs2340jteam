@@ -1,3 +1,4 @@
+import view.GameConfigPanel;
 import view.TitlePanel;
 
 import java.awt.EventQueue;
@@ -31,7 +32,8 @@ public class GUI_Title {
 
 	private JFrame frame;
     private TitlePanel titlePanel;
-	private JPanel GameConfigPanel, Player1ConfigPanel;
+    private GameConfigPanel gameConfigPanel;
+    private JPanel Player1ConfigPanel;
 	private final ButtonGroup mapButtonGroup;
 	private final ButtonGroup difficultyButtonGroup;
 	private final ButtonGroup playerButtonGroup;
@@ -52,6 +54,7 @@ public class GUI_Title {
 	public GUI_Title() {
 		this.frame = new JFrame();
         this.titlePanel = new TitlePanel();
+        this.gameConfigPanel = new GameConfigPanel();
 		this.mapButtonGroup = new ButtonGroup();
 		this.difficultyButtonGroup = new ButtonGroup();
 		this.playerButtonGroup = new ButtonGroup();
@@ -74,7 +77,8 @@ public class GUI_Title {
 		frame.setBounds(100, 100, 1006, 592);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(cardLayout);
-        frame.getContentPane().add(titlePanel.getPanel(), TITLE);
+        frame.getContentPane().add(titlePanel, TITLE);
+        frame.getContentPane().add(gameConfigPanel, GAME_CONFIG);
 	}
 
     public TitlePanel getTitlePanel() {
@@ -85,130 +89,13 @@ public class GUI_Title {
         cardLayout.show(frame.getContentPane(), TITLE);
     }
 
-	private void initializeGameConfigPanel() {
-		GameConfigPanel = new JPanel();
-		GameConfigPanel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		frame.getContentPane().add(GameConfigPanel, GAME_CONFIG);
-		GameConfigPanel.setLayout(null);
+    public GameConfigPanel getGameConfigPanel() {
+        return gameConfigPanel;
+    }
 
-		nextButton = new JToggleButton("");
-
-		nextButton.setIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/SPRITES/next-unselect.png")));
-		nextButton.setPressedIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/SPRITES/next.png")));
-		nextButton.setRolloverIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/SPRITES/next.png")));
-		nextButton.setRolloverSelectedIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/SPRITES/next.png")));
-		nextButton.setSelectedIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/SPRITES/next.png")));
-		nextButton.setFocusPainted(false);
-		nextButton.setBorderPainted(false);
-		nextButton.setBorder(null);
-		nextButton.setBounds(807, 493, 150, 48);
-		GameConfigPanel.add(nextButton);
-
-		JToggleButton map1Button = new JToggleButton("");
-		mapButtonGroup.add(map1Button);
-		map1Button.setFocusPainted(false);
-		map1Button.setBorderPainted(false);
-		map1Button.setBorder(null);
-		map1Button.setPressedIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/SPRITES/map1.png")));
-		map1Button.setRolloverIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/SPRITES/map1.png")));
-		map1Button.setSelectedIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/SPRITES/map1.png")));
-		map1Button.setIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/SPRITES/map1unselect.png")));
-		map1Button.setBounds(291, 183, 200, 117);
-		GameConfigPanel.add(map1Button);
-
-		JToggleButton map2Button = new JToggleButton("");
-		mapButtonGroup.add(map2Button);
-		map2Button.setFocusPainted(false);
-		map2Button.setPressedIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/SPRITES/map2.png")));
-		map2Button.setRolloverIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/SPRITES/map2.png")));
-		map2Button.setSelectedIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/SPRITES/map2.png")));
-		map2Button.setIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/SPRITES/map2unselect.png")));
-		map2Button.setBounds(639, 183, 200, 117);
-		GameConfigPanel.add(map2Button);
-
-		JToggleButton easyButton = new JToggleButton("");
-		easyButton.setFocusPainted(false);
-		easyButton.setBorderPainted(false);
-		difficultyButtonGroup.add(easyButton);
-		easyButton.setBorder(null);
-		easyButton.setSelectedIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/SPRITES/easy.png")));
-		easyButton.setRolloverIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/SPRITES/easy.png")));
-		easyButton.setPressedIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/SPRITES/easy.png")));
-		easyButton.setIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/SPRITES/easyunselect.png")));
-		easyButton.setBounds(336, 341, 150, 48);
-		GameConfigPanel.add(easyButton);
-
-		JToggleButton mediumButton = new JToggleButton("");
-		difficultyButtonGroup.add(mediumButton);
-		mediumButton.setFocusPainted(false);
-		mediumButton.setIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/SPRITES/mediumunselect.png")));
-		mediumButton.setPressedIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/SPRITES/medium.png")));
-		mediumButton.setRolloverIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/SPRITES/medium.png")));
-		mediumButton.setRolloverSelectedIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/SPRITES/medium.png")));
-		mediumButton.setSelectedIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/SPRITES/medium.png")));
-		mediumButton.setBorderPainted(false);
-		mediumButton.setBorder(null);
-		mediumButton.setBounds(556, 341, 150, 48);
-		GameConfigPanel.add(mediumButton);
-
-		JToggleButton hardButton = new JToggleButton("");
-		difficultyButtonGroup.add(hardButton);
-		hardButton.setIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/SPRITES/hardunselect.png")));
-		hardButton.setPressedIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/SPRITES/hard.png")));
-		hardButton.setRolloverIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/SPRITES/hard.png")));
-		hardButton.setRolloverSelectedIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/SPRITES/hard.png")));
-		hardButton.setSelectedIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/SPRITES/hard.png")));
-		hardButton.setFocusPainted(false);
-		hardButton.setBorderPainted(false);
-		hardButton.setBorder(null);
-		hardButton.setBounds(780, 341, 150, 48);
-		GameConfigPanel.add(hardButton);
-
-		JToggleButton p2Button = new JToggleButton("");
-		playerButtonGroup.add(p2Button);
-		p2Button.setIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/SPRITES/2unselect.png")));
-		p2Button.setPressedIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/SPRITES/2.png")));
-		p2Button.setRolloverIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/SPRITES/2.png")));
-		p2Button.setRolloverSelectedIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/SPRITES/2.png")));
-		p2Button.setSelectedIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/SPRITES/2.png")));
-		p2Button.setFocusPainted(false);
-		p2Button.setBorderPainted(false);
-		p2Button.setBorder(null);
-		p2Button.setBounds(387, 400, 48, 48);
-		GameConfigPanel.add(p2Button);
-
-		JToggleButton p3Button = new JToggleButton("");
-		playerButtonGroup.add(p3Button);
-		p3Button.setIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/SPRITES/3unselect.png")));
-		p3Button.setPressedIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/SPRITES/3.png")));
-		p3Button.setRolloverIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/SPRITES/3.png")));
-		p3Button.setRolloverSelectedIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/SPRITES/3.png")));
-		p3Button.setSelectedIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/SPRITES/3.png")));
-		p3Button.setFocusPainted(false);
-		p3Button.setBorderPainted(false);
-		p3Button.setBorder(null);
-		p3Button.setBounds(607, 400, 48, 48);
-		GameConfigPanel.add(p3Button);
-
-		JToggleButton p4Button = new JToggleButton("");
-		playerButtonGroup.add(p4Button);
-		p4Button.setIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/SPRITES/4unselect.png")));
-		p4Button.setPressedIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/SPRITES/4.png")));
-		p4Button.setRolloverSelectedIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/SPRITES/4.png")));
-		p4Button.setRolloverIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/SPRITES/4.png")));
-		p4Button.setSelectedIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/SPRITES/4.png")));
-		p4Button.setFocusPainted(false);
-		p4Button.setBorderPainted(false);
-		p4Button.setBorder(null);
-		p4Button.setBounds(831, 400, 48, 48);
-		GameConfigPanel.add(p4Button);
-
-		JLabel gameConfigLabel = new JLabel("");
-		gameConfigLabel.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-		gameConfigLabel.setBounds(0, 0, 1000, 563);
-		gameConfigLabel.setIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/SPRITES/mule-config.png")));
-		GameConfigPanel.add(gameConfigLabel);
-	}
+    public void showGameConfigPanel() {
+        cardLayout.show(frame.getContentPane(), GAME_CONFIG);
+    }
 
 	private void initializePlayerConfigPanel() {
 
