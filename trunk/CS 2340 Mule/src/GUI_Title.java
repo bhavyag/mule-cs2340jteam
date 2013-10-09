@@ -87,6 +87,7 @@ public class GUI_Title {
 		TitlePanel.setLayout(null);
 
 		btnStart = new JButton("");
+		btnStart.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
 		btnStart.setSelectedIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/start-button-selected.png")));
 		btnStart.setRolloverSelectedIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/start-button-selected.png")));
@@ -240,6 +241,7 @@ public class GUI_Title {
 	private void initializePlayerConfigPanel() {
 
 		Player1ConfigPanel = new JPanel();
+		Player1ConfigPanel.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		frame.getContentPane().add(Player1ConfigPanel, playerConfig);
 		Player1ConfigPanel.setLayout(null);
 
@@ -249,8 +251,29 @@ public class GUI_Title {
 				cardLayout.show(frame.getContentPane(), playerConfig);	
 			}
 		});
+		
+		JToggleButton nextButtonToStart = new JToggleButton("");
+		nextButtonToStart.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				frame.dispose();
+				GameController.triggerStartGame();
+			}
+		});
+		nextButtonToStart.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		nextButtonToStart.setIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/SPRITES/next-unselect.png")));
+		nextButtonToStart.setPressedIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/SPRITES/next.png")));
+		nextButtonToStart.setRolloverIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/SPRITES/next.png")));
+		nextButtonToStart.setSelectedIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/SPRITES/next.png")));
+		nextButtonToStart.setRolloverSelectedIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/SPRITES/next.png")));
+		nextButtonToStart.setFocusPainted(false);
+		nextButtonToStart.setBorderPainted(false);
+		nextButtonToStart.setBorder(null);
+		nextButtonToStart.setBounds(807, 491, 150, 48);
+		Player1ConfigPanel.add(nextButtonToStart);
 
 		JToggleButton redButton = new JToggleButton("");
+		redButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		color1ButtonGroup.add(redButton);
 		redButton.setIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/colors/red-unselected.png")));
 		redButton.setPressedIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/colors/red.png")));
@@ -264,6 +287,7 @@ public class GUI_Title {
 		Player1ConfigPanel.add(redButton);
 
 		JToggleButton yellowButton = new JToggleButton("");
+		yellowButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		color1ButtonGroup.add(yellowButton);
 		yellowButton.setIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/colors/yellow-unselected.png")));
 		yellowButton.setPressedIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/colors/yellow.png")));
@@ -277,6 +301,7 @@ public class GUI_Title {
 		Player1ConfigPanel.add(yellowButton);
 
 		JToggleButton greenButton = new JToggleButton("");
+		greenButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		color1ButtonGroup.add(greenButton);
 		greenButton.setIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/colors/green-unselected.png")));
 		greenButton.setPressedIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/colors/green.png")));
@@ -290,6 +315,7 @@ public class GUI_Title {
 		Player1ConfigPanel.add(greenButton);
 
 		JToggleButton purpleButton = new JToggleButton("");
+		purpleButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		color1ButtonGroup.add(purpleButton);
 		purpleButton.setIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/colors/purple-unselected.png")));
 		purpleButton.setPressedIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/colors/purple.png")));
@@ -310,6 +336,7 @@ public class GUI_Title {
 		nameTextField.setColumns(10);
 
 		JToggleButton humanButton1 = new JToggleButton("");
+		humanButton1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		raceButtonGroup.add(humanButton1);
 		humanButton1.setIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/Races/human-unselect.png")));
 		humanButton1.setPressedIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/Races/human.png")));
@@ -323,6 +350,7 @@ public class GUI_Title {
 		Player1ConfigPanel.add(humanButton1);
 
 		JToggleButton flapperButton1 = new JToggleButton("");
+		flapperButton1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		raceButtonGroup.add(flapperButton1);
 		flapperButton1.setIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/Races/flapper-unselect.png")));
 		flapperButton1.setPressedIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/Races/flapper.png")));
@@ -336,6 +364,7 @@ public class GUI_Title {
 		Player1ConfigPanel.add(flapperButton1);
 
 		JToggleButton bonzoidButton1 = new JToggleButton("");
+		bonzoidButton1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		raceButtonGroup.add(bonzoidButton1);
 		bonzoidButton1.setIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/Races/bonzoid-unselect.png")));
 		bonzoidButton1.setPressedIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/Races/bonzoid.png")));
@@ -349,6 +378,7 @@ public class GUI_Title {
 		Player1ConfigPanel.add(bonzoidButton1);
 
 		JToggleButton ugaiteButton1 = new JToggleButton("");
+		ugaiteButton1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		raceButtonGroup.add(ugaiteButton1);
 		ugaiteButton1.setIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/Races/ugaite-unselect.png")));
 		ugaiteButton1.setPressedIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/Races/ugaite.png")));
@@ -362,6 +392,7 @@ public class GUI_Title {
 		Player1ConfigPanel.add(ugaiteButton1);
 
 		JToggleButton buzziteButton1 = new JToggleButton("");
+		buzziteButton1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		raceButtonGroup.add(buzziteButton1);
 		buzziteButton1.setIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/Races/buzzite-unselect.png")));
 		buzziteButton1.setPressedIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/Races/buzzite.png")));
@@ -375,19 +406,9 @@ public class GUI_Title {
 		Player1ConfigPanel.add(buzziteButton1);
 
 		JLabel playerConfigLabel1 = new JLabel("");
+		playerConfigLabel1.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		playerConfigLabel1.setIcon(new ImageIcon(GUI_Title.class.getResource("/sprites/player-config1.png")));
 		playerConfigLabel1.setBounds(0, 0, 1000, 563);
 		Player1ConfigPanel.add(playerConfigLabel1);
 	}
-
-
-	/*private class SwingAction extends AbstractAction {
-	public SwingAction() {
-		//putValue(NAME, "SwingAction");
-		//putValue(SHORT_DESCRIPTION, "Some short description");
-	}
-	public void actionPerformed(ActionEvent e) {
-	}
-	}*/
-
 }

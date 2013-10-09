@@ -18,7 +18,11 @@ public class GameController {
         this.currentPlayer = 0;
     }
 
-    public void startGame() {
+    public static void triggerStartGame() {
+    	startGame();
+    }
+    
+    private void startTitleScreen() {
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
@@ -30,6 +34,21 @@ public class GameController {
             }
         });
     }
+    
+    
+    private static void startGame() {
+        EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    GUIGameBoard guiGameBoard = new GUIGameBoard();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
 
     public void configurePlayers() {
         for (Player player : players) {
@@ -42,6 +61,6 @@ public class GameController {
      */
     public static void main(String[] args) {
         GameController gc = new GameController();
-        gc.startGame();
+        gc.startTitleScreen();
     }
 }
