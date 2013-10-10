@@ -18,7 +18,7 @@ public class MainView {
             TITLE = "Title",
             GAME_CONFIG = "Game Config",
             PLAYER_CONFIG = "Player Config",
-            GAME_BOARD = "Game Board";
+            GAME_BOARD = "Game model.Board";
 
 	/**
 	 * Create the application.

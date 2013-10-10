@@ -2,10 +2,37 @@ package model;
 
 public class Player {
     public static enum Color {
-        RED, YELLOW, GREEN, PURPLE
+        RED("red"),
+        YELLOW("yellow"),
+        GREEN("green"),
+        PURPLE("purple");
+
+        private String name;
+
+        Color(String name) {
+            this.name = name;
+        }
+
+        public String toString() {
+            return name;
+        }
     }
     public static enum Race {
-        BUZZITE, UGAITE, BONZIOD, FLAPPER, HUMAN
+        BUZZITE("Buzzite"),
+        UGAITE("Ugaite"),
+        BONZIOD("Bonziod"),
+        FLAPPER("Flapper"),
+        HUMAN("Human");
+
+        private String name;
+
+        Race(String name) {
+            this.name = name;
+        }
+
+        public String toString() {
+            return name;
+        }
     }
 
     private static int totalPlayers = 0;
@@ -40,5 +67,9 @@ public class Player {
 
     public void setRace(int race) {
         this.race = races[race];
+    }
+
+    public String toString() {
+        return "Player " + playerNum + " is a " + color + " " + race + " named " + name;
     }
 }
