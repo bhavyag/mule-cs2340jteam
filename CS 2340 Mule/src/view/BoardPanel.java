@@ -2,10 +2,10 @@ package view;
 
 import javax.swing.*;
 
-public class GameBoardPanel extends JPanel {
+public class BoardPanel extends JPanel {
     private JLabel boardLabel;
 
-    protected GameBoardPanel() {
+    protected BoardPanel() {
         this.boardLabel = new JLabel("");
 
         initialize();
