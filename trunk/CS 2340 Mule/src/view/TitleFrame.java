@@ -9,15 +9,13 @@ public class TitleFrame extends JFrame {
     private TitlePanel titlePanel;
     private GameConfigPanel gameConfigPanel;
     private PlayerConfigPanel playerConfigPanel;
-    private GameBoardPanel gameBoardPanel;
 
 	private CardLayout cardLayout;
 
 	private final String
             TITLE = "Title",
             GAME_CONFIG = "Game Config",
-            PLAYER_CONFIG = "Player Config",
-            GAME_BOARD = "Game model.Board";
+            PLAYER_CONFIG = "Player Config";
 
 	/**
 	 * Create the application.
@@ -26,7 +24,6 @@ public class TitleFrame extends JFrame {
         this.titlePanel = new TitlePanel();
         this.gameConfigPanel = new GameConfigPanel();
         this.playerConfigPanel = new PlayerConfigPanel();
-        this.gameBoardPanel = new GameBoardPanel();
 		this.cardLayout = new CardLayout();
 
 		initialize();
@@ -46,7 +43,6 @@ public class TitleFrame extends JFrame {
         this.getContentPane().add(titlePanel, TITLE);
         this.getContentPane().add(gameConfigPanel, GAME_CONFIG);
         this.getContentPane().add(playerConfigPanel, PLAYER_CONFIG);
-        this.getContentPane().add(gameBoardPanel, GAME_BOARD);
 	}
 
     public TitlePanel getTitlePanel() {
@@ -76,9 +72,5 @@ public class TitleFrame extends JFrame {
     public void updatePlayerConfigPanel(int playerNum) {
         playerConfigPanel.clear();
         playerConfigPanel.setPlayerNum(playerNum);
-    }
-
-    public void showGameBoardPanel() {
-        cardLayout.show(this.getContentPane(), GAME_BOARD);
     }
 }

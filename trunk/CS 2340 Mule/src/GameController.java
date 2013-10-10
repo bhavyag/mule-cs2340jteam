@@ -1,6 +1,7 @@
 import model.Board;
 import model.Player;
 import view.GameConfigPanel;
+import view.GameFrame;
 import view.TitleFrame;
 import view.PlayerConfigPanel;
 
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 
 public class GameController {
     private TitleFrame titleView;
+    private GameFrame gameView;
     private int difficulty;
     private ArrayList<Player> players;
     private int currentPlayerIdx;
@@ -17,10 +19,15 @@ public class GameController {
 
 
     public GameController() {
-        this.titleView = new TitleFrame();
         this.players = new ArrayList<Player>();
         this.currentPlayerIdx = 0;
     }
+
+    private void startTitleSequence() {
+        titleView = new TitleFrame();
+        titleScreen();
+    }
+
 
     private void titleScreen() {
         titleView.showTitlePanel();
@@ -95,6 +102,8 @@ public class GameController {
 
     private void startGame() {
         titleView.dispose();
+        gameView = new GameFrame();
+        gameView.showBoardPanel();
     }
 
     /**
@@ -102,6 +111,6 @@ public class GameController {
      */
     public static void main(String[] args) {
         GameController gc = new GameController();
-        gc.titleScreen();
+        gc.startTitleSequence();
     }
 }
