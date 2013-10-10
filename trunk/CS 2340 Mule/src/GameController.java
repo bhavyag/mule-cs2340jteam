@@ -1,3 +1,4 @@
+import model.Board;
 import model.Player;
 import view.GameConfigPanel;
 import view.MainView;
@@ -13,6 +14,8 @@ public class GameController {
     private int difficulty;
     private ArrayList<Player> players;
     private int currentPlayerIdx;
+    private Board map;
+
 
     public GameController(MainView view) {
         this.view = view;
@@ -24,12 +27,12 @@ public class GameController {
         view.showTitlePanel();
 
         view.getTitlePanel().onClickStart(
-                new MouseAdapter() {
-                    @Override
-                    public void mouseClicked(MouseEvent e) {
-                        configureGame();
-                    }
+            new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    configureGame();
                 }
+            }
         );
     }
 
@@ -46,6 +49,12 @@ public class GameController {
                         players.add(new Player());
                     }
                     difficulty = gameConfigPanel.getDifficulty();
+                    map = Board.constructBoard(gameConfigPanel.getMap());
+
+                    System.out.println("difficulty: " + difficulty);
+                    System.out.println("number of players: " + numPlayers);
+                    System.out.println("map: " + map);
+
                     configurePlayers();
                 }
             }
@@ -65,6 +74,9 @@ public class GameController {
                         currentPlayer.setName(playerConfigPanel.getName());
                         currentPlayer.setColor(playerConfigPanel.getColor());
                         currentPlayer.setRace(playerConfigPanel.getRace());
+
+                        System.out.println(currentPlayer);
+
                         configureNextPlayer();
                     }
                 }
