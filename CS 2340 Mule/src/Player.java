@@ -1,10 +1,3 @@
-/**
- * Created with IntelliJ IDEA.
- * User: craigrmccown
- * Date: 10/7/13
- * Time: 8:31 PM
- * To change this template use File | Settings | File Templates.
- */
 public class Player {
     public static enum Color {
         RED, YELLOW, GREEN, PURPLE
@@ -14,6 +7,9 @@ public class Player {
     }
 
     private static int totalPlayers = 0;
+    private static final Race[] races = {Race.HUMAN, Race.FLAPPER, Race.BONZIOD, Race.UGAITE, Race.BUZZITE};
+    private static final Color[] colors = {Color.RED, Color.YELLOW, Color.GREEN, Color.PURPLE};
+
     private int playerNum;
     private String name;
     private Color color;
@@ -36,11 +32,11 @@ public class Player {
         this.name = name;
     }
 
-    public void setColor(Color color) {
-        this.color = color;
+    public void setColor(int color) {
+        this.color = colors[color];
     }
 
-    public void setRace(Race race) {
-        this.race = race;
+    public void setRace(int race) {
+        this.race = races[race];
     }
 }
