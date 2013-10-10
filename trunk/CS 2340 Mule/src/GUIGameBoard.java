@@ -51,11 +51,11 @@ public class GUIGameBoard {
 		frame.getContentPane().setLayout(cardLayout);
 		frame.setVisible(true);
 		frame.getContentPane().setLayout(new CardLayout(0, 0));
-		
+
 		JPanel gameBoard = new JPanel();
 		frame.getContentPane().add(gameBoard, "name_379706790293597");
 		gameBoard.setLayout(null);
-		
+
 		JLabel gameBoardLabel = new JLabel("");
 		gameBoardLabel.setIcon(new ImageIcon(GUIGameBoard.class.getResource("/sprites/mule-board.png")));
 		gameBoardLabel.setBounds(0, 0, 1000, 563);

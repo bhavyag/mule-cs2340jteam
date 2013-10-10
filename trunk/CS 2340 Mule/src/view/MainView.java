@@ -1,20 +1,8 @@
 package view;
 
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import java.awt.Color;
 import java.awt.CardLayout;
-import javax.swing.JPanel;
-import java.awt.Cursor;
-import javax.swing.JToggleButton;
-import javax.swing.ButtonGroup;
-import javax.swing.JTextField;
-import java.awt.Font;
 import java.awt.Toolkit;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 public class MainView {
 
@@ -22,13 +10,15 @@ public class MainView {
     private TitlePanel titlePanel;
     private GameConfigPanel gameConfigPanel;
     private PlayerConfigPanel playerConfigPanel;
+    private GameBoardPanel gameBoardPanel;
 
 	private CardLayout cardLayout;
 
 	private final String
             TITLE = "Title",
             GAME_CONFIG = "Game Config",
-            PLAYER_CONFIG = "model.Player Config";
+            PLAYER_CONFIG = "Player Config",
+            GAME_BOARD = "Game Board";
 
 	/**
 	 * Create the application.
@@ -38,6 +28,7 @@ public class MainView {
         this.titlePanel = new TitlePanel();
         this.gameConfigPanel = new GameConfigPanel();
         this.playerConfigPanel = new PlayerConfigPanel();
+        this.gameBoardPanel = new GameBoardPanel();
 		this.cardLayout = new CardLayout();
 
 		initialize();
@@ -57,6 +48,7 @@ public class MainView {
         frame.getContentPane().add(titlePanel, TITLE);
         frame.getContentPane().add(gameConfigPanel, GAME_CONFIG);
         frame.getContentPane().add(playerConfigPanel, PLAYER_CONFIG);
+        frame.getContentPane().add(gameBoardPanel, GAME_BOARD);
 	}
 
     public TitlePanel getTitlePanel() {
@@ -79,8 +71,15 @@ public class MainView {
         return playerConfigPanel;
     }
 
-    public void showPlayerConfigPanel(int playerNum) {
-        playerConfigPanel.setPlayerNum(playerNum);
+    public void showPlayerConfigPanel() {
         cardLayout.show(frame.getContentPane(), PLAYER_CONFIG);
+    }
+
+    public void updatePlayerConfigPanel(int playerNum) {
+        playerConfigPanel.setPlayerNum(playerNum);
+    }
+
+    public void showGameBoardPanel() {
+        cardLayout.show(frame.getContentPane(), GAME_BOARD);
     }
 }
