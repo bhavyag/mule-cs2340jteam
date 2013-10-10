@@ -11,12 +11,12 @@ public class GameController {
     private MainView view;
     private int difficulty;
     private ArrayList<Player> players;
-    private int currentPlayer;
+    private int currentPlayerIdx;
 
     public GameController(MainView view) {
         this.view = view;
         this.players = new ArrayList<Player>();
-        this.currentPlayer = 0;
+        this.currentPlayerIdx = 0;
     }
     
     private void titleScreen() {
@@ -52,18 +52,23 @@ public class GameController {
     }
 
     private void configureNextPlayer() {
-        view.showPlayerConfigPanel(players.get(currentPlayer).getPlayerNum());
-        currentPlayer ++;
+        view.showPlayerConfigPanel(players.get(currentPlayerIdx).getPlayerNum());
+        currentPlayerIdx ++;
 
         final PlayerConfigPanel playerConfigPanel = view.getPlayerConfigPanel();
         playerConfigPanel.onClickNext(
             new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    if (currentPlayer < players.size()) {
+                    Player currentPlayer = players.get(currentPlayerIdx);
+                    currentPlayer.setName(playerConfigPanel.getName());
+                    currentPlayer.setColor(playerConfigPanel.getColor());
+                    currentPlayer.setRace(playerConfigPanel.getRace());
+
+                    if (currentPlayerIdx < players.size()) {
                         configureNextPlayer();
                     } else {
-                        currentPlayer = 0;
+                        currentPlayerIdx = 0;
                     }
                 }
             }

@@ -172,9 +172,9 @@ public class GameConfigPanel extends JPanel {
 
     public int getMap() {
         if (map1Button.isSelected()) {
-            return 1;
+            return 0;
         } else if (map2Button.isSelected()) {
-            return 2;
+            return 1;
         } else {
             return -1;
         }
@@ -182,11 +182,11 @@ public class GameConfigPanel extends JPanel {
 
     public int getDifficulty() {
         if (easyButton.isSelected()) {
-            return 1;
+            return 0;
         } else if (mediumButton.isSelected()) {
-            return 2;
+            return 1;
         } else if (hardButton.isSelected()) {
-            return 3;
+            return 2;
         } else {
             return -1;
         }

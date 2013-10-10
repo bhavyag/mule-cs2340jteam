@@ -199,6 +199,40 @@ public class PlayerConfigPanel extends JPanel {
         this.updateUI();
     }
 
+    public String getName() {
+        return nameTextField.getText();
+    }
+
+    public int getColor() {
+        if (redButton.isSelected()) {
+            return 0;
+        } else if (yellowButton.isSelected()) {
+            return 1;
+        } else if (greenButton.isSelected()) {
+            return 2;
+        } else if (purpleButton.isSelected()) {
+            return 3;
+        } else {
+            return -1;
+        }
+    }
+
+    public int getRace() {
+        if (humanButton.isSelected()) {
+            return 0;
+        } else if (flapperButton.isSelected()) {
+            return 1;
+        } else if (bonzoidButton.isSelected()) {
+            return 2;
+        } else if (ugaiteButton.isSelected()) {
+            return 3;
+        } else if (buzziteButton.isSelected()) {
+            return 4;
+        } else {
+            return -1;
+        }
+    }
+
     public void onClickNext(MouseAdapter mouseAdapter) {
         nextButton.addMouseListener(mouseAdapter);
     }
