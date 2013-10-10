@@ -1,4 +1,4 @@
-import view.MainView;
+import view.TitleFrame;
 
 import javax.swing.JFrame;
 
@@ -46,7 +46,7 @@ public class GUIGameBoard {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 1006, 592);
 		frame.setResizable(false);
-		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(MainView.class.getResource("/sprites/muleIcon.png")));
+		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(TitleFrame.class.getResource("/sprites/muleIcon.png")));
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(cardLayout);
 		frame.setVisible(true);
