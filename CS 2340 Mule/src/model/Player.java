@@ -1,3 +1,5 @@
+package model;
+
 public class Player {
     public static enum Color {
         RED, YELLOW, GREEN, PURPLE

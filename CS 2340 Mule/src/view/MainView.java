@@ -28,7 +28,7 @@ public class MainView {
 	private final String
             TITLE = "Title",
             GAME_CONFIG = "Game Config",
-            PLAYER_CONFIG = "Player Config";
+            PLAYER_CONFIG = "model.Player Config";
 
 	/**
 	 * Create the application.

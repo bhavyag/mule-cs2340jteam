@@ -1,3 +1,4 @@
+import model.Player;
 import view.GameConfigPanel;
 import view.MainView;
 import view.PlayerConfigPanel;
@@ -53,7 +54,6 @@ public class GameController {
 
     private void configureNextPlayer() {
         view.showPlayerConfigPanel(players.get(currentPlayerIdx).getPlayerNum());
-        currentPlayerIdx ++;
 
         final PlayerConfigPanel playerConfigPanel = view.getPlayerConfigPanel();
         playerConfigPanel.onClickNext(
@@ -64,6 +64,8 @@ public class GameController {
                     currentPlayer.setName(playerConfigPanel.getName());
                     currentPlayer.setColor(playerConfigPanel.getColor());
                     currentPlayer.setRace(playerConfigPanel.getRace());
+
+                    currentPlayerIdx ++;
 
                     if (currentPlayerIdx < players.size()) {
                         configureNextPlayer();
