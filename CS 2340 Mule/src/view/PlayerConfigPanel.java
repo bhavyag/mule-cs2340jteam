@@ -233,6 +233,12 @@ public class PlayerConfigPanel extends JPanel {
         }
     }
 
+    protected void clear() {
+        nameTextField.setText("");
+        colorButtonGroup.clearSelection();
+        raceButtonGroup.clearSelection();
+    }
+
     public void onClickNext(MouseAdapter mouseAdapter) {
         nextButton.addMouseListener(mouseAdapter);
     }
