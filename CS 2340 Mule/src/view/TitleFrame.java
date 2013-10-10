@@ -4,9 +4,8 @@ import javax.swing.JFrame;
 import java.awt.CardLayout;
 import java.awt.Toolkit;
 
-public class MainView {
+public class TitleFrame extends JFrame {
 
-	private JFrame frame;
     private TitlePanel titlePanel;
     private GameConfigPanel gameConfigPanel;
     private PlayerConfigPanel playerConfigPanel;
@@ -23,8 +22,7 @@ public class MainView {
 	/**
 	 * Create the application.
 	 */
-	public MainView() {
-		this.frame = new JFrame();
+	public TitleFrame() {
         this.titlePanel = new TitlePanel();
         this.gameConfigPanel = new GameConfigPanel();
         this.playerConfigPanel = new PlayerConfigPanel();
@@ -39,16 +37,16 @@ public class MainView {
 	 */
 
 	private void initialize() {
-		frame.setVisible(true);
-		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(MainView.class.getResource("/sprites/muleIcon.png")));
-		frame.setResizable(false);
-		frame.setBounds(100, 100, 1006, 592);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(cardLayout);
-        frame.getContentPane().add(titlePanel, TITLE);
-        frame.getContentPane().add(gameConfigPanel, GAME_CONFIG);
-        frame.getContentPane().add(playerConfigPanel, PLAYER_CONFIG);
-        frame.getContentPane().add(gameBoardPanel, GAME_BOARD);
+		this.setVisible(true);
+		this.setIconImage(Toolkit.getDefaultToolkit().getImage(TitleFrame.class.getResource("/sprites/muleIcon.png")));
+		this.setResizable(false);
+		this.setBounds(100, 100, 1006, 592);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.getContentPane().setLayout(cardLayout);
+        this.getContentPane().add(titlePanel, TITLE);
+        this.getContentPane().add(gameConfigPanel, GAME_CONFIG);
+        this.getContentPane().add(playerConfigPanel, PLAYER_CONFIG);
+        this.getContentPane().add(gameBoardPanel, GAME_BOARD);
 	}
 
     public TitlePanel getTitlePanel() {
@@ -56,7 +54,7 @@ public class MainView {
     }
 
     public void showTitlePanel() {
-        cardLayout.show(frame.getContentPane(), TITLE);
+        cardLayout.show(this.getContentPane(), TITLE);
     }
 
     public GameConfigPanel getGameConfigPanel() {
@@ -64,7 +62,7 @@ public class MainView {
     }
 
     public void showGameConfigPanel() {
-        cardLayout.show(frame.getContentPane(), GAME_CONFIG);
+        cardLayout.show(this.getContentPane(), GAME_CONFIG);
     }
 
     public PlayerConfigPanel getPlayerConfigPanel() {
@@ -72,7 +70,7 @@ public class MainView {
     }
 
     public void showPlayerConfigPanel() {
-        cardLayout.show(frame.getContentPane(), PLAYER_CONFIG);
+        cardLayout.show(this.getContentPane(), PLAYER_CONFIG);
     }
 
     public void updatePlayerConfigPanel(int playerNum) {
@@ -81,6 +79,6 @@ public class MainView {
     }
 
     public void showGameBoardPanel() {
-        cardLayout.show(frame.getContentPane(), GAME_BOARD);
+        cardLayout.show(this.getContentPane(), GAME_BOARD);
     }
 }
