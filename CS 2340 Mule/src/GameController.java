@@ -46,48 +46,44 @@ public class GameController {
                         players.add(new Player());
                     }
                     difficulty = gameConfigPanel.getDifficulty();
-                    configureNextPlayer();
+                    configurePlayers();
                 }
             }
+        );
+    }
+
+    private void configurePlayers() {
+        view.showPlayerConfigPanel();
+        view.updatePlayerConfigPanel(players.get(currentPlayerIdx).getPlayerNum());
+
+        final PlayerConfigPanel playerConfigPanel = view.getPlayerConfigPanel();
+        playerConfigPanel.onClickNext(
+                new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        Player currentPlayer = players.get(currentPlayerIdx);
+                        currentPlayer.setName(playerConfigPanel.getName());
+                        currentPlayer.setColor(playerConfigPanel.getColor());
+                        currentPlayer.setRace(playerConfigPanel.getRace());
+                        configureNextPlayer();
+                    }
+                }
         );
     }
 
     private void configureNextPlayer() {
-        view.showPlayerConfigPanel(players.get(currentPlayerIdx).getPlayerNum());
+        currentPlayerIdx ++;
 
-        final PlayerConfigPanel playerConfigPanel = view.getPlayerConfigPanel();
-        playerConfigPanel.onClickNext(
-            new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    Player currentPlayer = players.get(currentPlayerIdx);
-                    currentPlayer.setName(playerConfigPanel.getName());
-                    currentPlayer.setColor(playerConfigPanel.getColor());
-                    currentPlayer.setRace(playerConfigPanel.getRace());
-
-                    currentPlayerIdx ++;
-
-                    if (currentPlayerIdx < players.size()) {
-                        configureNextPlayer();
-                    } else {
-                        currentPlayerIdx = 0;
-                    }
-                }
-            }
-        );
+        if (currentPlayerIdx == players.size()) {
+            currentPlayerIdx = 0;
+            startGame();
+        } else {
+            view.updatePlayerConfigPanel(players.get(currentPlayerIdx).getPlayerNum());
+        }
     }
 
-    private static void startGame() {
-        EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    GUIGameBoard guiGameBoard = new GUIGameBoard();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
+    private void startGame() {
+        view.showGameBoardPanel();
     }
 
     /**
