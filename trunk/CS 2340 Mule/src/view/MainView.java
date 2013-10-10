@@ -76,6 +76,7 @@ public class MainView {
     }
 
     public void updatePlayerConfigPanel(int playerNum) {
+        playerConfigPanel.clear();
         playerConfigPanel.setPlayerNum(playerNum);
     }
 
