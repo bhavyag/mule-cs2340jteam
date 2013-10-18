@@ -15,7 +15,7 @@ public class GameController {
     private int difficulty;
     private ArrayList<Player> players;
     private int currentPlayerIdx;
-    private Board map;
+    private Board board;
 
 
     public GameController() {
@@ -55,11 +55,11 @@ public class GameController {
                             players.add(new Player());
                         }
                         difficulty = gameConfigPanel.getDifficulty();
-                        map = Board.constructBoard(gameConfigPanel.getMap());
+                        board = new Board(gameConfigPanel.getMap());
 
                         System.out.println("difficulty: " + difficulty);
                         System.out.println("number of players: " + numPlayers);
-                        System.out.println("map: " + map);
+                        System.out.println("map: " + board);
 
                         configurePlayers();
                     }
