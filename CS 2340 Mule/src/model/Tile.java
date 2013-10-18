@@ -1,12 +1,36 @@
 package model;
 
-/**
- * User: Chris
- * Date: 10/18/13
- * Time: 12:22 AM
- * To change this template use File | Settings | File Templates.
- */
 public class Tile
 {
+    /**
+     * ENUM for Tile type
+     */
+    public static enum Type {
+        MOUNTAINONE("mountain 1"),
+        MOUNTAINTWO("mountain 2"),
+        MOUNTAINTHREE("mountain 3"),
+        PLAINS("plains"),
+        RIVER("river"),
+        TOWN("town");
 
+        private String type;
+
+        Type(String myType) {
+            this.type = myType;
+        }
+
+        public String toString() {
+            return type;
+        }
+    }
+
+    private Type type;
+
+    /**
+     * CONTRUCTOR for Tiles
+     */
+    public Tile()
+    {
+
+    }
 }
