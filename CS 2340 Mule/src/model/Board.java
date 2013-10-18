@@ -30,6 +30,15 @@ public class Board
     }
 
     /**
+     * METHOD get this boards map
+     * @return this boards map
+     */
+    public Tile[][] getMap()
+    {
+        return this.myMap;
+    }
+
+    /**
      * METHOD toString
      * @return the name of this boards map.
      */
