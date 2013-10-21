@@ -5,7 +5,8 @@ public class Tile
     /**
      * ENUM for Tile type
      */
-    public static enum Type {
+    public static enum Type
+    {
         MOUNTAINONE("mountain 1"),
         MOUNTAINTWO("mountain 2"),
         MOUNTAINTHREE("mountain 3"),
@@ -25,6 +26,7 @@ public class Tile
     }
 
     private Type type;
+    private static final Type[] types = {Type.MOUNTAINONE,Type.MOUNTAINTWO, Type.PLAINS, Type.RIVER, Type.TOWN};
 
     /**
      * CONTRUCTOR for Tiles
