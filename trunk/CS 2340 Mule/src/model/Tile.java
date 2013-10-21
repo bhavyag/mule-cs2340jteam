@@ -5,8 +5,7 @@ public class Tile
     /**
      * ENUM for Tile type
      */
-    public static enum Type
-    {
+    public static enum Type {
         MOUNTAINONE("mountain 1"),
         MOUNTAINTWO("mountain 2"),
         MOUNTAINTHREE("mountain 3"),
@@ -26,13 +25,23 @@ public class Tile
     }
 
     private Type type;
-    private static final Type[] types = {Type.MOUNTAINONE,Type.MOUNTAINTWO, Type.PLAINS, Type.RIVER, Type.TOWN};
+    private Player owner;
 
     /**
      * CONTRUCTOR for Tiles
      */
-    public Tile()
+    public Tile(Type type)
     {
-
+    	this.type = type;
+    }
+    
+    public void setOwner(Player p)
+    {
+    	this.owner = p;
+    }
+    
+    public Player getOwner()
+    {
+    	return owner;
     }
 }
