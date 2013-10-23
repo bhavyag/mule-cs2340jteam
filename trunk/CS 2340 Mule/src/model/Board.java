@@ -29,15 +29,15 @@ public class Board
         switch(boardType)
         {
             case 0:
-                initializeMap(map1);
+                //initializeMap(map1);
                 this.mapName = "map 1";
                 break;
             case 1:
-                initializeMap(map2);
+                //initializeMap(map2);
                 this.mapName = "map 2";
                 break;
             default:
-                initializeMap(map1);
+                //initializeMap(map1);
                 this.mapName = "map 1";
         }
     }
