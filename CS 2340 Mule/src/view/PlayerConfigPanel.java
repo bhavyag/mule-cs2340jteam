@@ -75,11 +75,11 @@ public class PlayerConfigPanel extends JPanel {
         raceButtonGroup.add(buzziteButton);
 
         nextButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        nextButton.setIcon(new ImageIcon(TitleFrame.class.getResource("/sprites/SPRITES/next-unselect.png")));
-        nextButton.setPressedIcon(new ImageIcon(TitleFrame.class.getResource("/sprites/SPRITES/next.png")));
-        nextButton.setRolloverIcon(new ImageIcon(TitleFrame.class.getResource("/sprites/SPRITES/next.png")));
-        nextButton.setSelectedIcon(new ImageIcon(TitleFrame.class.getResource("/sprites/SPRITES/next.png")));
-        nextButton.setRolloverSelectedIcon(new ImageIcon(TitleFrame.class.getResource("/sprites/SPRITES/next.png")));
+        nextButton.setIcon(new ImageIcon(TitleFrame.class.getResource("/sprites/config/next-unselect.png")));
+        nextButton.setPressedIcon(new ImageIcon(TitleFrame.class.getResource("/sprites/config/next.png")));
+        nextButton.setRolloverIcon(new ImageIcon(TitleFrame.class.getResource("/sprites/config/next.png")));
+        nextButton.setSelectedIcon(new ImageIcon(TitleFrame.class.getResource("/sprites/config/next.png")));
+        nextButton.setRolloverSelectedIcon(new ImageIcon(TitleFrame.class.getResource("/sprites/config/next.png")));
         nextButton.setFocusPainted(false);
         nextButton.setBorderPainted(false);
         nextButton.setBorder(null);

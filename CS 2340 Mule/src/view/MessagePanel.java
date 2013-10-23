@@ -16,6 +16,6 @@ public class MessagePanel extends JPanel {
         this.add(messagePanel);
 
         messagePanel.setBounds(0, 0, 1000, 563);
-        messagePanel.setIcon(new ImageIcon(TitlePanel.class.getResource("/sprites/mule-board.png")));
+        messagePanel.setIcon(new ImageIcon(TitlePanel.class.getResource("")));
     }
 }
