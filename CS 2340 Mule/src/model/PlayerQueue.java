@@ -2,6 +2,12 @@ package model;
 
 import java.util.ArrayList;
 
+/**
+ * Class PlayerQueue contains an arrayList of current players in the game 
+ * and increments the current player and round based on the progression of the game.
+ * 
+ *
+ */
 public class PlayerQueue {
     private ArrayList<Player> players;
     private int currentIndex;
