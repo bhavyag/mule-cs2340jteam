@@ -136,7 +136,7 @@ public class GameController {
     
     private void update()
     {
-    	this.statusPanel.updateStatusPanel();
+    	
     }
 
     /**
