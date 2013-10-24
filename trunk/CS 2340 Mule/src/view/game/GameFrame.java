@@ -24,16 +24,7 @@ public class GameFrame extends JFrame {
     public GameFrame() {
         this.boardPanel = new BoardPanel();
         this.statusPanel = new StatusPanel();
-        statusPanel.setMaximumSize(new Dimension(832, 163));
         this.messagePanel = new MessagePanel();
-        //messagePanel.setAlignmentX(Component.LEFT_ALIGNMENT);
-        
-        boardPanel.getTownCenterPanel().setLocation(new Point(168, 0));
-        boardPanel.getTilePanel().setLocation(new Point(168, 0));
-        boardPanel.setLocation(new Point(168, 0));
-        boardPanel.getTownCenterPanel().setBounds(new Rectangle(168, 0, 832, 400));
-        boardPanel.getTilePanel().setBounds(new Rectangle(168, 0, 832, 400));
-        boardPanel.setBounds(new Rectangle(168, 0, 832, 400));
 
         initialize();
     }
@@ -51,6 +42,14 @@ public class GameFrame extends JFrame {
         getContentPane().add(boardPanel);
         getContentPane().add(messagePanel);
         getContentPane().add(statusPanel);
+
+        boardPanel.getTownCenterPanel().setLocation(new Point(168, 0));
+        boardPanel.getTilePanel().setLocation(new Point(168, 0));
+        boardPanel.setLocation(new Point(168, 0));
+        boardPanel.getTownCenterPanel().setBounds(new Rectangle(168, 0, 832, 400));
+        boardPanel.getTilePanel().setBounds(new Rectangle(168, 0, 832, 400));
+        boardPanel.setBounds(new Rectangle(168, 0, 832, 400));
+        statusPanel.setMaximumSize(new Dimension(832, 163));
     }
     
     /**

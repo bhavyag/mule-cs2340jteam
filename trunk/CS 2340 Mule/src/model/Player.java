@@ -103,12 +103,13 @@ public class Player {
      *
      * @param item the item to be purchased
      */
-    public void purchase(Purchasable item) {
+    public boolean purchase(Purchasable item) {
         if (item.getPrice() <= money) {
             money -= item.getPrice();
+            return true;
         } else {
-            // TODO error handling
             System.out.println("Not enough money");
+            return false;
         }
     }
 
