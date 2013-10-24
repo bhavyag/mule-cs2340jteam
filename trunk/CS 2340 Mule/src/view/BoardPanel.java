@@ -30,8 +30,7 @@ public class BoardPanel extends JPanel {
 		this.add(tilePanel, TILES);
 		this.add(townCenterPanel, TOWN_CENTER);
 
-		boardLabel.setBounds(168, 0, 832, 400);
-		boardLabel.setIcon(new ImageIcon(TitlePanel.class.getResource("/sprites/mule-board.png"))); //CHANGE THIS SHIT
+		this.setBounds(168, 0, 832, 400);
 	}
 
 

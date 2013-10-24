@@ -15,7 +15,7 @@ public class TownCenterPanel extends JPanel {
         this.setLayout(null);
         this.add(townCenterPanel);
 
-        townCenterPanel.setBounds(0, 0, 1000, 563);
+        townCenterPanel.setBounds(168, 0, 832, 400);
         townCenterPanel.setIcon(new ImageIcon(TitlePanel.class.getResource("/sprites/mule-board.png")));
     }
 }
