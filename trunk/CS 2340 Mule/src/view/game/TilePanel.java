@@ -51,7 +51,7 @@ public class TilePanel extends JPanel {
     }
 
     public Point getTileIndex(Point cartesian) {
-        return new Point(((int) cartesian.getX() - 92)/72, ((int) cartesian.getY() - 20)/72);
+        return new Point(((int) cartesian.getY() - 20)/72, ((int) cartesian.getX() - 92)/72);
     }
     
     /**
