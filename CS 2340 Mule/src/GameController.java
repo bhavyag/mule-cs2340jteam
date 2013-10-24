@@ -1,6 +1,9 @@
 import model.*;
 import util.LimitTimer;
-import view.*;
+import view.game.GameFrame;
+import view.title.GameConfigPanel;
+import view.title.PlayerConfigPanel;
+import view.title.TitleFrame;
 
 import javax.swing.*;
 
@@ -13,10 +16,6 @@ import java.net.URL;
 public class GameController {
 	private TitleFrame titleView;
 	private GameFrame gameView;
-	private BoardPanel boardPanel;
-	private TilePanel tilePanel;
-	private StatusPanel statusPanel;
-	private MessagePanel messagePanel;
 
 	private int difficulty;
 	private PlayerQueue players;
@@ -93,11 +92,6 @@ public class GameController {
 	private void startGame() {
 		titleView.dispose();
 		gameView = new GameFrame();
-
-		statusPanel = gameView.getStatusPanel();
-		messagePanel = gameView.getMessagePanel();
-		boardPanel = gameView.getBoardPanel();
-		tilePanel = boardPanel.getTilePanel();
 
 		players.resetRound();
 		players.beginRotation();
