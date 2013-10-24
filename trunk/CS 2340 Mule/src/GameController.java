@@ -91,6 +91,8 @@ public class GameController {
 //        titleView.dispose();
 //        gameView = new GameFrame();
 //        gameView.showBoardPanel();
+        players.resetRound();
+        players.beginRotation();
 
         timer = new LimitTimer(10, 1000, new ActionListener() {
             @Override
