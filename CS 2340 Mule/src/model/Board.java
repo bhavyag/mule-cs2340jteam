@@ -29,8 +29,8 @@ public abstract class Board
      */
     public abstract String toString();
 
-    public void setOwner(Player p, Point point) {
-        map[(int)point.getX()][(int)point.getY()].setOwner(p);
+    public boolean setOwner(Player p, Point point) {
+        return map[(int)point.getX()][(int)point.getY()].setOwner(p);
     }
 
     public URL getTileBorderPath(Point point) {
