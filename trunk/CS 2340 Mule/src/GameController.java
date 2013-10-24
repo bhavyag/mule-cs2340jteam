@@ -23,7 +23,6 @@ public class GameController {
 	private Board board;
 	private LimitTimer timer;
 
-
 	public GameController() {
 
 	}
@@ -55,9 +54,9 @@ public class GameController {
 				new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						players = new PlayerQueue(gameConfigPanel.getNumPlayers(), 60 / difficulty);
-						difficulty = gameConfigPanel.getDifficulty();
-						board = BoardFactory.constructBoard(gameConfigPanel.getMap());
+                        difficulty = gameConfigPanel.getDifficulty();
+                        board = BoardFactory.constructBoard(gameConfigPanel.getMap());
+                        players = new PlayerQueue(gameConfigPanel.getNumPlayers(), 60 / difficulty);
 
 						configurePlayers();
 					}
@@ -94,11 +93,14 @@ public class GameController {
 		titleView.dispose();
 		gameView = new GameFrame();
 
-		players.resetRound();
-		players.beginRotation();
-		displayMap();
+        landGrant();
+	}
 
-		gameView.onTileClick(
+    private void landGrant() {
+        players.beginRotation();
+        displayMap();
+
+        gameView.onTileClick(
             new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
@@ -106,48 +108,64 @@ public class GameController {
 
                     if (players.getRound() <= 2) {
                         if (board.setOwner(players.getCurrentPlayer(), tileIndex)) {
-                            gameView.updateTileBorder(board.getTileBorderPath(tileIndex), (int)tileIndex.getX(), (int)tileIndex.getY());
+                            gameView.updateTileBorder(board.getTileBorderPath(tileIndex), (int) tileIndex.getX(), (int) tileIndex.getY());
+
+                            System.out.println(players.getCurrentPlayer());
 
                             players.next();
                             timer.reset();
                         }
                     } else {
                         if (board.purchaseTile(players.getCurrentPlayer(), tileIndex)) {
-                            gameView.updateTileBorder(board.getTileBorderPath(tileIndex), (int)tileIndex.getX(), (int)tileIndex.getY());
+                            gameView.updateTileBorder(board.getTileBorderPath(tileIndex), (int) tileIndex.getX(), (int) tileIndex.getY());
+
+                            System.out.println(players.getCurrentPlayer());
 
                             players.next();
                             timer.reset();
                         }
                     }
+
                 }
             }
         );
 
-		timer = new LimitTimer(10, 1000, new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent actionEvent) {
-				if (timer.isOutOfTime()) {
-					players.next();
-					timer.reset();
-				}
-			}
-		});
-		timer.start();
-	}
+        timer = new LimitTimer(10, 1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                System.out.println("tick " + timer.getCount());
 
-	private void displayMap()
-	{
+                if (timer.isOutOfTime()) {
+                    System.out.println("out of time");
+
+                    if (players.pass()) {
+                        timer.stop();
+                        nextPhase();
+                    } else {
+                        timer.reset();
+                    }
+
+                }
+            }
+        });
+        timer.start();
+    }
+
+	private void displayMap() {
 		Tile[][] tiles = board.getMap();
 
-		for(int i = 0; i < tiles.length; i++)
-		{
-			for(int j = 0; j < tiles[0].length; j++)
-			{
+		for(int i = 0; i < tiles.length; i++) {
+			for(int j = 0; j < tiles[0].length; j++) {
 				gameView.updateTileImage(tiles[i][j].getImagePath(), i, j);
                 gameView.updateTileBorder(tiles[i][j].getBorderPath(), i, j);
 			}
 		}
 	}
+
+    private void nextPhase() {
+        System.out.println("Land selection over");
+        gameView.dispose();
+    }
 
 	/**
 	 * Launch the application.
