@@ -52,6 +52,7 @@ public class Player {
     private String name;
     private Color color;
     private Race race;
+    private int money;
     private ArrayList<Tile> playerTiles;
 
     /**
@@ -103,8 +104,22 @@ public class Player {
     }
 
     /**
+     * Purchases an item and handles the money exchange
      *
-     * @return
+     * @param item the item to be purchased
+     */
+    public void purchase(Purchasable item) {
+        if (item.getPrice() <= money) {
+            money -= item.getPrice();
+        } else {
+            // TODO error handling
+            System.out.println("Not enough money");
+        }
+    }
+
+    /**
+     * Gives a String representation of the player
+     * @return a string describing the player's attributes
      */
     public String toString() {
         return "Player " + playerNum + " is a " + color + " " + race + " named " + name;

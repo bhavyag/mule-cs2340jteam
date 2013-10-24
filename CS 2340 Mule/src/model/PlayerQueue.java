@@ -46,4 +46,14 @@ public class PlayerQueue {
     public int getNumPlayers() {
         return players.size();
     }
+
+    public void resetRound() {
+        round = 0;
+    }
+
+    public void beginRotation() {
+        currentIndex = 0;
+        newRound = true;
+        round ++;
+    }
 }
