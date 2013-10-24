@@ -52,4 +52,8 @@ public class Tile
     {
     	return owner;
     }
+
+    public boolean isOwned() {
+        return owner == null;
+    }
 }
