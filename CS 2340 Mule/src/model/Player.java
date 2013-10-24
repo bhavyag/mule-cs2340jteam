@@ -2,7 +2,12 @@ package model;
 
 import java.util.ArrayList;
 
+/**
+ * CLASS Player. Holds the data for each player.
+ *
+ */
 public class Player {
+	
     /**
      * ENUM for player color
      */

@@ -1,5 +1,10 @@
 package model;
 
+/**
+ * ABSTRACT CLASS BOARD holds the methods all boards will use, all boards have a 2d array of tiles.
+ * @author Chris
+ *
+ */
 public abstract class Board
 {
     protected Tile[][] map;
