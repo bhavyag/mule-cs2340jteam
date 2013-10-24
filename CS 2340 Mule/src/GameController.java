@@ -96,24 +96,34 @@ public class GameController {
 
 		players.resetRound();
 		players.beginRotation();
-		this.makeMap();
+		displayMap();
 
 		gameView.onTileClick(
             new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
                     Point tileIndex = gameView.getTileIndex(e.getPoint());
-                    if (board.setOwner(players.getCurrentPlayer(), tileIndex)) {
-                        gameView.updateTileBorder(board.getTileBorderPath(tileIndex), (int)tileIndex.getX(), (int)tileIndex.getY());
 
-                        players.next();
-                        timer.reset();
+                    if (players.getRound() <= 2) {
+                        if (board.setOwner(players.getCurrentPlayer(), tileIndex)) {
+                            gameView.updateTileBorder(board.getTileBorderPath(tileIndex), (int)tileIndex.getX(), (int)tileIndex.getY());
+
+                            players.next();
+                            timer.reset();
+                        }
+                    } else {
+                        if (board.purchaseTile(players.getCurrentPlayer(), tileIndex)) {
+                            gameView.updateTileBorder(board.getTileBorderPath(tileIndex), (int)tileIndex.getX(), (int)tileIndex.getY());
+
+                            players.next();
+                            timer.reset();
+                        }
                     }
                 }
             }
         );
 
-		timer = new LimitTimer(50, 1000, new ActionListener() {
+		timer = new LimitTimer(10, 1000, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent actionEvent) {
 				if (timer.isOutOfTime()) {
@@ -125,7 +135,7 @@ public class GameController {
 		timer.start();
 	}
 
-	private void makeMap()
+	private void displayMap()
 	{
 		Tile[][] tiles = board.getMap();
 

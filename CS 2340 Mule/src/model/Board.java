@@ -33,6 +33,10 @@ public abstract class Board
         return map[(int)point.getX()][(int)point.getY()].setOwner(p);
     }
 
+    public boolean purchaseTile(Player p, Point point) {
+        return map[(int)point.getX()][(int)point.getY()].buy(p);
+    }
+
     public URL getTileBorderPath(Point point) {
         return map[(int)point.getX()][(int)point.getY()].getBorderPath();
     }

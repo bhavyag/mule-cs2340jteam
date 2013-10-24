@@ -4,8 +4,9 @@ import util.Shared.Color;
 
 import java.net.URL;
 
-public class Tile
+public class Tile implements Purchasable
 {
+
     /**
      * ENUM for Tile type
      */
@@ -31,10 +32,6 @@ public class Tile
             return type;
         }
 
-        public URL getImgPath() {
-            return imgPath;
-        }
-
         public int getPrice() {
             return price;
         }
@@ -58,8 +55,22 @@ public class Tile
         this.ownable = ownable;
     }
 
-    public boolean setOwner(Player p)
+    public boolean buy(Player p)
     {
+        if (ownable && owner == null) {
+            if (p.purchase(this)) {
+                this.owner = p;
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            System.out.println("cannot own tile");
+            return false;
+        }
+    }
+
+    public boolean setOwner(Player p) {
         if (ownable && owner == null) {
             this.owner = p;
             return true;
@@ -81,6 +92,11 @@ public class Tile
 
     public URL getImagePath() {
         return this.type.imgPath;
+    }
+
+    @Override
+    public int getPrice() {
+        return this.type.getPrice();
     }
 }
 
