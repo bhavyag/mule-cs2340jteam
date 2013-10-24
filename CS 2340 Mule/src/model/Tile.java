@@ -34,12 +34,12 @@ public class Tile
     {
     	this.type = type;
     }
-    
+
     public void setOwner(Player p)
     {
     	this.owner = p;
     }
-    
+
     public Player getOwner()
     {
     	return owner;

@@ -4,7 +4,7 @@ import model.Tile.Type;
 
 public abstract class Board
 {
-    private Tile[][] map = new Tile[9][5];
+    protected Tile[][] map = new Tile[9][5];
 
 //    private final String[][] map1 = {{"P","P", "M1","P", "R","P", "M3","P","P"},
 //    								 {"P", "M1","P","P", "R","P","P","P", "M3"},
