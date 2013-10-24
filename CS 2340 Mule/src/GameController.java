@@ -38,13 +38,13 @@ public class GameController {
 		titleView.showTitlePanel();
 
 		titleView.getTitlePanel().onClickStart(
-				new MouseAdapter() {
-					@Override
-					public void mouseClicked(MouseEvent e) {
-						configureGame();
-					}
-				}
-				);
+            new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    configureGame();
+                }
+            }
+        );
 	}
 
 	private void configureGame() {
@@ -55,7 +55,7 @@ public class GameController {
 				new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						players = new PlayerQueue(gameConfigPanel.getNumPlayers());
+						players = new PlayerQueue(gameConfigPanel.getNumPlayers(), 60 / difficulty);
 						difficulty = gameConfigPanel.getDifficulty();
 						board = BoardFactory.constructBoard(gameConfigPanel.getMap());
 

@@ -205,11 +205,11 @@ public class GameConfigPanel extends JPanel {
      */
     public int getDifficulty() {
         if (easyButton.isSelected()) {
-            return 0;
-        } else if (mediumButton.isSelected()) {
             return 1;
-        } else if (hardButton.isSelected()) {
+        } else if (mediumButton.isSelected()) {
             return 2;
+        } else if (hardButton.isSelected()) {
+            return 3;
         } else {
             return -1;
         }
