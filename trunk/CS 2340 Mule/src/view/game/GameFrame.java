@@ -5,6 +5,7 @@ import view.title.TitleFrame;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
+import java.net.URL;
 
 /**
  * CLASS GameFrame. Defines the frame that holds what is displayed for the game, including 3 JPanels:
@@ -85,5 +86,17 @@ public class GameFrame extends JFrame {
 
     public void onTileClick(MouseAdapter mouseAdapter) {
         boardPanel.getTilePanel().addMouseListener(mouseAdapter);
+    }
+
+    public void updateTileBorder(URL imagePath, int x, int y) {
+        boardPanel.getTilePanel().setBorderImage(
+                new ImageIcon(imagePath), x, y
+        );
+    }
+
+    public void updateTileImage(URL imagePath, int x, int y) {
+        boardPanel.getTilePanel().setTileImage(
+                new ImageIcon(imagePath), x, y
+        );
     }
 }

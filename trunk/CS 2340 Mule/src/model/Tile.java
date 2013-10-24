@@ -6,31 +6,6 @@ import java.net.URL;
 
 public class Tile
 {
-
-	public static enum TileColor {
-        RED("red", Tile.class.getResource("/sprites/tiles/Border-Red.png")),
-        YELLOW("yellow",Tile.class.getResource("/sprites/tiles/Border-Yellow.png")),
-        GREEN("green",Tile.class.getResource("/sprites/tiles/Border-Green.png")),
-        PURPLE("purple",Tile.class.getResource("/sprites/tiles/Border-Purple.png")),
-        DEFAULT("default",Tile.class.getResource("/sprites/tiles/Border-Default.png"));
-
-        private String tileColor;
-        private URL borderPath;
-
-        TileColor(String tileColor,URL url) {
-            this.tileColor = tileColor;
-            this.borderPath = url;
-        }
-
-        public String toString() {
-            return tileColor;
-        }
-        
-        public URL getBorderPath() {
-            return borderPath;
-        }  
-	}
-        
     /**
      * ENUM for Tile type
      */
@@ -65,9 +40,9 @@ public class Tile
         }
     }
 
-    private Color tileColor;
     private Type type;
     private Player owner;
+    private boolean ownable;
 
     /**
      * CONTRUCTOR for Tiles
@@ -75,7 +50,12 @@ public class Tile
     public Tile(Type type)
     {
     	this.type = type;
-    	this.tileColor = Color.DEFAULT;
+        this.ownable = true;
+    }
+
+    public Tile(Type type, boolean ownable) {
+        this.type = type;
+        this.ownable = ownable;
     }
 
     public void setOwner(Player p)
@@ -91,20 +71,19 @@ public class Tile
     public boolean isOwned() {
         return owner == null;
     }
+
     
-    public Type getType()
+    public URL getBorderPath()
     {
-    	return this.type;
+        if (this.owner == null) {
+            return null;
+        } else {
+            return this.owner.getColor().getBorderImagePath();
+        }
     }
-    
-    public Color getTileColor()
-    {
-    	return this.tileColor;
-    }
-    
-    public void setTileColor(Color tileColor)
-    {
-    	this.tileColor = tileColor;
+
+    public URL getImagePath() {
+        return this.type.imgPath;
     }
 }
 

@@ -3,6 +3,7 @@ package view.game;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
+import java.net.URL;
 
 /**
  * CLASS TilePanel. For the JPanel that displays the main map screen as an array of JLabels.
@@ -29,7 +30,7 @@ public class TilePanel extends JPanel {
      * @param x the x coord of the tile
      * @param y the y coord of the tile
      */
-    public void instantiateTileImage(ImageIcon i, int x, int y)
+    public void setTileImage(ImageIcon i, int x, int y)
     {
     	labelArray[x][y].setIcon(i);
     }
@@ -40,7 +41,7 @@ public class TilePanel extends JPanel {
      * @param x the x coord of the tile
      * @param y the y coord of the tile
      */
-    public void instantiateBorderImage(ImageIcon i, int x, int y)
+    public void setBorderImage(ImageIcon i, int x, int y)
     {
     	borderArray[x][y].setIcon(i);
     }
