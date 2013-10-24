@@ -63,9 +63,8 @@ public class Tile
     	this.owner = p;
     }
 
-    public Player getOwner()
-    {
-    	return owner;
+    public boolean isOwnable() {
+        return ownable;
     }
 
     public boolean isOwned() {
