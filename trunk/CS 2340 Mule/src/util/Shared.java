@@ -5,10 +5,9 @@ import java.net.URL;
 public class Shared {
     public static enum Color {
         RED("red", Shared.class.getResource("/sprites/tiles/Border-Red.png")),
-        YELLOW("yellow", Shared.class.getResource("/sprites/tiles/Border-Red.png")),
-        GREEN("green", Shared.class.getResource("/sprites/tiles/Border-Red.png")),
-        PURPLE("purple", Shared.class.getResource("/sprites/tiles/Border-Red.png")),
-        DEFAULT("default", Shared.class.getResource("/sprites/tiles/Border-Default.png"));
+        YELLOW("yellow", Shared.class.getResource("/sprites/tiles/Border-Yellow.png")),
+        GREEN("green", Shared.class.getResource("/sprites/tiles/Border-Green.png")),
+        PURPLE("purple", Shared.class.getResource("/sprites/tiles/Border-Purple.png"));
 
         private String name;
         private URL borderImagePath;
