@@ -1,7 +1,9 @@
 package view;
 
 import javax.swing.*;
+
 import java.awt.Rectangle;
+import java.util.ArrayList;
 
 public class StatusPanel extends JPanel {
 
@@ -20,7 +22,7 @@ public class StatusPanel extends JPanel {
         add(lblNewLabel);
     }
     
-    public void updateStatusPanel()
+    public void updateStatusPanel(ArrayList<model.Player> players)
     {
     	
     }
