@@ -1,7 +1,5 @@
 package model;
 
-import util.Shared.Color;
-
 import java.net.URL;
 
 public class Tile implements Purchasable
