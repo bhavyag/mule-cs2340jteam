@@ -1,6 +1,15 @@
 package model;
 
+/**
+ * CLASS Map2 for the default map
+ * @author Chris
+ *
+ */
 public class Map2 extends Board {
+	
+	/**
+	 * CONSTRUCTOR that sets the map's map equal to a predefined 2d array of tiles.
+	 */
     protected Map2() {
         this.map = new Tile[][] {
                 {
@@ -41,6 +50,10 @@ public class Map2 extends Board {
         };
     }
 
+    /**
+     * METHOD to return a string representing this map
+     * @return the string version of the map
+     */
     public String toString() {
         return "map 2";
     }
