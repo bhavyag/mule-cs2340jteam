@@ -96,6 +96,15 @@ public class Player {
     }
 
     /**
+     * Get this players color
+     * @ret	the color of the player
+     */
+    public Color getColor() {
+        return color;
+    }
+
+
+    /**
      * Set this players race
      * @param race what to make this players race
      */
