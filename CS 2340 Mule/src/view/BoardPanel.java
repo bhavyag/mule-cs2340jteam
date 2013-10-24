@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.CardLayout;
+import java.awt.event.MouseAdapter;
 
 import javax.swing.*;
 
@@ -75,4 +76,8 @@ public class BoardPanel extends JPanel {
 	public void showTownCenterPanel() {
 		cardLayout.show(this, TOWN_CENTER);
 	}
+	
+	public void onClick(MouseAdapter mouseAdapter) {
+        tilePanel.addMouseListener(mouseAdapter);
+    }
 }

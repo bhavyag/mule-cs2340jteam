@@ -99,6 +99,11 @@ public class Tile
     {
     	return this.tileColor;
     }
+    
+    public void setTileColor(TileColor tileColor)
+    {
+    	this.tileColor = tileColor;
+    }
 }
 
 	
