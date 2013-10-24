@@ -1,15 +1,16 @@
 import model.Board;
 import model.BoardFactory;
-import model.Player;
 import model.PlayerQueue;
+import util.LimitTimer;
 import view.GameConfigPanel;
 import view.GameFrame;
 import view.TitleFrame;
 import view.PlayerConfigPanel;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
 
 public class GameController {
     private TitleFrame titleView;
@@ -17,9 +18,24 @@ public class GameController {
     private int difficulty;
     private PlayerQueue players;
     private Board board;
+    private LimitTimer timer;
 
 
-    public GameController() {}
+    public GameController() {
+        ActionListener onTick = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                System.out.println("tick " + timer.getCount());
+                if (timer.isOutOfTime()) {
+                    System.out.println("out of time");
+                    timer.reset();
+                }
+            }
+        };
+
+        timer = new LimitTimer(10, 1000, onTick);
+        timer.start();
+    }
 
     private void startTitleSequence() {
         titleView = new TitleFrame();
@@ -67,10 +83,9 @@ public class GameController {
                 new MouseAdapter() {
                     @Override
                     public void mouseClicked(MouseEvent e) {
-                        Player currentPlayer = players.getCurrentPlayer();
-                        currentPlayer.setName(playerConfigPanel.getName());
-                        currentPlayer.setColor(playerConfigPanel.getColor());
-                        currentPlayer.setRace(playerConfigPanel.getRace());
+                        players.getCurrentPlayer().setName(playerConfigPanel.getName());
+                        players.getCurrentPlayer().setColor(playerConfigPanel.getColor());
+                        players.getCurrentPlayer().setRace(playerConfigPanel.getRace());
 
                         players.next();
 
