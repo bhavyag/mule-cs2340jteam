@@ -16,7 +16,7 @@ public class StatusPanel extends JPanel {
         
         JLabel lblNewLabel = new JLabel("");
         lblNewLabel.setIcon(new ImageIcon(StatusPanel.class.getResource("/sprites/Status-Panel.png")));
-        lblNewLabel.setBounds(0, 0, 832, 163);
+        lblNewLabel.setBounds(168, 400, 832, 163);
         add(lblNewLabel);
     }
     
