@@ -60,15 +60,11 @@ public class Tile
 
     public void setOwner(Player p)
     {
-    	this.owner = p;
-    }
-
-    public boolean isOwnable() {
-        return ownable;
-    }
-
-    public boolean isOwned() {
-        return owner == null;
+        if (ownable && owner == null) {
+            this.owner = p;
+        } else {
+            System.out.println("cannot own tile");
+        }
     }
 
     
