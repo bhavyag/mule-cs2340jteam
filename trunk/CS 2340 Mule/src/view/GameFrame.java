@@ -15,7 +15,7 @@ public class GameFrame extends JFrame {
         this.statusPanel = new StatusPanel();
         statusPanel.setMaximumSize(new Dimension(832, 163));
         this.messagePanel = new MessagePanel();
-        messagePanel.setAlignmentX(Component.LEFT_ALIGNMENT);
+        //messagePanel.setAlignmentX(Component.LEFT_ALIGNMENT);
         
         boardPanel.getTownCenterPanel().setLocation(new Point(168, 0));
         boardPanel.getTilePanel().setLocation(new Point(168, 0));
@@ -36,7 +36,7 @@ public class GameFrame extends JFrame {
         getContentPane().setLayout(new BorderLayout(0, 0));
         getContentPane().add(boardPanel);
         getContentPane().add(messagePanel);
-        getContentPane().add(statusPanel, BorderLayout.CENTER);
+        getContentPane().add(statusPanel);
     }
     
     public void update()
