@@ -127,9 +127,12 @@ public class GameController {
     		for(int j = 0; j<9; j++)
     		{
     			Tile tile = tiles[i][j];
+    			
     			URL url = tile.getType().getImgPath();
     			ImageIcon icon = new ImageIcon(url);
-    			this.tilePanel.instantiate(icon, i, j);	
+    			this.tilePanel.instantiateTileImage(icon, i, j);
+    			
+    			URL url2Url = tile.getTileColor().getBorderPath();
     		}
     	}
     }
