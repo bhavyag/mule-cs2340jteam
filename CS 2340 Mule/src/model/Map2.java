@@ -29,7 +29,7 @@ public class Map2 extends Board {
                 {
                         new Tile(Tile.Type.PLAINS), new Tile(Tile.Type.RIVER),
                         new Tile(Tile.Type.RIVER), new Tile(Tile.Type.RIVER),
-                        new Tile(Tile.Type.TOWN), new Tile(Tile.Type.RIVER),
+                        new Tile(Tile.Type.TOWN, false), new Tile(Tile.Type.RIVER),
                         new Tile(Tile.Type.RIVER), new Tile(Tile.Type.RIVER),
                         new Tile(Tile.Type.PLAINS)
                 },

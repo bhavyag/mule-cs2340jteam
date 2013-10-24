@@ -30,7 +30,7 @@ public class Map1 extends Board {
                 {
                         new Tile(Tile.Type.MOUNTAINTHREE), new Tile(Tile.Type.PLAINS),
                         new Tile(Tile.Type.PLAINS), new Tile(Tile.Type.PLAINS),
-                        new Tile(Tile.Type.TOWN), new Tile(Tile.Type.PLAINS),
+                        new Tile(Tile.Type.TOWN, false), new Tile(Tile.Type.PLAINS),
                         new Tile(Tile.Type.PLAINS), new Tile(Tile.Type.PLAINS),
                         new Tile(Tile.Type.MOUNTAINONE)
                 },
