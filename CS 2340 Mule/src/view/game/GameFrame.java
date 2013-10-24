@@ -4,7 +4,9 @@ import view.title.TitleFrame;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
+import java.awt.event.MouseListener;
 import java.net.URL;
 
 /**
@@ -94,6 +96,10 @@ public class GameFrame extends JFrame {
      * @param mouseAdapter the adapter containing the functionality
      */
     public void onTileClick(MouseAdapter mouseAdapter) {
+        if (boardPanel.getTilePanel().getMouseListeners().length > 1) {
+            System.out.println("asdf");
+            removeMouseListener(boardPanel.getTilePanel().getMouseListeners()[1]);
+        }
         boardPanel.getTilePanel().addMouseListener(mouseAdapter);
     }
 
@@ -115,5 +121,13 @@ public class GameFrame extends JFrame {
      */
     public void updateTileImage(URL imagePath, int x, int y) {
         boardPanel.getTilePanel().setTileImage(imagePath, x, y);
+    }
+
+    public void showTownPanel() {
+        boardPanel.showTownCenterPanel();
+    }
+
+    public void showTilePanel() {
+        boardPanel.showTilePanel();
     }
 }

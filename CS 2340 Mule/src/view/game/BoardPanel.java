@@ -31,8 +31,6 @@ public class BoardPanel extends JPanel {
 		this.townCenterPanel = new TownCenterPanel();
 		this.cardLayout = new CardLayout();
 		this.initialize();
-		this.showTilePanel();
-
 	}
 
 	/**
@@ -40,10 +38,9 @@ public class BoardPanel extends JPanel {
 	 */
 	private void initialize() {
 		this.add(boardLabel);
+        this.setLayout(cardLayout);
         this.add(tilePanel, TILES);
         this.add(townCenterPanel, TOWN_CENTER);
-
-        this.setLayout(cardLayout);
         this.setBounds(168, 0, 832, 400);
 	}
 	
@@ -76,6 +73,4 @@ public class BoardPanel extends JPanel {
 	public void showTownCenterPanel() {
 		cardLayout.show(this, TOWN_CENTER);
 	}
-
-
 }
