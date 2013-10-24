@@ -1,4 +1,4 @@
 package model;
 
-public class Map2 {
+public class Map2 extends Board {
 }

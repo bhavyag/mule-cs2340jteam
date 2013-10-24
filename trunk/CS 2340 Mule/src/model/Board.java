@@ -2,7 +2,7 @@ package model;
 
 import model.Tile.Type;
 
-public class Board
+public abstract class Board
 {
     private Tile[][] myMap = new Tile[9][5];
     private String mapName;
@@ -19,28 +19,6 @@ public class Board
 							    	 {"P", "M2","P","P", "P","P", "M2","R","R"},									
 							    	 {"P","P", "P","P", "M1","P","P","P", "P"}
 									};
-
-    /**
-     * CONSTRUCTOR for a Board
-     * @param boardType an int representing the map that the boa rd holds
-     */
-    public Board(int boardType)
-    {
-        switch(boardType)
-        {
-            case 0:
-                //initializeMap(map1);
-                this.mapName = "map 1";
-                break;
-            case 1:
-                //initializeMap(map2);
-                this.mapName = "map 2";
-                break;
-            default:
-                //initializeMap(map1);
-                this.mapName = "map 1";
-        }
-    }
     
     private void initializeMap(String[][] map) {
     	for (int x = 0; x < map.length; x++) {
