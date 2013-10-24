@@ -1,4 +1,6 @@
-package view;
+package view.game;
+
+import view.title.TitlePanel;
 
 import javax.swing.*;
 

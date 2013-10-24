@@ -1,4 +1,4 @@
-package view;
+package view.title;
 
 import javax.swing.JFrame;
 import java.awt.CardLayout;

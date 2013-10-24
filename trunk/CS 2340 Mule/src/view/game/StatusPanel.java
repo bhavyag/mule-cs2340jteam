@@ -1,11 +1,9 @@
-package view;
+package view.game;
 
 import javax.swing.*;
 
 import java.awt.Rectangle;
 import java.util.ArrayList;
-import java.awt.FlowLayout;
-import java.awt.BorderLayout;
 import java.awt.Font;
 
 /**
