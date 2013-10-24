@@ -58,12 +58,14 @@ public class Tile
         this.ownable = ownable;
     }
 
-    public void setOwner(Player p)
+    public boolean setOwner(Player p)
     {
         if (ownable && owner == null) {
             this.owner = p;
+            return true;
         } else {
             System.out.println("cannot own tile");
+            return false;
         }
     }
 

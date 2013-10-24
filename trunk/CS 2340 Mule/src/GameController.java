@@ -99,18 +99,19 @@ public class GameController {
 		this.makeMap();
 
 		gameView.onTileClick(
-				new MouseAdapter() {
-					@Override
-					public void mouseClicked(MouseEvent e) {
-                        Point tileIndex = gameView.getTileIndex(e.getPoint());
-                        board.setOwner(players.getCurrentPlayer(), tileIndex);
+            new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    Point tileIndex = gameView.getTileIndex(e.getPoint());
+                    if (board.setOwner(players.getCurrentPlayer(), tileIndex)) {
                         gameView.updateTileBorder(board.getTileBorderPath(tileIndex), (int)tileIndex.getX(), (int)tileIndex.getY());
 
                         players.next();
                         timer.reset();
-					}
-				}
-				);
+                    }
+                }
+            }
+        );
 
 		timer = new LimitTimer(50, 1000, new ActionListener() {
 			@Override
