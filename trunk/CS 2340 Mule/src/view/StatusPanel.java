@@ -15,7 +15,12 @@ public class StatusPanel extends JPanel {
         this.setLayout(null);
         this.add(statusPanel);
 
-        statusPanel.setBounds(0, 0, 1000, 563);
+        statusPanel.setBounds(168, 400, 832, 163);
         statusPanel.setIcon(new ImageIcon(TitlePanel.class.getResource("/sprites/mule-board.png")));
+    }
+    
+    public void updateStatusPanel()
+    {
+    	
     }
 }

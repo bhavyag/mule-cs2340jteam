@@ -32,9 +32,7 @@ public class BoardPanel extends JPanel {
 
 		this.setBounds(168, 0, 832, 400);
 	}
-
-
-
+	
 	public TilePanel getTilePanel() {
 		return tilePanel;
 	}
@@ -49,6 +47,11 @@ public class BoardPanel extends JPanel {
 
 	public void showTownCenterPanel() {
 		cardLayout.show(this, TOWN_CENTER);
+	}
+
+	public void updateBoardPanel() {
+
+		
 	}
 
 }

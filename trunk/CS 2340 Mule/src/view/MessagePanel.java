@@ -15,7 +15,14 @@ public class MessagePanel extends JPanel {
         this.setLayout(null);
         this.add(messagePanel);
 
-        messagePanel.setBounds(0, 0, 1000, 563);
+        messagePanel.setBounds(0, 0, 168, 563);
         messagePanel.setIcon(new ImageIcon(TitlePanel.class.getResource("")));
     }
+    
+    public void updateMessagePanel()
+    {
+    	
+    }
+    
+    
 }

@@ -10,9 +10,9 @@ public class TilePanel extends JPanel {
         initialize();
     }
 
-    public JLabel[][] getLabelArray()
+    public void instantiate(ImageIcon i, int x, int y)
     {
-    	return this.labelArray;
+    	labelArray[x][y].setIcon(i);
     }
     
     private void initialize() {
@@ -254,4 +254,11 @@ public class TilePanel extends JPanel {
         labelArray[4][8]=label48;
                   
     }
+    
+	public JLabel[][] getLabelArray()
+	{
+		return this.labelArray;
+	}
 }
+	
+	
