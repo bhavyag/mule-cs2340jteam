@@ -38,21 +38,19 @@ public class GameFrame extends JFrame {
         getContentPane().add(messagePanel);
         getContentPane().add(statusPanel);
     }
-    
-    public void update()
-    {
-    	boardPanel.updateBoardPanel();
-    	statusPanel.updateStatusPanel();
-    	messagePanel.updateMessagePanel();
-    }
 
     public BoardPanel getBoardPanel()
     {
     	return this.boardPanel;
     }
     
-	public void showBoardPanel() 
+	public MessagePanel getMessagePanel()
 	{
-		
+		return this.messagePanel;
+	}
+	
+	public StatusPanel getStatusPanel()
+	{
+		return this.statusPanel;
 	}
 }

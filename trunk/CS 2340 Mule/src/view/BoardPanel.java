@@ -50,10 +50,4 @@ public class BoardPanel extends JPanel {
 	public void showTownCenterPanel() {
 		cardLayout.show(this, TOWN_CENTER);
 	}
-
-	public void updateBoardPanel() {
-
-		
-	}
-
 }

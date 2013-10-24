@@ -13,6 +13,11 @@ import java.net.URL;
 public class GameController {
     private TitleFrame titleView;
     private GameFrame gameView;
+    private BoardPanel boardPanel;
+    private TilePanel tilePanel;
+    private StatusPanel statusPanel;
+    private MessagePanel messagePanel;
+    
     private int difficulty;
     private PlayerQueue players;
     private Board board;
@@ -88,7 +93,12 @@ public class GameController {
     private void startGame() {
         titleView.dispose();
         gameView = new GameFrame();
-        gameView.showBoardPanel();
+        
+        statusPanel = gameView.getStatusPanel();
+        messagePanel = gameView.getMessagePanel();
+        boardPanel = gameView.getBoardPanel();
+        tilePanel = boardPanel.getTilePanel();
+
         players.resetRound();
         players.beginRotation();
         this.makeMap();
@@ -119,9 +129,14 @@ public class GameController {
     			Tile tile = tiles[i][j];
     			URL url = tile.getType().getImgPath();
     			ImageIcon icon = new ImageIcon(url);
-    			this.gameView.getBoardPanel().getTilePanel().instantiate(icon, i, j);	
+    			this.tilePanel.instantiate(icon, i, j);	
     		}
     	}
+    }
+    
+    private void update()
+    {
+    	this.statusPanel.updateStatusPanel();
     }
 
     /**
