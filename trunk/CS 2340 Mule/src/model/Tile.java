@@ -68,4 +68,9 @@ public class Tile implements Purchasable
     public int getPrice() {
         return this.type.getPrice();
     }
+    
+    public Type getType()
+    {
+    	return this.type;
+    }
 }

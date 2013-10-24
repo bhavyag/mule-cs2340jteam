@@ -32,7 +32,9 @@ public class GameFrame extends JFrame {
         this.setBounds(100, 100, 1006, 592);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         getContentPane().setLayout(new CardLayout(0, 0));
-        getContentPane().add(boardPanel, "name_791672127307887");
+        getContentPane().add(boardPanel, "Board Panel");
+        getContentPane().add(messagePanel, "Message Panel");
+        getContentPane().add(statusPanel, "Status Panel");
     }
     
     public void update()
@@ -42,6 +44,11 @@ public class GameFrame extends JFrame {
     	messagePanel.updateMessagePanel();
     }
 
+    public BoardPanel getBoardPanel()
+    {
+    	return this.boardPanel;
+    }
+    
 	public void showBoardPanel() 
 	{
 		

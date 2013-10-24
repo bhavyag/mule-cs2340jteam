@@ -21,7 +21,9 @@ public class BoardPanel extends JPanel {
 		this.tilePanel = new TilePanel();
 		this.townCenterPanel = new TownCenterPanel();
 		this.cardLayout = new CardLayout();
-		initialize();
+		this.initialize();
+		this.showTilePanel();
+
 	}
 
 	private void initialize() {

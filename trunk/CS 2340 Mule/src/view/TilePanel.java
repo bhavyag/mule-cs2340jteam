@@ -5,7 +5,7 @@ import javax.swing.*;
 public class TilePanel extends JPanel {
 
 	private JLabel[][] labelArray;
-    protected TilePanel() {
+    public TilePanel() {
     	labelArray = new JLabel[5][9];
         initialize();
     }

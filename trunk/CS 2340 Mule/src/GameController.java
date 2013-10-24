@@ -2,10 +2,13 @@ import model.*;
 import util.LimitTimer;
 import view.*;
 
+import javax.swing.*;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.net.URL;
 
 public class GameController {
     private TitleFrame titleView;
@@ -83,11 +86,12 @@ public class GameController {
     }
 
     private void startGame() {
-//        titleView.dispose();
-//        gameView = new GameFrame();
-//        gameView.showBoardPanel();
+        titleView.dispose();
+        gameView = new GameFrame();
+        gameView.showBoardPanel();
         players.resetRound();
         players.beginRotation();
+        this.makeMap();
 
         timer = new LimitTimer(10, 1000, new ActionListener() {
             @Override
@@ -101,8 +105,23 @@ public class GameController {
                 }
             }
         });
-
         timer.start();
+    }
+    
+    private void makeMap()
+    {
+    	Tile[][] tiles = board.getMap();
+    	
+    	for(int i = 0; i<5; i++)
+    	{
+    		for(int j = 0; j<9; j++)
+    		{
+    			Tile tile = tiles[i][j];
+    			URL url = tile.getType().getImgPath();
+    			ImageIcon icon = new ImageIcon(url);
+    			this.gameView.getBoardPanel().getTilePanel().instantiate(icon, i, j);	
+    		}
+    	}
     }
 
     /**
