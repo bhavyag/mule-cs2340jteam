@@ -79,18 +79,40 @@ public class GameFrame extends JFrame {
 		return this.statusPanel;
 	}
 
+    /**
+     * METHOD gets the index of a tile based on a mouse location
+     * @param cartesian the mouse location
+     * @return the index of the clicked tile in the tile array
+     */
     public Point getTileIndex(Point cartesian) {
         return boardPanel.getTilePanel().getTileIndex(cartesian);
     }
 
+    /**
+     * METHOD adds functionality to clicking tile panel
+     *
+     * @param mouseAdapter the adapter containing the functionality
+     */
     public void onTileClick(MouseAdapter mouseAdapter) {
         boardPanel.getTilePanel().addMouseListener(mouseAdapter);
     }
 
+    /**
+     * METHOD updates the image of the tile's border
+     * @param imagePath the path to the image
+     * @param x the x coordinate of the tile
+     * @param y the y coordinate of the tile
+     */
     public void updateTileBorder(URL imagePath, int x, int y) {
         boardPanel.getTilePanel().setBorderImage(imagePath, x, y);
     }
 
+    /**
+     * METHOD updates the image of the tile's image
+     * @param imagePath the path to the image
+     * @param x the x coordinate of the tile
+     * @param y the y coordinate of the tile
+     */
     public void updateTileImage(URL imagePath, int x, int y) {
         boardPanel.getTilePanel().setTileImage(imagePath, x, y);
     }
