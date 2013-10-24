@@ -2,31 +2,50 @@ package view;
 
 import javax.swing.*;
 
+/**
+ * CLASS TilePanel. For the JPanel that displays the main map screen as an array of JLabels.
+ * @author Chris
+ *
+ */
 public class TilePanel extends JPanel {
 
 	private JLabel[][] labelArray;
 	private JLabel[][] borderArray;
+	
+	/**
+	 * CONSTRUCTOR for the TilePanel, initializes its arrays of JLabels for the tile images and the tile borders.
+	 */
     public TilePanel() {
     	labelArray = new JLabel[5][9];
     	borderArray = new JLabel[5][9];
         initialize();
     }
 
+    /**
+     * METHOD to set the image to display on the Tile at x , y.
+     * @param i the image to display
+     * @param x the x coord of the tile
+     * @param y the y coord of the tile
+     */
     public void instantiateTileImage(ImageIcon i, int x, int y)
     {
     	labelArray[x][y].setIcon(i);
     }
     
+    /**
+     * METHOD to set the image to display as the border of the Tile at x , y
+     * @param i the image to use as the border
+     * @param x the x coord of the tile
+     * @param y the y coord of the tile
+     */
     public void instantiateBorderImage(ImageIcon i, int x, int y)
     {
     	borderArray[x][y].setIcon(i);
     }
     
-    public void updateTilePanel()
-    {
-    	
-    }
-    
+    /**
+     * METHOD that sets up the arrays of JLabels for the tiles and their borders, with their sizes and their position on the screen.
+     */
     private void initialize() {
         this.setLayout(null);
         this.setBounds(168, 0, 832, 400); 
@@ -502,6 +521,10 @@ public class TilePanel extends JPanel {
                   
     }
     
+    /**
+     * METHOD to get this TilePanel's array of JLabels for the tiles.
+     * @return this TilePanel's array of JLabels for the tiles
+     */
 	public JLabel[][] getLabelArray()
 	{
 		return this.labelArray;

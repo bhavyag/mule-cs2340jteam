@@ -4,17 +4,27 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 
+/**
+ * CLASS TitlePanel. For the Title Screen of the Game
+ * @author Chris
+ *
+ */
 public class TitlePanel extends JPanel {
     private JLabel titleLabel;
     private JButton btnStart;
 
+    /**
+     * CONSTRUCTOR for the TitlePanel, instantiates it's label for the background and the start button.
+     */
     protected TitlePanel() {
         titleLabel = new JLabel("");
         btnStart = new JButton("");
 
         initialize();
     }
-
+    /**
+     * METHOD to set the initial settings of the button and title label for the TitlePanel
+     */
     private void initialize() {
         this.setLayout(null);
         this.add(btnStart);
@@ -37,6 +47,10 @@ public class TitlePanel extends JPanel {
         btnStart.setFocusPainted(false);
     }
 
+    /**
+     * METHOD that adds a mouse listener to the TitlePanel
+     * @param mouseAdapter the mouse listener to add
+     */
     public void onClickStart(MouseAdapter mouseAdapter) {
         btnStart.addMouseListener(mouseAdapter);
     }
