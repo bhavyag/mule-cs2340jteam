@@ -1,22 +1,23 @@
 package view;
 
 import javax.swing.*;
+import java.awt.Rectangle;
 
 public class MessagePanel extends JPanel {
-    private JLabel messagePanel;
 
     protected MessagePanel() {
-        this.messagePanel = new JLabel("");
+    	setBounds(new Rectangle(0, 0, 168, 563));
 
         initialize();
     }
 
     private void initialize() {
         this.setLayout(null);
-        this.add(messagePanel);
-
-        messagePanel.setBounds(0, 0, 168, 563);
-        messagePanel.setIcon(new ImageIcon(TitlePanel.class.getResource("")));
+        
+        JLabel lblNewLabel = new JLabel("New label");
+        lblNewLabel.setIcon(new ImageIcon(MessagePanel.class.getResource("/sprites/Message-Panel.png")));
+        lblNewLabel.setBounds(0, 0, 168, 563);
+        add(lblNewLabel);
     }
     
     public void updateMessagePanel()
