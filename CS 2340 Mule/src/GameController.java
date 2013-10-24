@@ -103,34 +103,13 @@ public class GameController {
 					@Override
 					public void mouseClicked(MouseEvent e) {
                         Point tileIndex = gameView.getTileIndex(e.getPoint());
-
-                        if ()
-							System.out.println("x: " + e.getPoint().x + " y: " + e.getPoint().y);
-							System.out.println("Row: " + row + "  Col: " + col);
-							board.getMap()[row][col].setOwner(players.getCurrentPlayer());
-							switch (players.getCurrentPlayer().getColor().toString())
-							{
-							case "red":
-								board.getMap()[row][col].setTileColor(Tile.TileColor.RED);
-								break;
-							case "yellow":
-								board.getMap()[row][col].setTileColor(Tile.TileColor.YELLOW);
-								break;
-							case "green":
-								board.getMap()[row][col].setTileColor(Tile.TileColor.GREEN);
-								break;
-							case "purple":
-								board.getMap()[row][col].setTileColor(Tile.TileColor.PURPLE);
-								break;
-							}						
-
-							makeMap();
-						}
+                        board.setOwner(players.getCurrentPlayer(), e.getX(), e.getY());
+                        gameView.updateTileBorder(players.getCurrentPlayer().getColor().getBorderImagePath(), e.getX(), e.getY());
 					}
 				}
 				);
 
-		timer = new LimitTimer(10, 1000, new ActionListener() {
+		timer = new LimitTimer(50, 1000, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent actionEvent) {
 				System.out.println("tick " + timer.getCount() + ": " + players.getCurrentPlayer());
@@ -149,37 +128,14 @@ public class GameController {
 	{
 		Tile[][] tiles = board.getMap();
 
-		for(int i = 0; i<5; i++)
+		for(int i = 0; i < tiles.length; i++)
 		{
-			for(int j = 0; j<9; j++)
+			for(int j = 0; j < tiles[0].length; j++)
 			{
-				Tile tile1 = tiles[i][j];
-
-				URL url = tile1.getType().getImgPath();
-				ImageIcon icon = new ImageIcon(url);
-				this.tilePanel.instantiateTileImage(icon, i, j);
-
-
+				gameView.updateTileImage(tiles[i][j].getImagePath(), i, j);
+                gameView.updateTileBorder(tiles[i][j].getBorderPath(), i, j);
 			}
 		}
-
-		for(int i = 0; i<5; i++)
-		{
-			for(int j = 0; j<9; j++)
-			{
-				Tile tile2 = tiles[i][j];
-
-				URL url2 = tile2.getTileColor().getBorderPath();
-				ImageIcon borderIcon = new ImageIcon(url2);
-				this.tilePanel.instantiateBorderImage(borderIcon,i,j);	
-
-			}
-		}
-	}
-
-	private void update()
-	{
-		this.statusPanel.updateStatusPanel(players.getPlayers());
 	}
 
 	/**
