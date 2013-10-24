@@ -14,13 +14,12 @@ public class GameFrame extends JFrame {
         this.boardPanel = new BoardPanel();
         this.statusPanel = new StatusPanel();
         this.messagePanel = new MessagePanel();
+        messagePanel.setAlignmentX(Component.LEFT_ALIGNMENT);
         
         boardPanel.getTownCenterPanel().setLocation(new Point(168, 0));
         boardPanel.getTilePanel().setLocation(new Point(168, 0));
-        boardPanel.setLocation(new Point(168, 0));
         boardPanel.getTownCenterPanel().setBounds(new Rectangle(168, 0, 832, 400));
         boardPanel.getTilePanel().setBounds(new Rectangle(168, 0, 832, 400));
-        boardPanel.setBounds(new Rectangle(168, 0, 832, 400));
 
         initialize();
     }
@@ -31,10 +30,10 @@ public class GameFrame extends JFrame {
         this.setResizable(false);
         this.setBounds(100, 100, 1006, 592);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new CardLayout(0, 0));
-        getContentPane().add(boardPanel, "Board Panel");
-        getContentPane().add(messagePanel, "Message Panel");
-        getContentPane().add(statusPanel, "Status Panel");
+        getContentPane().setLayout(new BorderLayout(0, 0));
+        getContentPane().add(boardPanel);
+        getContentPane().add(messagePanel);
+        getContentPane().add(statusPanel);
     }
     
     public void update()
