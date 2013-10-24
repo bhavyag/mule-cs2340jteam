@@ -5,11 +5,16 @@ import java.awt.*;
 
 public class GameFrame extends JFrame {
     private BoardPanel boardPanel;
+    private StatusPanel statusPanel;
+    private MessagePanel messagePanel;
 
     final String BOARD = "Board";
 
     public GameFrame() {
         this.boardPanel = new BoardPanel();
+        this.statusPanel = new StatusPanel();
+        this.messagePanel = new MessagePanel();
+        
         boardPanel.getTownCenterPanel().setLocation(new Point(168, 0));
         boardPanel.getTilePanel().setLocation(new Point(168, 0));
         boardPanel.setLocation(new Point(168, 0));
@@ -29,7 +34,16 @@ public class GameFrame extends JFrame {
         getContentPane().setLayout(new CardLayout(0, 0));
         getContentPane().add(boardPanel, "name_791672127307887");
     }
-
-    public void showBoardPanel() {
+    
+    public void update()
+    {
+    	boardPanel.updateBoardPanel();
+    	statusPanel.updateStatusPanel();
+    	messagePanel.updateMessagePanel();
     }
+
+	public void showBoardPanel() 
+	{
+		
+	}
 }

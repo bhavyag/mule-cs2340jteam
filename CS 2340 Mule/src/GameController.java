@@ -1,11 +1,6 @@
-import model.Board;
-import model.BoardFactory;
-import model.PlayerQueue;
+import model.*;
 import util.LimitTimer;
-import view.GameConfigPanel;
-import view.GameFrame;
-import view.TitleFrame;
-import view.PlayerConfigPanel;
+import view.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
