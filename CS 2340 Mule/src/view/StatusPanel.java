@@ -8,6 +8,11 @@ import java.awt.FlowLayout;
 import java.awt.BorderLayout;
 import java.awt.Font;
 
+/**
+ * CLASS StatusPanel
+ * @author Chris
+ *
+ */
 public class StatusPanel extends JPanel {
 
     protected StatusPanel() {
@@ -27,6 +32,11 @@ public class StatusPanel extends JPanel {
         label_4.setFont(new Font("Tahoma", Font.PLAIN, 12));
         label_4.setBounds(0, 0, 60, 14);
         lblNewLabel.add(label_4);
+        
+        JLabel label_5 = new JLabel("New label");
+        label_5.setFont(new Font("Tahoma", Font.PLAIN, 12));
+        label_5.setBounds(0, 0, 60, 14);
+        lblNewLabel.add(label_5);
         
         JLabel label_1 = new JLabel("");
         label_1.setBounds(new Rectangle(11, 10, 195, 143));
