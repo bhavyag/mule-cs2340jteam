@@ -122,7 +122,7 @@ public class GameController {
                 public void mouseClicked(MouseEvent e) {
                     Point tileIndex = gameView.getTileIndex(e.getPoint());
 
-                    if (players.getRound() <= 2) {
+                    if (players.getRound() < 2) {
                         if (board.setOwner(players.getCurrentPlayer(), tileIndex)) {
                             gameView.updateTileBorder(board.getTileBorderPath(tileIndex), (int) tileIndex.getX(), (int) tileIndex.getY());
 
@@ -156,7 +156,7 @@ public class GameController {
 
                     if (players.pass()) {
                         timer.stop();
-                        nextPhase();
+                        townPhase();
                     } else {
                         timer.reset();
                     }
@@ -181,8 +181,36 @@ public class GameController {
 		}
 	}
 
+    /**
+     * METHOD begins the town and map phase of the game
+     */
+    private void townPhase() {
+        System.out.println("starting town phase");
+//        players.beginRotation();
+//
+//        timer = new LimitTimer(10, 1000, new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent actionEvent) {
+//                System.out.println("tick " + timer.getCount());
+//
+//                if (timer.isOutOfTime()) {
+//                    System.out.println("out of time");
+//                    players.next();
+//
+//                    if (players.isNewRound()) {
+//                        timer.stop();
+//                        nextPhase();
+//                    } else {
+//                        timer.reset();
+//                    }
+//                }
+//            }
+//        });
+//        timer.start();
+    }
+
     private void nextPhase() {
-        System.out.println("Land selection over");
+        System.out.println("town phase over");
         gameView.dispose();
     }
 
