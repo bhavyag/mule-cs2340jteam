@@ -2,9 +2,33 @@ package model;
 
 import java.net.URL;
 
-public class Tile implements Purchasable
+public class Tile
 {
 
+	public static enum TileColor {
+        RED("red",Tile.class.getResource("/sprites.tiles/Border-Red.png")),
+        YELLOW("yellow",Tile.class.getResource("/sprites.tiles/Border-Yellow.png")),
+        GREEN("green",Tile.class.getResource("/sprites.tiles/Border-Green.png")),
+        PURPLE("purple",Tile.class.getResource("/sprites.tiles/Border-Purple.png")),
+        DEFAULT("default",Tile.class.getResource("/sprites.tiles/Border-Red.png"));
+
+        private String tileColor;
+        private URL borderPath;
+
+        TileColor(String tileColor,URL url) {
+            this.tileColor = tileColor;
+            this.borderPath = url;
+        }
+
+        public String toString() {
+            return tileColor;
+        }
+        
+        public URL getBorderPath() {
+            return borderPath;
+        }  
+	}
+        
     /**
      * ENUM for Tile type
      */
@@ -39,6 +63,7 @@ public class Tile implements Purchasable
         }
     }
 
+    private TileColor tileColor;
     private Type type;
     private Player owner;
 
@@ -48,6 +73,7 @@ public class Tile implements Purchasable
     public Tile(Type type)
     {
     	this.type = type;
+    	this.tileColor = TileColor.DEFAULT;
     }
 
     public void setOwner(Player p)
@@ -63,14 +89,17 @@ public class Tile implements Purchasable
     public boolean isOwned() {
         return owner == null;
     }
-
-    @Override
-    public int getPrice() {
-        return this.type.getPrice();
-    }
     
     public Type getType()
     {
     	return this.type;
     }
+    
+    public TileColor getTileColor()
+    {
+    	return this.tileColor;
+    }
 }
+
+	
+	
