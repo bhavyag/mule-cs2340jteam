@@ -2,7 +2,7 @@ package model;
 
 public abstract class Board
 {
-    protected Tile[][] map = new Tile[9][5];
+    protected Tile[][] map;
 
     /**
      * METHOD get this boards map
