@@ -1,7 +1,5 @@
 package model;
 
-import util.Shared.Color;
-
 import java.awt.*;
 import java.net.URL;
 

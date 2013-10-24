@@ -1,13 +1,35 @@
 package model;
 
+import java.net.URL;
 import java.util.ArrayList;
-import util.Shared.Color;
 
 /**
  * CLASS Player. Holds the data for each player.
  *
  */
 public class Player {
+    public static enum Color {
+        RED("red", Player.class.getResource("/sprites/tiles/Border-Red.png")),
+        YELLOW("yellow", Player.class.getResource("/sprites/tiles/Border-Yellow.png")),
+        GREEN("green", Player.class.getResource("/sprites/tiles/Border-Green.png")),
+        PURPLE("purple", Player.class.getResource("/sprites/tiles/Border-Purple.png"));
+
+        private String name;
+        private URL borderImagePath;
+
+        Color(String name, URL borderImagePath) {
+            this.name = name;
+            this.borderImagePath = borderImagePath;
+        }
+
+        public String toString() {
+            return name;
+        }
+
+        public URL getBorderImagePath() {
+            return borderImagePath;
+        }
+    }
 
     /**
      * ENUM for player race
@@ -44,9 +66,11 @@ public class Player {
     /**
      * CONSTRUCTOR for Players
      */
-    public Player() {
+    public Player(int startingMoney) {
         totalPlayers ++;
         this.playerNum = totalPlayers;
+
+        this.money = startingMoney;
     }
 
     /**
@@ -118,6 +142,6 @@ public class Player {
      * @return a string describing the player's attributes
      */
     public String toString() {
-        return "Player " + playerNum + " is a " + color + " " + race + " named " + name;
+        return "Player " + playerNum + " is a " + color + " " + race + " named " + name + "\n" + "money: " + money;
     }
 }
