@@ -15,6 +15,11 @@ public class TilePanel extends JPanel {
     	labelArray[x][y].setIcon(i);
     }
     
+    public void updateTilePanel()
+    {
+    	
+    }
+    
     private void initialize() {
         this.setLayout(null);
         this.setBounds(168, 0, 832, 400); 
