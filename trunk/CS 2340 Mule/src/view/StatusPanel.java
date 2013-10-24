@@ -9,18 +9,25 @@ import java.awt.BorderLayout;
 import java.awt.Font;
 
 /**
- * CLASS StatusPanel
+ * CLASS StatusPanel. For the JPanel that displays the status of each player,
+ * their name, money, and resources.
  * @author Chris
  *
  */
 public class StatusPanel extends JPanel {
 
+	/**
+	 * CONSTRUCTOR for the StatusPanel, sets its initial size.
+	 */
     protected StatusPanel() {
     	setBounds(new Rectangle(168, 400, 832, 163));
 
         initialize();
     }
 
+    /**
+     * METHOD that adds the StatusPanel's JLabels for each player's information
+     */
     private void initialize() {
         setLayout(null);
         
@@ -60,6 +67,10 @@ public class StatusPanel extends JPanel {
         add(label);
     }
     
+    /**
+     * METHOD that updates the information to be displayed on the StatusPanel
+     * @param players a list of all of the players whose info needs to be updated.
+     */
     public void updateStatusPanel(ArrayList<model.Player> players)
     {
     	

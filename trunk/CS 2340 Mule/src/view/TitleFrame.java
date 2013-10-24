@@ -4,6 +4,11 @@ import javax.swing.JFrame;
 import java.awt.CardLayout;
 import java.awt.Toolkit;
 
+/**
+ * CLASS TitleFrame. For the JFrame that will display the title screen as well as the configuration screens.
+ * @author Chris
+ *
+ */
 public class TitleFrame extends JFrame {
 
     private TitlePanel titlePanel;
@@ -45,30 +50,55 @@ public class TitleFrame extends JFrame {
         this.getContentPane().add(playerConfigPanel, PLAYER_CONFIG);
 	}
 
+	/**
+	 * METHOD to get this TitleFrame's TitlePanel
+	 * @return this TitleFrame's TitlePanel
+	 */
     public TitlePanel getTitlePanel() {
         return titlePanel;
     }
 
+    /**
+     * METHOD to tell the TitleFrame to display the TitlePanel
+     */
     public void showTitlePanel() {
         cardLayout.show(this.getContentPane(), TITLE);
     }
 
+    /**
+     * METHOD to get the TitleFrame's GameConfigPanel
+     * @return this TitleFrame's GameConfigPanel
+     */
     public GameConfigPanel getGameConfigPanel() {
         return gameConfigPanel;
     }
 
+    /**
+     * METHOD to tell the TitleFrame to display the GameConfigPanel
+     */
     public void showGameConfigPanel() {
         cardLayout.show(this.getContentPane(), GAME_CONFIG);
     }
 
+    /**
+     * METHOD to get the TitleFrame's PlayerConfigPanel
+     * @return this TitleFrame's PlayerConfigPanel
+     */
     public PlayerConfigPanel getPlayerConfigPanel() {
         return playerConfigPanel;
     }
 
+    /**
+     * METHOD to tell the TitleFrame to display the PlayerConfigPanel
+     */
     public void showPlayerConfigPanel() {
         cardLayout.show(this.getContentPane(), PLAYER_CONFIG);
     }
 
+    /**
+     * METHOD to create another player config panel for another player
+     * @param playerNum
+     */
     public void updatePlayerConfigPanel(int playerNum) {
         playerConfigPanel.clear();
         playerConfigPanel.setPlayerNum(playerNum);
