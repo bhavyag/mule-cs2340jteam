@@ -109,7 +109,8 @@ public class GameController {
 					public void mouseClicked(MouseEvent e) {
 						int col = (e.getPoint().x - 92)/72;
 						int row = (e.getPoint().y - 20)/72;
-						if (!(e.getPoint().x < 92 || e.getPoint().y < 20 || e.getPoint().x > 740 || e.getPoint().y > 380))
+						if (!(e.getPoint().x < 92 || e.getPoint().y < 20 || e.getPoint().x > 740 || e.getPoint().y > 380) && 
+								!(col == 4 && row == 2) && board.getMap()[row][col].getTileColor() == Tile.TileColor.DEFAULT)
 						{
 							System.out.println("x: " + e.getPoint().x + " y: " + e.getPoint().y);
 							System.out.println("Row: " + row + "  Col: " + col);
@@ -118,12 +119,16 @@ public class GameController {
 							{
 							case "red":
 								board.getMap()[row][col].setTileColor(Tile.TileColor.RED);
+								break;
 							case "yellow":
 								board.getMap()[row][col].setTileColor(Tile.TileColor.YELLOW);
+								break;
 							case "green":
 								board.getMap()[row][col].setTileColor(Tile.TileColor.GREEN);
+								break;
 							case "purple":
 								board.getMap()[row][col].setTileColor(Tile.TileColor.PURPLE);
+								break;
 							}						
 
 							makeMap();
@@ -132,7 +137,7 @@ public class GameController {
 				}
 				);
 
-		/*timer = new LimitTimer(10, 1000, new ActionListener() {
+		timer = new LimitTimer(10, 1000, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent actionEvent) {
 				System.out.println("tick " + timer.getCount() + ": " + players.getCurrentPlayer());
@@ -144,7 +149,7 @@ public class GameController {
 				}
 			}
 		});
-		timer.start();*/
+		timer.start();
 	}
 
 	private void makeMap()
