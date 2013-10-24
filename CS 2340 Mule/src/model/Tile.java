@@ -8,12 +8,12 @@ public class Tile
      * ENUM for Tile type
      */
     public static enum Type {
-        MOUNTAINONE("mountain 1", this.getClass().getResource("/sprites/tiles/Mountain-Tile.png")),
-        MOUNTAINTWO("mountain 2", this.getClass().getResource("/sprites/tiles/Mountain-2-Tile.png")),
-        MOUNTAINTHREE("mountain 3", this.getClass().getResource("/sprites/tiles/Mountain-3-Tile.png")),
-        PLAINS("plains", this.getClass().getResource("/sprites/tiles/Plains-Tile.png")),
-        RIVER("river", this.getClass().getResource("/sprites/tiles/River-Tile.png")),
-        TOWN("town", this.getClass().getResource("/sprites/tiles/Town-Center-Tile.png"));
+        MOUNTAINONE("mountain 1", Tile.class.getResource("/sprites/tiles/Mountain-Tile.png")),
+        MOUNTAINTWO("mountain 2", Tile.class.getResource("/sprites/tiles/Mountain-2-Tile.png")),
+        MOUNTAINTHREE("mountain 3", Tile.class.getResource("/sprites/tiles/Mountain-3-Tile.png")),
+        PLAINS("plains", Tile.class.getResource("/sprites/tiles/Plains-Tile.png")),
+        RIVER("river", Tile.class.getResource("/sprites/tiles/River-Tile.png")),
+        TOWN("town", Tile.class.getResource("/sprites/tiles/Town-Center-Tile.png"));
 
         private String type;
         private URL imgPath;
