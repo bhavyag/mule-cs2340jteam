@@ -1,6 +1,7 @@
 import model.Board;
 import model.BoardFactory;
 import model.Player;
+import model.PlayerQueue;
 import view.GameConfigPanel;
 import view.GameFrame;
 import view.TitleFrame;
@@ -14,15 +15,11 @@ public class GameController {
     private TitleFrame titleView;
     private GameFrame gameView;
     private int difficulty;
-    private ArrayList<Player> players;
-    private int currentPlayerIdx;
+    private PlayerQueue players;
     private Board board;
 
 
-    public GameController() {
-        this.players = new ArrayList<Player>();
-        this.currentPlayerIdx = 0;
-    }
+    public GameController() {}
 
     private void startTitleSequence() {
         titleView = new TitleFrame();
@@ -51,16 +48,9 @@ public class GameController {
                 new MouseAdapter() {
                     @Override
                     public void mouseClicked(MouseEvent e) {
-                        int numPlayers = gameConfigPanel.getNumPlayers();
-                        for (int i = 0; i < numPlayers; i++) {
-                            players.add(new Player());
-                        }
+                        players = new PlayerQueue(gameConfigPanel.getNumPlayers());
                         difficulty = gameConfigPanel.getDifficulty();
                         board = BoardFactory.constructBoard(gameConfigPanel.getMap());
-
-                        System.out.println("difficulty: " + difficulty);
-                        System.out.println("number of players: " + numPlayers);
-                        System.out.println("map: " + board);
 
                         configurePlayers();
                     }
@@ -70,35 +60,28 @@ public class GameController {
 
     private void configurePlayers() {
         titleView.showPlayerConfigPanel();
-        titleView.updatePlayerConfigPanel(players.get(currentPlayerIdx).getPlayerNum());
+        titleView.updatePlayerConfigPanel(players.getCurrentPlayer().getPlayerNum());
 
         final PlayerConfigPanel playerConfigPanel = titleView.getPlayerConfigPanel();
         playerConfigPanel.onClickNext(
                 new MouseAdapter() {
                     @Override
                     public void mouseClicked(MouseEvent e) {
-                        Player currentPlayer = players.get(currentPlayerIdx);
+                        Player currentPlayer = players.getCurrentPlayer();
                         currentPlayer.setName(playerConfigPanel.getName());
                         currentPlayer.setColor(playerConfigPanel.getColor());
                         currentPlayer.setRace(playerConfigPanel.getRace());
 
-                        System.out.println(currentPlayer);
+                        players.next();
 
-                        configureNextPlayer();
+                        if (players.isNewRound()) {
+                            startGame();
+                        } else {
+                            titleView.updatePlayerConfigPanel(players.getCurrentPlayer().getPlayerNum());
+                        }
                     }
                 }
         );
-    }
-
-    private void configureNextPlayer() {
-        currentPlayerIdx ++;
-
-        if (currentPlayerIdx == players.size()) {
-            currentPlayerIdx = 0;
-            startGame();
-        } else {
-            titleView.updatePlayerConfigPanel(players.get(currentPlayerIdx).getPlayerNum());
-        }
     }
 
     private void startGame() {
