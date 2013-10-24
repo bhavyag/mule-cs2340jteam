@@ -13,7 +13,7 @@ public class PlayerQueue {
     private int currentIndex;
     private int round;
     private boolean newRound;
-
+    
     public PlayerQueue(int numPlayers, int startingMoney) {
         players = new ArrayList<Player>();
 
