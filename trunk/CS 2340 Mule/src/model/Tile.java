@@ -6,11 +6,11 @@ public class Tile
 {
 
 	public static enum TileColor {
-        RED("red",Tile.class.getResource("/sprites.tiles/Border-Red.png")),
-        YELLOW("yellow",Tile.class.getResource("/sprites.tiles/Border-Yellow.png")),
-        GREEN("green",Tile.class.getResource("/sprites.tiles/Border-Green.png")),
-        PURPLE("purple",Tile.class.getResource("/sprites.tiles/Border-Purple.png")),
-        DEFAULT("default",Tile.class.getResource("/sprites.tiles/Border-Red.png"));
+        RED("red",Tile.class.getResource("/sprites/tiles/Border-Red.png")),
+        YELLOW("yellow",Tile.class.getResource("/sprites/tiles/Border-Yellow.png")),
+        GREEN("green",Tile.class.getResource("/sprites/tiles/Border-Green.png")),
+        PURPLE("purple",Tile.class.getResource("/sprites/tiles/Border-Purple.png")),
+        DEFAULT("default",Tile.class.getResource("/sprites/tiles/Border-Default.png"));
 
         private String tileColor;
         private URL borderPath;

@@ -126,13 +126,26 @@ public class GameController {
     	{
     		for(int j = 0; j<9; j++)
     		{
-    			Tile tile = tiles[i][j];
+    			Tile tile1 = tiles[i][j];
     			
-    			URL url = tile.getType().getImgPath();
+    			URL url = tile1.getType().getImgPath();
     			ImageIcon icon = new ImageIcon(url);
     			this.tilePanel.instantiateTileImage(icon, i, j);
     			
-    			URL url2Url = tile.getTileColor().getBorderPath();
+    			
+    		}
+    	}
+    	
+    	for(int i = 0; i<5; i++)
+    	{
+    		for(int j = 0; j<9; j++)
+    		{
+    			Tile tile2 = tiles[i][j];
+    			
+    			URL url2 = tile2.getTileColor().getBorderPath();
+    			ImageIcon borderIcon = new ImageIcon(url2);
+    			this.tilePanel.instantiateBorderImage(borderIcon,i,j);	
+    			
     		}
     	}
     }
