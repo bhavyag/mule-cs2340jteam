@@ -48,11 +48,22 @@ public class Tile implements Purchasable
         this.ownable = true;
     }
 
+    /**
+     * CONSTRUCTOR for specifying whether the tile is ownable
+     * @param type the type of tile
+     * @param ownable whether or not someone can purchase this tile
+     */
     public Tile(Type type, boolean ownable) {
         this.type = type;
         this.ownable = ownable;
     }
 
+    /**
+     * METHOD allows a player to purchase a tile
+     *
+     * @param p the purchasing player
+     * @return true if the transaction was successful, false otherwise
+     */
     public boolean buy(Player p)
     {
         if (ownable && owner == null) {
@@ -68,6 +79,12 @@ public class Tile implements Purchasable
         }
     }
 
+    /**
+     * METHOD sets the owner of the tile if possible
+     *
+     * @param p the potential owner of the tile
+     * @return true if the ownership was successful, false otherwise
+     */
     public boolean setOwner(Player p) {
         if (ownable && owner == null) {
             this.owner = p;
@@ -78,7 +95,11 @@ public class Tile implements Purchasable
         }
     }
 
-    
+    /**
+     * METHOD gives the path to the border image of this tile's type
+     *
+     * @return the path to the border image
+     */
     public URL getBorderPath()
     {
         if (this.owner == null) {
@@ -88,6 +109,11 @@ public class Tile implements Purchasable
         }
     }
 
+    /**
+     * METHOD gives the path to the tile image of this tile's type
+     *
+     * @return the path to the tile image
+     */
     public URL getImagePath() {
         return this.type.imgPath;
     }

@@ -8,6 +8,9 @@ import java.util.ArrayList;
  *
  */
 public class Player {
+    /**
+     * ENUM for player color
+     */
     public static enum Color {
         RED("red", Player.class.getResource("/sprites/tiles/Border-Red.png")),
         YELLOW("yellow", Player.class.getResource("/sprites/tiles/Border-Yellow.png")),

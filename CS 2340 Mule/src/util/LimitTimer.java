@@ -42,4 +42,8 @@ public class LimitTimer {
     public void start() {
         timer.start();
     }
+
+    public void stop() {
+        timer.stop();
+    }
 }

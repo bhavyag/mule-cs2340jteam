@@ -27,10 +27,24 @@ public abstract class Board
      */
     public abstract String toString();
 
+    /**
+     * Sets the owner of the tile, if possible
+     *
+     * @param p the player attempting to own the tile
+     * @param point the coordinates of the tile
+     * @return whether or not the ownership was successful
+     */
     public boolean setOwner(Player p, Point point) {
         return map[(int)point.getX()][(int)point.getY()].setOwner(p);
     }
 
+    /**
+     * Allows a player to purchase a tile
+     *
+     * @param p the player attempting to purchase the tile
+     * @param point the coordinates of the tile
+     * @return whether or not the purchase was successful
+     */
     public boolean purchaseTile(Player p, Point point) {
         return map[(int)point.getX()][(int)point.getY()].buy(p);
     }
