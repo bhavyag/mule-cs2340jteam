@@ -1,4 +1,5 @@
 import model.Board;
+import model.BoardFactory;
 import model.Player;
 import view.GameConfigPanel;
 import view.GameFrame;
@@ -55,7 +56,7 @@ public class GameController {
                             players.add(new Player());
                         }
                         difficulty = gameConfigPanel.getDifficulty();
-                        board = new Board(gameConfigPanel.getMap());
+                        board = BoardFactory.constructBoard(gameConfigPanel.getMap());
 
                         System.out.println("difficulty: " + difficulty);
                         System.out.println("number of players: " + numPlayers);
