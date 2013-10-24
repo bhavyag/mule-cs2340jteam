@@ -20,6 +20,10 @@ public class PlayerQueue {
         newRound = false;
     }
 
+    public ArrayList<Player> getPlayers() {
+    	return players;
+    }
+    
     public Player getCurrentPlayer() {
         return players.get(currentIndex);
     }
