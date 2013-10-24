@@ -22,19 +22,7 @@ public class GameController {
 
 
     public GameController() {
-        ActionListener onTick = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                System.out.println("tick " + timer.getCount());
-                if (timer.isOutOfTime()) {
-                    System.out.println("out of time");
-                    timer.reset();
-                }
-            }
-        };
 
-        timer = new LimitTimer(10, 1000, onTick);
-        timer.start();
     }
 
     private void startTitleSequence() {
@@ -100,9 +88,24 @@ public class GameController {
     }
 
     private void startGame() {
-        titleView.dispose();
-        gameView = new GameFrame();
-        gameView.showBoardPanel();
+//        titleView.dispose();
+//        gameView = new GameFrame();
+//        gameView.showBoardPanel();
+
+        timer = new LimitTimer(10, 1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                System.out.println("tick " + timer.getCount() + ": " + players.getCurrentPlayer());
+
+                if (timer.isOutOfTime()) {
+                    System.out.println("out of time");
+                    players.next();
+                    timer.reset();
+                }
+            }
+        });
+
+        timer.start();
     }
 
     /**
