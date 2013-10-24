@@ -6,14 +6,16 @@ import java.awt.*;
 public class GameFrame extends JFrame {
     private BoardPanel boardPanel;
 
-    private CardLayout cardLayout;
-
     final String BOARD = "Board";
 
     public GameFrame() {
         this.boardPanel = new BoardPanel();
-
-        this.cardLayout = new CardLayout();
+        boardPanel.getTownCenterPanel().setLocation(new Point(168, 0));
+        boardPanel.getTilePanel().setLocation(new Point(168, 0));
+        boardPanel.setLocation(new Point(168, 0));
+        boardPanel.getTownCenterPanel().setBounds(new Rectangle(168, 0, 832, 400));
+        boardPanel.getTilePanel().setBounds(new Rectangle(168, 0, 832, 400));
+        boardPanel.setBounds(new Rectangle(168, 0, 832, 400));
 
         initialize();
     }
@@ -24,11 +26,10 @@ public class GameFrame extends JFrame {
         this.setResizable(false);
         this.setBounds(100, 100, 1006, 592);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.getContentPane().setLayout(cardLayout);
-        this.add(boardPanel, BOARD);
+        getContentPane().setLayout(new CardLayout(0, 0));
+        getContentPane().add(boardPanel, "name_791672127307887");
     }
 
     public void showBoardPanel() {
-        cardLayout.show(this.getContentPane(), BOARD);
     }
 }
