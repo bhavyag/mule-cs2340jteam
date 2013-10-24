@@ -89,14 +89,10 @@ public class GameFrame extends JFrame {
     }
 
     public void updateTileBorder(URL imagePath, int x, int y) {
-        boardPanel.getTilePanel().setBorderImage(
-                new ImageIcon(imagePath), x, y
-        );
+        boardPanel.getTilePanel().setBorderImage(imagePath, x, y);
     }
 
     public void updateTileImage(URL imagePath, int x, int y) {
-        boardPanel.getTilePanel().setTileImage(
-                new ImageIcon(imagePath), x, y
-        );
+        boardPanel.getTilePanel().setTileImage(imagePath, x, y);
     }
 }

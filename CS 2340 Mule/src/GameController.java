@@ -103,8 +103,11 @@ public class GameController {
 					@Override
 					public void mouseClicked(MouseEvent e) {
                         Point tileIndex = gameView.getTileIndex(e.getPoint());
-                        board.setOwner(players.getCurrentPlayer(), e.getX(), e.getY());
-                        gameView.updateTileBorder(players.getCurrentPlayer().getColor().getBorderImagePath(), e.getX(), e.getY());
+                        board.setOwner(players.getCurrentPlayer(), tileIndex);
+                        gameView.updateTileBorder(board.getTileBorderPath(tileIndex), (int)tileIndex.getX(), (int)tileIndex.getY());
+
+                        players.next();
+                        timer.reset();
 					}
 				}
 				);
@@ -112,10 +115,7 @@ public class GameController {
 		timer = new LimitTimer(50, 1000, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent actionEvent) {
-				System.out.println("tick " + timer.getCount() + ": " + players.getCurrentPlayer());
-
 				if (timer.isOutOfTime()) {
-					System.out.println("out of time");
 					players.next();
 					timer.reset();
 				}

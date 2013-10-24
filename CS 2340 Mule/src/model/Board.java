@@ -2,6 +2,9 @@ package model;
 
 import util.Shared.Color;
 
+import java.awt.*;
+import java.net.URL;
+
 /**
  * ABSTRACT CLASS BOARD holds the methods all boards will use, all boards have a 2d array of tiles.
  * @author Chris
@@ -26,11 +29,11 @@ public abstract class Board
      */
     public abstract String toString();
 
-    public void setOwner(Player p, int x, int y) {
-        map[x][y].setOwner(p);
+    public void setOwner(Player p, Point point) {
+        map[(int)point.getX()][(int)point.getY()].setOwner(p);
     }
 
-    public Color getTileColor(int x, int y) {
-        return map[x][y].getTileColor();
+    public URL getTileBorderPath(Point point) {
+        return map[(int)point.getX()][(int)point.getY()].getBorderPath();
     }
 }

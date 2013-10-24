@@ -39,12 +39,12 @@ public class BoardPanel extends JPanel {
 	 * METHOD that sets the initial state of the of BoardPanel
 	 */
 	private void initialize() {
-		this.setLayout(cardLayout);
 		this.add(boardLabel);
-		this.add(tilePanel, TILES);
-		this.add(townCenterPanel, TOWN_CENTER);
+        this.add(tilePanel, TILES);
+        this.add(townCenterPanel, TOWN_CENTER);
 
-		this.setBounds(168, 0, 832, 400);
+        this.setLayout(cardLayout);
+        this.setBounds(168, 0, 832, 400);
 	}
 	
 	/**

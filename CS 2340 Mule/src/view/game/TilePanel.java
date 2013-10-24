@@ -26,24 +26,28 @@ public class TilePanel extends JPanel {
 
     /**
      * METHOD to set the image to display on the Tile at x , y.
-     * @param i the image to display
+     * @param imagePath the image to display
      * @param x the x coord of the tile
      * @param y the y coord of the tile
      */
-    public void setTileImage(ImageIcon i, int x, int y)
+    public void setTileImage(URL imagePath, int x, int y)
     {
-    	labelArray[x][y].setIcon(i);
+    	labelArray[x][y].setIcon(new ImageIcon(imagePath));
     }
     
     /**
      * METHOD to set the image to display as the border of the Tile at x , y
-     * @param i the image to use as the border
+     * @param imagePath the image to use as the border
      * @param x the x coord of the tile
      * @param y the y coord of the tile
      */
-    public void setBorderImage(ImageIcon i, int x, int y)
+    public void setBorderImage(URL imagePath, int x, int y)
     {
-    	borderArray[x][y].setIcon(i);
+        if (imagePath == null) {
+            imagePath = TilePanel.class.getResource("/sprites/tiles/Border-Default.png");
+        }
+
+        borderArray[x][y].setIcon(new ImageIcon(imagePath));
     }
 
     public Point getTileIndex(Point cartesian) {
