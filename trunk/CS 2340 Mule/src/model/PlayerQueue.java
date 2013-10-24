@@ -14,11 +14,11 @@ public class PlayerQueue {
     private int round;
     private boolean newRound;
 
-    public PlayerQueue(int numPlayers) {
+    public PlayerQueue(int numPlayers, int startingMoney) {
         players = new ArrayList<Player>();
 
         for (int i = 0; i < numPlayers; i ++) {
-            players.add(new Player());
+            players.add(new Player(startingMoney));
         }
 
         currentIndex = 0;
