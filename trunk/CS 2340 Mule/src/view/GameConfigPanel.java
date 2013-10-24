@@ -4,6 +4,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 
+/**
+ * CLASS GameConfigPanel. For the JPanel that handles game configuration
+ * @author Chris
+ *
+ */
 public class GameConfigPanel extends JPanel {
     private ButtonGroup
             mapButtonGroup,
@@ -23,6 +28,9 @@ public class GameConfigPanel extends JPanel {
 
     private JLabel gameConfigLabel;
 
+    /**
+     * CONSTRUCTOR for the GameConfigPanel, instantiates all of its buttons
+     */
     protected GameConfigPanel() {
         mapButtonGroup = new ButtonGroup();
         difficultyButtonGroup = new ButtonGroup();
@@ -43,6 +51,9 @@ public class GameConfigPanel extends JPanel {
         initialize();
     }
 
+    /**
+     * METHOD that adds all of the buttons to the GameConfigPanel and sets their initial values.
+     */
     private void initialize() {
         this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         this.setLayout(null);
@@ -158,6 +169,10 @@ public class GameConfigPanel extends JPanel {
         gameConfigLabel.setIcon(new ImageIcon(GameConfigPanel.class.getResource("/sprites/config/mule-config.png")));
     }
 
+    /**
+     * METHOD that gets the number of players selected based on the button that is pressed.
+     * @return the number of players selected.
+     */
     public int getNumPlayers() {
         if (p2Button.isSelected()) {
             return 2;
@@ -170,6 +185,10 @@ public class GameConfigPanel extends JPanel {
         }
     }
 
+    /**
+     * METHOD that gets the map that is selected based on the button that is pressed.
+     * @return a number representing the map that is selected.
+     */
     public int getMap() {
         if (map1Button.isSelected()) {
             return 0;
@@ -180,6 +199,10 @@ public class GameConfigPanel extends JPanel {
         }
     }
 
+    /**
+     * METHOD that gets the difficulty selected for this game based on the button that is pressed.
+     * @return an number representing the difficulty selected.
+     */
     public int getDifficulty() {
         if (easyButton.isSelected()) {
             return 0;
@@ -192,6 +215,10 @@ public class GameConfigPanel extends JPanel {
         }
     }
 
+    /**
+     * METHOD that adds a mouse listener to the GameConfigPanel
+     * @param mouseAdapter the mouse adapter to add.
+     */
     public void onClickNext(MouseAdapter mouseAdapter) {
         nextButton.addMouseListener(mouseAdapter);
     }

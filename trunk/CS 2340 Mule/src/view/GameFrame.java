@@ -3,6 +3,12 @@ package view;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * CLASS GameFrame. Defines the frame that holds what is displayed for the game, including 3 JPanels:
+ * the BoardPanel, the StatusPanel, and the MessagePanel
+ * @author Chris
+ *
+ */
 public class GameFrame extends JFrame {
     private BoardPanel boardPanel;
     private StatusPanel statusPanel;
@@ -10,6 +16,9 @@ public class GameFrame extends JFrame {
 
     final String BOARD = "Board";
 
+    /**
+     * CONSTRUCTOR for te GameFrame, instantiates it's board panel, its status panel, and its message panel
+     */
     public GameFrame() {
         this.boardPanel = new BoardPanel();
         this.statusPanel = new StatusPanel();
@@ -27,6 +36,9 @@ public class GameFrame extends JFrame {
         initialize();
     }
 
+    /**
+     * METHOD that sets the initial settings for the GameFrame, its size etc.
+     */
     private void initialize() {
         this.setVisible(true);
         this.setIconImage(Toolkit.getDefaultToolkit().getImage(TitleFrame.class.getResource("/sprites/muleIcon.png")));
@@ -38,17 +50,29 @@ public class GameFrame extends JFrame {
         getContentPane().add(messagePanel);
         getContentPane().add(statusPanel);
     }
-
+    
+    /**
+     * METHOD that gets the game frame's board panel
+     * @return the game frame's board panel
+     */
     public BoardPanel getBoardPanel()
     {
     	return this.boardPanel;
     }
     
+    /**
+     * Method that gets the game frame's message panel
+     * @return the game frame's message panel
+     */
 	public MessagePanel getMessagePanel()
 	{
 		return this.messagePanel;
 	}
 	
+	/**
+	 * Method that gets the game frame's status panel
+	 * @return the game frame's status panel
+	 */
 	public StatusPanel getStatusPanel()
 	{
 		return this.statusPanel;

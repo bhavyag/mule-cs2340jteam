@@ -4,6 +4,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 
+/**
+ * CLASS PlayerConfigPanel. For the JPanel that handles player configuration. 
+ * @author Chris
+ *
+ */
 public class PlayerConfigPanel extends JPanel {
     private ButtonGroup
             colorButtonGroup,
@@ -25,6 +30,9 @@ public class PlayerConfigPanel extends JPanel {
 
     private JLabel playerConfigLabel;
 
+    /**
+     * CONSTRUCTOR for the PlayerConfigPanel. Instantiates all of its buttons etc.
+     */
     protected PlayerConfigPanel() {
         this.colorButtonGroup = new ButtonGroup();
         this.raceButtonGroup = new ButtonGroup();
@@ -47,6 +55,10 @@ public class PlayerConfigPanel extends JPanel {
         initialize();
     }
 
+    /**
+     * METHOD that sets the initial state of the PlayerConfigPanel, adds all of its buttons,
+     *  places them in button groups, etc.
+     */
     private void initialize() {
         this.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
         this.setLayout(null);
@@ -193,16 +205,27 @@ public class PlayerConfigPanel extends JPanel {
         playerConfigLabel.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
         playerConfigLabel.setBounds(0, 0, 1000, 563);
     }
-
+    
+    /**
+     * METHOD that sets the image on the screen based on the player that needs to be configured.
+     * @param playerNum
+     */
     protected void setPlayerNum(int playerNum) {
         playerConfigLabel.setIcon(new ImageIcon(TitleFrame.class.getResource("/sprites/player-config" + playerNum + ".png")));
         this.updateUI();
     }
 
+    /**
+     * METHOD that gets the name of this player which was input into the PlayerConfig's text field
+     */
     public String getName() {
         return nameTextField.getText();
     }
-
+    
+    /**
+     * METHOD that gets the color that was selected for the player.
+     * @return the color that was selected for the player.
+     */
     public int getColor() {
         if (redButton.isSelected()) {
             return 0;
@@ -216,7 +239,11 @@ public class PlayerConfigPanel extends JPanel {
             return -1;
         }
     }
-
+    
+    /**
+     * METHOD that gets the race that was selected for the player.
+     * @return the race that was selected for the player.
+     */
     public int getRace() {
         if (humanButton.isSelected()) {
             return 0;
@@ -233,12 +260,19 @@ public class PlayerConfigPanel extends JPanel {
         }
     }
 
+    /**
+     * METHOD that clears the previous input on the screen
+     */
     protected void clear() {
         nameTextField.setText("");
         colorButtonGroup.clearSelection();
         raceButtonGroup.clearSelection();
     }
-
+    
+    /**
+     * METHOD that adds a mouse adapter to the PlayerConfigPanel
+     * @param mouseAdapter the mouse listener to add to this panel
+     */
     public void onClickNext(MouseAdapter mouseAdapter) {
         nextButton.addMouseListener(mouseAdapter);
     }
