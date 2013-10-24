@@ -14,6 +14,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.net.URL;
 
+/**
+ * CLASS GAMECONTROLLER controls the flow of the game
+ */
 public class GameController {
 	private TitleFrame titleView;
 	private GameFrame gameView;
@@ -23,16 +26,17 @@ public class GameController {
 	private Board board;
 	private LimitTimer timer;
 
-	public GameController() {
-
-	}
-
+    /**
+     * METHOD begins the title sequence
+     */
 	private void startTitleSequence() {
 		titleView = new TitleFrame();
 		titleScreen();
 	}
 
-
+    /**
+     * METHOD displays the title screen
+     */
 	private void titleScreen() {
 		titleView.showTitlePanel();
 
@@ -46,6 +50,9 @@ public class GameController {
         );
 	}
 
+    /**
+     * METHOD displays the configure game screen
+     */
 	private void configureGame() {
 		titleView.showGameConfigPanel();
 
@@ -64,6 +71,9 @@ public class GameController {
 				);
 	}
 
+    /**
+     * METHOD displays the configure players screen
+     */
 	private void configurePlayers() {
 		titleView.showPlayerConfigPanel();
 		titleView.updatePlayerConfigPanel(players.getCurrentPlayer().getPlayerNum());
@@ -89,6 +99,9 @@ public class GameController {
 				);
 	}
 
+    /**
+     * METHOD starts the actual gameplay
+     */
 	private void startGame() {
 		titleView.dispose();
 		gameView = new GameFrame();
@@ -96,6 +109,9 @@ public class GameController {
         landGrant();
 	}
 
+    /**
+     * METHOD begins the land grant portion of the game
+     */
     private void landGrant() {
         players.beginRotation();
         displayMap();
@@ -151,6 +167,9 @@ public class GameController {
         timer.start();
     }
 
+    /**
+     * METHOD displays the map based on the game configuration
+     */
 	private void displayMap() {
 		Tile[][] tiles = board.getMap();
 
