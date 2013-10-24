@@ -4,6 +4,7 @@ import view.title.TitleFrame;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
 
 /**
  * CLASS GameFrame. Defines the frame that holds what is displayed for the game, including 3 JPanels:
@@ -15,8 +16,6 @@ public class GameFrame extends JFrame {
     private BoardPanel boardPanel;
     private StatusPanel statusPanel;
     private MessagePanel messagePanel;
-
-    final String BOARD = "Board";
 
     /**
      * CONSTRUCTOR for te GameFrame, instantiates it's board panel, its status panel, and its message panel
@@ -79,4 +78,12 @@ public class GameFrame extends JFrame {
 	{
 		return this.statusPanel;
 	}
+
+    public Point getTileIndex(Point cartesian) {
+        return boardPanel.getTilePanel().getTileIndex(cartesian);
+    }
+
+    public void onTileClick(MouseAdapter mouseAdapter) {
+        boardPanel.getTilePanel().addMouseListener(mouseAdapter);
+    }
 }

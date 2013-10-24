@@ -7,6 +7,7 @@ import view.title.TitleFrame;
 
 import javax.swing.*;
 
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -97,15 +98,13 @@ public class GameController {
 		players.beginRotation();
 		this.makeMap();
 
-		boardPanel.onClick(
+		gameView.onTileClick(
 				new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						int col = (e.getPoint().x - 92)/72;
-						int row = (e.getPoint().y - 20)/72;
-						if (!(e.getPoint().x < 92 || e.getPoint().y < 20 || e.getPoint().x > 740 || e.getPoint().y > 380) && 
-								!(col == 4 && row == 2) && board.getMap()[row][col].getTileColor() == Tile.TileColor.DEFAULT)
-						{
+                        Point tileIndex = gameView.getTileIndex(e.getPoint());
+
+                        if ()
 							System.out.println("x: " + e.getPoint().x + " y: " + e.getPoint().y);
 							System.out.println("Row: " + row + "  Col: " + col);
 							board.getMap()[row][col].setOwner(players.getCurrentPlayer());

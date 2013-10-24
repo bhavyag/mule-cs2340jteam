@@ -1,6 +1,8 @@
 package view.game;
 
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.MouseAdapter;
 
 /**
  * CLASS TilePanel. For the JPanel that displays the main map screen as an array of JLabels.
@@ -41,6 +43,10 @@ public class TilePanel extends JPanel {
     public void instantiateBorderImage(ImageIcon i, int x, int y)
     {
     	borderArray[x][y].setIcon(i);
+    }
+
+    public Point getTileIndex(Point cartesian) {
+        return new Point(((int) cartesian.getX() - 92)/72, ((int) cartesian.getY() - 20)/72);
     }
     
     /**

@@ -1,32 +1,13 @@
 package model;
 
 import java.util.ArrayList;
+import util.Shared.Color;
 
 /**
  * CLASS Player. Holds the data for each player.
  *
  */
 public class Player {
-	
-    /**
-     * ENUM for player color
-     */
-    public static enum Color {
-        RED("red"),
-        YELLOW("yellow"),
-        GREEN("green"),
-        PURPLE("purple");
-
-        private String name;
-
-        Color(String name) {
-            this.name = name;
-        }
-
-        public String toString() {
-            return name;
-        }
-    }
 
     /**
      * ENUM for player race
