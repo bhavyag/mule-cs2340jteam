@@ -1,8 +1,9 @@
 package view.title;
 
-import javax.swing.JFrame;
+import javax.swing.*;
 import java.awt.CardLayout;
 import java.awt.Toolkit;
+import java.awt.event.MouseAdapter;
 
 /**
  * CLASS TitleFrame. For the JFrame that will display the title screen as well as the configuration screens.
@@ -48,15 +49,6 @@ public class TitleFrame extends JFrame {
         this.getContentPane().add(gameConfigPanel, GAME_CONFIG);
         this.getContentPane().add(playerConfigPanel, PLAYER_CONFIG);
 	}
-
-	/**
-	 * METHOD to get this TitleFrame's TitlePanel
-	 * @return this TitleFrame's TitlePanel
-	 */
-    public TitlePanel getTitlePanel() {
-        return titlePanel;
-    }
-
     /**
      * METHOD to tell the TitleFrame to display the TitlePanel
      */
@@ -65,26 +57,10 @@ public class TitleFrame extends JFrame {
     }
 
     /**
-     * METHOD to get the TitleFrame's GameConfigPanel
-     * @return this TitleFrame's GameConfigPanel
-     */
-    public GameConfigPanel getGameConfigPanel() {
-        return gameConfigPanel;
-    }
-
-    /**
      * METHOD to tell the TitleFrame to display the GameConfigPanel
      */
     public void showGameConfigPanel() {
         cardLayout.show(this.getContentPane(), GAME_CONFIG);
-    }
-
-    /**
-     * METHOD to get the TitleFrame's PlayerConfigPanel
-     * @return this TitleFrame's PlayerConfigPanel
-     */
-    public PlayerConfigPanel getPlayerConfigPanel() {
-        return playerConfigPanel;
     }
 
     /**
@@ -98,8 +74,94 @@ public class TitleFrame extends JFrame {
      * METHOD to create another player config panel for another player
      * @param playerNum the number of the player to be configured
      */
-    public void updatePlayerConfigPanel(int playerNum) {
+    public void configurePlayer(int playerNum) {
         playerConfigPanel.clear();
         playerConfigPanel.setPlayerNum(playerNum);
+    }
+
+    /**
+     * METHOD that adds a mouse listener to the TitlePanel
+     * @param mouseAdapter the mouse listener to add
+     */
+    public void onClickStart(MouseAdapter mouseAdapter) {
+        titlePanel.onClickStart(mouseAdapter);
+    }
+
+    /**
+     * METHOD that gets the number of players selected based on the button that is pressed.
+     * @return the number of players selected.
+     */
+    public int getGameConfigNumPlayers() {
+        return gameConfigPanel.getNumPlayers();
+    }
+
+    /**
+     * METHOD that gets the map that is selected based on the button that is pressed.
+     * @return a number representing the map that is selected.
+     */
+    public int getGameConfigMap() {
+        return gameConfigPanel.getMap();
+    }
+
+    /**
+     * METHOD that gets the difficulty selected for this game based on the button that is pressed.
+     * @return an number representing the difficulty selected.
+     */
+    public int getGameConfigDifficulty() {
+        return gameConfigPanel.getDifficulty();
+    }
+
+    /**
+     * METHOD that adds a mouse listener to the GameConfigPanel
+     * @param mouseAdapter the mouse adapter to add.
+     */
+    public void onGameConfigNext(MouseAdapter mouseAdapter) {
+        gameConfigPanel.onClickNext(mouseAdapter);
+    }
+
+    /**
+     * METHOD that sets the image on the screen based on the player that needs to be configured.
+     * @param playerNum
+     */
+    public void setPlayerConfigNum(int playerNum) {
+        playerConfigPanel.setPlayerNum(playerNum);
+    }
+
+    /**
+     * METHOD that gets the name of this player which was input into the PlayerConfig's text field
+     */
+    public String getPlayerConfigName() {
+        return playerConfigPanel.getPlayerName();
+    }
+
+    /**
+     * METHOD that gets the color that was selected for the player.
+     * @return the color that was selected for the player.
+     */
+    public int getPlayerConfigColor() {
+        return playerConfigPanel.getColor();
+    }
+
+    /**
+     * METHOD that gets the race that was selected for the player.
+     * @return the race that was selected for the player.
+     */
+    public int getPlayerConfigRace() {
+        return playerConfigPanel.getRace();
+    }
+
+    /**
+     * METHOD that clears the previous input on the screen
+     */
+    public void clearPlayerConfig() {
+        playerConfigPanel.clear();
+    }
+
+    /**
+     * METHOD that adds a mouse adapter to the PlayerConfigPanel
+     * @param mouseAdapter the mouse listener to add to this panel
+     */
+    public void onPlayerConfigNext(MouseAdapter mouseAdapter) {
+        playerConfigPanel.onClickNext(mouseAdapter);
     }
 }
