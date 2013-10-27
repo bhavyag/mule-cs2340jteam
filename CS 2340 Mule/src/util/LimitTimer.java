@@ -11,6 +11,7 @@ public class LimitTimer {
     private Timer timer;
     private int limit;
     private int count;
+    private static ActionListener defaultListener;
 
     /**
      * CONSTRUCTOR creates the timer
@@ -29,6 +30,9 @@ public class LimitTimer {
                 count ++;
             }
         });
+        if (defaultListener != null) {
+            timer.addActionListener(defaultListener);
+        }
     }
 
     /**
@@ -77,5 +81,13 @@ public class LimitTimer {
      */
     public int getTimeRemaining() {
         return limit - count;
+    }
+
+    /**
+     * METHOD sets a default listener that will be applied to all instances of the timer
+     * @param listener the default listener
+     */
+    public static void setDefaultListener(ActionListener listener) {
+        defaultListener = listener;
     }
 }
