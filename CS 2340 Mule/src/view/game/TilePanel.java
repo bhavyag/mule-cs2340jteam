@@ -531,15 +531,6 @@ public class TilePanel extends JPanel {
         
                   
     }
-    
-    /**
-     * METHOD to get this TilePanel's array of JLabels for the tiles.
-     * @return this TilePanel's array of JLabels for the tiles
-     */
-	public JLabel[][] getLabelArray()
-	{
-		return this.labelArray;
-	}
 }
 	
 	

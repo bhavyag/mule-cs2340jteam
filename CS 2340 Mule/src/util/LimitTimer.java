@@ -70,4 +70,12 @@ public class LimitTimer {
     public void stop() {
         timer.stop();
     }
+
+    /**
+     * METHOD calculates the amount of time left on the timer
+     * @return the time remaining
+     */
+    public int getTimeRemaining() {
+        return limit - count;
+    }
 }

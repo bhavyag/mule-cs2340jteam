@@ -130,4 +130,8 @@ public class GameFrame extends JFrame {
     public void showTilePanel() {
         boardPanel.showTilePanel();
     }
+
+    public void updateTimer(int time) {
+        boardPanel.updateTimer(time);
+    }
 }
