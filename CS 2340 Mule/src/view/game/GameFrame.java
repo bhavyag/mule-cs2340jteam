@@ -132,10 +132,10 @@ public class GameFrame extends JFrame {
     }
 
     public void updateTimer(int time) {
-        boardPanel.updateTimer(time);
+        messagePanel.updateTimer(time);
     }
 
     public void updatePlayer(int player) {
-        boardPanel.updatePlayer(player);
+        messagePanel.updatePlayer(player);
     }
 }

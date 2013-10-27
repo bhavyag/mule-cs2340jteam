@@ -11,11 +11,17 @@ import java.awt.Rectangle;
  */
 public class MessagePanel extends JPanel {
 
+    private JLabel messagePanelLabel;
+    private JLabel timerLabel;
+    private JLabel playerLabel;
+
 	/**
 	 * CONSTRUCTOR for the MessagePanel, sets its initial size.
 	 */
     protected MessagePanel() {
-    	setBounds(new Rectangle(0, 0, 168, 563));
+        messagePanelLabel = new JLabel("");
+        timerLabel = new JLabel("");
+        playerLabel = new JLabel("");
 
         initialize();
     }
@@ -25,18 +31,23 @@ public class MessagePanel extends JPanel {
      */
     private void initialize() {
         this.setLayout(null);
-        
-        JLabel lblNewLabel = new JLabel("");
-        lblNewLabel.setIcon(new ImageIcon(MessagePanel.class.getResource("/sprites/Message-Panel.png")));
-        lblNewLabel.setBounds(0, 0, 168, 563);
-        add(lblNewLabel);
+        this.setBounds(new Rectangle(0, 0, 168, 563));
+        this.add(messagePanelLabel);
+        this.add(timerLabel);
+        this.add(playerLabel);
+
+        messagePanelLabel.setIcon(new ImageIcon(MessagePanel.class.getResource("/sprites/Message-Panel.png")));
+        messagePanelLabel.setBounds(0, 0, 168, 563);
+        playerLabel.setBounds(20, 20, 168, 50);
+        timerLabel.setBounds(20, 40, 168, 50);
     }
-    
-    /**
-     * METHOD that updates what is being displayed on the MessagePanel
-     */
-    public void updateMessagePanel()
-    {
-    	
+
+    public void updateTimer(int time) {
+        timerLabel.setText("Time Remaining: " + time);
+    }
+
+
+    public void updatePlayer(int player) {
+        playerLabel.setText("Player " + player + "'s Turn");
     }
 }

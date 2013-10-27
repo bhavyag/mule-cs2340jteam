@@ -13,10 +13,7 @@ import javax.swing.*;
  */
 public class BoardPanel extends JPanel {
 
-	private JLabel boardLabel;
-    private JLabel timerLabel;
-    private JLabel playerLabel;
-	private TilePanel tilePanel;
+    private TilePanel tilePanel;
 	private TownCenterPanel townCenterPanel;
 	private CardLayout cardLayout;
 
@@ -28,9 +25,6 @@ public class BoardPanel extends JPanel {
 	 * CONSTRUCTOR for the BoardPanel, also creates it's 'sub' JPanels, the tilePanel and the townCenterPanel.
 	 */
 	public BoardPanel() {
-		this.boardLabel = new JLabel("");
-        this.timerLabel = new JLabel("");
-        this.playerLabel = new JLabel("");
 		this.tilePanel = new TilePanel();
 		this.townCenterPanel = new TownCenterPanel();
 		this.cardLayout = new CardLayout();
@@ -41,13 +35,10 @@ public class BoardPanel extends JPanel {
 	 * METHOD that sets the initial state of the of BoardPanel
 	 */
 	private void initialize() {
-		this.add(boardLabel);
-        this.add(timerLabel);
-        this.add(playerLabel);
+        this.setBounds(168, 0, 832, 400);
         this.setLayout(cardLayout);
         this.add(tilePanel, TILES);
         this.add(townCenterPanel, TOWN_CENTER);
-        this.setBounds(168, 0, 832, 400);
 	}
 	
 	/**
@@ -79,12 +70,4 @@ public class BoardPanel extends JPanel {
 	public void showTownCenterPanel() {
 		cardLayout.show(this, TOWN_CENTER);
 	}
-
-    public void updateTimer(int time) {
-        timerLabel.setText("Time Remaining: " + time);
-    }
-
-    public void updatePlayer(int player) {
-        playerLabel.setText("Player " + player + "'s Turn");
-    }
 }
