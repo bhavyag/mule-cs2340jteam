@@ -96,9 +96,8 @@ public class GameFrame extends JFrame {
      * @param mouseAdapter the adapter containing the functionality
      */
     public void onTileClick(MouseAdapter mouseAdapter) {
-        if (boardPanel.getTilePanel().getMouseListeners().length > 1) {
-            System.out.println("asdf");
-            removeMouseListener(boardPanel.getTilePanel().getMouseListeners()[1]);
+        if (boardPanel.getTilePanel().getMouseListeners().length > 0) {
+            boardPanel.getTilePanel().removeMouseListener(boardPanel.getTilePanel().getMouseListeners()[0]);
         }
         boardPanel.getTilePanel().addMouseListener(mouseAdapter);
     }
