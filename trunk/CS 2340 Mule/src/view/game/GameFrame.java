@@ -123,7 +123,7 @@ public class GameFrame extends JFrame {
         boardPanel.getTilePanel().setTileImage(imagePath, x, y);
     }
 
-    public void showTownPanel() {
+    public void showTownCenterPanel() {
         boardPanel.showTownCenterPanel();
     }
 
@@ -133,5 +133,9 @@ public class GameFrame extends JFrame {
 
     public void updateTimer(int time) {
         boardPanel.updateTimer(time);
+    }
+
+    public void updatePlayer(int player) {
+        boardPanel.updatePlayer(player);
     }
 }

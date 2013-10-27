@@ -59,7 +59,7 @@ public class TilePanel extends JPanel {
      */
     private void initialize() {
         this.setLayout(null);
-        this.setBounds(168, 0, 832, 400); 
+        this.setBounds(168, 0, 832, 400);
         
       //COLUMN EIGHT
         JLabel label08b = new JLabel();

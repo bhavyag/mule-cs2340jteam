@@ -37,7 +37,6 @@ public class TitleFrame extends JFrame {
 	/**
 	 * Initialize the contents of the frame.
 	 */
-
 	private void initialize() {
 		this.setVisible(true);
 		this.setIconImage(Toolkit.getDefaultToolkit().getImage(TitleFrame.class.getResource("/sprites/muleIcon.png")));
@@ -97,7 +96,7 @@ public class TitleFrame extends JFrame {
 
     /**
      * METHOD to create another player config panel for another player
-     * @param playerNum
+     * @param playerNum the number of the player to be configured
      */
     public void updatePlayerConfigPanel(int playerNum) {
         playerConfigPanel.clear();

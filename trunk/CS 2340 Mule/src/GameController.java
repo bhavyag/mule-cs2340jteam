@@ -58,17 +58,17 @@ public class GameController {
 
 		final GameConfigPanel gameConfigPanel = titleView.getGameConfigPanel();
 		gameConfigPanel.onClickNext(
-				new MouseAdapter() {
-					@Override
-					public void mouseClicked(MouseEvent e) {
-                        difficulty = gameConfigPanel.getDifficulty();
-                        board = BoardFactory.constructBoard(gameConfigPanel.getMap());
-                        players = new PlayerQueue(gameConfigPanel.getNumPlayers(), 60 / difficulty);
+            new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    difficulty = gameConfigPanel.getDifficulty();
+                    board = BoardFactory.constructBoard(gameConfigPanel.getMap());
+                    players = new PlayerQueue(gameConfigPanel.getNumPlayers(), 60 / difficulty);
 
-						configurePlayers();
-					}
-				}
-				);
+                    configurePlayers();
+                }
+            }
+        );
 	}
 
     /**
@@ -106,8 +106,22 @@ public class GameController {
 		titleView.dispose();
 		gameView = new GameFrame();
 
+        configureTimer();
         landGrant();
 	}
+
+    /**
+     * METHODS adds a listener to the timer that will be active across all instances of the timer
+     */
+    private void configureTimer() {
+        LimitTimer.setDefaultListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                gameView.updateTimer(timer.getTimeRemaining());
+                gameView.updatePlayer(players.getCurrentPlayer().getPlayerNum());
+            }
+        });
+    }
 
     /**
      * METHOD begins the land grant portion of the game
@@ -149,17 +163,13 @@ public class GameController {
         timer = new LimitTimer(10, 1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                gameView.updateTimer(timer.getTimeRemaining());
-
                 if (timer.isOutOfTime()) {
-
                     if (players.pass()) {
                         timer.stop();
                         townPhase();
                     } else {
                         timer.reset();
                     }
-
                 }
             }
         });
@@ -185,6 +195,7 @@ public class GameController {
      */
     private void townPhase() {
         System.out.println("starting town phase");
+        gameView.showTownCenterPanel();
 //        players.beginRotation();
 //
 //        timer = new LimitTimer(10, 1000, new ActionListener() {
