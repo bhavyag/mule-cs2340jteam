@@ -51,7 +51,7 @@ public class TitlePanel extends JPanel {
      * METHOD that adds a mouse listener to the TitlePanel
      * @param mouseAdapter the mouse listener to add
      */
-    public void onClickStart(MouseAdapter mouseAdapter) {
+    protected void onClickStart(MouseAdapter mouseAdapter) {
         btnStart.addMouseListener(mouseAdapter);
     }
 }

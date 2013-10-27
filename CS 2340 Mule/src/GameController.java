@@ -40,7 +40,7 @@ public class GameController {
 	private void titleScreen() {
 		titleView.showTitlePanel();
 
-		titleView.getTitlePanel().onClickStart(
+		titleView.onClickStart(
                 new MouseAdapter() {
                     @Override
                     public void mouseClicked(MouseEvent e) {
@@ -56,14 +56,13 @@ public class GameController {
 	private void configureGame() {
 		titleView.showGameConfigPanel();
 
-		final GameConfigPanel gameConfigPanel = titleView.getGameConfigPanel();
-		gameConfigPanel.onClickNext(
+		titleView.onGameConfigNext(
                 new MouseAdapter() {
                     @Override
                     public void mouseClicked(MouseEvent e) {
-                        difficulty = gameConfigPanel.getDifficulty();
-                        board = BoardFactory.constructBoard(gameConfigPanel.getMap());
-                        players = new PlayerQueue(gameConfigPanel.getNumPlayers(), 60 / difficulty);
+                        difficulty = titleView.getGameConfigDifficulty();
+                        board = BoardFactory.constructBoard(titleView.getGameConfigMap());
+                        players = new PlayerQueue(titleView.getGameConfigNumPlayers(), 60 / difficulty);
 
                         configurePlayers();
                     }
@@ -76,23 +75,22 @@ public class GameController {
      */
 	private void configurePlayers() {
 		titleView.showPlayerConfigPanel();
-		titleView.updatePlayerConfigPanel(players.getCurrentPlayer().getPlayerNum());
+		titleView.configurePlayer(players.getCurrentPlayer().getPlayerNum());
 
-		final PlayerConfigPanel playerConfigPanel = titleView.getPlayerConfigPanel();
-		playerConfigPanel.onClickNext(
+		titleView.onPlayerConfigNext(
 				new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						players.getCurrentPlayer().setName(playerConfigPanel.getName());
-						players.getCurrentPlayer().setColor(playerConfigPanel.getColor());
-						players.getCurrentPlayer().setRace(playerConfigPanel.getRace());
+						players.getCurrentPlayer().setName(titleView.getPlayerConfigName());
+						players.getCurrentPlayer().setColor(titleView.getPlayerConfigColor());
+						players.getCurrentPlayer().setRace(titleView.getPlayerConfigRace());
 
 						players.next();
 
 						if (players.isNewRound()) {
 							startGame();
 						} else {
-							titleView.updatePlayerConfigPanel(players.getCurrentPlayer().getPlayerNum());
+							titleView.configurePlayer(players.getCurrentPlayer().getPlayerNum());
 						}
 					}
 				}

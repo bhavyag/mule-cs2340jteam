@@ -218,7 +218,7 @@ public class PlayerConfigPanel extends JPanel {
     /**
      * METHOD that gets the name of this player which was input into the PlayerConfig's text field
      */
-    public String getName() {
+    protected String getPlayerName() {
         return nameTextField.getText();
     }
     
@@ -226,7 +226,7 @@ public class PlayerConfigPanel extends JPanel {
      * METHOD that gets the color that was selected for the player.
      * @return the color that was selected for the player.
      */
-    public int getColor() {
+    protected int getColor() {
         if (redButton.isSelected()) {
             return 0;
         } else if (yellowButton.isSelected()) {
@@ -244,7 +244,7 @@ public class PlayerConfigPanel extends JPanel {
      * METHOD that gets the race that was selected for the player.
      * @return the race that was selected for the player.
      */
-    public int getRace() {
+    protected int getRace() {
         if (humanButton.isSelected()) {
             return 0;
         } else if (flapperButton.isSelected()) {
@@ -273,7 +273,7 @@ public class PlayerConfigPanel extends JPanel {
      * METHOD that adds a mouse adapter to the PlayerConfigPanel
      * @param mouseAdapter the mouse listener to add to this panel
      */
-    public void onClickNext(MouseAdapter mouseAdapter) {
+    protected void onClickNext(MouseAdapter mouseAdapter) {
         nextButton.addMouseListener(mouseAdapter);
     }
 }

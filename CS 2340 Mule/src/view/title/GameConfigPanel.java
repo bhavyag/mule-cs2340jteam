@@ -173,7 +173,7 @@ public class GameConfigPanel extends JPanel {
      * METHOD that gets the number of players selected based on the button that is pressed.
      * @return the number of players selected.
      */
-    public int getNumPlayers() {
+    protected int getNumPlayers() {
         if (p2Button.isSelected()) {
             return 2;
         } else if (p3Button.isSelected()) {
@@ -189,7 +189,7 @@ public class GameConfigPanel extends JPanel {
      * METHOD that gets the map that is selected based on the button that is pressed.
      * @return a number representing the map that is selected.
      */
-    public int getMap() {
+    protected int getMap() {
         if (map1Button.isSelected()) {
             return 0;
         } else if (map2Button.isSelected()) {
@@ -203,7 +203,7 @@ public class GameConfigPanel extends JPanel {
      * METHOD that gets the difficulty selected for this game based on the button that is pressed.
      * @return an number representing the difficulty selected.
      */
-    public int getDifficulty() {
+    protected int getDifficulty() {
         if (easyButton.isSelected()) {
             return 1;
         } else if (mediumButton.isSelected()) {
@@ -219,7 +219,7 @@ public class GameConfigPanel extends JPanel {
      * METHOD that adds a mouse listener to the GameConfigPanel
      * @param mouseAdapter the mouse adapter to add.
      */
-    public void onClickNext(MouseAdapter mouseAdapter) {
+    protected void onClickNext(MouseAdapter mouseAdapter) {
         nextButton.addMouseListener(mouseAdapter);
     }
 }
