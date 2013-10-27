@@ -197,27 +197,24 @@ public class GameController {
     private void townPhase() {
         System.out.println("starting town phase");
         gameView.showTownCenterPanel();
-//        players.beginRotation();
-//
-//        timer = new LimitTimer(10, 1000, new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent actionEvent) {
-//                System.out.println("tick " + timer.getCount());
-//
-//                if (timer.isOutOfTime()) {
-//                    System.out.println("out of time");
-//                    players.next();
-//
-//                    if (players.isNewRound()) {
-//                        timer.stop();
-//                        nextPhase();
-//                    } else {
-//                        timer.reset();
-//                    }
-//                }
-//            }
-//        });
-//        timer.start();
+        players.beginRotation();
+
+        timer = new LimitTimer(50, 1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                if (timer.isOutOfTime()) {
+                    players.next();
+
+                    if (players.isNewRound()) {
+                        timer.stop();
+                        nextPhase();
+                    } else {
+                        timer.reset();
+                    }
+                }
+            }
+        });
+        timer.start();
     }
 
     private void nextPhase() {
