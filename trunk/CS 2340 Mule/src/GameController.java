@@ -41,12 +41,12 @@ public class GameController {
 		titleView.showTitlePanel();
 
 		titleView.getTitlePanel().onClickStart(
-            new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    configureGame();
+                new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        configureGame();
+                    }
                 }
-            }
         );
 	}
 
@@ -58,16 +58,16 @@ public class GameController {
 
 		final GameConfigPanel gameConfigPanel = titleView.getGameConfigPanel();
 		gameConfigPanel.onClickNext(
-            new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    difficulty = gameConfigPanel.getDifficulty();
-                    board = BoardFactory.constructBoard(gameConfigPanel.getMap());
-                    players = new PlayerQueue(gameConfigPanel.getNumPlayers(), 60 / difficulty);
+                new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        difficulty = gameConfigPanel.getDifficulty();
+                        board = BoardFactory.constructBoard(gameConfigPanel.getMap());
+                        players = new PlayerQueue(gameConfigPanel.getNumPlayers(), 60 / difficulty);
 
-                    configurePlayers();
+                        configurePlayers();
+                    }
                 }
-            }
         );
 	}
 
@@ -135,6 +135,7 @@ public class GameController {
             new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
+                    System.out.println("old");
                     Point tileIndex = gameView.getTileIndex(e.getPoint());
 
                     if (players.getRound() < 2) {
@@ -161,7 +162,7 @@ public class GameController {
             }
         );
 
-        timer = new LimitTimer(10, 1000, new ActionListener() {
+        timer = new LimitTimer(5, 1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 if (timer.isOutOfTime()) {
@@ -199,6 +200,13 @@ public class GameController {
         gameView.showTownCenterPanel();
         players.beginRotation();
 
+        gameView.onTileClick(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent mouseEvent) {
+                System.out.println("new");
+            }
+        });
+
         timer = new LimitTimer(50, 1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -214,6 +222,7 @@ public class GameController {
                 }
             }
         });
+
         timer.start();
     }
 
