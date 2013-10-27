@@ -14,6 +14,7 @@ import javax.swing.*;
 public class BoardPanel extends JPanel {
 
 	private JLabel boardLabel;
+    private JLabel timerLabel;
 	private TilePanel tilePanel;
 	private TownCenterPanel townCenterPanel;
 	private CardLayout cardLayout;
@@ -27,6 +28,7 @@ public class BoardPanel extends JPanel {
 	 */
 	public BoardPanel() {
 		this.boardLabel = new JLabel("");
+        this.timerLabel = new JLabel("");
 		this.tilePanel = new TilePanel();
 		this.townCenterPanel = new TownCenterPanel();
 		this.cardLayout = new CardLayout();
@@ -38,6 +40,7 @@ public class BoardPanel extends JPanel {
 	 */
 	private void initialize() {
 		this.add(boardLabel);
+        this.add(timerLabel);
         this.setLayout(cardLayout);
         this.add(tilePanel, TILES);
         this.add(townCenterPanel, TOWN_CENTER);
@@ -73,4 +76,8 @@ public class BoardPanel extends JPanel {
 	public void showTownCenterPanel() {
 		cardLayout.show(this, TOWN_CENTER);
 	}
+
+    public void updateTimer(int time) {
+        timerLabel.setText("Time Remaining: " + time);
+    }
 }

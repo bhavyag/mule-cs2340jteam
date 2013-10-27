@@ -149,10 +149,9 @@ public class GameController {
         timer = new LimitTimer(10, 1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                System.out.println("tick " + timer.getCount());
+                gameView.updateTimer(timer.getTimeRemaining());
 
                 if (timer.isOutOfTime()) {
-                    System.out.println("out of time");
 
                     if (players.pass()) {
                         timer.stop();
