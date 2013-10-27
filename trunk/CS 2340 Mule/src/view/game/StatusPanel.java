@@ -64,13 +64,4 @@ public class StatusPanel extends JPanel {
         label.setIcon(new ImageIcon(StatusPanel.class.getResource("/sprites/Status-Panel.png")));
         add(label);
     }
-    
-    /**
-     * METHOD that updates the information to be displayed on the StatusPanel
-     * @param players a list of all of the players whose info needs to be updated.
-     */
-    public void updateStatusPanel(ArrayList<model.Player> players)
-    {
-    	
-    }
 }

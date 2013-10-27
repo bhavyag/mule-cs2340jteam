@@ -24,7 +24,7 @@ public class BoardPanel extends JPanel {
 	/**
 	 * CONSTRUCTOR for the BoardPanel, also creates it's 'sub' JPanels, the tilePanel and the townCenterPanel.
 	 */
-	public BoardPanel() {
+	protected BoardPanel() {
 		this.tilePanel = new TilePanel();
 		this.townCenterPanel = new TownCenterPanel();
 		this.cardLayout = new CardLayout();
@@ -45,14 +45,14 @@ public class BoardPanel extends JPanel {
 	 * METHOD that gets this BoardPanel's TilePanel
 	 * @return this BoardPanel's TilePanel
 	 */
-	public TilePanel getTilePanel() {
+	protected TilePanel getTilePanel() {
 		return tilePanel;
 	}
 	
 	/**
 	 * METHOD that tells this BoardPanel to display the TilePanel
 	 */
-	public void showTilePanel() {
+	protected void showTilePanel() {
 		cardLayout.show(this, TILES);
 	}
 	
@@ -60,14 +60,14 @@ public class BoardPanel extends JPanel {
 	 * METHOD that gets this BoardPanel's TownCenterPanel
 	 * @return this BoardPanel's TownCenterPanel
 	 */
-	public TownCenterPanel getTownCenterPanel() {
+	protected TownCenterPanel getTownCenterPanel() {
 		return townCenterPanel;
 	}
 
 	/**
 	 * METHOD that tells this BoardPanel to display the TownCenterPanel
 	 */
-	public void showTownCenterPanel() {
+	protected void showTownCenterPanel() {
 		cardLayout.show(this, TOWN_CENTER);
 	}
 }

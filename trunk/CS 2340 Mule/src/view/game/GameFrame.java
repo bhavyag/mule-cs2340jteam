@@ -53,33 +53,6 @@ public class GameFrame extends JFrame {
         boardPanel.setBounds(new Rectangle(168, 0, 832, 400));
         statusPanel.setMaximumSize(new Dimension(832, 163));
     }
-    
-    /**
-     * METHOD that gets the game frame's board panel
-     * @return the game frame's board panel
-     */
-    public BoardPanel getBoardPanel()
-    {
-    	return this.boardPanel;
-    }
-    
-    /**
-     * Method that gets the game frame's message panel
-     * @return the game frame's message panel
-     */
-	public MessagePanel getMessagePanel()
-	{
-		return this.messagePanel;
-	}
-	
-	/**
-	 * Method that gets the game frame's status panel
-	 * @return the game frame's status panel
-	 */
-	public StatusPanel getStatusPanel()
-	{
-		return this.statusPanel;
-	}
 
     /**
      * METHOD gets the index of a tile based on a mouse location
