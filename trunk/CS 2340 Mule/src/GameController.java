@@ -128,6 +128,7 @@ public class GameController {
      */
     private void landGrant() {
         players.beginRotation();
+        gameView.showTilePanel();
         displayMap();
 
         gameView.onTileClick(
