@@ -18,7 +18,7 @@ public class TilePanel extends JPanel {
 	/**
 	 * CONSTRUCTOR for the TilePanel, initializes its arrays of JLabels for the tile images and the tile borders.
 	 */
-    public TilePanel() {
+    protected TilePanel() {
     	labelArray = new JLabel[5][9];
     	borderArray = new JLabel[5][9];
         initialize();
@@ -30,7 +30,7 @@ public class TilePanel extends JPanel {
      * @param x the x coord of the tile
      * @param y the y coord of the tile
      */
-    public void setTileImage(URL imagePath, int x, int y)
+    protected void setTileImage(URL imagePath, int x, int y)
     {
     	labelArray[x][y].setIcon(new ImageIcon(imagePath));
     }
@@ -41,7 +41,7 @@ public class TilePanel extends JPanel {
      * @param x the x coord of the tile
      * @param y the y coord of the tile
      */
-    public void setBorderImage(URL imagePath, int x, int y)
+    protected void setBorderImage(URL imagePath, int x, int y)
     {
         if (imagePath == null) {
             imagePath = TilePanel.class.getResource("/sprites/tiles/Border-Default.png");
@@ -50,14 +50,14 @@ public class TilePanel extends JPanel {
         borderArray[x][y].setIcon(new ImageIcon(imagePath));
     }
 
-    public Point getTileIndex(Point cartesian) {
+    protected Point getTileIndex(Point cartesian) {
         return new Point(((int) cartesian.getY() - 20)/72, ((int) cartesian.getX() - 92)/72);
     }
     
     /**
      * METHOD that sets up the arrays of JLabels for the tiles and their borders, with their sizes and their position on the screen.
      */
-    private void initialize() {
+    protected void initialize() {
         this.setLayout(null);
         this.setBounds(168, 0, 832, 400);
         
@@ -528,8 +528,6 @@ public class TilePanel extends JPanel {
         label48.setBounds(668, 308, 72, 72);
         add(label48);
         labelArray[4][8]=label48;
-        
-                  
     }
 }
 	

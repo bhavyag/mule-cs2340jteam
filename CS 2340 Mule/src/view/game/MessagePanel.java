@@ -42,12 +42,12 @@ public class MessagePanel extends JPanel {
         timerLabel.setBounds(20, 40, 168, 50);
     }
 
-    public void updateTimer(int time) {
+    protected void updateTimer(int time) {
         timerLabel.setText("Time Remaining: " + time);
     }
 
 
-    public void updatePlayer(int player) {
+    protected void updatePlayer(int player) {
         playerLabel.setText("Player " + player + "'s Turn");
     }
 }
