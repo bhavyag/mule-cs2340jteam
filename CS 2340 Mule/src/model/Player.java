@@ -64,6 +64,7 @@ public class Player {
     private Color color;
     private Race race;
     private int money;
+    private int energy, smithore, food, crystite;
     private ArrayList<Tile> playerTiles;
 
     /**
@@ -76,6 +77,14 @@ public class Player {
         this.money = startingMoney;
     }
 
+    /**
+     * Get this players money
+     * @ret	the money of the player
+     */
+    public int getMoney() {
+        return money;
+    }
+    
     /**
      * Get the total number of players
      * @return the total number of players
@@ -99,6 +108,14 @@ public class Player {
     public void setName(String name) {
         this.name = name;
     }
+    
+    /**
+     * Get this players name
+     * @return the players name
+     */
+    public String getPlayerName() {
+        return name;
+    }
 
     /**
      * Set this players color
@@ -112,8 +129,8 @@ public class Player {
      * Get this players color
      * @ret	the color of the player
      */
-    public Color getColor() {
-        return color;
+    public String getColor() {
+        return color.toString();
     }
 
 
@@ -124,7 +141,47 @@ public class Player {
     public void setRace(int race) {
         this.race = races[race];
     }
-
+    
+    /**
+     * Get this players race
+     * @ret	the race of the player
+     */
+    public String getRace() {
+        return race.toString();
+    }
+  
+    /**
+     * Get this players energy
+     * @ret	the energy of the player
+     */
+    public int getEnergy() {
+        return energy;
+    }
+    
+    /**
+     * Get this players smithore
+     * @ret	the smithore of the player
+     */
+    public int getSmithore() {
+        return smithore;
+    }
+    
+    
+    /**
+     * Get this players food
+     * @ret	the food of the player
+     */
+    public int getFood() {
+        return food;
+    }
+    
+    /**
+     * Get this players crystite
+     * @ret	the crystite of the player
+     */
+    public int getCrystite() {
+        return crystite;
+    }
     /**
      * Purchases an item and handles the money exchange
      *
