@@ -46,11 +46,18 @@ public class MessagePanel extends JPanel {
         //timerLabel.setForeground(Color.red);
     }
 
+    /**
+     * METHOD that updates the timer label in the message panel
+     * @param time is the actual amount of time left
+     */
     protected void updateTimer(int time) {
         timerLabel.setText("Time Remaining: " + time);
     }
 
-
+    /**
+     * METHOD that updates the player label in the message panel
+     * @param player is the number corresponding the player who's turn it is
+     */
     protected void updatePlayer(int player) {
         playerLabel.setText("Player " + player + "'s Turn");
     }
