@@ -1,6 +1,8 @@
 package view.game;
 
 import javax.swing.*;
+
+import java.awt.Color;
 import java.awt.Rectangle;
 
 /**
@@ -39,7 +41,9 @@ public class MessagePanel extends JPanel {
         messagePanelLabel.setIcon(new ImageIcon(MessagePanel.class.getResource("/sprites/Message-Panel.png")));
         messagePanelLabel.setBounds(0, 0, 168, 563);
         playerLabel.setBounds(20, 20, 168, 50);
+        //playerLabel.setForeground(Color.red);
         timerLabel.setBounds(20, 40, 168, 50);
+        //timerLabel.setForeground(Color.red);
     }
 
     protected void updateTimer(int time) {
