@@ -103,7 +103,7 @@ public class GameController {
      */
 	private void startGame() {
 		titleView.dispose();
-		gameView = new GameFrame();
+		gameView = new GameFrame(players.getNumPlayers());
 
         configureTimer();
         landGrant();
@@ -118,6 +118,7 @@ public class GameController {
             public void actionPerformed(ActionEvent actionEvent) {
                 gameView.updateTimer(timer.getTimeRemaining());
                 gameView.updatePlayer(players.getCurrentPlayer().getPlayerNum());
+                updateStatus();//will probably have to move this so it updates REGULARLY
             }
         });
     }
@@ -233,6 +234,7 @@ public class GameController {
     public void updateStatus()
     {
     	ArrayList<Player> playerArray = players.getPlayers();
+    	System.out.println("Num of players: " + players.getNumPlayers());
     	String[][] playerInfo = new String[4][8];
     	
     	for(int i=0; i < players.getNumPlayers(); i++)
@@ -255,11 +257,18 @@ public class GameController {
     				playerInfo[i][5] = playerSmithore;
     				playerInfo[i][6] = playerFood;
     				playerInfo[i][7] = playerCrystite;
+    				
+    				/*System.out.println(playerName);
+    				System.out.println(playerColor);
+    				System.out.println(playerMoney);
+    				System.out.println(playerEnergy);
+    				System.out.println(playerSmithore);
+    				System.out.println(playerFood);
+    				System.out.println(playerCrystite);*/
     		
-    	    //pass this array into a method in StatusPanel that takes the info and uses it to update the status panel.
-    		this.gameView.getStatusPanel().updateStatusPanel(playerInfo);		
-    		
+    	    //pass this array into a method in StatusPanel that takes the info and uses it to update the status panel.    		
     	}
+		this.gameView.getStatusPanel().updateStatusPanel(playerInfo);		
     }
 
 	/**

@@ -3,6 +3,7 @@ package view.game;
 import view.title.TitlePanel;
 
 import javax.swing.*;
+import java.awt.FlowLayout;
 
 /**
  * CLASS TownCenterPanel. Displays the Town Center
@@ -25,11 +26,9 @@ public class TownCenterPanel extends JPanel {
      * METHOD to set the initial state of the town center.
      */
     private void initialize() {
-        this.setLayout(null);
+        setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
         this.add(townCenterPanel);
         this.setBounds(168, 0, 832, 400);
-
-        townCenterPanel.setBounds(168, 0, 832, 400);
         townCenterPanel.setIcon(new ImageIcon(TitlePanel.class.getResource("/sprites/MULE-town-center-PLACEHOLDER.png")));
     }
 }
