@@ -129,8 +129,8 @@ public class Player {
      * Get this players color
      * @ret	the color of the player
      */
-    public String getColor() {
-        return color.toString();
+    public Color getColor() {
+        return color;
     }
 
 
@@ -146,8 +146,8 @@ public class Player {
      * Get this players race
      * @ret	the race of the player
      */
-    public String getRace() {
-        return race.toString();
+    public Race getRace() {
+        return race;
     }
   
     /**
