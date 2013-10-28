@@ -22,6 +22,11 @@ public class StatusPanel extends JPanel {
 
         initialize();
     }
+    
+    public void updateStatusPanel(String[][] info)
+    {
+    	
+    }
 
     /**
      * METHOD that adds the StatusPanel's JLabels for each player's information

@@ -110,4 +110,9 @@ public class GameFrame extends JFrame {
     public void updatePlayer(int player) {
         messagePanel.updatePlayer(player);
     }
+    
+    public StatusPanel getStatusPanel()
+    {
+    	return this.statusPanel;
+    }
 }
