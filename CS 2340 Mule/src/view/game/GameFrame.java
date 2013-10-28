@@ -97,22 +97,40 @@ public class GameFrame extends JFrame {
         boardPanel.getTilePanel().setTileImage(imagePath, x, y);
     }
 
+    /**
+     * METHOD to show Town Center Panel
+     */
     public void showTownCenterPanel() {
         boardPanel.showTownCenterPanel();
     }
 
+    /**
+     * METHOD to show Tile Panel
+     */
     public void showTilePanel() {
         boardPanel.showTilePanel();
     }
 
+    /**
+     * METHOD to update the timer based on a new time value
+     * @param time the amount of time left on the timer
+     */
     public void updateTimer(int time) {
         messagePanel.updateTimer(time);
     }
 
+    /**
+     * METHOD to update the player based on the new player number
+     * @param player the player's number as assigned in configuration
+     */
     public void updatePlayer(int player) {
         messagePanel.updatePlayer(player);
     }
     
+    /**
+     * METHOD to get the StatusPanel object
+     * @return the current StatusPanel object
+     */
     public StatusPanel getStatusPanel()
     {
     	return this.statusPanel;
