@@ -13,6 +13,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.net.URL;
+import java.util.ArrayList;
 
 /**
  * CLASS GAMECONTROLLER controls the flow of the game
@@ -227,6 +228,37 @@ public class GameController {
     private void nextPhase() {
         System.out.println("town phase over");
         gameView.dispose();
+    }
+    
+    public void updateStatus()
+    {
+    	ArrayList<Player> playerArray = players.getPlayers();
+    	String[][] playerInfo = new String[4][8];
+    	
+    	for(int i=0; i < players.getNumPlayers(); i++)
+    	{
+    		 Player player = playerArray.get(i);
+    		 String playerName = player.getPlayerName(),
+    				playerColor = player.getColor().toString(),
+    				playerRace = player.getRace().toString(),
+    				playerMoney = player.getMoney() + "",
+    				playerEnergy = player.getEnergy() + "",
+    				playerSmithore = player.getSmithore() + "",
+    				playerFood = player.getFood() + "",
+    				playerCrystite = player.getCrystite() + "";
+    		
+    				playerInfo[i][0] = playerName;
+    				playerInfo[i][1] = playerColor;
+    				playerInfo[i][2] = playerRace;
+    				playerInfo[i][3] = playerMoney;
+    				playerInfo[i][4] = playerEnergy;
+    				playerInfo[i][5] = playerSmithore;
+    				playerInfo[i][6] = playerFood;
+    				playerInfo[i][7] = playerCrystite;
+    				
+    				
+    		//pass this array into a method in StatusPanel that takes the info and uses it to update the status panel.
+    	}
     }
 
 	/**
