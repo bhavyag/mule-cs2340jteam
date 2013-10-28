@@ -255,9 +255,10 @@ public class GameController {
     				playerInfo[i][5] = playerSmithore;
     				playerInfo[i][6] = playerFood;
     				playerInfo[i][7] = playerCrystite;
-    				
-    				
-    		//pass this array into a method in StatusPanel that takes the info and uses it to update the status panel.
+    		
+    	    //pass this array into a method in StatusPanel that takes the info and uses it to update the status panel.
+    		this.gameView.getStatusPanel().updateStatusPanel(playerInfo);		
+    		
     	}
     }
 
