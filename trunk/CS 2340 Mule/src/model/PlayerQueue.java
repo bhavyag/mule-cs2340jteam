@@ -40,6 +40,14 @@ public class PlayerQueue {
     }
 
     /**
+     * METHOD returns the arraylist of players
+     * @return the arraylist of players
+     */
+    public ArrayList<Player> getPlayers() {
+        return players;
+    }
+    
+    /**
      * METHOD rotates to the next player in line
      */
     public void next() {
