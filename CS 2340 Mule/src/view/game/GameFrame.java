@@ -21,12 +21,14 @@ public class GameFrame extends JFrame {
     private MessagePanel messagePanel;
 
     /**
-     * CONSTRUCTOR for te GameFrame, instantiates it's board panel, its status panel, and its message panel
+     * CONSTRUCTOR for the GameFrame, instantiates it's board panel, its status panel, and its message panel
      */
-    public GameFrame() {
+    public GameFrame(int numPlayers) {
         this.boardPanel = new BoardPanel();
-        this.statusPanel = new StatusPanel();
+        this.statusPanel = new StatusPanel(numPlayers);
+        statusPanel.setBounds(168, 400, 832, 163);
         this.messagePanel = new MessagePanel();
+        messagePanel.setBounds(0, 0, 168, 563);
 
         initialize();
     }
@@ -40,7 +42,7 @@ public class GameFrame extends JFrame {
         this.setResizable(false);
         this.setBounds(100, 100, 1006, 592);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new BorderLayout(0, 0));
+        getContentPane().setLayout(null);
         getContentPane().add(boardPanel);
         getContentPane().add(messagePanel);
         getContentPane().add(statusPanel);
@@ -51,7 +53,7 @@ public class GameFrame extends JFrame {
         boardPanel.getTownCenterPanel().setBounds(new Rectangle(168, 0, 832, 400));
         boardPanel.getTilePanel().setBounds(new Rectangle(168, 0, 832, 400));
         boardPanel.setBounds(new Rectangle(168, 0, 832, 400));
-        statusPanel.setMaximumSize(new Dimension(832, 163));
+        //statusPanel.setMaximumSize(new Dimension(832, 163));
     }
 
     /**
