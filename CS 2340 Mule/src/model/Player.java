@@ -1,6 +1,7 @@
 package model;
 
 import java.net.URL;
+import java.awt.Point;
 import java.util.ArrayList;
 
 /**
@@ -12,17 +13,19 @@ public class Player {
      * ENUM for player color
      */
     public static enum Color {
-        RED("red", Player.class.getResource("/sprites/tiles/Border-Red.png")),
-        YELLOW("yellow", Player.class.getResource("/sprites/tiles/Border-Yellow.png")),
-        GREEN("green", Player.class.getResource("/sprites/tiles/Border-Green.png")),
-        PURPLE("purple", Player.class.getResource("/sprites/tiles/Border-Purple.png"));
+        RED("red", Player.class.getResource("/sprites/tiles/Border-Red.png"), Player.class.getResource("/sprites/players/PlayerRed.png")),
+        YELLOW("yellow", Player.class.getResource("/sprites/tiles/Border-Yellow.png"),Player.class.getResource("/sprites/players/PlayerYellow.png") ),
+        GREEN("green", Player.class.getResource("/sprites/tiles/Border-Green.png"), Player.class.getResource("/sprites/players/PlayerGreen.png")),
+        PURPLE("purple", Player.class.getResource("/sprites/tiles/Border-Purple.png"), Player.class.getResource("/sprites/players/PlayerPurple.png") );
 
         private String name;
         private URL borderImagePath;
+        private URL playerImagePath;
 
-        Color(String name, URL borderImagePath) {
+        Color(String name, URL borderImagePath, URL playerImagePath) {
             this.name = name;
             this.borderImagePath = borderImagePath;
+            this.playerImagePath = playerImagePath;
         }
 
         public String toString() {
@@ -31,6 +34,10 @@ public class Player {
 
         public URL getBorderImagePath() {
             return borderImagePath;
+        }
+        
+        public URL getPlayerImagePath() {
+            return playerImagePath;
         }
     }
 
@@ -66,6 +73,9 @@ public class Player {
     private int money;
     private int energy, smithore, food, crystite;
     private ArrayList<Tile> playerTiles;
+    
+    private Point playerPos;
+    
 
     /**
      * CONSTRUCTOR for Players
@@ -77,6 +87,24 @@ public class Player {
         this.money = startingMoney;
     }
 
+    /**
+     * METHOD to get this player's position on the board
+     * @return this player's position.
+     */
+    public Point getPlayerPos()
+    {
+    	return this.playerPos;
+    }
+    
+    /**
+     * Method to set the player's position
+     * @param p
+     */
+    public void setPlayerPos(Point p)
+    {
+    	this.playerPos = p;
+    }
+    
     /**
      * Get this players money
      * @ret	the money of the player
