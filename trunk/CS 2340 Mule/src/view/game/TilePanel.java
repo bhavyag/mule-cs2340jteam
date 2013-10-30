@@ -1,6 +1,7 @@
 package view.game;
 
 import javax.swing.*;
+
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.net.URL;
@@ -14,6 +15,7 @@ public class TilePanel extends JPanel {
 
 	private JLabel[][] labelArray;
 	private JLabel[][] borderArray;
+	private JLabel playerLabel;
 	
 	/**
 	 * CONSTRUCTOR for the TilePanel, initializes its arrays of JLabels for the tile images and the tile borders.
@@ -23,7 +25,27 @@ public class TilePanel extends JPanel {
     	borderArray = new JLabel[5][9];
         initialize();
     }
-
+    
+    /**
+     * METHOD to set which player to display in the town center.
+     * @param imagePath the image of the player
+     */
+    protected void setPlayerImage(URL imagePath)
+    {
+    	playerLabel.setIcon(new ImageIcon(imagePath));
+    }
+    
+    /**
+     * METHOD to set the player's position on the screen.
+     * @param p the player's new position
+     */
+    protected void setPlayerCoords(Point p)
+    {
+    	int x = (int) p.getX();
+    	int y = (int) p.getY();
+    	playerLabel.setBounds(x,y,40,40);
+    }
+    
     /**
      * METHOD to set the image to display on the Tile at x , y.
      * @param imagePath the image to display

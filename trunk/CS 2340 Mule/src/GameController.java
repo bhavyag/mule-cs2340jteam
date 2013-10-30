@@ -124,6 +124,20 @@ public class GameController {
     }
 
     /**
+     * METHOD displays the map based on the game configuration
+     */
+	private void displayMap() {
+		Tile[][] tiles = board.getMap();
+
+		for(int i = 0; i < tiles.length; i++) {
+			for(int j = 0; j < tiles[0].length; j++) {
+				gameView.updateTileImage(tiles[i][j].getImagePath(), i, j);
+                gameView.updateTileBorder(tiles[i][j].getBorderPath(), i, j);
+			}
+		}
+	}
+    
+    /**
      * METHOD begins the land grant portion of the game
      */
     private void landGrant() {
@@ -179,27 +193,12 @@ public class GameController {
     }
 
     /**
-     * METHOD displays the map based on the game configuration
-     */
-	private void displayMap() {
-		Tile[][] tiles = board.getMap();
-
-		for(int i = 0; i < tiles.length; i++) {
-			for(int j = 0; j < tiles[0].length; j++) {
-				gameView.updateTileImage(tiles[i][j].getImagePath(), i, j);
-                gameView.updateTileBorder(tiles[i][j].getBorderPath(), i, j);
-			}
-		}
-	}
-
-    /**
      * METHOD begins the town and map phase of the game
      */
     private void townPhase() {
         System.out.println("starting town phase");
         gameView.showTownCenterPanel();
         players.beginRotation();
-
         gameView.onTileClick(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {

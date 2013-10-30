@@ -8,6 +8,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseListener;
 import java.net.URL;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 /**
  * CLASS GameFrame. Defines the frame that holds what is displayed for the game, including 3 JPanels:
@@ -55,6 +57,16 @@ public class GameFrame extends JFrame {
         boardPanel.setBounds(new Rectangle(168, 0, 832, 400));
         //statusPanel.setMaximumSize(new Dimension(832, 163));
     }
+    
+    protected void onKeyMove(KeyListener keyListener)
+    {
+    	if (boardPanel.getTownCenterPanel().getKeyListeners().length > 0) 
+    	{
+            boardPanel.getTownCenterPanel().removeKeyListener(boardPanel.getTownCenterPanel().getKeyListeners()[0]);
+        }
+    	boardPanel.getTownCenterPanel().addKeyListener(keyListener);
+    }
+    
 
     /**
      * METHOD gets the index of a tile based on a mouse location
