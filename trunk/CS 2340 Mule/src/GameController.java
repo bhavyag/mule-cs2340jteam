@@ -24,7 +24,7 @@ import java.awt.event.KeyListener;
 public class GameController {
 	private TitleFrame titleView;
 	private GameFrame gameView;
-
+	private String phase;
 	private int difficulty;
 	private PlayerQueue players;
 	private Board board;
@@ -109,6 +109,7 @@ public class GameController {
 		gameView = new GameFrame(players.getNumPlayers());
 
         configureTimer();
+        phase = "land grant";
         landGrant();
 	}
 
@@ -144,6 +145,7 @@ public class GameController {
      * METHOD begins the land grant portion of the game
      */
     private void landGrant() {
+    	updateStatus();
         players.beginRotation();
         gameView.showTilePanel();
         displayMap();
@@ -164,6 +166,7 @@ public class GameController {
                             if (players.pass()) {
                                 timer.stop();
                                 System.out.println("entering townphase");
+                                phase = "town";
                                 townPhase();
                             }
                             else {
@@ -179,6 +182,7 @@ public class GameController {
                             if (players.pass()) {
                                 timer.stop();
                                 System.out.println("entering townphase");
+                                phase = "town";
                                 townPhase();
                             }
                             else {
@@ -186,7 +190,6 @@ public class GameController {
                             }
                         }
                     }
-
                 }
             }
         );
@@ -198,6 +201,7 @@ public class GameController {
                     if (players.pass()) {
                         timer.stop();
                         System.out.println("entering townphase");
+                        phase = "town";
                         townPhase();
                     } else {
                         timer.reset();
@@ -294,24 +298,7 @@ public class GameController {
     }
     
     public void updateStatus()
-    {
-    	Player currentPlayer = players.getCurrentPlayer();
-    	URL playerImage = currentPlayer.getColor().getPlayerImagePath();
-    	int x = (int)currentPlayer.getPlayerPos().getX();
-    	int y = (int)currentPlayer.getPlayerPos().getY();
-
-    	//check which board the player is on
-    	if(gameView.getBoardPanel().isInTownCenter())
-    	{
-    		gameView.getBoardPanel().getTilePanel().drawPlayer(391, 103, playerImage);
-    		gameView.getBoardPanel().getTownCenterPanel().drawPlayer(x, y, playerImage);
-    	}
-    	else
-    	{
-    		gameView.getBoardPanel().getTownCenterPanel().drawPlayer(391, 180, playerImage);
-    		gameView.getBoardPanel().getTilePanel().drawPlayer(x, y, playerImage);
-    	}
-    	
+    {	
     	ArrayList<Player> playerArray = players.getPlayers();
     	//System.out.println("Num of players: " + players.getNumPlayers());
     	String[][] playerInfo = new String[4][8];
@@ -347,8 +334,31 @@ public class GameController {
     		
     	    //pass this array into a method in StatusPanel that takes the info and uses it to update the status panel.    		
     	}
+
+        if(phase == "town")
+        {
+
+	    	Player currentPlayer = players.getCurrentPlayer();
+	    	URL playerImage = currentPlayer.getColor().getPlayerImagePath();
+	    	int x = (int)currentPlayer.getPlayerPos().getX();
+	    	int y = (int)currentPlayer.getPlayerPos().getY();
+	
+	    	//check which board the player is on
+	    	if(gameView.getBoardPanel().isInTownCenter())
+	    	{
+	    		gameView.getBoardPanel().getTilePanel().drawPlayer(391, 103, playerImage);
+	    		gameView.getBoardPanel().getTownCenterPanel().drawPlayer(x, y, playerImage);
+	    	}
+	    	else
+	    	{
+	    		gameView.getBoardPanel().getTownCenterPanel().drawPlayer(391, 180, playerImage);
+	    		gameView.getBoardPanel().getTilePanel().drawPlayer(x, y, playerImage);
+	    	}
+	    	
+			collisionReact();
+        }
+    	
 		this.gameView.getStatusPanel().updateStatusPanel(playerInfo);
-		collisionReact();
     }
     
     /**
