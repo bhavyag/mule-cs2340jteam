@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * CLASS PlayerQueue contains an arrayList of current players in the game 
@@ -12,6 +13,7 @@ public class PlayerQueue {
     private int round;
     private int passes;
     private boolean newRound;
+    private Random rand;
     
     /**
      * CONSTRUCTOR adds a specified number of players to the rotation
@@ -19,10 +21,11 @@ public class PlayerQueue {
      * @param startingMoney the amount of money each player should start with
      */
     public PlayerQueue(int numPlayers, int startingMoney) {
-        players = new ArrayList<Player>();
+    	rand = new Random();
+    	players = new ArrayList<Player>();
 
         for (int i = 0; i < numPlayers; i ++) {
-            players.add(new Player(startingMoney));
+            players.add(new Player(startingMoney + rand.nextInt(20)));
         }
 
         currentIndex = 0;
@@ -37,6 +40,14 @@ public class PlayerQueue {
      */
     public Player getCurrentPlayer() {
         return players.get(currentIndex);
+    }
+    
+    /**
+     * METHOD gives the player at the specified index
+     * @return player specified
+     */
+    public Player get(int i) {
+    	return players.get(i);
     }
 
     /**
@@ -106,5 +117,26 @@ public class PlayerQueue {
         currentIndex = 0;
         passes = 0;
         newRound = true;
+    }
+    
+    /**
+     * METHOD sorts players based on score
+     */
+    public void scoreSort() {
+    	Player temp;
+    	for(int k=players.size();k>1;k--){
+	    	for(int i=0;i<k-1;i++){
+	    		if(players.get(i).getScore()>players.get(i+1).getScore()) {
+	    			temp = players.get(i);
+	    			players.set(i, players.get(i+1));
+	    			players.set(i+1, temp);
+	    		}
+	    	}
+    	}
+    	/*DEBUG
+    	for(int j=0;j<players.size();j++){
+    		System.out.println("Player" + players.get(j).getPlayerNum() + " with score: " + players.get(j).getScore());
+    	}
+    	*/
     }
 }

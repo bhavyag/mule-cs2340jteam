@@ -73,6 +73,8 @@ public class Player {
     private int money;
     private int energy, smithore, food, crystite;
     private ArrayList<Tile> playerTiles;
+    private int score;
+    private int mules;
     
     private Point playerPos;
 
@@ -84,7 +86,15 @@ public class Player {
         this.playerNum = totalPlayers;
         playerPos = new Point(396,180);
 
+        // This is the standard starting set-up
+        // TODO: Should change based on difficulty level
         this.money = startingMoney;
+        this.food = 4;
+        this.smithore = 0;
+        this.energy = 2;
+        this.crystite = 0;
+        this.mules = 0;
+        this.score = startingMoney; //should use proper formula based on starting goods
     }
 
     /**
@@ -138,7 +148,7 @@ public class Player {
     }
     
     /**
-     * Get this players name
+     * METHOD Get this players name
      * @return the players name
      */
     public String getPlayerName() {
@@ -146,7 +156,7 @@ public class Player {
     }
 
     /**
-     * Set this players color
+     * METHOD Set this players color
      * @param color what to make the players color
      */
     public void setColor(int color) {
@@ -154,8 +164,8 @@ public class Player {
     }
 
     /**
-     * Get this players color
-     * @ret	the color of the player
+     * METHODGet this players color
+     * @return	the color of the player
      */
     public Color getColor() {
         return color;
@@ -163,7 +173,7 @@ public class Player {
 
 
     /**
-     * Set this players race
+     * METHOD Set this players race
      * @param race what to make this players race
      */
     public void setRace(int race) {
@@ -171,24 +181,24 @@ public class Player {
     }
     
     /**
-     * Get this players race
-     * @ret	the race of the player
+     * METHOD Get this players race
+     * @return	the race of the player
      */
     public Race getRace() {
         return race;
     }
   
     /**
-     * Get this players energy
-     * @ret	the energy of the player
+     * METHOD Get this players energy
+     * @return	the energy of the player
      */
     public int getEnergy() {
         return energy;
     }
     
     /**
-     * Get this players smithore
-     * @ret	the smithore of the player
+     * METHOD Get this players smithore
+     * @return	the smithore of the player
      */
     public int getSmithore() {
         return smithore;
@@ -196,20 +206,29 @@ public class Player {
     
     
     /**
-     * Get this players food
-     * @ret	the food of the player
+     * METHOD Get this players food
+     * @return	the food of the player
      */
     public int getFood() {
         return food;
     }
     
     /**
-     * Get this players crystite
-     * @ret	the crystite of the player
+     * METHOD Get this players crystite
+     * @return	the crystite of the player
      */
     public int getCrystite() {
         return crystite;
     }
+    
+    /**
+     * METHOD Get this players number of mules
+     * @return the number of mules of the player
+     */
+    public int getMules() {
+    	return mules;
+    }
+    
     /**
      * Purchases an item and handles the money exchange
      *
@@ -225,6 +244,9 @@ public class Player {
         }
     }
     
+    /**
+     * METHOD Update player position when key for upward movement is pressed.
+     */
     public void moveUp()
     {
     	int x = (int)this.playerPos.getX();
@@ -232,6 +254,9 @@ public class Player {
     	this.playerPos.setLocation(x, y-2);
     }
     
+    /**
+     * METHOD Update player position when key for leftward movement is pressed.
+     */
     public void moveLeft()
     {
     	int x = (int)this.playerPos.getX();
@@ -239,6 +264,9 @@ public class Player {
     	this.playerPos.setLocation(x-2, y);
     }
     
+    /**
+     * METHOD Update player position when key for downward movement is pressed.
+     */
     public void moveDown()
     {
     	int x = (int)this.playerPos.getX();
@@ -246,6 +274,9 @@ public class Player {
     	this.playerPos.setLocation(x, y+2);
     }
     
+    /**
+     * METHOD Update player position when key for rightward movement is pressed.
+     */
     public void moveRight()
     {
     	int x = (int)this.playerPos.getX();
@@ -254,10 +285,39 @@ public class Player {
     }
 
     /**
-     * Gives a String representation of the player
+     * METHOD Gives a String representation of the player
      * @return a string describing the player's attributes
      */
     public String toString() {
-        return "Player " + playerNum + " is a " + color + " " + race + " named " + name + "\n" + "money: " + money;
+        return "Player " + playerNum + " is a " + color + " " + race + " named " + name + "\n" + "money: " + money +"\n" + "score: " + score;
+    }
+    
+    /**
+     * METHOD Update player's score calculated by:
+     *  money + (500*land plots + mule value) + 35*mules + smithore*price + food*price + energy*price + crystite*price
+     *  see: http://bringerp.free.fr/RE/Mule/mule_document.html#ScoreComputing
+     */
+    public void updateScore() {
+    	this.score = 0; //reset score
+    	//Add land score
+    	for(int i = 0;i<playerTiles.size();i++){
+    		score+=500;
+    		//TODO: This should be 500 per plot + the value of any mules set on plots
+    		//e.g. - food:525, energy:550, smithore:575, crystite:600
+    	}
+    	//Add money score
+    	this.score += money;
+    	//Add goods score
+    	// TODO: Needs to multiply goods by their current price
+    	this.score += (mules*35 + smithore*50 + food*30 + energy*25 + crystite*50);
+    }
+    
+    /**
+     * METHOD Gets player's score calculated by:
+     *  money + (500*land plots + mule value) + 35*mules + smithore*price + food*price + energy*price + crystite*price 
+     * @return int score value
+     */
+    public int getScore(){
+    	return score;
     }
 }
