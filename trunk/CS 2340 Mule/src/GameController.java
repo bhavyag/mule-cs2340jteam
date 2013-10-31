@@ -14,6 +14,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Random;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -223,7 +224,9 @@ public class GameController {
     	updateTimer.start();
     	
         System.out.println("starting town phase");
+        
         gameView.showTownCenterPanel();
+        players.scoreSort();
         players.beginRotation();
         
         
