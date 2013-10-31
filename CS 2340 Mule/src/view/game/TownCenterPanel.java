@@ -17,7 +17,9 @@ import java.awt.event.KeyListener;
  */
 public class TownCenterPanel extends JPanel {
     private JLabel townCenterPanel;
-    private JLabel playerLabel;
+    protected JLabel playerLabel;
+    protected JLabel pubLabel;
+    protected JLabel westExitLabel;
 
     /**
      * CONSTRUCTOR for the Town Center, instantiates the town centers label.
@@ -28,7 +30,13 @@ public class TownCenterPanel extends JPanel {
 
         initialize();
     }
-
+    
+	/**
+	 * METHOD that draws the player at a certain x/y with a certain sprite
+	 * @param x
+	 * @param y
+	 * @param imagePath
+	 */
     public void drawPlayer(int x, int y, URL imagePath)
 	{
 		this.playerLabel.setIcon(new ImageIcon(imagePath));
@@ -43,8 +51,27 @@ public class TownCenterPanel extends JPanel {
         playerLabel = new JLabel();
         playerLabel.setBounds(390, 184, 58, 43);
         this.add(playerLabel);
+        
+        pubLabel = new JLabel();
+        pubLabel.setBounds(473, 255, 130, 134);
+        this.add(pubLabel);
+        
+        westExitLabel = new JLabel();
+        westExitLabel.setBounds(0, 0, 75, 400);
+        add(westExitLabel);
+        
         this.add(townCenterPanel);
         this.setBounds(168, 0, 832, 400);
         townCenterPanel.setIcon(new ImageIcon(TitlePanel.class.getResource("/sprites/town-center.png")));
+    }
+    
+    public JLabel getPlayerLabel()
+    {
+    	return this.playerLabel;
+    }
+    
+    public JLabel getPubLabel()
+    {
+    	return this.pubLabel;
     }
 }
