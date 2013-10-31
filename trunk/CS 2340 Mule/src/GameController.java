@@ -149,6 +149,7 @@ public class GameController {
     private void landGrant() {
         phase = "land grant";
     	gameView.getBoardPanel().resetPlayerPos();
+    	players.resetPlayers();
         
         gameView.showTilePanel();
         displayMap();
@@ -220,61 +221,7 @@ public class GameController {
     private void townPhase() {
     	
         phase = "town";
-
-    	Timer updateTimer = new Timer(10, new ActionListener() 
-    	{
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                updateStatus();
-            }
-        });
-    	
-    	updateTimer.start();
-    	
-        System.out.println("starting town phase");
         
-        gameView.showTownCenterPanel();
-        players.beginRotation();
-        
-        gameView.onKeyMove( new KeyListener() 
-        	{
-        		public void keyPressed(KeyEvent e)
-        		{
-        			Player currentPlayer = players.getCurrentPlayer();
-        			int key = e.getKeyCode();
-        			if(key == KeyEvent.VK_W)
-        			{
-        				currentPlayer.moveUp();
-        				System.out.println("UP");
-        			}
-        			if(key == KeyEvent.VK_A)
-        			{
-        				currentPlayer.moveLeft();
-        				System.out.println("LEFT");
-        			}
-        			if(key == KeyEvent.VK_S)
-        			{
-        				currentPlayer.moveDown();
-        				System.out.println("DOWN");
-        			}
-        			if(key == KeyEvent.VK_D)
-        			{
-        				currentPlayer.moveRight();
-        				System.out.println("RIGHT");
-        			}
-        		}
-        		
-        		public void keyReleased(KeyEvent e)
-        		{
-        			
-        		}
-        		
-        		public void keyTyped(KeyEvent e)
-        		{
-        			
-        		}
-        	}
-        );
 
         int currentPlayerFood = players.getCurrentPlayer().getFood();
         int turnLength = 50;
@@ -302,6 +249,63 @@ public class GameController {
         });
 
         timer.start();
+        
+    	Timer updateTimer = new Timer(10, new ActionListener() 
+    	{
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                updateStatus();
+            }
+        });
+    	
+    	updateTimer.start();
+    	
+        System.out.println("starting town phase");
+        
+        gameView.showTownCenterPanel();
+        players.beginRotation();
+        
+        gameView.onKeyMove( new KeyListener() 
+        	{
+        		public void keyPressed(KeyEvent e)
+        		{
+        			Player currentPlayer = players.getCurrentPlayer();
+        			int key = e.getKeyCode();
+        			if(key == KeyEvent.VK_W)
+        			{
+        				currentPlayer.moveUp();
+        				//System.out.println("UP");
+        			}
+        			if(key == KeyEvent.VK_A)
+        			{
+        				currentPlayer.moveLeft();
+        				//System.out.println("LEFT");
+        			}
+        			if(key == KeyEvent.VK_S)
+        			{
+        				currentPlayer.moveDown();
+        				//System.out.println("DOWN");
+        			}
+        			if(key == KeyEvent.VK_D)
+        			{
+        				currentPlayer.moveRight();
+        				//System.out.println("RIGHT");
+        			}
+        		}
+        		
+        		public void keyReleased(KeyEvent e)
+        		{
+        			
+        		}
+        		
+        		public void keyTyped(KeyEvent e)
+        		{
+        			
+        		}
+        	}
+        );
+
+       
     }
 
     /**
