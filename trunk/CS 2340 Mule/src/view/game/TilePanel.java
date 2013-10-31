@@ -15,6 +15,10 @@ public class TilePanel extends JPanel {
 
 	private JLabel[][] labelArray;
 	private JLabel[][] borderArray;
+    protected JLabel playerLabel;
+    protected JLabel town;
+    
+
 	
 	/**
 	 * CONSTRUCTOR for the TilePanel, initializes its arrays of JLabels for the tile images and the tile borders.
@@ -25,6 +29,18 @@ public class TilePanel extends JPanel {
     	
         initialize();
     }
+    
+    /**
+	 * METHOD that draws the player at a certain x/y with a certain sprite
+	 * @param x
+	 * @param y
+	 * @param imagePath
+	 */
+    public void drawPlayer(int x, int y, URL imagePath)
+	{
+		this.playerLabel.setIcon(new ImageIcon(imagePath));
+    	this.playerLabel.setBounds(x,y,50,50);
+	}
     
     /**
      * METHOD to set the image to display on the Tile at x , y.
@@ -62,6 +78,14 @@ public class TilePanel extends JPanel {
     protected void initialize() {
         this.setLayout(null);
         this.setBounds(168, 0, 832, 400);
+        
+        playerLabel = new JLabel();
+        playerLabel.setBounds(390, 184, 58, 43);
+        this.add(playerLabel);
+        
+        town = new JLabel();
+        town.setBounds(380, 164, 72, 72);
+        this.add(town);
         
       //COLUMN EIGHT
         JLabel label08b = new JLabel();

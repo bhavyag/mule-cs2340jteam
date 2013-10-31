@@ -297,8 +297,18 @@ public class GameController {
     	URL playerImage = currentPlayer.getColor().getPlayerImagePath();
     	int x = (int)currentPlayer.getPlayerPos().getX();
     	int y = (int)currentPlayer.getPlayerPos().getY();
-    	
-    	gameView.getBoardPanel().getTownCenterPanel().drawPlayer(x, y, playerImage);
+
+    	//check which board the player is on
+    	if(gameView.getBoardPanel().isInTownCenter())
+    	{
+    		gameView.getBoardPanel().getTilePanel().drawPlayer(391, 103, playerImage);
+    		gameView.getBoardPanel().getTownCenterPanel().drawPlayer(x, y, playerImage);
+    	}
+    	else
+    	{
+    		gameView.getBoardPanel().getTownCenterPanel().drawPlayer(391, 180, playerImage);
+    		gameView.getBoardPanel().getTilePanel().drawPlayer(x, y, playerImage);
+    	}
     	
     	ArrayList<Player> playerArray = players.getPlayers();
     	//System.out.println("Num of players: " + players.getNumPlayers());
@@ -335,9 +345,37 @@ public class GameController {
     		
     	    //pass this array into a method in StatusPanel that takes the info and uses it to update the status panel.    		
     	}
-		this.gameView.getStatusPanel().updateStatusPanel(playerInfo);		
+		this.gameView.getStatusPanel().updateStatusPanel(playerInfo);
+		collisionReact();
     }
-
+    
+    /**
+     * METHOD that checks for collisions between the player and other stuff.
+     */
+    public void collisionReact()
+    {
+    	if(gameView.getBoardPanel().checkCollisionPub()) 
+    	{
+    		System.out.println("YOU HAVE GAMBLED YOUR TIME AWAY IN THE PUB, GOOD JOB");
+    	}
+    	
+    	if(gameView.getBoardPanel().checkCollisionWestExit())
+    	{
+    		System.out.println("YOU'RE OUTTA HERE");
+    		gameView.showTilePanel();
+        	Player currentPlayer = players.getCurrentPlayer();
+        	currentPlayer.setPlayerPos(new Point(319,175));
+    	}
+    	
+    	if(gameView.getBoardPanel().checkCollisionTown())
+    	{
+    		gameView.showTownCenterPanel();
+        	Player currentPlayer = players.getCurrentPlayer();
+        	currentPlayer.setPlayerPos(new Point(391,175));
+    	}
+    	
+    }
+  
 	/**
 	 * Launch the application.
 	 */

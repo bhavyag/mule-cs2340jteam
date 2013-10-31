@@ -1,8 +1,8 @@
 package view.game;
 
-import java.awt.CardLayout;
-import java.awt.Point;
+import java.awt.*;
 import java.awt.event.MouseAdapter;
+import java.awt.geom.Area;
 import java.net.URL;
 
 import javax.swing.*;
@@ -18,7 +18,8 @@ public class BoardPanel extends JPanel {
     private TilePanel tilePanel;
 	private TownCenterPanel townCenterPanel;
 	private CardLayout cardLayout;
-	private JLabel playerLabel;
+    protected JLabel playerLabel;
+    protected boolean inTownCenter;
 
 	private final String
 	TILES = "Tiles",
@@ -44,12 +45,38 @@ public class BoardPanel extends JPanel {
         this.add(tilePanel, TILES);
 	}
 	
+	public boolean checkCollisionPub()
+	{
+		return this.intersects(this.townCenterPanel.playerLabel, this.townCenterPanel.pubLabel);
+	}
 	
+	public boolean checkCollisionWestExit()
+	{
+		return this.intersects(this.townCenterPanel.playerLabel, this.townCenterPanel.westExitLabel); 
+	}
+	
+	public boolean checkCollisionTown()
+	{
+		return this.intersects(this.tilePanel.playerLabel, this.tilePanel.town); 
+	}
+	
+	/**
+	 * METHOD that checks two Labels to see if they intersect
+	 * @param labelA
+	 * @param labelB
+	 * @return true or false depending on if they intersect
+	 */
+	public boolean intersects(JLabel labelA, JLabel labelB){
+	    Area areaA = new Area(labelA.getBounds());
+	    Area areaB = new Area(labelB.getBounds());
+
+	    return areaA.intersects(areaB.getBounds2D());
+	}
 	/**
 	 * METHOD that gets this BoardPanel's TilePanel
 	 * @return this BoardPanel's TilePanel
 	 */
-	protected TilePanel getTilePanel() {
+	public TilePanel getTilePanel() {
 		return tilePanel;
 	}
 	
@@ -58,6 +85,7 @@ public class BoardPanel extends JPanel {
 	 */
 	protected void showTilePanel() {
 		cardLayout.show(this, TILES);
+		this.inTownCenter = false;
 	}
 	
 	/**
@@ -73,5 +101,11 @@ public class BoardPanel extends JPanel {
 	 */
 	protected void showTownCenterPanel() {
 		cardLayout.show(this, TOWN_CENTER);
+		this.inTownCenter = true;
+	}
+	
+	public boolean isInTownCenter()
+	{
+		return this.inTownCenter;
 	}
 }
