@@ -70,6 +70,7 @@ public class PlayerQueue {
             passes = 0;
             newRound = true;
             round ++;
+            scoreSort();
         }
     }
 

@@ -226,7 +226,6 @@ public class GameController {
         System.out.println("starting town phase");
         
         gameView.showTownCenterPanel();
-        players.scoreSort();
         players.beginRotation();
         
         
