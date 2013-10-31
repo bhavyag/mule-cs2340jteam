@@ -13,7 +13,7 @@ public class PlayerQueue {
     private int round;
     private int passes;
     private boolean newRound;
-    private Random rand;
+    private Random rand; //for debugging
     
     /**
      * CONSTRUCTOR adds a specified number of players to the rotation
@@ -21,11 +21,11 @@ public class PlayerQueue {
      * @param startingMoney the amount of money each player should start with
      */
     public PlayerQueue(int numPlayers, int startingMoney) {
-    	rand = new Random();
+    	rand = new Random();//for debugging
     	players = new ArrayList<Player>();
 
         for (int i = 0; i < numPlayers; i ++) {
-            players.add(new Player(startingMoney + rand.nextInt(20)));
+            players.add(new Player(startingMoney + rand.nextInt(20))); //random is for debugging scoreSort()
         }
 
         currentIndex = 0;
