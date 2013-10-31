@@ -24,35 +24,25 @@ public class TownCenterPanel extends JPanel {
      */
     protected TownCenterPanel() {
         this.townCenterPanel = new JLabel("");
+        townCenterPanel.setBounds(5, 5, 832, 400);
 
         initialize();
     }
 
-    /**
-     * METHOD to set which player to display in the town center.
-     * @param imagePath the image of the player
-     */
-    protected void setPlayerImage(URL imagePath)
-    {
-    	playerLabel.setIcon(new ImageIcon(imagePath));
-    }
-    
-    /**
-     * METHOD to set the player's position on the screen.
-     * @param p the player's new position
-     */
-    protected void setPlayerCoords(Point p)
-    {
-    	int x = (int) p.getX();
-    	int y = (int) p.getY();
-    	playerLabel.setBounds(x,y,40,40);
-    }
+    public void drawPlayer(int x, int y, URL imagePath)
+	{
+		this.playerLabel.setIcon(new ImageIcon(imagePath));
+    	this.playerLabel.setBounds(x,y,50,50);
+	}
     
     /**
      * METHOD to set the initial state of the town center.
      */
     private void initialize() {
-        setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+        setLayout(null);
+        playerLabel = new JLabel();
+        playerLabel.setBounds(390, 184, 58, 43);
+        this.add(playerLabel);
         this.add(townCenterPanel);
         this.setBounds(168, 0, 832, 400);
         townCenterPanel.setIcon(new ImageIcon(TitlePanel.class.getResource("/sprites/town-center.png")));

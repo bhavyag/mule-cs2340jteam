@@ -26,11 +26,15 @@ public class GameFrame extends JFrame {
      * CONSTRUCTOR for the GameFrame, instantiates it's board panel, its status panel, and its message panel
      */
     public GameFrame(int numPlayers) {
+    	
         this.boardPanel = new BoardPanel();
+        
         this.statusPanel = new StatusPanel(numPlayers);
         statusPanel.setBounds(168, 400, 832, 163);
+        
         this.messagePanel = new MessagePanel();
         messagePanel.setBounds(0, 0, 168, 563);
+
 
         initialize();
     }
@@ -56,15 +60,17 @@ public class GameFrame extends JFrame {
         boardPanel.getTilePanel().setBounds(new Rectangle(168, 0, 832, 400));
         boardPanel.setBounds(new Rectangle(168, 0, 832, 400));
         //statusPanel.setMaximumSize(new Dimension(832, 163));
+        
+        this.setFocusable(true);
     }
     
-    protected void onKeyMove(KeyListener keyListener)
+    public void onKeyMove(KeyListener keyListener)
     {
-    	if (boardPanel.getTownCenterPanel().getKeyListeners().length > 0) 
-    	{
-            boardPanel.getTownCenterPanel().removeKeyListener(boardPanel.getTownCenterPanel().getKeyListeners()[0]);
-        }
-    	boardPanel.getTownCenterPanel().addKeyListener(keyListener);
+//    	if (boardPanel.getTownCenterPanel().getKeyListeners().length > 0) 
+//    	{
+//            boardPanel.getTownCenterPanel().removeKeyListener(boardPanel.getTownCenterPanel().getKeyListeners()[0]);
+//      }
+    	this.addKeyListener(keyListener);
     }
     
 
@@ -146,5 +152,10 @@ public class GameFrame extends JFrame {
     public StatusPanel getStatusPanel()
     {
     	return this.statusPanel;
+    }
+    
+    public BoardPanel getBoardPanel()
+    {
+    	return this.boardPanel;
     }
 }

@@ -75,7 +75,6 @@ public class Player {
     private ArrayList<Tile> playerTiles;
     
     private Point playerPos;
-    
 
     /**
      * CONSTRUCTOR for Players
@@ -83,6 +82,7 @@ public class Player {
     public Player(int startingMoney) {
         totalPlayers ++;
         this.playerNum = totalPlayers;
+        playerPos = new Point(396,180);
 
         this.money = startingMoney;
     }
@@ -223,6 +223,34 @@ public class Player {
             System.out.println("Not enough money");
             return false;
         }
+    }
+    
+    public void moveUp()
+    {
+    	int x = (int)this.playerPos.getX();
+    	int y = (int)this.playerPos.getY();
+    	this.playerPos.setLocation(x, y-2);
+    }
+    
+    public void moveLeft()
+    {
+    	int x = (int)this.playerPos.getX();
+    	int y = (int)this.playerPos.getY();
+    	this.playerPos.setLocation(x-2, y);
+    }
+    
+    public void moveDown()
+    {
+    	int x = (int)this.playerPos.getX();
+    	int y = (int)this.playerPos.getY();
+    	this.playerPos.setLocation(x, y+2);
+    }
+    
+    public void moveRight()
+    {
+    	int x = (int)this.playerPos.getX();
+    	int y = (int)this.playerPos.getY();
+    	this.playerPos.setLocation(x+2, y);
     }
 
     /**
