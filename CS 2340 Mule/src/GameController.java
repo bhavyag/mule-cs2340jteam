@@ -7,7 +7,7 @@ import view.title.TitleFrame;
 
 import javax.swing.*;
 
-import java.awt.*;
+import java.awt.*; 	
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -309,13 +309,18 @@ public class GameController {
     }
 
     /**
-     * 
+     * METHOD that controls how the next phase will be executed (not currently being used)
      */
     private void nextPhase() {
         System.out.println("town phase over");
         gameView.dispose();
     }
     
+    /**
+     * METHOD for updating two main components: the JLabels of the Status Panel for each player
+     * and the location of the sprite for the current player. Also calls method for collision
+     * checking as player's location is updated.
+     */
     public void updateStatus()
     {	
     	ArrayList<Player> playerArray = players.getPlayers();
@@ -388,7 +393,8 @@ public class GameController {
     }
     
     /**
-     * METHOD that checks for collisions between the player and other stuff.
+     * METHOD that checks for collisions between the player and other stuff and appropriately
+     * handles game logic (ex: colliding into pub ends the turn)
      */
     public void collisionReact()
     {
