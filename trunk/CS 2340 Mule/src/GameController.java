@@ -369,10 +369,16 @@ public class GameController {
     	
     	if(gameView.getBoardPanel().checkCollisionWestExit())
     	{
-    		System.out.println("YOU'RE OUTTA HERE");
     		gameView.showTilePanel();
         	Player currentPlayer = players.getCurrentPlayer();
         	currentPlayer.setPlayerPos(new Point(319,175));
+    	}
+    	
+    	if(gameView.getBoardPanel().checkCollisionEastExit())
+    	{
+    		gameView.showTilePanel();
+        	Player currentPlayer = players.getCurrentPlayer();
+        	currentPlayer.setPlayerPos(new Point(463,175));
     	}
     	
     	if(gameView.getBoardPanel().checkCollisionTown())

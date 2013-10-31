@@ -55,6 +55,11 @@ public class BoardPanel extends JPanel {
 		return this.intersects(this.townCenterPanel.playerLabel, this.townCenterPanel.westExitLabel); 
 	}
 	
+	public boolean checkCollisionEastExit()
+	{
+		return this.intersects(this.townCenterPanel.playerLabel, this.townCenterPanel.eastExitLabel); 
+	}
+	
 	public boolean checkCollisionTown()
 	{
 		return this.intersects(this.tilePanel.playerLabel, this.tilePanel.town); 

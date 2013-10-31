@@ -20,6 +20,7 @@ public class TownCenterPanel extends JPanel {
     protected JLabel playerLabel;
     protected JLabel pubLabel;
     protected JLabel westExitLabel;
+    protected JLabel eastExitLabel;
 
     /**
      * CONSTRUCTOR for the Town Center, instantiates the town centers label.
@@ -60,9 +61,15 @@ public class TownCenterPanel extends JPanel {
         westExitLabel.setBounds(0, 0, 75, 400);
         add(westExitLabel);
         
+        
+        eastExitLabel = new JLabel("");
+        eastExitLabel.setBounds(765, 0, 67, 400);
+        add(eastExitLabel);
+        
         this.add(townCenterPanel);
         this.setBounds(168, 0, 832, 400);
         townCenterPanel.setIcon(new ImageIcon(TitlePanel.class.getResource("/sprites/town-center.png")));
+       
     }
     
     public JLabel getPlayerLabel()
