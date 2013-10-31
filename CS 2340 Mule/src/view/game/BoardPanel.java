@@ -37,8 +37,8 @@ public class BoardPanel extends JPanel {
 	private void initialize() {
         this.setBounds(168, 0, 832, 400);
         this.setLayout(cardLayout);
-        this.add(tilePanel, TILES);
         this.add(townCenterPanel, TOWN_CENTER);
+        this.add(tilePanel, TILES);
 	}
 	
 	/**
