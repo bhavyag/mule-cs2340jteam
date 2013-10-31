@@ -24,11 +24,12 @@ import java.awt.event.KeyListener;
 public class GameController {
 	private TitleFrame titleView;
 	private GameFrame gameView;
-	private String phase;
+	private static String phase;
 	private int difficulty;
 	private PlayerQueue players;
 	private Board board;
 	private LimitTimer timer;
+	private int minimumFood;
 
     /**
      * METHOD begins the title sequence
@@ -67,7 +68,8 @@ public class GameController {
                         difficulty = titleView.getGameConfigDifficulty();
                         board = BoardFactory.constructBoard(titleView.getGameConfigMap());
                         players = new PlayerQueue(titleView.getGameConfigNumPlayers(), 60 / difficulty);
-
+                        minimumFood=3;
+                        
                         configurePlayers();
                     }
                 }
@@ -109,7 +111,6 @@ public class GameController {
 		gameView = new GameFrame(players.getNumPlayers());
 
         configureTimer();
-        phase = "land grant";
         players.beginRotation();
         landGrant();
 	}
@@ -146,12 +147,13 @@ public class GameController {
      * METHOD begins the land grant portion of the game
      */
     private void landGrant() {
-    	System.out.println("STARTING LAND GRANT PHASE");
-    	phase = "lang grant";
-    	updateStatus();
+        phase = "land grant";
+    	gameView.getBoardPanel().resetPlayerPos();
+        
         gameView.showTilePanel();
         displayMap();
-
+        
+    	updateStatus();
         gameView.onTileClick(
             new MouseAdapter() {
                 @Override
@@ -168,7 +170,6 @@ public class GameController {
                             if (players.pass()) {
                                 timer.stop();
                                 System.out.println("entering townphase");
-                                phase = "town";
                                 townPhase();
                             }
                             else {
@@ -184,7 +185,6 @@ public class GameController {
                             if (players.pass()) {
                                 timer.stop();
                                 System.out.println("entering townphase");
-                                phase = "town";
                                 townPhase();
                             }
                             else {
@@ -199,11 +199,11 @@ public class GameController {
         timer = new LimitTimer(5, 1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
+
                 if (timer.isOutOfTime()) {
                     if (players.pass()) {
                         timer.stop();
                         System.out.println("entering townphase");
-                        phase = "town";
                         townPhase();
                     } else {
                         timer.reset();
@@ -219,12 +219,22 @@ public class GameController {
      */
     private void townPhase() {
     	
+        phase = "town";
+
+    	Timer updateTimer = new Timer(10, new ActionListener() 
+    	{
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                updateStatus();
+            }
+        });
+    	
+    	updateTimer.start();
     	
         System.out.println("starting town phase");
         
         gameView.showTownCenterPanel();
         players.beginRotation();
-        
         
         gameView.onKeyMove( new KeyListener() 
         	{
@@ -266,7 +276,15 @@ public class GameController {
         	}
         );
 
-        timer = new LimitTimer(50, 1000, new ActionListener() {
+        int currentPlayerFood = players.getCurrentPlayer().getFood();
+        int turnLength = 50;
+        if (currentPlayerFood > 0 && currentPlayerFood < minimumFood){
+        	turnLength = 30;
+        } else if (currentPlayerFood==0){
+        	turnLength = 5;
+        }
+        
+        timer = new LimitTimer(turnLength, 1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 if (timer.isOutOfTime()) {
@@ -274,7 +292,8 @@ public class GameController {
 
                     if (players.isNewRound()) {
                         timer.stop();
-                        nextPhase();
+                        //nextPhase();
+                        landGrant();
                     } else {
                         timer.reset();
                     }
@@ -283,37 +302,18 @@ public class GameController {
         });
 
         timer.start();
-        
-        Timer updateTimer = new Timer(10, new ActionListener() 
-    	{
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                if (updateStatus().equals("PUB"))
-                {
-                	players.next();
-
-                    if (players.isNewRound()) {
-                        timer.stop();
-                        nextPhase();
-                    } else {
-                        timer.reset();
-                    }
-                }
-            }
-        });
-    	
-    	updateTimer.start();
-    	
     }
 
+    /**
+     * 
+     */
     private void nextPhase() {
         System.out.println("town phase over");
-        landGrant();
+        gameView.dispose();
     }
     
-    public String updateStatus()
+    public void updateStatus()
     {	
-    	String ret = "";
     	ArrayList<Player> playerArray = players.getPlayers();
     	//System.out.println("Num of players: " + players.getNumPlayers());
     	String[][] playerInfo = new String[4][8];
@@ -370,55 +370,72 @@ public class GameController {
 	    		gameView.getBoardPanel().getTilePanel().drawPlayer(x, y, playerImage);
 	    	}
 	    	
-			ret = collisionReact();
+			collisionReact();
+        }
+        
+        //Update minimum food for turn length calculations
+        if (players.getRound()>4 && players.getRound()<9){
+        	minimumFood=4;
+        } else if (players.getRound()>8){
+        	minimumFood=5;
         }
     	
 		this.gameView.getStatusPanel().updateStatusPanel(playerInfo);
-		return ret;
     }
     
     /**
      * METHOD that checks for collisions between the player and other stuff.
      */
-    public String collisionReact()
+    public void collisionReact()
     {
-    	String ret = "";
-    	
-    	if(gameView.getBoardPanel().checkCollisionPub()) 
+    	if(phase == "town")
     	{
-    		
-    		/*
-    		 * put your stuff here 
-    		 */
-    		ret = "PUB";
-    		System.out.println("YOU HAVE GAMBLED YOUR TIME AWAY IN THE PUB, GOOD JOB");
+    		if(gameView.getBoardPanel().checkCollisionPub()) 
+    	
+	    	{
+    			Random rand = new Random();
+    			Player currentPlayer = players.getCurrentPlayer();
+    			int timeLeft = timer.getTimeRemaining();
+    			int moneyFromPub = timeLeft-(timeLeft*(1+rand.nextInt(4)));
+    			System.out.println(moneyFromPub);
+    			currentPlayer.addMoney(moneyFromPub);
+    			
+	    		System.out.println("YOU HAVE GAMBLED YOUR TIME AWAY IN THE PUB, GOOD JOB");
+	    		//players.next();
+	    		
+	    		if (players.pass()) {
+	                timer.stop();
+	                System.out.println("entering land grant");
+	                phase = "land grant";
+	                landGrant();
+	            }
+	            else {
+	                timer.reset();
+	            }
+	    	}
+	    	
+    		else if(gameView.getBoardPanel().checkCollisionWestExit())
+	    	{
+	    		gameView.showTilePanel();
+	        	Player currentPlayer = players.getCurrentPlayer();
+	        	currentPlayer.setPlayerPos(new Point(319,175));
+	    	}
+	    	
+    		else if(gameView.getBoardPanel().checkCollisionEastExit())
+	    	{
+	    		gameView.showTilePanel();
+	        	Player currentPlayer = players.getCurrentPlayer();
+	        	currentPlayer.setPlayerPos(new Point(463,175));
+	    	}
+	    	
+    		else if(gameView.getBoardPanel().checkCollisionTown())
+	    	{
+	    		gameView.showTownCenterPanel();
+	        	Player currentPlayer = players.getCurrentPlayer();
+	        	currentPlayer.setPlayerPos(new Point(391,175));
+	    	}
     	}
     	
-    	if(gameView.getBoardPanel().checkCollisionWestExit())
-    	{
-    		gameView.showTilePanel();
-        	Player currentPlayer = players.getCurrentPlayer();
-        	currentPlayer.setPlayerPos(new Point(319,175));
-    		ret = "EXIT";
-    	}
-    	
-    	if(gameView.getBoardPanel().checkCollisionEastExit())
-    	{
-    		gameView.showTilePanel();
-        	Player currentPlayer = players.getCurrentPlayer();
-        	currentPlayer.setPlayerPos(new Point(463,175));
-        	ret = "EXIT";
-    	}
-    	
-    	if(gameView.getBoardPanel().checkCollisionTown())
-    	{
-    		gameView.showTownCenterPanel();
-        	Player currentPlayer = players.getCurrentPlayer();
-        	currentPlayer.setPlayerPos(new Point(391,175));
-        	ret = "ENTERED TOWN";
-    	}
-    	
-    	return ret;
     }
   
 	/**
