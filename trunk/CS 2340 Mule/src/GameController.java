@@ -14,6 +14,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.net.URL;
 import java.util.ArrayList;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 /**
  * CLASS GAMECONTROLLER controls the flow of the game
@@ -118,7 +120,7 @@ public class GameController {
             public void actionPerformed(ActionEvent actionEvent) {
                 gameView.updateTimer(timer.getTimeRemaining());
                 gameView.updatePlayer(players.getCurrentPlayer().getPlayerNum());
-                updateStatus();//will probably have to move this so it updates REGULARLY
+                updateStatus();
             }
         });
     }
@@ -209,15 +211,61 @@ public class GameController {
      * METHOD begins the town and map phase of the game
      */
     private void townPhase() {
+    	
+    	Timer updateTimer = new Timer(10, new ActionListener() 
+    	{
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                updateStatus();
+            }
+        });
+    	
+    	updateTimer.start();
+    	
         System.out.println("starting town phase");
         gameView.showTownCenterPanel();
         players.beginRotation();
-        gameView.onTileClick(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent mouseEvent) {
-                System.out.println("new");
-            }
-        });
+        
+        
+        gameView.onKeyMove( new KeyListener() 
+        	{
+        		public void keyPressed(KeyEvent e)
+        		{
+        			Player currentPlayer = players.getCurrentPlayer();
+        			int key = e.getKeyCode();
+        			if(key == KeyEvent.VK_W)
+        			{
+        				currentPlayer.moveUp();
+        				System.out.println("UP");
+        			}
+        			if(key == KeyEvent.VK_A)
+        			{
+        				currentPlayer.moveLeft();
+        				System.out.println("LEFT");
+        			}
+        			if(key == KeyEvent.VK_S)
+        			{
+        				currentPlayer.moveDown();
+        				System.out.println("DOWN");
+        			}
+        			if(key == KeyEvent.VK_D)
+        			{
+        				currentPlayer.moveRight();
+        				System.out.println("RIGHT");
+        			}
+        		}
+        		
+        		public void keyReleased(KeyEvent e)
+        		{
+        			
+        		}
+        		
+        		public void keyTyped(KeyEvent e)
+        		{
+        			
+        		}
+        	}
+        );
 
         timer = new LimitTimer(50, 1000, new ActionListener() {
             @Override
@@ -245,8 +293,15 @@ public class GameController {
     
     public void updateStatus()
     {
+    	Player currentPlayer = players.getCurrentPlayer();
+    	URL playerImage = currentPlayer.getColor().getPlayerImagePath();
+    	int x = (int)currentPlayer.getPlayerPos().getX();
+    	int y = (int)currentPlayer.getPlayerPos().getY();
+    	
+    	gameView.getBoardPanel().getTownCenterPanel().drawPlayer(x, y, playerImage);
+    	
     	ArrayList<Player> playerArray = players.getPlayers();
-    	System.out.println("Num of players: " + players.getNumPlayers());
+    	//System.out.println("Num of players: " + players.getNumPlayers());
     	String[][] playerInfo = new String[4][8];
     	
     	for(int i=0; i < players.getNumPlayers(); i++)

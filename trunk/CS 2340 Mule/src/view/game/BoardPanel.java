@@ -1,7 +1,9 @@
 package view.game;
 
 import java.awt.CardLayout;
+import java.awt.Point;
 import java.awt.event.MouseAdapter;
+import java.net.URL;
 
 import javax.swing.*;
 
@@ -16,6 +18,7 @@ public class BoardPanel extends JPanel {
     private TilePanel tilePanel;
 	private TownCenterPanel townCenterPanel;
 	private CardLayout cardLayout;
+	private JLabel playerLabel;
 
 	private final String
 	TILES = "Tiles",
@@ -41,6 +44,7 @@ public class BoardPanel extends JPanel {
         this.add(tilePanel, TILES);
 	}
 	
+	
 	/**
 	 * METHOD that gets this BoardPanel's TilePanel
 	 * @return this BoardPanel's TilePanel
@@ -60,7 +64,7 @@ public class BoardPanel extends JPanel {
 	 * METHOD that gets this BoardPanel's TownCenterPanel
 	 * @return this BoardPanel's TownCenterPanel
 	 */
-	protected TownCenterPanel getTownCenterPanel() {
+	public TownCenterPanel getTownCenterPanel() {
 		return townCenterPanel;
 	}
 
