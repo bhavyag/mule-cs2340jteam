@@ -158,8 +158,14 @@ public class GameController {
 
                             System.out.println(players.getCurrentPlayer());
 
-                            players.next();
-                            timer.reset();
+                            if (players.pass()) {
+                                timer.stop();
+                                System.out.println("entering townphase");
+                                townPhase();
+                            }
+                            else {
+                                timer.reset();
+                            }
                         }
                     } else {
                         if (board.purchaseTile(players.getCurrentPlayer(), tileIndex)) {
@@ -167,8 +173,14 @@ public class GameController {
 
                             System.out.println(players.getCurrentPlayer());
 
-                            players.next();
-                            timer.reset();
+                            if (players.pass()) {
+                                timer.stop();
+                                System.out.println("entering townphase");
+                                townPhase();
+                            }
+                            else {
+                                timer.reset();
+                            }
                         }
                     }
 
@@ -182,6 +194,7 @@ public class GameController {
                 if (timer.isOutOfTime()) {
                     if (players.pass()) {
                         timer.stop();
+                        System.out.println("entering townphase");
                         townPhase();
                     } else {
                         timer.reset();
