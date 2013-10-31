@@ -29,6 +29,7 @@ public class GameController {
 	private PlayerQueue players;
 	private Board board;
 	private LimitTimer timer;
+	private int minimumFood;
 
     /**
      * METHOD begins the title sequence
@@ -67,7 +68,8 @@ public class GameController {
                         difficulty = titleView.getGameConfigDifficulty();
                         board = BoardFactory.constructBoard(titleView.getGameConfigMap());
                         players = new PlayerQueue(titleView.getGameConfigNumPlayers(), 60 / difficulty);
-
+                        minimumFood=3;
+                        
                         configurePlayers();
                     }
                 }
@@ -273,7 +275,15 @@ public class GameController {
         	}
         );
 
-        timer = new LimitTimer(50, 1000, new ActionListener() {
+        int currentPlayerFood = players.getCurrentPlayer().getFood();
+        int turnLength = 50;
+        if (currentPlayerFood > 0 && currentPlayerFood < minimumFood){
+        	turnLength = 30;
+        } else if (currentPlayerFood==0){
+        	turnLength = 5;
+        }
+        
+        timer = new LimitTimer(turnLength, 1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 if (timer.isOutOfTime()) {
@@ -356,6 +366,13 @@ public class GameController {
 	    	}
 	    	
 			collisionReact();
+        }
+        
+        //Update minimum food for turn length calculations
+        if (players.getRound()>4 && players.getRound()<9){
+        	minimumFood=4;
+        } else if (players.getRound()>8){
+        	minimumFood=5;
         }
     	
 		this.gameView.getStatusPanel().updateStatusPanel(playerInfo);
