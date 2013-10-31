@@ -32,6 +32,12 @@ public class TownCenterPanel extends JPanel {
         initialize();
     }
     
+    protected void defaultPlayerPos()
+    {
+    	playerLabel.setIcon(null); 
+        playerLabel.setBounds(390, 184, 58, 43);
+    }
+    
 	/**
 	 * METHOD that draws the player at a certain x/y with a certain sprite
 	 * @param x

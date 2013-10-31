@@ -65,6 +65,13 @@ public class BoardPanel extends JPanel {
 		return this.intersects(this.tilePanel.playerLabel, this.tilePanel.town); 
 	}
 	
+	public void resetPlayerPos()
+	{
+		this.tilePanel.defaultPlayerPos();
+		this.townCenterPanel.defaultPlayerPos();
+		
+	}
+	
 	/**
 	 * METHOD that checks two Labels to see if they intersect
 	 * @param labelA
@@ -105,6 +112,7 @@ public class BoardPanel extends JPanel {
 	 * METHOD that tells this BoardPanel to display the TownCenterPanel
 	 */
 	protected void showTownCenterPanel() {
+		System.out.println("SHOW TOWN CENTER PANEL");
 		cardLayout.show(this, TOWN_CENTER);
 		this.inTownCenter = true;
 	}

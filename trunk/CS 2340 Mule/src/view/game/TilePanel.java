@@ -68,6 +68,12 @@ public class TilePanel extends JPanel {
         borderArray[x][y].setIcon(new ImageIcon(imagePath));
     }
 
+    protected void defaultPlayerPos()
+    {
+    	playerLabel.setIcon(null); 
+        playerLabel.setBounds(390, 184, 58, 43);
+    }
+    
     protected Point getTileIndex(Point cartesian) {
         return new Point(((int) cartesian.getY() - 20)/72, ((int) cartesian.getX() - 92)/72);
     }
