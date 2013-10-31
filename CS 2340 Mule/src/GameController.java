@@ -356,6 +356,11 @@ public class GameController {
     {
     	if(gameView.getBoardPanel().checkCollisionPub()) 
     	{
+    		
+    		/*
+    		 * put your stuff here 
+    		 */
+    		
     		System.out.println("YOU HAVE GAMBLED YOUR TIME AWAY IN THE PUB, GOOD JOB");
     	}
     	
