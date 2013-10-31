@@ -123,6 +123,11 @@ public class Player {
         return money;
     }
     
+    public void addMoney(int m)
+    {
+    	this.money += m;
+    }
+    
     /**
      * Get the total number of players
      * @return the total number of players
