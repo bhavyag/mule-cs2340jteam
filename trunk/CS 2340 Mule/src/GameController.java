@@ -396,7 +396,7 @@ public class GameController {
     			Random rand = new Random();
     			Player currentPlayer = players.getCurrentPlayer();
     			int timeLeft = timer.getTimeRemaining();
-    			int moneyFromPub = timeLeft-(timeLeft*(1+rand.nextInt(4)));
+    			int moneyFromPub = 1+rand.nextInt(timeLeft);
     			System.out.println(moneyFromPub);
     			currentPlayer.addMoney(moneyFromPub);
     			
