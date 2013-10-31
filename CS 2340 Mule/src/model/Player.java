@@ -115,6 +115,11 @@ public class Player {
     	this.playerPos = p;
     }
     
+    public void resetPlayerPos()
+    {
+    	this.playerPos = new Point(396,180);
+    }
+    
     /**
      * Get this players money
      * @ret	the money of the player

@@ -1,5 +1,6 @@
 package model;
 
+import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -32,6 +33,14 @@ public class PlayerQueue {
         round = 0;
         passes = 0;
         newRound = false;
+    }
+    
+    public void resetPlayers()
+    {
+    	for(Player player : players)
+    	{
+    		player.resetPlayerPos();
+    	}
     }
 
     /**
