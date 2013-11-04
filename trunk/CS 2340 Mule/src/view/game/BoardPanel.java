@@ -49,20 +49,29 @@ public class BoardPanel extends JPanel {
 	{
 		return this.intersects(this.townCenterPanel.playerLabel, this.townCenterPanel.pubLabel);
 	}
-	
 	public boolean checkCollisionWestExit()
 	{
 		return this.intersects(this.townCenterPanel.playerLabel, this.townCenterPanel.westExitLabel); 
 	}
-	
 	public boolean checkCollisionEastExit()
 	{
 		return this.intersects(this.townCenterPanel.playerLabel, this.townCenterPanel.eastExitLabel); 
 	}
-	
 	public boolean checkCollisionTown()
 	{
 		return this.intersects(this.tilePanel.playerLabel, this.tilePanel.town); 
+	}
+	public boolean checkCollisionMuleStore()
+	{
+		return this.intersects(this.townCenterPanel.playerLabel, this.townCenterPanel.muleStoreLabel);
+	}
+	public boolean checkCollisionEnergytore()
+	{
+		return this.intersects(this.townCenterPanel.playerLabel, this.townCenterPanel.muleStoreLabel);
+	}
+	public boolean checkCollisionFoodStore()
+	{
+		return this.intersects(this.townCenterPanel.playerLabel, this.townCenterPanel.foodStoreLabel);
 	}
 	
 	public void resetPlayerPos()

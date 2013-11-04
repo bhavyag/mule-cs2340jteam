@@ -21,6 +21,8 @@ public class TownCenterPanel extends JPanel {
     protected JLabel pubLabel;
     protected JLabel westExitLabel;
     protected JLabel eastExitLabel;
+    protected JLabel muleStoreLabel;
+    protected JLabel foodStoreLabel;
 
     /**
      * CONSTRUCTOR for the Town Center, instantiates the town centers label.
@@ -53,11 +55,20 @@ public class TownCenterPanel extends JPanel {
     /**
      * METHOD to set the initial state of the town center.
      */
-    private void initialize() {
+    private void initialize() 
+    {
         setLayout(null);
         playerLabel = new JLabel();
         playerLabel.setBounds(390, 184, 58, 43);
         this.add(playerLabel);
+        
+        foodStoreLabel = new JLabel("");
+        foodStoreLabel.setBounds(624, 26, 131, 128);
+        add(foodStoreLabel);
+        
+        muleStoreLabel = new JLabel("");
+        muleStoreLabel.setBounds(624, 255, 131, 134);
+        this.add(muleStoreLabel);
         
         pubLabel = new JLabel();
         pubLabel.setBounds(473, 255, 130, 134);
