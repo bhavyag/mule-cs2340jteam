@@ -10,7 +10,7 @@ import javax.swing.*;
 import java.awt.*; 	
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
+import java.awt.event.MouseAdapter; 
 import java.awt.event.MouseEvent;
 import java.net.URL;
 import java.util.ArrayList;
@@ -327,6 +327,7 @@ public class GameController {
     	//System.out.println("Num of players: " + players.getNumPlayers());
     	String[][] playerInfo = new String[4][8];
     	
+    	
     	for(int i=0; i < players.getNumPlayers(); i++)
     	{
     		 Player player = playerArray.get(i);
@@ -363,6 +364,7 @@ public class GameController {
         {
 
 	    	Player currentPlayer = players.getCurrentPlayer();
+	    	currentPlayer.updateScore();
 	    	URL playerImage = currentPlayer.getColor().getPlayerImagePath();
 	    	int x = (int)currentPlayer.getPlayerPos().getX();
 	    	int y = (int)currentPlayer.getPlayerPos().getY();
@@ -444,8 +446,7 @@ public class GameController {
 	        	Player currentPlayer = players.getCurrentPlayer();
 	        	currentPlayer.setPlayerPos(new Point(391,175));
 	    	}
-    	}
-    	
+    	} 	
     }
   
 	/**

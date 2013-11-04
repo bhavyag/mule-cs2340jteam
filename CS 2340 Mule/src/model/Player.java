@@ -310,16 +310,16 @@ public class Player {
     public void updateScore() {
     	this.score = 0; //reset score
     	//Add land score
-    	for(int i = 0;i<playerTiles.size();i++){
+    	/*for(int i = 0;i<playerTiles.size();i++){
     		score+=500;
     		//TODO: This should be 500 per plot + the value of any mules set on plots
     		//e.g. - food:525, energy:550, smithore:575, crystite:600
-    	}
+    	}*/
     	//Add money score
     	this.score += money;
     	//Add goods score
     	// TODO: Needs to multiply goods by their current price
-    	this.score += (mules*35 + smithore*50 + food*30 + energy*25 + crystite*50);
+    	//this.score += (mules*35 + smithore*50 + food*30 + energy*25 + crystite*50);
     }
     
     /**
