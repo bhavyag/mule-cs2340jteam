@@ -23,6 +23,11 @@ public class TownCenterPanel extends JPanel {
     protected JLabel eastExitLabel;
     protected JLabel muleStoreLabel;
     protected JLabel foodStoreLabel;
+    protected JLabel smithoreStoreLabel;
+    protected JLabel energyStoreLabel;
+    protected JLabel crystiteStoreLabel;
+    protected JLabel landStoreLabel;
+    protected JLabel assayOfficeLabel;
 
     /**
      * CONSTRUCTOR for the Town Center, instantiates the town centers label.
@@ -69,6 +74,26 @@ public class TownCenterPanel extends JPanel {
         muleStoreLabel = new JLabel("");
         muleStoreLabel.setBounds(624, 255, 131, 134);
         this.add(muleStoreLabel);
+        
+        smithoreStoreLabel = new JLabel("");
+        smithoreStoreLabel.setBounds(473, 26, 130, 128);
+        add(smithoreStoreLabel);
+        
+        energyStoreLabel = new JLabel("");
+        energyStoreLabel.setBounds(240, 26, 131, 128);
+        add(energyStoreLabel);
+        
+        crystiteStoreLabel = new JLabel("");
+        crystiteStoreLabel.setBounds(89, 26, 131, 128);
+        add(crystiteStoreLabel);
+        
+        landStoreLabel = new JLabel("");
+        landStoreLabel.setBounds(240, 255, 131, 134);
+        add(landStoreLabel);
+        
+        assayOfficeLabel = new JLabel("");
+        assayOfficeLabel.setBounds(90, 255, 130, 134);
+        add(assayOfficeLabel);
         
         pubLabel = new JLabel();
         pubLabel.setBounds(473, 255, 130, 134);

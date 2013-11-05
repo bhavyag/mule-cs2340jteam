@@ -45,33 +45,55 @@ public class BoardPanel extends JPanel {
         this.add(tilePanel, TILES);
 	}
 	
-	public boolean checkCollisionPub()
+	public String checkCollisions()
 	{
-		return this.intersects(this.townCenterPanel.playerLabel, this.townCenterPanel.pubLabel);
-	}
-	public boolean checkCollisionWestExit()
-	{
-		return this.intersects(this.townCenterPanel.playerLabel, this.townCenterPanel.westExitLabel); 
-	}
-	public boolean checkCollisionEastExit()
-	{
-		return this.intersects(this.townCenterPanel.playerLabel, this.townCenterPanel.eastExitLabel); 
-	}
-	public boolean checkCollisionTown()
-	{
-		return this.intersects(this.tilePanel.playerLabel, this.tilePanel.town); 
-	}
-	public boolean checkCollisionMuleStore()
-	{
-		return this.intersects(this.townCenterPanel.playerLabel, this.townCenterPanel.muleStoreLabel);
-	}
-	public boolean checkCollisionEnergytore()
-	{
-		return this.intersects(this.townCenterPanel.playerLabel, this.townCenterPanel.muleStoreLabel);
-	}
-	public boolean checkCollisionFoodStore()
-	{
-		return this.intersects(this.townCenterPanel.playerLabel, this.townCenterPanel.foodStoreLabel);
+		String s ="";
+		
+		if(this.intersects(this.townCenterPanel.playerLabel, this.townCenterPanel.pubLabel))
+		{
+			s = "pub";
+		}
+		else if(this.intersects(this.townCenterPanel.playerLabel, this.townCenterPanel.westExitLabel))
+		{
+			s = "west exit";
+		}
+		else if(this.intersects(this.townCenterPanel.playerLabel, this.townCenterPanel.eastExitLabel))
+		{
+			s = "east exit";
+		}
+		else if(this.intersects(this.tilePanel.playerLabel, this.tilePanel.town))
+		{
+			s = "town tile";
+		}
+		else if(this.intersects(this.townCenterPanel.playerLabel, this.townCenterPanel.muleStoreLabel))
+		{
+			s = "mule store";
+		}
+		else if(this.intersects(this.townCenterPanel.playerLabel, this.townCenterPanel.energyStoreLabel))
+		{
+			s = "energy store";
+		}
+		else if(this.intersects(this.townCenterPanel.playerLabel, this.townCenterPanel.foodStoreLabel))
+		{
+			s = "food store";
+		}
+		else if(this.intersects(this.townCenterPanel.playerLabel, this.townCenterPanel.smithoreStoreLabel))
+		{
+			s = "smithore store";
+		}
+		else if(this.intersects(this.townCenterPanel.playerLabel, this.townCenterPanel.crystiteStoreLabel))
+		{
+			s = "crystite store";
+		}
+		else if(this.intersects(this.townCenterPanel.playerLabel, this.townCenterPanel.landStoreLabel))
+		{
+			s = "land store";
+		}
+		else if(this.intersects(this.townCenterPanel.playerLabel, this.townCenterPanel.assayOfficeLabel))
+		{
+			s = "assay office";
+		}
+		return s;
 	}
 	
 	public void resetPlayerPos()
@@ -130,4 +152,33 @@ public class BoardPanel extends JPanel {
 	{
 		return this.inTownCenter;
 	}
+	
+//	public boolean checkCollisionPub()
+//	{
+//		return this.intersects(this.townCenterPanel.playerLabel, this.townCenterPanel.pubLabel);
+//	}
+//	public boolean checkCollisionWestExit()
+//	{
+//		return this.intersects(this.townCenterPanel.playerLabel, this.townCenterPanel.westExitLabel); 
+//	}
+//	public boolean checkCollisionEastExit()
+//	{
+//		return this.intersects(this.townCenterPanel.playerLabel, this.townCenterPanel.eastExitLabel); 
+//	}
+//	public boolean checkCollisionTown()
+//	{
+//		return this.intersects(this.tilePanel.playerLabel, this.tilePanel.town); 
+//	}
+//	public boolean checkCollisionMuleStore()
+//	{
+//		return this.intersects(this.townCenterPanel.playerLabel, this.townCenterPanel.muleStoreLabel);
+//	}
+//	public boolean checkCollisionEnergytore()
+//	{
+//		return this.intersects(this.townCenterPanel.playerLabel, this.townCenterPanel.muleStoreLabel);
+//	}
+//	public boolean checkCollisionFoodStore()
+//	{
+//		return this.intersects(this.townCenterPanel.playerLabel, this.townCenterPanel.foodStoreLabel);
+//	}
 }
