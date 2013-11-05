@@ -402,7 +402,9 @@ public class GameController {
     {
     	if(phase == "town")
     	{
-    		if(gameView.getBoardPanel().checkCollisionPub()) 
+    		String collidedWith = gameView.getBoardPanel().checkCollisions();
+    		
+    		if(collidedWith.equals("pub")) 
     	
 	    	{
     			Random rand = new Random();
@@ -426,26 +428,54 @@ public class GameController {
 	            }
 	    	}
 	    	
-    		else if(gameView.getBoardPanel().checkCollisionWestExit())
+    		else if(collidedWith.equals("west exit"))
 	    	{
 	    		gameView.showTilePanel();
 	        	Player currentPlayer = players.getCurrentPlayer();
 	        	currentPlayer.setPlayerPos(new Point(319,175));
 	    	}
 	    	
-    		else if(gameView.getBoardPanel().checkCollisionEastExit())
+    		else if(collidedWith.equals("east exit"))
 	    	{
 	    		gameView.showTilePanel();
 	        	Player currentPlayer = players.getCurrentPlayer();
 	        	currentPlayer.setPlayerPos(new Point(463,175));
 	    	}
 	    	
-    		else if(gameView.getBoardPanel().checkCollisionTown())
+    		else if(collidedWith.equals("town tile"))
 	    	{
 	    		gameView.showTownCenterPanel();
 	        	Player currentPlayer = players.getCurrentPlayer();
 	        	currentPlayer.setPlayerPos(new Point(391,175));
 	    	}
+    		else if(collidedWith.equals("mule store"))
+    		{
+    			
+    		}
+    		else if(collidedWith.equals("food store"))
+    		{
+    			
+    		}
+    		else if(collidedWith.equals("energy store"))
+    		{
+    			
+    		}
+    		else if(collidedWith.equals("smithore store"))
+    		{
+    			
+    		}
+    		else if(collidedWith.equals("crystite store"))
+    		{
+    			
+    		}
+    		else if(collidedWith.equals("land store"))
+    		{
+    			
+    		}
+    		else if(collidedWith.equals("assay office"))
+    		{
+    			
+    		}
     	} 	
     }
   
