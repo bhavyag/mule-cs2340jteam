@@ -448,19 +448,24 @@ public class GameController {
     				//check if the player has enough money
     					//deduct the money from player
     					//add the mule to the player's list of mules
-    					//set 'holding mule' to 'true'
+    					//set 'holding mule' to the mule object that was purchased
+    				currentPlayer.purchase(new Mule(currentPlayer));
     				break;
     				
     			case "food store":
+    				currentPlayer.outfitMule(Mule.Type.FOOD);
     				break;
     				
     			case "energy store":
+    				currentPlayer.outfitMule(Mule.Type.ENERGY);
     				break;
     				
     			case "smithore store":
+    				currentPlayer.outfitMule(Mule.Type.SMITHORE);
     				break;
     				
     			case "crystite store":
+    				currentPlayer.outfitMule(Mule.Type.CRYSTITE);
     				break;
     				
     			case "land store":

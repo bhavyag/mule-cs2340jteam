@@ -7,24 +7,31 @@ package model;
  * @author Bhavya
  *
  */
-public class Mule {
+public class Mule implements Purchasable{
 
 	public static enum Type
 	{
-		ENERGY("energy"),
-		FOOD("food"),
-		SMITHORE("smithore"),
-		CRYSTITE("crystite");
+		FOOD("food", 25),
+		ENERGY("energy", 50),
+		SMITHORE("smithore", 75),
+		CRYSTITE("crystite", 100);
 
 		private String type;
+		private int cost;
 		
-		Type(String type) {
+		Type(String type, int cost) {
 			this.type = type;
+			this.cost = cost;
 		}
 		
 		public String toString()
 		{
 			return type;
+		}
+		
+		public int getCost()
+		{
+			return cost;
 		}
 	}
 	
@@ -50,6 +57,11 @@ public class Mule {
 	public void setType(Type type)
 	{
 		this.type = type;
+	}
+	
+	public int getPrice()
+	{
+		return this.type.getCost();
 	}
 	
 }
