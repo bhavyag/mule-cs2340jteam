@@ -403,78 +403,66 @@ public class GameController {
     	if(phase == "town")
     	{
     		String collidedWith = gameView.getBoardPanel().checkCollisions();
-    		
-    		if(collidedWith.equals("pub")) 
-    	
-	    	{
-    			Random rand = new Random();
-    			Player currentPlayer = players.getCurrentPlayer();
-    			int timeLeft = timer.getTimeRemaining();
-    			int moneyFromPub = 1+rand.nextInt(timeLeft);
-    			System.out.println(moneyFromPub);
-    			currentPlayer.addMoney(moneyFromPub);
-    			
-	    		System.out.println("YOU HAVE GAMBLED YOUR TIME AWAY IN THE PUB, GOOD JOB");
-	    		//players.next();
-	    		
-	    		if (players.pass()) {
-	                timer.stop();
-	                System.out.println("entering land grant");
-	                phase = "land grant";
-	                landGrant();
-	            }
-	            else {
-	                timer.reset();
-	            }
-	    	}
-	    	
-    		else if(collidedWith.equals("west exit"))
-	    	{
-	    		gameView.showTilePanel();
-	        	Player currentPlayer = players.getCurrentPlayer();
-	        	currentPlayer.setPlayerPos(new Point(319,175));
-	    	}
-	    	
-    		else if(collidedWith.equals("east exit"))
-	    	{
-	    		gameView.showTilePanel();
-	        	Player currentPlayer = players.getCurrentPlayer();
-	        	currentPlayer.setPlayerPos(new Point(463,175));
-	    	}
-	    	
-    		else if(collidedWith.equals("town tile"))
-	    	{
-	    		gameView.showTownCenterPanel();
-	        	Player currentPlayer = players.getCurrentPlayer();
-	        	currentPlayer.setPlayerPos(new Point(391,175));
-	    	}
-    		else if(collidedWith.equals("mule store"))
+    		Player currentPlayer = players.getCurrentPlayer();
+    		switch(collidedWith)
     		{
-    			
-    		}
-    		else if(collidedWith.equals("food store"))
-    		{
-    			
-    		}
-    		else if(collidedWith.equals("energy store"))
-    		{
-    			
-    		}
-    		else if(collidedWith.equals("smithore store"))
-    		{
-    			
-    		}
-    		else if(collidedWith.equals("crystite store"))
-    		{
-    			
-    		}
-    		else if(collidedWith.equals("land store"))
-    		{
-    			
-    		}
-    		else if(collidedWith.equals("assay office"))
-    		{
-    			
+    			case "pub":
+    				Random rand = new Random();
+	    			
+	    			int timeLeft = timer.getTimeRemaining();
+	    			int moneyFromPub = 1+rand.nextInt(timeLeft);
+	    			System.out.println(moneyFromPub);
+	    			currentPlayer.addMoney(moneyFromPub);
+	    			
+		    		System.out.println("YOU HAVE GAMBLED YOUR TIME AWAY IN THE PUB, GOOD JOB");
+		    		//players.next();
+		    		
+		    		if (players.pass()) {
+		                timer.stop();
+		                System.out.println("entering land grant");
+		                phase = "land grant";
+		                landGrant();
+		            }
+		            else {
+		                timer.reset();
+		            }
+		    		break;
+		    		
+    			case "west exit":
+    				gameView.showTilePanel();
+    	        	currentPlayer.setPlayerPos(new Point(319,175));
+    	        	break;
+    	        	
+    			case "east exit":
+    				gameView.showTilePanel();
+    	        	currentPlayer.setPlayerPos(new Point(463,175));
+    	        	break;
+    	        	
+    			case "town tile":
+    				gameView.showTownCenterPanel();
+    	        	currentPlayer.setPlayerPos(new Point(391,175));
+    	        	break;
+    	        	
+    			case "mule store":
+    				break;
+    				
+    			case "food store":
+    				break;
+    				
+    			case "energy store":
+    				break;
+    				
+    			case "smithore store":
+    				break;
+    				
+    			case "crystite store":
+    				break;
+    				
+    			case "land store":
+    				break;
+    				
+    			case "assay office":
+    				break;
     		}
     	} 	
     }
