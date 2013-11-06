@@ -444,6 +444,11 @@ public class GameController {
     	        	break;
     	        	
     			case "mule store":
+    				//check if the player is already holding a mule
+    				//check if the player has enough money
+    					//deduct the money from player
+    					//add the mule to the player's list of mules
+    					//set 'holding mule' to 'true'
     				break;
     				
     			case "food store":
