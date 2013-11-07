@@ -11,6 +11,7 @@ public class Mule implements Purchasable{
 
 	public static enum Type
 	{
+		NONE("none",100),
 		FOOD("food", 25),
 		ENERGY("energy", 50),
 		SMITHORE("smithore", 75),
@@ -42,6 +43,7 @@ public class Mule implements Purchasable{
 	public Mule(Player owner)
 	{
 		this.owner = owner;
+		this.type = Mule.Type.NONE;
 	}
 	
 	public Player getOwner()
