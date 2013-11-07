@@ -271,6 +271,7 @@ public class GameController {
 			{
 				Player currentPlayer = players.getCurrentPlayer();
 				int key = e.getKeyCode();
+
 				if(key == KeyEvent.VK_W)
 				{
 					currentPlayer.moveUp();
