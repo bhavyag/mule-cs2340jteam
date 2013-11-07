@@ -21,6 +21,7 @@ public class Player {
 		private String name;
 		private URL borderImagePath;
 		private URL playerImagePath;
+        private URL muleImagePath;
 
 		Color(String name, URL borderImagePath, URL playerImagePath) {
 			this.name = name;
@@ -126,8 +127,8 @@ public class Player {
 		{
 			holdingMule.setType(type);
 			money -= type.getCost();
-			System.out.println("Mule outfitted!");
-			return true; 
+			System.out.println("" + type + " mule outfitted!");
+			return true;
 		}
 		else
 		{
@@ -142,7 +143,7 @@ public class Player {
 		{
 			money += (int) (.8 * type.getCost());
 			holdingMule.setType(null);
-			System.out.println("Mule de-outfitted!");
+			System.out.println("" + type + " mule de-outfitted!");
 			return true;
 		}		
 		else
