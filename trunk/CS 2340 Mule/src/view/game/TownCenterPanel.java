@@ -39,6 +39,10 @@ public class TownCenterPanel extends JPanel {
         initialize();
     }
     
+    /**
+     * Place the player in their default position in the town after a turn ends.
+     *  They are blank so that their sprite can be setto the next player later.
+     */
     protected void defaultPlayerPos()
     {
     	playerLabel.setIcon(null); 
@@ -53,8 +57,10 @@ public class TownCenterPanel extends JPanel {
 	 */
     public void drawPlayer(int x, int y, URL imagePath)
 	{
-		this.playerLabel.setIcon(new ImageIcon(imagePath));
-    	this.playerLabel.setBounds(x,y,50,50);
+    	ImageIcon icon = new ImageIcon(imagePath);
+		this.playerLabel.setIcon(icon);
+	    this.playerLabel.setBounds(x,y,icon.getIconWidth(),icon.getIconHeight());
+		
 	}
     
     /**
@@ -114,11 +120,19 @@ public class TownCenterPanel extends JPanel {
        
     }
     
+    /**
+     * get the JLabel for the player
+     * @return the JLabel for the player
+     */
     public JLabel getPlayerLabel()
     {
     	return this.playerLabel;
     }
     
+    /**
+     * get the label of the pub. I think this is useless actually but whatever.
+     * @return the label for the pub.
+     */
     public JLabel getPubLabel()
     {
     	return this.pubLabel;

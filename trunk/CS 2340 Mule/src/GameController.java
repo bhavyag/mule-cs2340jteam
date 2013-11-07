@@ -369,6 +369,8 @@ public class GameController {
 			URL playerImage = currentPlayer.getImagePath();
 			int x = (int)currentPlayer.getPlayerPos().getX();
 			int y = (int)currentPlayer.getPlayerPos().getY();
+			
+			
 
 			//check which board the player is on
 			if(gameView.getBoardPanel().isInTownCenter())
