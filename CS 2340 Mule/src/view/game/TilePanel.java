@@ -16,6 +16,7 @@ public class TilePanel extends JPanel {
 	private JLabel[][] labelArray;
 	private JLabel[][] borderArray;
     protected JLabel playerLabel;
+    protected JLabel playerImgLabel;
     protected JLabel town;
     
 
@@ -38,8 +39,9 @@ public class TilePanel extends JPanel {
 	 */
     public void drawPlayer(int x, int y, URL imagePath)
 	{
-		this.playerLabel.setIcon(new ImageIcon(imagePath));
-    	this.playerLabel.setBounds(x,y,50,50);
+        ImageIcon icon = new ImageIcon(imagePath);
+		this.playerImgLabel.setIcon(icon);
+    	this.playerImgLabel.setBounds(x,y,icon.getIconHeight(),icon.getIconWidth());
 	}
     
     /**
@@ -88,6 +90,10 @@ public class TilePanel extends JPanel {
         playerLabel = new JLabel();
         playerLabel.setBounds(390, 184, 58, 43);
         this.add(playerLabel);
+
+        playerImgLabel = new JLabel();
+        playerImgLabel.setBounds(390, 184, 58, 43);
+        this.add(playerImgLabel);
         
         town = new JLabel();
         town.setBounds(380, 164, 72, 72);
