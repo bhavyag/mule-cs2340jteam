@@ -67,7 +67,7 @@ public class GameController {
                     public void mouseClicked(MouseEvent e) {
                         difficulty = titleView.getGameConfigDifficulty();
                         board = BoardFactory.constructBoard(titleView.getGameConfigMap());
-                        players = new PlayerQueue(titleView.getGameConfigNumPlayers(), 60 / difficulty);
+                        players = new PlayerQueue(titleView.getGameConfigNumPlayers(), 600 / difficulty);
                         minimumFood=3;
                         
                         configurePlayers();
