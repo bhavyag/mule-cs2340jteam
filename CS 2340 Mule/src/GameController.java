@@ -292,6 +292,11 @@ public class GameController {
 					currentPlayer.moveRight();
 					//System.out.println("RIGHT");
 				}
+				else if(key == KeyEvent.VK_E)
+				{
+					//please make this actually do something
+					System.out.println("MULE Placed on tile");
+				}
 			}
 
 			public void keyReleased(KeyEvent e)
@@ -468,6 +473,20 @@ public class GameController {
 				break;
 
 			case 5:
+				if (currentPlayer.isHoldingMule() && !currentPlayer.isInStore() && Mule.Type.ENERGY.equals(currentPlayer.getHoldingMule().getType()))
+				{
+					currentPlayer.deOutfitMule(Mule.Type.ENERGY);
+					currentPlayer.setInStore(true);
+				}
+				else if (currentPlayer.isHoldingMule() && !currentPlayer.isInStore())
+				{
+					currentPlayer.outfitMule(Mule.Type.ENERGY);
+				}
+				currentPlayer.setInStore(true);
+				break;
+
+			case 6:
+				
 				if (currentPlayer.isHoldingMule() && !currentPlayer.isInStore() && Mule.Type.FOOD.equals(currentPlayer.getHoldingMule().getType()))
 				{
 					currentPlayer.deOutfitMule(Mule.Type.FOOD);
@@ -478,19 +497,6 @@ public class GameController {
 					//System.out.println("OUTFITTING MULE");
 					currentPlayer.outfitMule(Mule.Type.FOOD);
 					//System.out.println("OUTFITTING COMPLETE");
-				}
-				currentPlayer.setInStore(true);
-				break;
-
-			case 6:
-				if (currentPlayer.isHoldingMule() && !currentPlayer.isInStore() && Mule.Type.ENERGY.equals(currentPlayer.getHoldingMule().getType()))
-				{
-					currentPlayer.deOutfitMule(Mule.Type.ENERGY);
-					currentPlayer.setInStore(true);
-				}
-				else if (currentPlayer.isHoldingMule() && !currentPlayer.isInStore())
-				{
-					currentPlayer.outfitMule(Mule.Type.ENERGY);
 				}
 				currentPlayer.setInStore(true);
 				break;
