@@ -445,11 +445,15 @@ public class GameController {
     	        	
     			case "mule store":
     				//check if the player is already holding a mule
-    				//check if the player has enough money
-    					//deduct the money from player
-    					//add the mule to the player's list of mules
-    					//set 'holding mule' to the mule object that was purchased
-    				currentPlayer.purchase(new Mule(currentPlayer));
+    				if( !currentPlayer.isHoldingMule() ) {
+    					//check if the player has enough money
+    					if (currentPlayer.getMoney()>=100){
+    						//deduct the money from player
+    						//add the mule to the player's list of mules
+        					//set 'holding mule' to the mule object that was purchased
+    						currentPlayer.purchase(new Mule(currentPlayer));
+    					}
+    				}    				
     				break;
     				
     			case "food store":
