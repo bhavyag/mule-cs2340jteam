@@ -93,6 +93,10 @@ public class BoardPanel extends JPanel {
 		{
 			s = "assay office";
 		}
+		else
+		{
+			s = "default";
+		}
 		return s;
 	}
 	

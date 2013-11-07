@@ -31,54 +31,54 @@ public class GameController {
 	private LimitTimer timer;
 	private int minimumFood;
 
-    /**
-     * METHOD begins the title sequence
-     */
+	/**
+	 * METHOD begins the title sequence
+	 */
 	private void startTitleSequence() {
 		titleView = new TitleFrame();
 		titleScreen();
 	}
 
-    /**
-     * METHOD displays the title screen
-     */
+	/**
+	 * METHOD displays the title screen
+	 */
 	private void titleScreen() {
 		titleView.showTitlePanel();
 
 		titleView.onClickStart(
-                new MouseAdapter() {
-                    @Override
-                    public void mouseClicked(MouseEvent e) {
-                        configureGame();
-                    }
-                }
-        );
+				new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						configureGame();
+					}
+				}
+				);
 	}
 
-    /**
-     * METHOD displays the configure game screen
-     */
+	/**
+	 * METHOD displays the configure game screen
+	 */
 	private void configureGame() {
 		titleView.showGameConfigPanel();
 
 		titleView.onGameConfigNext(
-                new MouseAdapter() {
-                    @Override
-                    public void mouseClicked(MouseEvent e) {
-                        difficulty = titleView.getGameConfigDifficulty();
-                        board = BoardFactory.constructBoard(titleView.getGameConfigMap());
-                        players = new PlayerQueue(titleView.getGameConfigNumPlayers(), 600 / difficulty);
-                        minimumFood=3;
-                        
-                        configurePlayers();
-                    }
-                }
-        );
+				new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						difficulty = titleView.getGameConfigDifficulty();
+						board = BoardFactory.constructBoard(titleView.getGameConfigMap());
+						players = new PlayerQueue(titleView.getGameConfigNumPlayers(), 600 / difficulty);
+						minimumFood=3;
+
+						configurePlayers();
+					}
+				}
+				);
 	}
 
-    /**
-     * METHOD displays the configure players screen
-     */
+	/**
+	 * METHOD displays the configure players screen
+	 */
 	private void configurePlayers() {
 		titleView.showPlayerConfigPanel();
 		titleView.configurePlayer(players.getCurrentPlayer().getPlayerNum());
@@ -103,384 +103,428 @@ public class GameController {
 				);
 	}
 
-    /**
-     * METHOD starts the actual gameplay
-     */
+	/**
+	 * METHOD starts the actual gameplay
+	 */
 	private void startGame() {
 		titleView.dispose();
 		gameView = new GameFrame(players.getNumPlayers());
 
-        configureTimer();
-        players.beginRotation();
-        landGrant();
+		configureTimer();
+		players.beginRotation();
+		landGrant();
 	}
 
-    /**
-     * METHODS adds a listener to the timer that will be active across all instances of the timer
-     */
-    private void configureTimer() {
-        LimitTimer.setDefaultListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                gameView.updateTimer(timer.getTimeRemaining());
-                gameView.updatePlayer(players.getCurrentPlayer().getPlayerNum());
-                updateStatus();
-            }
-        });
-    }
+	/**
+	 * METHODS adds a listener to the timer that will be active across all instances of the timer
+	 */
+	private void configureTimer() {
+		LimitTimer.setDefaultListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent actionEvent) {
+				gameView.updateTimer(timer.getTimeRemaining());
+				gameView.updatePlayer(players.getCurrentPlayer().getPlayerNum());
+				updateStatus();
+			}
+		});
+	}
 
-    /**
-     * METHOD displays the map based on the game configuration
-     */
+	/**
+	 * METHOD displays the map based on the game configuration
+	 */
 	private void displayMap() {
 		Tile[][] tiles = board.getMap();
 
 		for(int i = 0; i < tiles.length; i++) {
 			for(int j = 0; j < tiles[0].length; j++) {
 				gameView.updateTileImage(tiles[i][j].getImagePath(), i, j);
-                gameView.updateTileBorder(tiles[i][j].getBorderPath(), i, j);
+				gameView.updateTileBorder(tiles[i][j].getBorderPath(), i, j);
 			}
 		}
 	}
-    
-    /**
-     * METHOD begins the land grant portion of the game
-     */
-    private void landGrant() {
-        phase = "land grant";
-    	gameView.getBoardPanel().resetPlayerPos();
-    	players.resetPlayers();
-        
-        gameView.showTilePanel();
-        displayMap();
-        
-    	updateStatus();
-        gameView.onTileClick(
-            new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    System.out.println("old");
-                    Point tileIndex = gameView.getTileIndex(e.getPoint());
 
-                    if (players.getRound() < 2) {
-                        if (board.setOwner(players.getCurrentPlayer(), tileIndex)) {
-                            gameView.updateTileBorder(board.getTileBorderPath(tileIndex), (int) tileIndex.getX(), (int) tileIndex.getY());
+	/**
+	 * METHOD begins the land grant portion of the game
+	 */
+	private void landGrant() {
+		phase = "land grant";
+		gameView.getBoardPanel().resetPlayerPos();
+		players.resetPlayers();
 
-                            System.out.println(players.getCurrentPlayer());
+		gameView.showTilePanel();
+		displayMap();
 
-                            if (players.pass()) {
-                                timer.stop();
-                                System.out.println("entering townphase");
-                                townPhase();
-                            }
-                            else {
-                                timer.reset();
-                            }
-                        }
-                    } else {
-                        if (board.purchaseTile(players.getCurrentPlayer(), tileIndex)) {
-                            gameView.updateTileBorder(board.getTileBorderPath(tileIndex), (int) tileIndex.getX(), (int) tileIndex.getY());
+		updateStatus();
+		gameView.onTileClick(
+				new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						System.out.println("old");
+						Point tileIndex = gameView.getTileIndex(e.getPoint());
 
-                            System.out.println(players.getCurrentPlayer());
+						if (players.getRound() < 2) {
+							if (board.setOwner(players.getCurrentPlayer(), tileIndex)) {
+								gameView.updateTileBorder(board.getTileBorderPath(tileIndex), (int) tileIndex.getX(), (int) tileIndex.getY());
 
-                            if (players.pass()) {
-                                timer.stop();
-                                System.out.println("entering townphase");
-                                townPhase();
-                            }
-                            else {
-                                timer.reset();
-                            }
-                        }
-                    }
-                }
-            }
-        );
+								System.out.println(players.getCurrentPlayer());
 
-        timer = new LimitTimer(5, 1000, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
+								if (players.pass()) {
+									timer.stop();
+									System.out.println("entering townphase");
+									townPhase();
+								}
+								else {
+									timer.reset();
+								}
+							}
+						} else {
+							if (board.purchaseTile(players.getCurrentPlayer(), tileIndex)) {
+								gameView.updateTileBorder(board.getTileBorderPath(tileIndex), (int) tileIndex.getX(), (int) tileIndex.getY());
 
-                if (timer.isOutOfTime()) {
-                    if (players.pass()) {
-                        timer.stop();
-                        System.out.println("entering townphase");
-                        townPhase();
-                    } else {
-                        timer.reset();
-                    }
-                }
-            }
-        });
-        timer.start();
-    }
+								System.out.println(players.getCurrentPlayer());
 
-    /**
-     * METHOD begins the town and map phase of the game
-     */
-    private void townPhase() {
-    	
-        phase = "town";
-        
+								if (players.pass()) {
+									timer.stop();
+									System.out.println("entering townphase");
+									townPhase();
+								}
+								else {
+									timer.reset();
+								}
+							}
+						}
+					}
+				}
+				);
 
-        int currentPlayerFood = players.getCurrentPlayer().getFood();
-        int turnLength = 50;
-        if (currentPlayerFood > 0 && currentPlayerFood < minimumFood){
-        	turnLength = 30;
-        } else if (currentPlayerFood==0){
-        	turnLength = 5;
-        }
-        
-        timer = new LimitTimer(turnLength, 1000, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                if (timer.isOutOfTime()) {
-                    players.next();
+		timer = new LimitTimer(5, 1000, new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent actionEvent) {
 
-                    if (players.isNewRound()) {
-                        timer.stop();
-                        //nextPhase();
-                        landGrant();
-                    } else {
-                        timer.reset();
-                    }
-                }
-            }
-        });
+				if (timer.isOutOfTime()) {
+					if (players.pass()) {
+						timer.stop();
+						System.out.println("entering townphase");
+						townPhase();
+					} else {
+						timer.reset();
+					}
+				}
+			}
+		});
+		timer.start();
+	}
 
-        timer.start();
-        
-    	Timer updateTimer = new Timer(10, new ActionListener() 
-    	{
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                updateStatus();
-            }
-        });
-    	
-    	updateTimer.start();
-    	
-        System.out.println("starting town phase");
-        
-        gameView.showTownCenterPanel();
-        players.beginRotation();
-        
-        gameView.onKeyMove( new KeyListener() 
-        	{
-        		public void keyPressed(KeyEvent e)
-        		{
-        			Player currentPlayer = players.getCurrentPlayer();
-        			int key = e.getKeyCode();
-        			if(key == KeyEvent.VK_W)
-        			{
-        				currentPlayer.moveUp();
-        				//System.out.println("UP");
-        			}
-        			if(key == KeyEvent.VK_A)
-        			{
-        				currentPlayer.moveLeft();
-        				//System.out.println("LEFT");
-        			}
-        			if(key == KeyEvent.VK_S)
-        			{
-        				currentPlayer.moveDown();
-        				//System.out.println("DOWN");
-        			}
-        			if(key == KeyEvent.VK_D)
-        			{
-        				currentPlayer.moveRight();
-        				//System.out.println("RIGHT");
-        			}
-        		}
-        		
-        		public void keyReleased(KeyEvent e)
-        		{
-        			
-        		}
-        		
-        		public void keyTyped(KeyEvent e)
-        		{
-        			
-        		}
-        	}
-        );
+	/**
+	 * METHOD begins the town and map phase of the game
+	 */
+	private void townPhase() {
 
-       
-    }
+		phase = "town";
 
-    /**
-     * METHOD that controls how the next phase will be executed (not currently being used)
-     */
-    private void nextPhase() {
-        System.out.println("town phase over");
-        gameView.dispose();
-    }
-    
-    /**
-     * METHOD for updating two main components: the JLabels of the Status Panel for each player
-     * and the location of the sprite for the current player. Also calls method for collision
-     * checking as player's location is updated.
-     */
-    public void updateStatus()
-    {	
-    	ArrayList<Player> playerArray = players.getPlayers();
-    	//System.out.println("Num of players: " + players.getNumPlayers());
-    	String[][] playerInfo = new String[4][8];
-    	
-    	
-    	for(int i=0; i < players.getNumPlayers(); i++)
-    	{
-    		 Player player = playerArray.get(i);
-    		 String playerName = player.getPlayerName(),
-    				playerColor = player.getColor().toString(),
-    				playerRace = player.getRace().toString(),
-    				playerMoney = player.getMoney() + "",
-    				playerEnergy = player.getEnergy() + "",
-    				playerSmithore = player.getSmithore() + "",
-    				playerFood = player.getFood() + "",
-    				playerCrystite = player.getCrystite() + "";
-    		
-    				playerInfo[i][0] = playerName;
-    				playerInfo[i][1] = playerColor;
-    				playerInfo[i][2] = playerRace;
-    				playerInfo[i][3] = playerMoney;
-    				playerInfo[i][4] = playerEnergy;
-    				playerInfo[i][5] = playerSmithore;
-    				playerInfo[i][6] = playerFood;
-    				playerInfo[i][7] = playerCrystite;
-    				
-    				/*System.out.println(playerName);
+
+		int currentPlayerFood = players.getCurrentPlayer().getFood();
+		int turnLength = 50;
+		if (currentPlayerFood > 0 && currentPlayerFood < minimumFood){
+			turnLength = 30;
+		} else if (currentPlayerFood==0){
+			turnLength = 5;
+		}
+
+		timer = new LimitTimer(turnLength, 1000, new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent actionEvent) {
+				if (timer.isOutOfTime()) {
+					players.next();
+
+					if (players.isNewRound()) {
+						timer.stop();
+						//nextPhase();
+						landGrant();
+					} else {
+						timer.reset();
+					}
+				}
+			}
+		});
+
+		timer.start();
+
+		Timer updateTimer = new Timer(10, new ActionListener() 
+		{
+			@Override
+			public void actionPerformed(ActionEvent actionEvent) {
+				updateStatus();
+			}
+		});
+
+		updateTimer.start();
+
+		System.out.println("starting town phase");
+
+		gameView.showTownCenterPanel();
+		players.beginRotation();
+
+		gameView.onKeyMove( new KeyListener() 
+		{
+			public void keyPressed(KeyEvent e)
+			{
+				Player currentPlayer = players.getCurrentPlayer();
+				int key = e.getKeyCode();
+				if(key == KeyEvent.VK_W)
+				{
+					currentPlayer.moveUp();
+					//System.out.println("UP");
+				}
+				if(key == KeyEvent.VK_A)
+				{
+					currentPlayer.moveLeft();
+					//System.out.println("LEFT");
+				}
+				if(key == KeyEvent.VK_S)
+				{
+					currentPlayer.moveDown();
+					//System.out.println("DOWN");
+				}
+				if(key == KeyEvent.VK_D)
+				{
+					currentPlayer.moveRight();
+					//System.out.println("RIGHT");
+				}
+			}
+
+			public void keyReleased(KeyEvent e)
+			{
+
+			}
+
+			public void keyTyped(KeyEvent e)
+			{
+
+			}
+		}
+				);
+
+
+	}
+
+	/**
+	 * METHOD that controls how the next phase will be executed (not currently being used)
+	 */
+	private void nextPhase() {
+		System.out.println("town phase over");
+		gameView.dispose();
+	}
+
+	/**
+	 * METHOD for updating two main components: the JLabels of the Status Panel for each player
+	 * and the location of the sprite for the current player. Also calls method for collision
+	 * checking as player's location is updated.
+	 */
+	public void updateStatus()
+	{	
+		ArrayList<Player> playerArray = players.getPlayers();
+		//System.out.println("Num of players: " + players.getNumPlayers());
+		String[][] playerInfo = new String[4][8];
+
+
+		for(int i=0; i < players.getNumPlayers(); i++)
+		{
+			Player player = playerArray.get(i);
+			String playerName = player.getPlayerName(),
+					playerColor = player.getColor().toString(),
+					playerRace = player.getRace().toString(),
+					playerMoney = player.getMoney() + "",
+					playerEnergy = player.getEnergy() + "",
+					playerSmithore = player.getSmithore() + "",
+					playerFood = player.getFood() + "",
+					playerCrystite = player.getCrystite() + "";
+
+			playerInfo[i][0] = playerName;
+			playerInfo[i][1] = playerColor;
+			playerInfo[i][2] = playerRace;
+			playerInfo[i][3] = playerMoney;
+			playerInfo[i][4] = playerEnergy;
+			playerInfo[i][5] = playerSmithore;
+			playerInfo[i][6] = playerFood;
+			playerInfo[i][7] = playerCrystite;
+
+			/*System.out.println(playerName);
     				System.out.println(playerColor);
     				System.out.println(playerMoney);
     				System.out.println(playerEnergy);
     				System.out.println(playerSmithore);
     				System.out.println(playerFood);
     				System.out.println(playerCrystite);*/
-    		
-    	    //pass this array into a method in StatusPanel that takes the info and uses it to update the status panel.    		
-    	}
 
-        if(phase == "town")
-        {
+			//pass this array into a method in StatusPanel that takes the info and uses it to update the status panel.    		
+		}
 
-	    	Player currentPlayer = players.getCurrentPlayer();
-	    	currentPlayer.updateScore();
-	    	URL playerImage = currentPlayer.getColor().getPlayerImagePath();
-	    	int x = (int)currentPlayer.getPlayerPos().getX();
-	    	int y = (int)currentPlayer.getPlayerPos().getY();
-	
-	    	//check which board the player is on
-	    	if(gameView.getBoardPanel().isInTownCenter())
-	    	{
-	    		gameView.getBoardPanel().getTilePanel().drawPlayer(391, 103, playerImage);
-	    		gameView.getBoardPanel().getTownCenterPanel().drawPlayer(x, y, playerImage);
-	    	}
-	    	else
-	    	{
-	    		gameView.getBoardPanel().getTownCenterPanel().drawPlayer(391, 180, playerImage);
-	    		gameView.getBoardPanel().getTilePanel().drawPlayer(x, y, playerImage);
-	    	}
-	    	
+		if(phase == "town")
+		{
+
+			Player currentPlayer = players.getCurrentPlayer();
+			currentPlayer.updateScore();
+			URL playerImage = currentPlayer.getColor().getPlayerImagePath();
+			int x = (int)currentPlayer.getPlayerPos().getX();
+			int y = (int)currentPlayer.getPlayerPos().getY();
+
+			//check which board the player is on
+			if(gameView.getBoardPanel().isInTownCenter())
+			{
+				gameView.getBoardPanel().getTilePanel().drawPlayer(391, 103, playerImage);
+				gameView.getBoardPanel().getTownCenterPanel().drawPlayer(x, y, playerImage);
+			}
+			else
+			{
+				gameView.getBoardPanel().getTownCenterPanel().drawPlayer(391, 180, playerImage);
+				gameView.getBoardPanel().getTilePanel().drawPlayer(x, y, playerImage);
+			}
+
 			collisionReact();
-        }
-        
-        //Update minimum food for turn length calculations
-        if (players.getRound()>4 && players.getRound()<9){
-        	minimumFood=4;
-        } else if (players.getRound()>8){
-        	minimumFood=5;
-        }
-    	
+		}
+
+		//Update minimum food for turn length calculations
+		if (players.getRound()>4 && players.getRound()<9){
+			minimumFood=4;
+		} else if (players.getRound()>8){
+			minimumFood=5;
+		}
+
 		this.gameView.getStatusPanel().updateStatusPanel(playerInfo);
-    }
-    
-    /**
-     * METHOD that checks for collisions between the player and other stuff and appropriately
-     * handles game logic (ex: colliding into pub ends the turn)
-     */
-    public void collisionReact()
-    {
-    	if(phase == "town")
-    	{
-    		String collidedWith = gameView.getBoardPanel().checkCollisions();
-    		Player currentPlayer = players.getCurrentPlayer();
-    		switch(collidedWith)
-    		{
-    			case "pub":
-    				Random rand = new Random();
-	    			
-	    			int timeLeft = timer.getTimeRemaining();
-	    			int moneyFromPub = 1+rand.nextInt(timeLeft);
-	    			System.out.println(moneyFromPub);
-	    			currentPlayer.addMoney(moneyFromPub);
-	    			
-		    		System.out.println("YOU HAVE GAMBLED YOUR TIME AWAY IN THE PUB, GOOD JOB");
-		    		//players.next();
-		    		
-		    		if (players.pass()) {
-		                timer.stop();
-		                System.out.println("entering land grant");
-		                phase = "land grant";
-		                landGrant();
-		            }
-		            else {
-		                timer.reset();
-		            }
-		    		break;
-		    		
-    			case "west exit":
-    				gameView.showTilePanel();
-    	        	currentPlayer.setPlayerPos(new Point(319,175));
-    	        	break;
-    	        	
-    			case "east exit":
-    				gameView.showTilePanel();
-    	        	currentPlayer.setPlayerPos(new Point(463,175));
-    	        	break;
-    	        	
-    			case "town tile":
-    				gameView.showTownCenterPanel();
-    	        	currentPlayer.setPlayerPos(new Point(391,175));
-    	        	break;
-    	        	
-    			case "mule store":
-    				//check if the player is already holding a mule
-    				if( !currentPlayer.isHoldingMule() ) {
-    					//check if the player has enough money
-    					if (currentPlayer.getMoney()>=100){
-    						//deduct the money from player
-    						//add the mule to the player's list of mules
-        					//set 'holding mule' to the mule object that was purchased
-    						currentPlayer.purchase(new Mule(currentPlayer));
-    					}
-    				}    				
-    				break;
-    				
-    			case "food store":
-    				currentPlayer.outfitMule(Mule.Type.FOOD);
-    				break;
-    				
-    			case "energy store":
-    				currentPlayer.outfitMule(Mule.Type.ENERGY);
-    				break;
-    				
-    			case "smithore store":
-    				currentPlayer.outfitMule(Mule.Type.SMITHORE);
-    				break;
-    				
-    			case "crystite store":
-    				currentPlayer.outfitMule(Mule.Type.CRYSTITE);
-    				break;
-    				
-    			case "land store":
-    				break;
-    				
-    			case "assay office":
-    				break;
-    		}
-    	} 	
-    }
-  
+	}
+
+	/**
+	 * METHOD that checks for collisions between the player and other stuff and appropriately
+	 * handles game logic (ex: colliding into pub ends the turn)
+	 */
+	public void collisionReact()
+	{
+		if(phase == "town")
+		{
+			String collidedWith = gameView.getBoardPanel().checkCollisions();
+			Player currentPlayer = players.getCurrentPlayer();
+			switch(collidedWith)
+			{
+			case "pub":
+				Random rand = new Random();
+
+				int timeLeft = timer.getTimeRemaining();
+				int moneyFromPub = 1+rand.nextInt(timeLeft);
+				System.out.println(moneyFromPub);
+				currentPlayer.addMoney(moneyFromPub);
+
+				System.out.println("YOU HAVE GAMBLED YOUR TIME AWAY IN THE PUB, GOOD JOB");
+				//players.next();
+
+				if (players.pass()) {
+					timer.stop();
+					System.out.println("entering land grant");
+					phase = "land grant";
+					landGrant();
+				}
+				else {
+					timer.reset();
+				}
+				break;
+
+			case "west exit":
+				gameView.showTilePanel();
+				currentPlayer.setPlayerPos(new Point(319,175));
+				break;
+
+			case "east exit":
+				gameView.showTilePanel();
+				currentPlayer.setPlayerPos(new Point(463,175));
+				break;
+
+			case "town tile":
+				gameView.showTownCenterPanel();
+				currentPlayer.setPlayerPos(new Point(391,175));
+				break;
+
+			case "mule store":
+				//check if the player is already holding a mule
+				//check if the player has enough money
+				//deduct the money from player
+				//add the mule to the player's list of mules
+				//set 'holding mule' to the mule object that was purchased
+				if (currentPlayer.isHoldingMule() && !currentPlayer.isInStore() && currentPlayer.getHoldingMule().getType() == null)
+				{
+					currentPlayer.sellHoldingMule();
+				}
+				else if (!currentPlayer.isHoldingMule() && !currentPlayer.isInStore())
+				{
+					currentPlayer.purchase(new Mule(currentPlayer));
+				}
+				currentPlayer.setInStore(true);
+				break;
+
+			case "food store":				
+				if (currentPlayer.isHoldingMule() && !currentPlayer.isInStore() && Mule.Type.FOOD.equals(currentPlayer.getHoldingMule().getType()))
+				{
+					currentPlayer.deOutfitMule(Mule.Type.FOOD);
+					currentPlayer.setInStore(true);
+				}
+				else if (currentPlayer.isHoldingMule() && !currentPlayer.isInStore())
+				{
+					//System.out.println("OUTFITTING MULE");
+					currentPlayer.outfitMule(Mule.Type.FOOD);
+					//System.out.println("OUTFITTING COMPLETE");
+				}
+				currentPlayer.setInStore(true);
+				break;
+
+			case "energy store":
+				if (currentPlayer.isHoldingMule() && !currentPlayer.isInStore() && Mule.Type.ENERGY.equals(currentPlayer.getHoldingMule().getType()))
+				{
+					currentPlayer.deOutfitMule(Mule.Type.ENERGY);
+					currentPlayer.setInStore(true);
+				}
+				else if (currentPlayer.isHoldingMule() && !currentPlayer.isInStore())
+				{
+					currentPlayer.outfitMule(Mule.Type.ENERGY);
+				}
+				currentPlayer.setInStore(true);
+				break;
+
+			case "smithore store":
+				if (currentPlayer.isHoldingMule() && !currentPlayer.isInStore() && Mule.Type.SMITHORE.equals(currentPlayer.getHoldingMule().getType()))
+				{
+					currentPlayer.deOutfitMule(Mule.Type.SMITHORE);
+					currentPlayer.setInStore(true);
+				}
+				else if (currentPlayer.isHoldingMule() && !currentPlayer.isInStore())
+				{
+					currentPlayer.outfitMule(Mule.Type.SMITHORE);
+				}
+				currentPlayer.setInStore(true);
+				break;
+
+			case "crystite store":
+				if (currentPlayer.isHoldingMule() && !currentPlayer.isInStore() && Mule.Type.CRYSTITE.equals(currentPlayer.getHoldingMule().getType()))
+				{
+					currentPlayer.deOutfitMule(Mule.Type.CRYSTITE);
+					currentPlayer.setInStore(true);
+				}
+				else if (currentPlayer.isHoldingMule() && !currentPlayer.isInStore())
+				{
+					currentPlayer.outfitMule(Mule.Type.CRYSTITE);
+				}
+				currentPlayer.setInStore(true);
+				break;
+
+			case "land store":
+				break;
+
+			case "assay office":
+				break;
+			case "default":
+				currentPlayer.setInStore(false);
+			}
+		} 	
+	}
+
 	/**
 	 * Launch the application.
 	 */
