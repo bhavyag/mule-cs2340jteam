@@ -76,6 +76,7 @@ public class Player {
 	private int score;
 	private ArrayList<Mule> mules;
 	private Mule holdingMule;
+	private boolean inStore;
 
 	private Point playerPos;
 
@@ -96,58 +97,37 @@ public class Player {
 		this.mules = new ArrayList<>();
 		this.holdingMule = null;
 		this.score = startingMoney; //should use proper formula based on starting goods
+		this.inStore = false;
+	}
+	
+	public Mule getHoldingMule()
+	{
+		return holdingMule;
 	}
 
-	/**
-	 * METHOD to outfit a basic purchased mule with a specific type
-	 * @param type is the type of mule being outfitted to the player
-	 * @return true if mule is outfitted successfully, false if player is not holding a mule 
-	 */
+	public void setInStore(boolean inStore)
+	{
+		this.inStore = inStore;
+	}
+
+	public boolean isInStore()
+	{
+		return inStore;
+	}
+
+	public boolean isHoldingMule()
+	{
+		return holdingMule != null;
+	}
+
 	public boolean outfitMule (Mule.Type type)
-	//TODO: This should probably be implemented as purchasable somehow!!
 	{
 		if (holdingMule != null)
 		{
-			if(holdingMule.getType()==Mule.Type.NONE){ //MULE can only be outfitted once; this can be changed if desired
-				if(type==Mule.Type.FOOD){
-					if (money>=25){
-						holdingMule.setType(type);
-						money-=25;
-					} else{
-						System.out.println("Not enough money!");
-						return false;
-					}
-				} else if(type==Mule.Type.ENERGY){
-					if (money>=50){
-						holdingMule.setType(type);
-						money-=50;
-					} else{
-						System.out.println("Not enough money!");
-						return false;
-					}
-				} else if(type==Mule.Type.SMITHORE){
-					if (money>=75){
-						holdingMule.setType(type);
-						money-=75;
-					}else{
-						System.out.println("Not enough money!");
-						return false;
-					}
-				} else if(type==Mule.Type.CRYSTITE){
-					if (money>=100){
-						holdingMule.setType(type);
-						money-=100;
-					}else{
-						System.out.println("Not enough money!");
-						return false;
-					}
-				}
-				System.out.println("MULE successfully outfitted!");
-				return true;
-			} else {
-				//System.out.println("MULE has already been outfitted");
-				return false;
-			}
+			holdingMule.setType(type);
+			money -= type.getCost();
+			System.out.println("Mule outfitted!");
+			return true; 
 		}
 		else
 		{
@@ -155,12 +135,23 @@ public class Player {
 			return false;
 		}
 	}
+	
+	public boolean deOutfitMule (Mule.Type type)
+	{
+		if (holdingMule != null)
+		{
+			money += (int) (.8 * type.getCost());
+			holdingMule.setType(null);
+			System.out.println("Mule de-outfitted!");
+			return true;
+		}		
+		else
+		{
+			System.out.println("Player is not currently holding a mule!");
+			return false;
+		}
+	}
 
-	/**
-	 * METHOD to place a mule on a specific tile and add mule to the player's
-	 * collection of mules
-	 * @return true if mule is successfully placed and added, false otherwise
-	 */
 	public boolean placeMule()
 	{
 		if (holdingMule != null)
@@ -172,15 +163,6 @@ public class Player {
 		else
 		{
 			System.out.println("Player is not currently holding a mule!");
-			return false;
-		}
-	}
-	
-	public boolean isHoldingMule()
-	{
-		if (holdingMule!=null){
-			return true;
-		} else {
 			return false;
 		}
 	}
@@ -328,10 +310,9 @@ public class Player {
 	}
 
 	/**
-	 * METHOD Purchases an item and handles the money exchange
+	 * Purchases an item and handles the money exchange
 	 *
 	 * @param item the item to be purchased
-	 * @return true if exchange is successful, false otherwise
 	 */
 	public boolean purchase(Purchasable item) {
 		if (item.getPrice() <= money) {
@@ -340,25 +321,41 @@ public class Player {
 				if (holdingMule == null)
 				{
 					money -= item.getPrice();
-					holdingMule = (Mule) item;
-					System.out.println("Mule purchased");
+					holdingMule = new Mule(((Mule) item).getOwner());
+					System.out.println("Player purchased a mule!");
 					return true;
 				}
 				else
 				{
-					System.out.println("Player has already purchased a mule!");
+					//System.out.println("Player has already purchased a mule!");
 					return false;
 				}
 			}
 
 			money -= item.getPrice();
-			return true;
 
 		} else {
 			System.out.println("Not enough money");
 			return false;
 		}
+		return false;
+	}
 
+
+	public boolean sellHoldingMule()
+	{
+		if (holdingMule != null)
+		{
+			money += 80; //holdingMule.getPrice();
+			holdingMule = null;
+			System.out.println("Holding mule sold!");
+			return true;
+		}
+		else
+		{
+			System.out.println("Can't sell mule!");
+			return false;
+		}
 	}
 
 	/**
@@ -368,7 +365,7 @@ public class Player {
 	{
 		int x = (int)this.playerPos.getX();
 		int y = (int)this.playerPos.getY();
-		this.playerPos.setLocation(x, y-2);
+		this.playerPos.setLocation(x, y-5);
 	}
 
 	/**
@@ -378,7 +375,7 @@ public class Player {
 	{
 		int x = (int)this.playerPos.getX();
 		int y = (int)this.playerPos.getY();
-		this.playerPos.setLocation(x-2, y);
+		this.playerPos.setLocation(x-5, y);
 	}
 
 	/**
@@ -388,7 +385,7 @@ public class Player {
 	{
 		int x = (int)this.playerPos.getX();
 		int y = (int)this.playerPos.getY();
-		this.playerPos.setLocation(x, y+2);
+		this.playerPos.setLocation(x, y+5);
 	}
 
 	/**
@@ -398,7 +395,7 @@ public class Player {
 	{
 		int x = (int)this.playerPos.getX();
 		int y = (int)this.playerPos.getY();
-		this.playerPos.setLocation(x+2, y);
+		this.playerPos.setLocation(x+5, y);
 	}
 
 	/**
