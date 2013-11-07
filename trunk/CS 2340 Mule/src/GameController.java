@@ -276,17 +276,17 @@ public class GameController {
 					currentPlayer.moveUp();
 					//System.out.println("UP");
 				}
-				if(key == KeyEvent.VK_A)
+				else if(key == KeyEvent.VK_A)
 				{
 					currentPlayer.moveLeft();
 					//System.out.println("LEFT");
 				}
-				if(key == KeyEvent.VK_S)
+				else if(key == KeyEvent.VK_S)
 				{
 					currentPlayer.moveDown();
 					//System.out.println("DOWN");
 				}
-				if(key == KeyEvent.VK_D)
+				else if(key == KeyEvent.VK_D)
 				{
 					currentPlayer.moveRight();
 					//System.out.println("RIGHT");
@@ -402,11 +402,15 @@ public class GameController {
 	{
 		if(phase == "town")
 		{
-			String collidedWith = gameView.getBoardPanel().checkCollisions();
+			int collidedWith = gameView.getBoardPanel().checkCollisions();
 			Player currentPlayer = players.getCurrentPlayer();
+
+            // Don't switch on strings!! Java 6 backwards compatibility blah blah blah
+            // Also switches are gross unless in a factory
+            // asdfjkl;asdfjka;sdfjkasdfj;askljf
 			switch(collidedWith)
 			{
-			case "pub":
+			case 0:
 				Random rand = new Random();
 
 				int timeLeft = timer.getTimeRemaining();
@@ -428,22 +432,22 @@ public class GameController {
 				}
 				break;
 
-			case "west exit":
+			case 1:
 				gameView.showTilePanel();
 				currentPlayer.setPlayerPos(new Point(319,175));
 				break;
 
-			case "east exit":
+			case 2:
 				gameView.showTilePanel();
 				currentPlayer.setPlayerPos(new Point(463,175));
 				break;
 
-			case "town tile":
+            case 3:
 				gameView.showTownCenterPanel();
 				currentPlayer.setPlayerPos(new Point(391,175));
 				break;
 
-			case "mule store":
+			case 4:
 				//check if the player is already holding a mule
 				//check if the player has enough money
 				//deduct the money from player
@@ -460,7 +464,7 @@ public class GameController {
 				currentPlayer.setInStore(true);
 				break;
 
-			case "food store":				
+			case 5:
 				if (currentPlayer.isHoldingMule() && !currentPlayer.isInStore() && Mule.Type.FOOD.equals(currentPlayer.getHoldingMule().getType()))
 				{
 					currentPlayer.deOutfitMule(Mule.Type.FOOD);
@@ -475,7 +479,7 @@ public class GameController {
 				currentPlayer.setInStore(true);
 				break;
 
-			case "energy store":
+			case 6:
 				if (currentPlayer.isHoldingMule() && !currentPlayer.isInStore() && Mule.Type.ENERGY.equals(currentPlayer.getHoldingMule().getType()))
 				{
 					currentPlayer.deOutfitMule(Mule.Type.ENERGY);
@@ -488,7 +492,7 @@ public class GameController {
 				currentPlayer.setInStore(true);
 				break;
 
-			case "smithore store":
+			case 7:
 				if (currentPlayer.isHoldingMule() && !currentPlayer.isInStore() && Mule.Type.SMITHORE.equals(currentPlayer.getHoldingMule().getType()))
 				{
 					currentPlayer.deOutfitMule(Mule.Type.SMITHORE);
@@ -501,7 +505,7 @@ public class GameController {
 				currentPlayer.setInStore(true);
 				break;
 
-			case "crystite store":
+			case 8:
 				if (currentPlayer.isHoldingMule() && !currentPlayer.isInStore() && Mule.Type.CRYSTITE.equals(currentPlayer.getHoldingMule().getType()))
 				{
 					currentPlayer.deOutfitMule(Mule.Type.CRYSTITE);
@@ -514,12 +518,12 @@ public class GameController {
 				currentPlayer.setInStore(true);
 				break;
 
-			case "land store":
+			case 9:
 				break;
 
-			case "assay office":
+			case 10:
 				break;
-			case "default":
+			case 11:
 				currentPlayer.setInStore(false);
 			}
 		} 	

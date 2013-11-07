@@ -45,59 +45,60 @@ public class BoardPanel extends JPanel {
         this.add(tilePanel, TILES);
 	}
 	
-	public String checkCollisions()
+	public int checkCollisions()
 	{
-		String s ="";
+		int collisionCode;
 		
 		if(this.intersects(this.townCenterPanel.playerLabel, this.townCenterPanel.pubLabel))
 		{
-			s = "pub";
+			collisionCode = 0;
 		}
 		else if(this.intersects(this.townCenterPanel.playerLabel, this.townCenterPanel.westExitLabel))
 		{
-			s = "west exit";
+            collisionCode = 1;
 		}
 		else if(this.intersects(this.townCenterPanel.playerLabel, this.townCenterPanel.eastExitLabel))
 		{
-			s = "east exit";
+            collisionCode = 2;
 		}
 		else if(this.intersects(this.tilePanel.playerLabel, this.tilePanel.town))
 		{
-			s = "town tile";
+            collisionCode = 3;
 		}
 		else if(this.intersects(this.townCenterPanel.playerLabel, this.townCenterPanel.muleStoreLabel))
 		{
-			s = "mule store";
+            collisionCode = 4;
 		}
 		else if(this.intersects(this.townCenterPanel.playerLabel, this.townCenterPanel.energyStoreLabel))
 		{
-			s = "energy store";
+            collisionCode = 5;
 		}
 		else if(this.intersects(this.townCenterPanel.playerLabel, this.townCenterPanel.foodStoreLabel))
 		{
-			s = "food store";
+            collisionCode = 6;
 		}
 		else if(this.intersects(this.townCenterPanel.playerLabel, this.townCenterPanel.smithoreStoreLabel))
 		{
-			s = "smithore store";
+            collisionCode = 7;
 		}
 		else if(this.intersects(this.townCenterPanel.playerLabel, this.townCenterPanel.crystiteStoreLabel))
 		{
-			s = "crystite store";
+            collisionCode = 8;
 		}
 		else if(this.intersects(this.townCenterPanel.playerLabel, this.townCenterPanel.landStoreLabel))
 		{
-			s = "land store";
+            collisionCode = 9;
 		}
 		else if(this.intersects(this.townCenterPanel.playerLabel, this.townCenterPanel.assayOfficeLabel))
 		{
-			s = "assay office";
+            collisionCode = 10;
 		}
 		else
 		{
-			s = "default";
+            collisionCode = 11;
 		}
-		return s;
+
+		return collisionCode;
 	}
 	
 	public void resetPlayerPos()
