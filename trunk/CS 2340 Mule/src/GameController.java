@@ -366,7 +366,7 @@ public class GameController {
 
 			Player currentPlayer = players.getCurrentPlayer();
 			currentPlayer.updateScore();
-			URL playerImage = currentPlayer.getColor().getPlayerImagePath();
+			URL playerImage = currentPlayer.getImagePath();
 			int x = (int)currentPlayer.getPlayerPos().getX();
 			int y = (int)currentPlayer.getPlayerPos().getY();
 

@@ -13,20 +13,49 @@ public class Player {
 	 * ENUM for player color
 	 */
 	public static enum Color {
-		RED("red", Player.class.getResource("/sprites/tiles/Border-Red.png"), Player.class.getResource("/sprites/players/PlayerRed.png")),
-		YELLOW("yellow", Player.class.getResource("/sprites/tiles/Border-Yellow.png"),Player.class.getResource("/sprites/players/PlayerYellow.png") ),
-		GREEN("green", Player.class.getResource("/sprites/tiles/Border-Green.png"), Player.class.getResource("/sprites/players/PlayerGreen.png")),
-		PURPLE("purple", Player.class.getResource("/sprites/tiles/Border-Purple.png"), Player.class.getResource("/sprites/players/PlayerPurple.png") );
+		RED(
+                "red",
+                Player.class.getResource("/sprites/tiles/Border-Red.png"),
+                Player.class.getResource("/sprites/players/PlayerRed.png"),
+                Player.class.getResource("/sprites/mule/player-with-mule-RED.png"),
+                Player.class.getResource("/sprites/mule/player-with-mule-RED-FLIPPED.png")
+        ),
+		YELLOW(
+                "yellow",
+                Player.class.getResource("/sprites/tiles/Border-Yellow.png"),
+                Player.class.getResource("/sprites/players/PlayerYellow.png"),
+                Player.class.getResource("/sprites/mule/player-with-mule-YELLOW.png"),
+                Player.class.getResource("/sprites/mule/player-with-mule-YELLOW-FLIPPED.png")
+
+        ),
+		GREEN(
+                "green",
+                Player.class.getResource("/sprites/tiles/Border-Green.png"),
+                Player.class.getResource("/sprites/players/PlayerGreen.png"),
+                Player.class.getResource("/sprites/mule/player-with-mule-GREEN.png"),
+                Player.class.getResource("/sprites/mule/player-with-mule-GREEN-FLIPPED.png")
+
+        ),
+		PURPLE(
+                "purple",
+                Player.class.getResource("/sprites/tiles/Border-Purple.png"),
+                Player.class.getResource("/sprites/players/PlayerPurple.png"),
+                Player.class.getResource("/sprites/mule/player-with-mule-PURPLE.png"),
+                Player.class.getResource("/sprites/mule/player-with-mule-PURPLE-FLIPPED.png")
+        );
 
 		private String name;
 		private URL borderImagePath;
 		private URL playerImagePath;
         private URL muleImagePath;
+        private URL flippedMuleImagePath;
 
-		Color(String name, URL borderImagePath, URL playerImagePath) {
+		Color(String name, URL borderImagePath, URL playerImagePath, URL muleImagePath, URL flippedMuleImagePath) {
 			this.name = name;
 			this.borderImagePath = borderImagePath;
 			this.playerImagePath = playerImagePath;
+            this.muleImagePath = muleImagePath;
+            this.flippedMuleImagePath = flippedMuleImagePath;
 		}
 
 		public String toString() {
@@ -40,6 +69,14 @@ public class Player {
 		public URL getPlayerImagePath() {
 			return playerImagePath;
 		}
+
+        public URL getMuleImagePath() {
+            return muleImagePath;
+        }
+
+        public URL getFlippedMuleImagePath() {
+            return flippedMuleImagePath;
+        }
 	}
 
 	/**
@@ -78,7 +115,7 @@ public class Player {
 	private ArrayList<Mule> mules;
 	private Mule holdingMule;
 	private boolean inStore;
-
+    private boolean facingRight;
 	private Point playerPos;
 
 	/**
@@ -99,6 +136,7 @@ public class Player {
 		this.holdingMule = null;
 		this.score = startingMoney; //should use proper formula based on starting goods
 		this.inStore = false;
+        this.facingRight = true;
 	}
 	
 	public Mule getHoldingMule()
@@ -167,6 +205,10 @@ public class Player {
 			return false;
 		}
 	}
+
+    public URL getImagePath() {
+        return this.holdingMule == null ? this.color.getPlayerImagePath() : this.facingRight ? this.color.getFlippedMuleImagePath() : this.color.getMuleImagePath();
+    }
 
 	/**
 	 * METHOD to get this player's position on the board
@@ -374,6 +416,7 @@ public class Player {
 	 */
 	public void moveLeft()
 	{
+        this.facingRight = false;
 		int x = (int)this.playerPos.getX();
 		int y = (int)this.playerPos.getY();
 		this.playerPos.setLocation(x-5, y);
@@ -394,6 +437,7 @@ public class Player {
 	 */
 	public void moveRight()
 	{
+        this.facingRight = true;
 		int x = (int)this.playerPos.getX();
 		int y = (int)this.playerPos.getY();
 		this.playerPos.setLocation(x+5, y);

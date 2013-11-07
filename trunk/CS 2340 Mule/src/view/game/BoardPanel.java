@@ -118,7 +118,7 @@ public class BoardPanel extends JPanel {
 	    Area areaA = new Area(labelA.getBounds());
 	    Area areaB = new Area(labelB.getBounds());
 
-	    return areaA.intersects(areaB.getBounds2D());
+	    return areaA.intersects(areaB.getBounds2D()) && labelA.isShowing() && labelB.isShowing();
 	}
 	/**
 	 * METHOD that gets this BoardPanel's TilePanel
@@ -132,7 +132,8 @@ public class BoardPanel extends JPanel {
 	 * METHOD that tells this BoardPanel to display the TilePanel
 	 */
 	protected void showTilePanel() {
-		cardLayout.show(this, TILES);
+        System.out.println("SHOW TILE PANEL");
+        cardLayout.show(this, TILES);
 		this.inTownCenter = false;
 	}
 	
