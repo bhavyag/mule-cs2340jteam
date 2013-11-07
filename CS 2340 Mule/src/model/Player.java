@@ -94,7 +94,7 @@ public class Player {
 		this.smithore = 0;
 		this.energy = 2;
 		this.crystite = 0;
-		this.mules = new ArrayList<>();
+		this.mules = new ArrayList<Mule>();
 		this.holdingMule = null;
 		this.score = startingMoney; //should use proper formula based on starting goods
 		this.inStore = false;
