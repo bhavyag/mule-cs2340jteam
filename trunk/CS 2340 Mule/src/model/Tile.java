@@ -94,6 +94,11 @@ public class Tile implements Purchasable
             return false;
         }
     }
+    
+    public Player getOwner()
+    {
+    	return owner;
+    }
 
     /**
      * METHOD gives the path to the border image of this tile's type
