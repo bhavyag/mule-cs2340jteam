@@ -294,8 +294,24 @@ public class GameController {
 				}
 				else if(key == KeyEvent.VK_E)
 				{
+					
+					Point whereAt = currentPlayer.getPlayerPos();
+					Point tileIndex = gameView.getTileIndex(whereAt);
+					Tile t = board.map[(int)tileIndex.getX()][(int)tileIndex.getY()];
+					if(t.getOwner() != null && currentPlayer.toString().equals(t.getOwner().toString()));
+					{
+						if(currentPlayer.isHoldingMule())
+						{
+							if(!currentPlayer.getHoldingMule().getType().equals(""))
+							{
+								System.out.println("MULE Placed on tile");
+							}
+						}
+						System.out.println("OWNED");
+						
+					}
 					//please make this actually do something
-					System.out.println("MULE Placed on tile");
+					
 				}
 			}
 
