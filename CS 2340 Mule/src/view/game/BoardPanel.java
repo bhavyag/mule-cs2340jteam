@@ -17,13 +17,16 @@ public class BoardPanel extends JPanel {
 
     private TilePanel tilePanel;
 	private TownCenterPanel townCenterPanel;
+	protected MarketPanel marketPanel;
 	private CardLayout cardLayout;
     protected JLabel playerLabel;
     protected boolean inTownCenter;
 
 	private final String
 	TILES = "Tiles",
-	TOWN_CENTER = "Town Center";
+	TOWN_CENTER = "Town Center",
+	MARKET = "Market";
+	
 
 	/**
 	 * CONSTRUCTOR for the BoardPanel, also creates it's 'sub' JPanels, the tilePanel and the townCenterPanel.
@@ -31,6 +34,7 @@ public class BoardPanel extends JPanel {
 	protected BoardPanel() {
 		this.tilePanel = new TilePanel();
 		this.townCenterPanel = new TownCenterPanel();
+		this.marketPanel = new MarketPanel();
 		this.cardLayout = new CardLayout();
 		this.initialize();
 	}
@@ -43,6 +47,7 @@ public class BoardPanel extends JPanel {
         this.setLayout(cardLayout);
         this.add(townCenterPanel, TOWN_CENTER);
         this.add(tilePanel, TILES);
+        this.add(marketPanel,MARKET);
 	}
 	
 	public int checkCollisions()
@@ -104,8 +109,7 @@ public class BoardPanel extends JPanel {
 	public void resetPlayerPos()
 	{
 		this.tilePanel.defaultPlayerPos();
-		this.townCenterPanel.defaultPlayerPos();
-		
+		this.townCenterPanel.defaultPlayerPos();	
 	}
 	
 	/**
@@ -153,6 +157,31 @@ public class BoardPanel extends JPanel {
 		cardLayout.show(this, TOWN_CENTER);
 		this.inTownCenter = true;
 	}
+	
+	/**
+	 * METHOD that gets this BoardPanel's TownCenterPanel
+	 * @return this BoardPanel's TownCenterPanel
+	 */
+	public MarketPanel getMarketPanel() {
+		return this.marketPanel;
+	}
+
+	/**
+	 * METHOD that tells this BoardPanel to display the TownCenterPanel
+	 */
+	protected void showMarketPanel() {
+		System.out.println("SHOW MARKET PANEL");
+		cardLayout.show(this, MARKET);
+		this.inTownCenter = false;
+	}
+	
+	/**
+     * METHOD that adds a mouse listener to the market panel exit button
+     * @param mouseAdapter the mouse listener to add
+     */
+    protected void onClickExit(MouseAdapter mouseAdapter) {
+        marketPanel.onClickExit(mouseAdapter);
+    }
 	
 	public boolean isInTownCenter()
 	{

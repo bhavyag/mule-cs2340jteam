@@ -10,7 +10,7 @@ import java.net.URL;
  */
 public abstract class Board
 {
-    public  Tile[][] map;
+    public Tile[][] map;
 
     /**
      * METHOD get this boards map
