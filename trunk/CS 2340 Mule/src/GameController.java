@@ -326,8 +326,50 @@ public class GameController {
 			}
 		}
 				);
+	}
+	
+	/**
+	 * METHOD that sets up the market screen
+	 */
+	private void marketScreen() {
 
+		gameView.showMarketPanel();
+		
+		int[][] marketInfo = new int[2][4];
+		Player player = players.getCurrentPlayer();
+		int     playerEnergy = player.getEnergy(),
+				playerSmithore = player.getSmithore(),
+				playerFood = player.getFood(),
+				playerCrystite = player.getCrystite(),
+				marketFood = Market.getMarketFood(),
+				marketSmithore = Market.getMarketSmithore(),
+				marketEnergy = Market.getMarketEnergy(),
+				marketCrystite = Market.getMarketCrystite();
 
+		marketInfo[0][0] = playerFood;
+		marketInfo[0][1] = playerSmithore;
+		marketInfo[0][2] = playerEnergy;
+		marketInfo[0][3] = playerCrystite;
+		marketInfo[1][0] = marketFood;
+		marketInfo[1][1] = marketSmithore;
+		marketInfo[1][2] = marketEnergy;
+		marketInfo[1][3] = marketCrystite;
+		
+		this.gameView.getMarketPanel().setUpMarket(marketInfo);
+		
+		gameView.onClickExit(
+				new MouseAdapter() 
+				{
+					@Override
+					public void mouseClicked(MouseEvent e) 
+					{
+						Player currentPlayer = players.getCurrentPlayer();
+						currentPlayer.setPlayerPos(new Point(280,192));
+						System.out.println("LEAVING MARKET");
+						gameView.showTownCenterPanel();
+					}
+				}
+				);
 	}
 
 	/**
@@ -337,7 +379,7 @@ public class GameController {
 		System.out.println("town phase over");
 		gameView.dispose();
 	}
-
+	
 	/**
 	 * METHOD for updating two main components: the JLabels of the Status Panel for each player
 	 * and the location of the sprite for the current player. Also calls method for collision
@@ -544,6 +586,7 @@ public class GameController {
 				break;
 
 			case 9:
+				marketScreen();
 				break;
 
 			case 10:

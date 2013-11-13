@@ -128,6 +128,13 @@ public class GameFrame extends JFrame {
     public void showTilePanel() {
         boardPanel.showTilePanel();
     }
+    
+    /**
+     * METHOD to show market panel
+     */
+    public void showMarketPanel() {
+        boardPanel.showMarketPanel();
+    }
 
     /**
      * METHOD to update the timer based on a new time value
@@ -157,5 +164,18 @@ public class GameFrame extends JFrame {
     public BoardPanel getBoardPanel()
     {
     	return this.boardPanel;
+    }
+    
+    public MarketPanel getMarketPanel()
+    {
+    	return this.boardPanel.marketPanel;
+    }
+    
+    /**
+     * METHOD that adds a mouse listener to the market panel exit button
+     * @param mouseAdapter the mouse listener to add
+     */
+    public void onClickExit(MouseAdapter mouseAdapter) {
+        boardPanel.onClickExit(mouseAdapter);
     }
 }
