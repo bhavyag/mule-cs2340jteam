@@ -461,6 +461,47 @@ public class GameController {
 	}
 
 	/**
+	 * METHOD that calculates production for each player
+	 * based on the tiles owned by players and the mules
+	 * placed on those tiles.
+	 */
+	public void calculateProduction()
+	{
+		for(int i=0;i<9;i++)
+		{
+			for(int j=0;j<5;j++)
+			{
+				if(board.getOwnerXY(i,j)!=null)
+				{
+					if(board.getMuleTypeXY(i,j)!=null)
+					{
+						if(board.getTypeXY(i,j)==Tile.Type.RIVER)
+						{
+							
+						}
+						else if(board.getTypeXY(i,j)==Tile.Type.PLAINS)
+						{
+							
+						}
+						else if(board.getTypeXY(i,j)==Tile.Type.MOUNTAINONE)
+						{
+							
+						}
+						else if(board.getTypeXY(i,j)==Tile.Type.MOUNTAINTWO)
+						{
+							
+						}
+						else if(board.getTypeXY(i,j)==Tile.Type.MOUNTAINTHREE)
+						{
+							
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	/**
 	 * METHOD that checks for collisions between the player and other stuff and appropriately
 	 * handles game logic (ex: colliding into pub ends the turn)
 	 */
