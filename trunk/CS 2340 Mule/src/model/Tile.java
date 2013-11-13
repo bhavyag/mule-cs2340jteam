@@ -38,6 +38,7 @@ public class Tile implements Purchasable
     private Type type;
     private Player owner;
     private boolean ownable;
+    private Mule mule;
 
     /**
      * CONTRUCTOR for Tiles
@@ -99,7 +100,42 @@ public class Tile implements Purchasable
     {
     	return owner;
     }
+    
+    /**
+     * METHOD that applies a specific mule to a tile
+     * @param m is the mule being set on the tile
+     */
+    public void setMule(Mule m)
+    {
+    	mule=m;
+    }
 
+    /**
+     * METHOD that gets the mule from the tile if there is one
+     * @return type of mule on tile or null if no mule
+     */
+    public Mule.Type getMuleType()
+    {
+    	if(mule!=null)
+    	{
+    		return mule.getType();
+    	}
+    	else
+    	{
+    		System.out.println("No mule on this tile.");
+    		return null;
+    	}
+    }
+    
+    /**
+     * METHOD that gets the type of the tile
+     * @return the type of the tile
+     */
+    public Tile.Type getType()
+    {
+    	return type;
+    }
+    
     /**
      * METHOD gives the path to the border image of this tile's type
      *

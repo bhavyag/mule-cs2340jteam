@@ -39,6 +39,51 @@ public abstract class Board
     }
 
     /**
+     * METHOD Gets the owner of a tile based on its x and y coordinates in the grid
+     * @param x is the x coordinate of the tile
+     * @param y is the y coordinate of the tile
+     * @return the Player that owns the tile
+     */
+    public Player getOwnerXY(int x,int y){
+    	if(map[x][y].getOwner()!=null)
+    	{
+    		return map[x][y].getOwner();
+    	} 
+    	else
+    	{
+    		System.out.println("Tile does not have owner.");
+    		return null;
+    	}
+    }
+    
+    /**
+     * METHOD get mule type of mule on tile based on x and y coordinates of tile
+     * @param x coordinate
+     * @param y coordinate
+     * @return mule type for mule on tile or null if no mule
+     */
+    public Mule.Type getMuleTypeXY(int x,int y){
+    	if(map[x][y].getMuleType()!=null)
+    	{
+    		return map[x][y].getMuleType();
+    	} 
+    	else
+    	{
+    		return null;
+    	}
+    }
+    
+    /**
+     * METHOD to get get type of tile based on x and y coordinates
+     * @param x coordinate
+     * @param y coordinate
+     * @return the type of the tile
+     */
+    public Tile.Type getTypeXY(int x,int y){
+    	return map[x][y].getType();
+    }
+    
+    /**
      * Allows a player to purchase a tile
      *
      * @param p the player attempting to purchase the tile
