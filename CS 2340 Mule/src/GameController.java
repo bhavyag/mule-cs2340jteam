@@ -335,25 +335,25 @@ public class GameController {
 
 		gameView.showMarketPanel();
 		
-		int[][] marketInfo = new int[2][4];
+		int[][] marketInfo = new int[4][4];
 		Player player = players.getCurrentPlayer();
-		int     playerEnergy = player.getEnergy(),
-				playerSmithore = player.getSmithore(),
-				playerFood = player.getFood(),
-				playerCrystite = player.getCrystite(),
-				marketFood = Market.getMarketFood(),
-				marketSmithore = Market.getMarketSmithore(),
-				marketEnergy = Market.getMarketEnergy(),
-				marketCrystite = Market.getMarketCrystite();
 
-		marketInfo[0][0] = playerFood;
-		marketInfo[0][1] = playerSmithore;
-		marketInfo[0][2] = playerEnergy;
-		marketInfo[0][3] = playerCrystite;
-		marketInfo[1][0] = marketFood;
-		marketInfo[1][1] = marketSmithore;
-		marketInfo[1][2] = marketEnergy;
-		marketInfo[1][3] = marketCrystite;
+		marketInfo[0][0] = player.getFood();
+		marketInfo[0][1] = player.getSmithore();
+		marketInfo[0][2] = player.getEnergy();
+		marketInfo[0][3] = player.getCrystite();
+		marketInfo[1][0] = Market.getMarketFood();
+		marketInfo[1][1] = Market.getMarketSmithore();
+		marketInfo[1][2] = Market.getMarketEnergy();
+		marketInfo[1][3] = Market.getMarketCrystite();
+		marketInfo[2][0] = Market.getBuyFoodPrice(); 
+		marketInfo[2][1] = Market.getBuySmithorePrice();
+		marketInfo[2][2] = Market.getBuyEnergyPrice();
+		marketInfo[2][3] = Market.getBuyCrystitePrice();
+		marketInfo[3][0] = Market.getSellFoodPrice();
+		marketInfo[3][1] = Market.getSellSmithorePrice();
+		marketInfo[3][2] = Market.getSellEnergyPrice();
+		marketInfo[3][3] = Market.getSellCrystitePrice();
 		
 		this.gameView.getMarketPanel().setUpMarket(marketInfo);
 		

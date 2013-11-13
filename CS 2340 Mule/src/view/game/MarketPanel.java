@@ -44,6 +44,15 @@ public class MarketPanel extends JPanel{
 	private JLabel storeCrystite;
 	private JLabel total;
 	
+	JLabel sellEnergyPrice;
+	JLabel sellFoodPrice;
+	JLabel buySmithorePrice;
+	JLabel sellCrystitePrice;
+	JLabel buyCrystitePrice;
+	JLabel buyEnergyPrice;
+	JLabel sellSmithorePrice;
+	JLabel buyFoodPrice;
+	
 	protected MarketPanel() 
 	{
 		this.setLayout(null);
@@ -54,6 +63,97 @@ public class MarketPanel extends JPanel{
 	
 	private void initialize() 
     {
+		
+		sellEnergyPrice = new JLabel("");
+		sellEnergyPrice.setForeground(Color.WHITE);
+		sellEnergyPrice.setFont(new Font("Arial", Font.BOLD, 25));
+		sellEnergyPrice.setIcon(null);
+		sellEnergyPrice.setRequestFocusEnabled(false);
+		sellEnergyPrice.setOpaque(false);
+		sellEnergyPrice.setFocusable(false);
+		sellEnergyPrice.setBorder(null);
+		sellEnergyPrice.setBounds(533, 210, 85, 50);
+		add(sellEnergyPrice);
+		
+		sellFoodPrice = new JLabel("100");
+		sellFoodPrice.setForeground(Color.WHITE);
+		sellFoodPrice.setFont(new Font("Arial", Font.BOLD, 25));
+		sellFoodPrice.setIcon(null);
+		sellFoodPrice.setRequestFocusEnabled(false);
+		sellFoodPrice.setOpaque(false);
+		sellFoodPrice.setFocusable(false);
+		sellFoodPrice.setFocusTraversalKeysEnabled(false);
+		sellFoodPrice.setBorder(null);
+		sellFoodPrice.setBounds(533, 82, 85, 50);
+		add(sellFoodPrice);
+		
+		buySmithorePrice = new JLabel("");
+		buySmithorePrice.setForeground(Color.WHITE);
+		buySmithorePrice.setFont(new Font("Arial", Font.BOLD, 25));
+		buySmithorePrice.setIcon(null);
+		buySmithorePrice.setRequestFocusEnabled(false);
+		buySmithorePrice.setOpaque(false);
+		buySmithorePrice.setFocusable(false);
+		buySmithorePrice.setBorder(null);
+		buySmithorePrice.setBounds(255, 145, 68, 50);
+		add(buySmithorePrice);
+		
+		sellCrystitePrice = new JLabel("");
+		sellCrystitePrice.setForeground(Color.WHITE);
+		sellCrystitePrice.setFont(new Font("Arial", Font.BOLD, 25));
+		sellCrystitePrice.setIcon(null);
+		sellCrystitePrice.setRequestFocusEnabled(false);
+		sellCrystitePrice.setOpaque(false);
+		sellCrystitePrice.setFocusable(false);
+		sellCrystitePrice.setBorder(null);
+		sellCrystitePrice.setBounds(533, 275, 85, 50);
+		add(sellCrystitePrice);
+		
+		buyCrystitePrice = new JLabel("");
+		buyCrystitePrice.setForeground(Color.WHITE);
+		buyCrystitePrice.setFont(new Font("Arial", Font.BOLD, 25));
+		buyCrystitePrice.setIcon(null);
+		buyCrystitePrice.setRequestFocusEnabled(false);
+		buyCrystitePrice.setOpaque(false);
+		buyCrystitePrice.setFocusable(false);
+		buyCrystitePrice.setBorder(null);
+		buyCrystitePrice.setBounds(255, 275, 68, 50);
+		add(buyCrystitePrice);
+		
+		buyEnergyPrice = new JLabel("");
+		buyEnergyPrice.setForeground(Color.WHITE);
+		buyEnergyPrice.setFont(new Font("Arial", Font.BOLD, 25));
+		buyEnergyPrice.setIcon(null);
+		buyEnergyPrice.setRequestFocusEnabled(false);
+		buyEnergyPrice.setOpaque(false);
+		buyEnergyPrice.setFocusable(false);
+		buyEnergyPrice.setBorder(null);
+		buyEnergyPrice.setBounds(255, 210, 68, 50);
+		add(buyEnergyPrice);
+		
+		sellSmithorePrice = new JLabel("");
+		sellSmithorePrice.setForeground(Color.WHITE);
+		sellSmithorePrice.setFont(new Font("Arial", Font.BOLD, 25));
+		sellSmithorePrice.setIcon(null);
+		sellSmithorePrice.setRequestFocusEnabled(false);
+		sellSmithorePrice.setOpaque(false);
+		sellSmithorePrice.setFocusable(false);
+		sellSmithorePrice.setBorder(null);
+		sellSmithorePrice.setBounds(533, 145, 85, 50);
+		add(sellSmithorePrice);
+		
+		buyFoodPrice = new JLabel("100");
+		buyFoodPrice.setForeground(Color.WHITE);
+		buyFoodPrice.setFont(new Font("Arial", Font.BOLD, 25));
+		buyFoodPrice.setIcon(null);
+		buyFoodPrice.setRequestFocusEnabled(false);
+		buyFoodPrice.setOpaque(false);
+		buyFoodPrice.setFocusable(false);
+		buyFoodPrice.setFocusTraversalPolicyProvider(true);
+		buyFoodPrice.setFocusTraversalKeysEnabled(false);
+		buyFoodPrice.setBorder(null);
+		buyFoodPrice.setBounds(255, 82, 68, 50);
+		add(buyFoodPrice);
 		exitButton.setBounds(new Rectangle(19, 340, 168, 53));
 		
 		exitButton.setIcon(new ImageIcon(MarketPanel.class.getResource("/sprites/market/Exit-Button-RED.png")));
@@ -249,10 +349,10 @@ public class MarketPanel extends JPanel{
 		storeCrystite.setBounds(720, 280, 85, 35);
 		add(storeCrystite);
 		
-		total = new JLabel("1000");
+		total = new JLabel("0");
 		total.setForeground(Color.WHITE);
 		total.setFont(new Font("Arial", Font.BOLD, 35));
-		total.setBounds(431, 348, 85, 35);
+		total.setBounds(440, 348, 162, 35);
 		add(total);
 		this.marketLabel = new JLabel("");
 		marketLabel.setFocusable(false);
@@ -273,12 +373,33 @@ public class MarketPanel extends JPanel{
 		this.storeEnergy.setText(""+data[1][2]);
 		this.storeCrystite.setText(""+data[1][3]);
 		
+		buyFoodPrice.setText(""+data[2][0]);
+		buySmithorePrice.setText(""+data[2][1]);
+		buyEnergyPrice.setText(""+data[2][2]);
+		buyCrystitePrice.setText(""+data[2][3]);
+		
+		sellFoodPrice.setText(""+data[3][0]);
+		sellSmithorePrice.setText(""+data[3][1]);
+		sellEnergyPrice.setText(""+data[3][2]);
+		sellCrystitePrice.setText(""+data[3][3]);
+		
 		sellCrystite.addMouseListener(new MouseAdapter() 
 		{
 			@Override
 			public void mouseClicked(MouseEvent e) 
 			{
-				
+				int totalAmount = Integer.parseInt(total.getText());
+				int playerCrystiteAmount = Integer.parseInt(playerCrystite.getText());
+				int storeCrystiteAmount = Integer.parseInt(storeCrystite.getText());
+				if(playerCrystiteAmount != 0)
+				{
+					playerCrystiteAmount--;
+					playerCrystite.setText(""+(playerCrystiteAmount));
+					storeCrystiteAmount++;
+					storeCrystite.setText(""+storeCrystiteAmount);
+					totalAmount += Integer.parseInt(sellCrystitePrice.getText());
+					total.setText(""+totalAmount);
+				}
 			}
 		});
 		
@@ -287,7 +408,18 @@ public class MarketPanel extends JPanel{
 			@Override
 			public void mouseClicked(MouseEvent e) 
 			{
-
+				int totalAmount = Integer.parseInt(total.getText());
+				int playerEnergyAmount = Integer.parseInt(playerEnergy.getText());
+				int storeEnergyAmount = Integer.parseInt(storeEnergy.getText());
+				if(playerEnergyAmount != 0)
+				{
+					playerEnergyAmount--;
+					playerEnergy.setText(""+(playerEnergyAmount));
+					storeEnergyAmount++;
+					storeEnergy.setText(""+storeEnergyAmount);
+					totalAmount += Integer.parseInt(sellEnergyPrice.getText());
+					total.setText(""+totalAmount);
+				}
 			}
 		});
 		
@@ -296,7 +428,18 @@ public class MarketPanel extends JPanel{
 			@Override
 			public void mouseClicked(MouseEvent e) 
 			{
-
+				int totalAmount = Integer.parseInt(total.getText());
+				int playerSmithoreAmount = Integer.parseInt(playerSmithore.getText());
+				int storeSmithoreAmount = Integer.parseInt(storeSmithore.getText());
+				if(playerSmithoreAmount != 0)
+				{
+					playerSmithoreAmount--;
+					playerSmithore.setText(""+(playerSmithoreAmount));
+					storeSmithoreAmount++;
+					storeSmithore.setText(""+storeSmithoreAmount);
+					totalAmount += Integer.parseInt(sellSmithorePrice.getText());
+					total.setText(""+totalAmount);
+				}
 			}
 		});
 		
@@ -304,7 +447,8 @@ public class MarketPanel extends JPanel{
 		{
 			@Override
 			public void mouseClicked(MouseEvent e) 
-			{
+			{	
+				int totalAmount = Integer.parseInt(total.getText());
 				int playerFoodAmount = Integer.parseInt(playerFood.getText());
 				int storeFoodAmount = Integer.parseInt(storeFood.getText());
 				if(playerFoodAmount != 0)
@@ -313,6 +457,8 @@ public class MarketPanel extends JPanel{
 					playerFood.setText(""+(playerFoodAmount));
 					storeFoodAmount++;
 					storeFood.setText(""+storeFoodAmount);
+					totalAmount += Integer.parseInt(sellFoodPrice.getText());
+					total.setText(""+totalAmount);
 				}
 				
 			}
@@ -323,7 +469,18 @@ public class MarketPanel extends JPanel{
 			@Override
 			public void mouseClicked(MouseEvent e) 
 			{
-
+				int totalAmount = Integer.parseInt(total.getText());
+				int playerFoodAmount = Integer.parseInt(playerFood.getText());
+				int storeFoodAmount = Integer.parseInt(storeFood.getText());
+				if(storeFoodAmount != 0)
+				{
+					playerFoodAmount++;
+					playerFood.setText(""+(playerFoodAmount));
+					storeFoodAmount--;
+					storeFood.setText(""+storeFoodAmount);
+					totalAmount += Integer.parseInt(buyFoodPrice.getText());
+					total.setText(""+totalAmount);
+				}
 			}
 		});
 		
