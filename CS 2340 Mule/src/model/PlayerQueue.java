@@ -52,6 +52,14 @@ public class PlayerQueue {
     }
     
     /**
+     * METHOD gives the current index of the player
+     * @return the current index
+     */
+    public int getCurrentIndex() {
+        return currentIndex;
+    }
+    
+    /**
      * METHOD gives the player at the specified index
      * @return player specified
      */

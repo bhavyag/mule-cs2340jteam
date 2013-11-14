@@ -1,5 +1,6 @@
 import model.*;
 import util.LimitTimer;
+import view.game.DialogMessage;
 import view.game.GameFrame;
 import view.title.GameConfigPanel;
 import view.title.PlayerConfigPanel;
@@ -30,6 +31,9 @@ public class GameController {
 	private Board board;
 	private LimitTimer timer;
 	private int minimumFood;
+	private DialogMessage randEvent;
+	private boolean randCheck;
+	private Thread waitThread;
 
 	/**
 	 * METHOD begins the title sequence
@@ -112,7 +116,7 @@ public class GameController {
 
 		configureTimer();
 		players.beginRotation();
-		landGrant();
+		randomEvent("land grant");
 	}
 
 	/**
@@ -144,15 +148,87 @@ public class GameController {
 	}
 
 	/**
+	 * METHOD creates a random event and notifies the user through
+	 * a DialogMessage box
+	 */
+	private void randomEvent(final String state)
+	{
+		Random rand = new Random();
+		if (rand.nextDouble() > 0.97)
+		{
+			if (state.equals("land grant"))
+				landGrant();
+			else if (state.equals("timer"))
+				timer.reset();
+		}
+		else
+		{
+			if (state.equals("land grant"))
+			{
+				phase = "land grant";
+				gameView.getBoardPanel().resetPlayerPos();
+				players.resetPlayers();
+
+				gameView.showTilePanel();
+				displayMap();
+			}
+
+			randEvent = new DialogMessage(RandomEvent.performRandom(players, players.getCurrentIndex()));
+			randEvent.onClickNext(
+					new MouseAdapter() {
+						public void mouseClicked(MouseEvent e) {
+							randEvent.dispose();
+							if (state.equals("land grant"))
+								landGrant();
+							else if (state.equals("timer"))
+								timer.reset();
+						}
+					}
+					);
+		}
+	}
+
+	/**
 	 * METHOD begins the land grant portion of the game
 	 */
 	private void landGrant() {
-		phase = "land grant";
-		gameView.getBoardPanel().resetPlayerPos();
-		players.resetPlayers();
+//		phase = "land grant";
+//		gameView.getBoardPanel().resetPlayerPos();
+//		players.resetPlayers();
+//
+//		gameView.showTilePanel();
+//		displayMap();
 
-		gameView.showTilePanel();
-		displayMap();
+		/*
+		if (!randCheck)
+		{
+			randEvent = new DialogMessage(RandomEvent.performRandom(players, players.getCurrentIndex()));
+
+			randEvent.onClickNext(
+					new MouseAdapter() {
+						public void mouseClicked(MouseEvent e) {
+							randEvent.dispose();
+							randCheck = true;
+							synchronized(waitThread)
+							{
+								waitThread.notify();
+							}
+						}
+					}
+					);
+			synchronized(waitThread)
+			{
+				try 
+				{
+					waitThread.wait();
+				} 
+				catch (Exception e) 
+				{
+					e.printStackTrace();
+				}
+			}
+		}
+		 */
 
 		updateStatus();
 		gameView.onTileClick(
@@ -174,7 +250,7 @@ public class GameController {
 									townPhase();
 								}
 								else {
-									timer.reset();
+									randomEvent("timer");//timer.reset();
 								}
 							}
 						} else {
@@ -189,7 +265,7 @@ public class GameController {
 									townPhase();
 								}
 								else {
-									timer.reset();
+									randomEvent("timer");//timer.reset();
 								}
 							}
 						}
@@ -207,7 +283,7 @@ public class GameController {
 						System.out.println("entering townphase");
 						townPhase();
 					} else {
-						timer.reset();
+						randomEvent("timer");//timer.reset();
 					}
 				}
 			}
@@ -239,7 +315,7 @@ public class GameController {
 					if (players.isNewRound()) {
 						timer.stop();
 						//nextPhase();
-						landGrant();
+						randomEvent("land grant");
 					} else {
 						timer.reset();
 						gameView.showTownCenterPanel();
@@ -294,7 +370,7 @@ public class GameController {
 				}
 				else if(key == KeyEvent.VK_E)
 				{
-					
+
 					Point whereAt = currentPlayer.getPlayerPos();
 					Point tileIndex = gameView.getTileIndex(whereAt);
 					Tile t = board.map[(int)tileIndex.getX()][(int)tileIndex.getY()];
@@ -314,10 +390,10 @@ public class GameController {
 							}
 						}
 						System.out.println("OWNED");
-						
+
 					}
 					//please make this actually do something
-					
+
 				}
 			}
 
@@ -333,7 +409,7 @@ public class GameController {
 		}
 				);
 	}
-	
+
 	private void sendMarketData()
 	{
 		int[][] marketInfo = new int[4][4];
@@ -355,7 +431,7 @@ public class GameController {
 		marketInfo[3][1] = Market.getSellSmithorePrice();
 		marketInfo[3][2] = Market.getSellEnergyPrice();
 		marketInfo[3][3] = Market.getSellCrystitePrice();
-		
+
 		this.gameView.getMarketPanel().setUpMarket(marketInfo);
 	}
 	/**
@@ -378,7 +454,7 @@ public class GameController {
 					}
 				}
 				);
-		
+
 		gameView.getMarketPanel().onClickTrade(
 				new MouseAdapter() 
 				{
@@ -412,7 +488,7 @@ public class GameController {
 		System.out.println("town phase over");
 		gameView.dispose();
 	}
-	
+
 	/**
 	 * METHOD for updating two main components: the JLabels of the Status Panel for each player
 	 * and the location of the sprite for the current player. Also calls method for collision
@@ -465,8 +541,8 @@ public class GameController {
 			URL playerImage = currentPlayer.getImagePath();
 			int x = (int)currentPlayer.getPlayerPos().getX();
 			int y = (int)currentPlayer.getPlayerPos().getY();
-			
-			
+
+
 
 			//check which board the player is on
 			if(gameView.getBoardPanel().isInTownCenter())
@@ -510,30 +586,30 @@ public class GameController {
 					{
 						if(board.getTypeXY(i,j)==Tile.Type.RIVER)
 						{
-							
+
 						}
 						else if(board.getTypeXY(i,j)==Tile.Type.PLAINS)
 						{
-							
+
 						}
 						else if(board.getTypeXY(i,j)==Tile.Type.MOUNTAINONE)
 						{
-							
+
 						}
 						else if(board.getTypeXY(i,j)==Tile.Type.MOUNTAINTWO)
 						{
-							
+
 						}
 						else if(board.getTypeXY(i,j)==Tile.Type.MOUNTAINTHREE)
 						{
-							
+
 						}
 					}
 				}
 			}
 		}
 	}
-	
+
 	/**
 	 * METHOD that checks for collisions between the player and other stuff and appropriately
 	 * handles game logic (ex: colliding into pub ends the turn)
@@ -545,9 +621,9 @@ public class GameController {
 			int collidedWith = gameView.getBoardPanel().checkCollisions();
 			Player currentPlayer = players.getCurrentPlayer();
 
-            // Don't switch on strings!! Java 6 backwards compatibility blah blah blah
-            // Also switches are gross unless in a factory
-            // asdfjkl;asdfjka;sdfjkasdfj;askljf
+			// Don't switch on strings!! Java 6 backwards compatibility blah blah blah
+			// Also switches are gross unless in a factory
+			// asdfjkl;asdfjka;sdfjkasdfj;askljf
 			switch(collidedWith)
 			{
 			case 0:
@@ -565,7 +641,7 @@ public class GameController {
 					timer.stop();
 					System.out.println("entering land grant");
 					phase = "land grant";
-					landGrant();
+					randomEvent("land grant");
 				}
 				else {
 					timer.reset();
@@ -582,7 +658,7 @@ public class GameController {
 				currentPlayer.setPlayerPos(new Point(463,175));
 				break;
 
-            case 3:
+			case 3:
 				gameView.showTownCenterPanel();
 				currentPlayer.setPlayerPos(new Point(391,175));
 				break;
@@ -618,7 +694,7 @@ public class GameController {
 				break;
 
 			case 6:
-				
+
 				if (currentPlayer.isHoldingMule() && !currentPlayer.isInStore() && Mule.Type.FOOD.equals(currentPlayer.getHoldingMule().getType()))
 				{
 					currentPlayer.deOutfitMule(Mule.Type.FOOD);
