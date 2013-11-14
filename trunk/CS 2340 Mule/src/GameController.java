@@ -154,10 +154,19 @@ public class GameController {
 	private void randomEvent(final String state)
 	{
 		Random rand = new Random();
-		if (rand.nextDouble() > 0.97)
+		if (rand.nextDouble() > 0.97) //change this to 0.27 later
 		{
 			if (state.equals("land grant"))
+			{
+				phase = "land grant";
+				gameView.getBoardPanel().resetPlayerPos();
+				players.resetPlayers();
+
+				updateStatus();
+				gameView.showTilePanel();
+				displayMap();
 				landGrant();
+			}
 			else if (state.equals("timer"))
 				timer.reset();
 		}
@@ -169,6 +178,7 @@ public class GameController {
 				gameView.getBoardPanel().resetPlayerPos();
 				players.resetPlayers();
 
+				updateStatus();
 				gameView.showTilePanel();
 				displayMap();
 			}
@@ -192,12 +202,12 @@ public class GameController {
 	 * METHOD begins the land grant portion of the game
 	 */
 	private void landGrant() {
-//		phase = "land grant";
-//		gameView.getBoardPanel().resetPlayerPos();
-//		players.resetPlayers();
-//
-//		gameView.showTilePanel();
-//		displayMap();
+		//		phase = "land grant";
+		//		gameView.getBoardPanel().resetPlayerPos();
+		//		players.resetPlayers();
+		//
+		//		gameView.showTilePanel();
+		//		displayMap();
 
 		/*
 		if (!randCheck)
@@ -273,7 +283,7 @@ public class GameController {
 				}
 				);
 
-		timer = new LimitTimer(5, 1000, new ActionListener() {
+		timer = new LimitTimer(15, 1000, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent actionEvent) {
 

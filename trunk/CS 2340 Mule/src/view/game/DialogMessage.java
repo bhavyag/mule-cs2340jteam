@@ -64,7 +64,7 @@ public class DialogMessage extends JDialog {
 		setResizable(false);
 		setType(Type.POPUP);
 		setAlwaysOnTop(true);
-		setBounds(100, 100, 450, 100);
+		setBounds(503, 296, 450, 100);
 		getContentPane().setLayout(null);
 		
 		textLabel = new JLabel("");
