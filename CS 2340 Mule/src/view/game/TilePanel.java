@@ -15,6 +15,7 @@ public class TilePanel extends JPanel {
 
 	private JLabel[][] labelArray;
 	private JLabel[][] borderArray;
+	private JLabel[][] iconArray;
     protected JLabel playerLabel;
     protected JLabel town;
     
@@ -26,6 +27,7 @@ public class TilePanel extends JPanel {
     protected TilePanel() {
     	labelArray = new JLabel[5][9];
     	borderArray = new JLabel[5][9];
+    	iconArray = new JLabel[5][9];
     	
         initialize();
     }
@@ -68,6 +70,21 @@ public class TilePanel extends JPanel {
 
         borderArray[x][y].setIcon(new ImageIcon(imagePath));
     }
+    
+    /**
+     * METHOD to set the image to display as the icon of the Tile at x , y
+     * @param imagePath the image to use as the icon to represent the mule that is on the tile
+     * @param x the x coord of the tile
+     * @param y the y coord of the tile
+     */
+    protected void setIconImage(URL imagePath, int x, int y)
+    {
+        if (imagePath == null) {
+            imagePath = TilePanel.class.getResource("/sprites/tiles/Border-Default.png");
+        }
+
+        iconArray[x][y].setIcon(new ImageIcon(imagePath));
+    }
 
     protected void defaultPlayerPos()
     {
@@ -94,6 +111,241 @@ public class TilePanel extends JPanel {
         town.setBounds(380, 164, 72, 72);
         this.add(town);
         
+        
+      //COLUMN ZERO
+        JLabel label00i = new JLabel();
+        label00i.setBounds(92, 20, 72, 72);
+        add(label00i);
+        iconArray[0][0]=label00i;
+        
+        JLabel label10i = new JLabel();
+        label10i.setBounds(92, 92, 72, 72);
+        add(label10i);
+        iconArray[1][0]=label10i;
+                
+        JLabel label20i = new JLabel();
+        label20i.setBounds(92, 164, 72, 72);
+        add(label20i);
+        iconArray[2][0]=label20i;
+                
+        JLabel label30i = new JLabel();
+        label30i.setBounds(92, 236, 72, 72);
+        add(label30i);
+        iconArray[3][0]=label30i;
+                
+        JLabel label40i = new JLabel();
+        label40i.setBounds(92, 308, 72, 72);
+        add(label40i);
+        iconArray[4][0]=label40i;
+                
+      //COLUMN ONE
+        JLabel label01i = new JLabel();
+        label01i.setBounds(164, 20, 72, 72);
+        add(label01i);
+        iconArray[0][1]=label01i;
+                
+        JLabel label11i = new JLabel();
+        label11i.setBounds(164, 92, 72, 72);
+        add(label11i);
+        iconArray[1][1]=label11i;
+                
+        JLabel label21i = new JLabel();
+        label21i.setBounds(164, 164, 72, 72);
+        add(label21i);
+        iconArray[2][1]=label21i;
+                
+        JLabel label31i = new JLabel();
+        label31i.setBounds(164, 236, 72, 72);
+        add(label31i);
+        iconArray[3][1]=label31i;
+                
+        JLabel label41i = new JLabel();
+        label41i.setBounds(164, 308, 72, 72);
+        add(label41i);
+        iconArray[4][1]=label41i;
+                
+      //COLUMN TWO
+        JLabel label02i = new JLabel();
+        label02i.setBounds(236, 20, 72, 72);
+        add(label02i);
+        iconArray[0][2]=label02i;
+                
+        JLabel label12i = new JLabel();
+        label12i.setBounds(236, 92, 72, 72);
+        add(label12i);
+        iconArray[1][2]=label12i;
+                
+        JLabel label22i = new JLabel();
+        label22i.setBounds(236, 164, 72, 72);
+        add(label22i);
+        iconArray[2][2]=label22i;
+                
+        JLabel label32i = new JLabel();
+        label32i.setBounds(236, 236, 72, 72);
+        add(label32i);
+        iconArray[3][2]=label32i;
+                
+        JLabel label42i = new JLabel();
+        label42i.setBounds(236, 308, 72, 72);
+        add(label42i);
+        iconArray[4][2]=label42i;
+                
+      //COLUMN THREE
+        JLabel label03i = new JLabel();
+        label03i.setBounds(308, 20, 72, 72);
+        add(label03i);
+        iconArray[0][3]=label03i;
+                
+        JLabel label13i = new JLabel();
+        label13i.setBounds(308, 92, 72, 72);
+        add(label13i);
+        iconArray[1][3]=label13i;
+                
+        JLabel label23i = new JLabel();
+        label23i.setBounds(308, 164, 72, 72);
+        add(label23i);
+        iconArray[2][3]=label23i;
+                
+        JLabel label33i = new JLabel();
+        label33i.setBounds(308, 236, 72, 72);
+        add(label33i);
+        iconArray[3][3]=label33i;
+                
+        JLabel label43i = new JLabel();
+        label43i.setBounds(308, 308, 72, 72);
+        add(label43i);
+        iconArray[4][3]=label43i;
+                
+      //COLUMN FOUR
+        JLabel label04i = new JLabel();
+        label04i.setBounds(380, 20, 72, 72);
+        add(label04i);
+        iconArray[0][4]=label04i;
+                
+        JLabel label14i = new JLabel();
+        label14i.setBounds(380, 92, 72, 72);
+        add(label14i);
+        iconArray[1][4]=label14i;
+                
+        JLabel label24i = new JLabel();
+        label24i.setBounds(380, 164, 72, 72);
+        add(label24i);
+        iconArray[2][4]=label24i;
+                
+        JLabel label34i = new JLabel();
+        label34i.setBounds(380, 236, 72, 72);
+        add(label34i);
+        iconArray[3][4]=label34i;
+                
+        JLabel label44i = new JLabel();
+        label44i.setBounds(380, 308, 72, 72);
+        add(label44i);
+        iconArray[4][4]=label44i;
+                
+      //COLUMN FIVE
+        JLabel label05i = new JLabel();
+        label05i.setBounds(452, 20, 72, 72);
+        add(label05i);
+        iconArray[0][5]=label05i;
+                
+        JLabel label15i = new JLabel();
+        label15i.setBounds(452, 92, 72, 72);
+        add(label15i);
+        iconArray[1][5]=label15i;
+                
+        JLabel label25i = new JLabel();
+        label25i.setBounds(452, 164, 72, 72);
+        add(label25i);
+        iconArray[2][5]=label25i;
+                
+        JLabel label35i = new JLabel();
+        label35i.setBounds(452, 236, 72, 72);
+        add(label35i);
+        iconArray[3][5]=label35i;
+                
+        JLabel label45i = new JLabel();
+        label45i.setBounds(452, 308, 72, 72);
+        add(label45i);
+        iconArray[4][5]=label45i;
+                
+      //COLUMN SIX
+        JLabel label06i = new JLabel();
+        label06i.setBounds(524, 20, 72, 72);
+        add(label06i);
+        iconArray[0][6]=label06i;
+                
+        JLabel label16i = new JLabel();
+        label16i.setBounds(524, 92, 72, 72);
+        add(label16i);
+        iconArray[1][6]=label16i;
+                
+        JLabel label26i = new JLabel();
+        label26i.setBounds(524, 164, 72, 72);
+        add(label26i);
+        iconArray[2][6]=label26i;
+                
+        JLabel label36i = new JLabel();
+        label36i.setBounds(524, 236, 72, 72);
+        add(label36i);
+        iconArray[3][6]=label36i;
+                
+        JLabel label46i = new JLabel();
+        label46i.setBounds(524, 308, 72, 72);
+        add(label46i);
+        iconArray[4][6]=label46i;
+                
+      //COLUMN SEVEN
+        JLabel label07i = new JLabel();
+        label07i.setBounds(596, 20, 72, 72);
+        add(label07i);
+        iconArray[0][7]=label07i;
+                
+        JLabel label17i = new JLabel();
+        label17i.setBounds(596, 92, 72, 72);
+        add(label17i);
+        iconArray[1][7]=label17i;
+                
+        JLabel label27i = new JLabel();
+        label27i.setBounds(596, 164, 72, 72);
+        add(label27i);
+        iconArray[2][7]=label27i;
+                
+        JLabel label37i = new JLabel();
+        label37i.setBounds(596, 236, 72, 72);
+        add(label37i);
+        iconArray[3][7]=label37i;
+                
+        JLabel label47i = new JLabel();
+        label47i.setBounds(596, 308, 72, 72);
+        add(label47i);
+        iconArray[4][7]=label47i;
+                
+      //COLUMN EIGHT
+        JLabel label08i = new JLabel();
+        label08i.setBounds(668, 20, 72, 72);
+        add(label08i);
+        iconArray[0][8]=label08i;
+                
+        JLabel label18i = new JLabel();
+        label18i.setBounds(668, 92, 72, 72);
+        add(label18i);
+        iconArray[1][8]=label18i;
+                
+        JLabel label28i = new JLabel();
+        label28i.setBounds(668, 164, 72, 72);
+        add(label28i);
+        iconArray[2][8]=label28i;
+                
+        JLabel label38i = new JLabel();
+        label38i.setBounds(668, 236, 72, 72);
+        add(label38i);
+        iconArray[3][8]=label38i;
+                
+        JLabel label48i = new JLabel();
+        label48i.setBounds(668, 308, 72, 72);
+        add(label48i);
+        iconArray[4][8]=label48i; 
+         
       //COLUMN EIGHT
         JLabel label08b = new JLabel();
         label08b.setBounds(668, 20, 72, 72);

@@ -236,13 +236,13 @@ public class GameController {
 			public void actionPerformed(ActionEvent actionEvent) {
 				if (timer.isOutOfTime()) {
 					players.next();
-
 					if (players.isNewRound()) {
 						timer.stop();
 						//nextPhase();
 						landGrant();
 					} else {
 						timer.reset();
+						gameView.showTownCenterPanel();
 					}
 				}
 			}
@@ -328,13 +328,8 @@ public class GameController {
 				);
 	}
 	
-	/**
-	 * METHOD that sets up the market screen
-	 */
-	private void marketScreen() {
-
-		gameView.showMarketPanel();
-		
+	private void sendMarketData()
+	{
 		int[][] marketInfo = new int[4][4];
 		Player player = players.getCurrentPlayer();
 
@@ -356,8 +351,15 @@ public class GameController {
 		marketInfo[3][3] = Market.getSellCrystitePrice();
 		
 		this.gameView.getMarketPanel().setUpMarket(marketInfo);
-		
-		gameView.onClickExit(
+	}
+	/**
+	 * METHOD that sets up the market screen
+	 */
+	private void marketScreen() {
+
+		gameView.showMarketPanel();
+		sendMarketData();
+		gameView.getMarketPanel().onClickExit(
 				new MouseAdapter() 
 				{
 					@Override
@@ -367,6 +369,31 @@ public class GameController {
 						currentPlayer.setPlayerPos(new Point(280,192));
 						System.out.println("LEAVING MARKET");
 						gameView.showTownCenterPanel();
+					}
+				}
+				);
+		
+		gameView.getMarketPanel().onClickTrade(
+				new MouseAdapter() 
+				{
+					@Override
+					public void mouseClicked(MouseEvent e) 
+					{
+						int[][] data = gameView.getMarketPanel().getMarketData();
+						Player player = players.getCurrentPlayer();
+						if(player.getMoney() + data[2][0] >= 0)
+						{
+							player.setFood(data[0][0]);
+							player.setSmithore(data[0][1]);
+							player.setEnergy(data[0][2]);
+							player.setCrystite(data[0][3]);
+							Market.setMarketFood(data[1][0]); 
+							Market.setMarketSmithore(data[1][1]);
+							Market.setMarketEnergy(data[1][2]);
+							Market.setMarketCrystite(data[1][3]);
+							player.addMoney(data[2][0]);
+							gameView.getMarketPanel().resetTotal();
+						}	
 					}
 				}
 				);

@@ -318,6 +318,11 @@ public class Player {
 	public int getEnergy() {
 		return energy;
 	}
+	
+	public void setEnergy(int i) 
+	{
+		this.energy = i;
+	}
 
 	/**
 	 * METHOD Get this players smithore
@@ -325,6 +330,11 @@ public class Player {
 	 */
 	public int getSmithore() {
 		return smithore;
+	}
+	
+	public void setSmithore(int i) 
+	{
+		this.smithore = i;
 	}
 
 
@@ -335,6 +345,11 @@ public class Player {
 	public int getFood() {
 		return food;
 	}
+	
+	public void setFood(int i) 
+	{
+		this.food = i;
+	}
 
 	/**
 	 * METHOD Get this players crystite
@@ -342,6 +357,11 @@ public class Player {
 	 */
 	public int getCrystite() {
 		return crystite;
+	}
+	
+	public void setCrystite(int i) 
+	{
+		this.crystite = i;
 	}
 
 	/**
