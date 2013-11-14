@@ -305,6 +305,12 @@ public class GameController {
 							if(!currentPlayer.getHoldingMule().getType().equals(""))
 							{
 								System.out.println("MULE Placed on tile");
+								//call setIconImage(URL,x,y) in tile panel 
+								//to set the image displayed on the tile based 
+								//on the type of mule placed on it. get the imaage 
+								//out of the enum for the mule, x and y are the same 
+								//as the x and y of the tile array(5 x 9, this does 
+								//NOT take in a pixel coordinate)
 							}
 						}
 						System.out.println("OWNED");
