@@ -346,6 +346,7 @@ public class GameController implements Serializable {
 		System.out.println("starting town phase");
 
 		gameView.showTownCenterPanel();
+		calculateProduction();
 		players.beginRotation();
 
 		gameView.onKeyMove( new KeyListener() 
