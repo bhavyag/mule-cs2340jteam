@@ -512,15 +512,37 @@ public class Player implements Savable {
 	 *  see: http://bringerp.free.fr/RE/Mule/mule_document.html#ScoreComputing
 	 */
 	public void updateScore() {
-		this.score = 0; //reset score
+		score = 0; //reset score
 		//Add land score
-		/*for(int i = 0;i<playerTiles.size();i++){
-    		score+=500;
-    		//TODO: This should be 500 per plot + the value of any mules set on plots
-    		//e.g. - food:525, energy:550, smithore:575, crystite:600
-    	}*/
+		for(int i = 0;i<playerTiles.size();i++){
+    		
+	    	if(playerTiles.get(i).getMuleType()!=null)
+	    	{	
+				if(playerTiles.get(i).getMuleType()==Mule.Type.FOOD)
+	    		{
+	    			score+=525;
+	    		}
+	    		else if(playerTiles.get(i).getMuleType()==Mule.Type.ENERGY)
+	    		{
+	    			score+=550;
+	    		}
+	    		else if(playerTiles.get(i).getMuleType()==Mule.Type.SMITHORE)
+	    		{
+	    			score+=575;
+	    		}
+	    		else if(playerTiles.get(i).getMuleType()==Mule.Type.FOOD)
+	    		{
+	    			score+=600;
+	    		}
+	    	}
+    		else
+    		{
+    			score+=500;
+    		}
+    		
+    	}
 		//Add money score
-		this.score += money;
+		score += money;
 		//Add goods score
 		// TODO: Needs to multiply goods by their current price
 		//this.score += (mules.size() *35 + smithore*50 + food*30 + energy*25 + crystite*50);
