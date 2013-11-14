@@ -489,15 +489,7 @@ public class GameController {
 					}
 				}
 				);
-	}
-
-	/**
-	 * METHOD that controls how the next phase will be executed (not currently being used)
-	 */
-	private void nextPhase() {
-		System.out.println("town phase over");
-		gameView.dispose();
-	}
+    }
 
 	/**
 	 * METHOD for updating two main components: the JLabels of the Status Panel for each player
