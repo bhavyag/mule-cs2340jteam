@@ -479,7 +479,7 @@ public class GameController implements Serializable {
 							Market.setMarketSmithore(data[1][1]);
 							Market.setMarketEnergy(data[1][2]);
 							Market.setMarketCrystite(data[1][3]);
-							player.addMoney(data[2][0]);
+							player.incrementMoney(data[2][0]);
 							gameView.getMarketPanel().resetTotal();
 						}	
 					}
@@ -585,14 +585,14 @@ public class GameController implements Serializable {
 						if(board.getTypeXY(i,j)==Tile.Type.RIVER)
 						{
 							if(board.getOwnerXY(i, j).getEnergy()>0){
-								board.getOwnerXY(i, j).addEnergy(-1);
+								board.getOwnerXY(i, j).incrementEnergy(-1);
 								if(board.getMuleTypeXY(i, j)==Mule.Type.FOOD)
 								{
-									board.getOwnerXY(i, j).addFood(4);
+									board.getOwnerXY(i, j).incrementFood(4);
 								}
 								else if(board.getMuleTypeXY(i, j)==Mule.Type.ENERGY)
 								{
-									board.getOwnerXY(i, j).addEnergy(2);
+									board.getOwnerXY(i, j).incrementEnergy(2);
 								}
 								else if(board.getMuleTypeXY(i, j)==Mule.Type.SMITHORE)
 								{
@@ -607,18 +607,18 @@ public class GameController implements Serializable {
 						else if(board.getTypeXY(i,j)==Tile.Type.PLAINS)
 						{
 							if(board.getOwnerXY(i, j).getEnergy()>0){
-								board.getOwnerXY(i, j).addEnergy(-1);
+								board.getOwnerXY(i, j).incrementEnergy(-1);
 								if(board.getMuleTypeXY(i, j)==Mule.Type.FOOD)
 								{
-									board.getOwnerXY(i, j).addFood(2);
+									board.getOwnerXY(i, j).incrementFood(2);
 								}
 								else if(board.getMuleTypeXY(i, j)==Mule.Type.ENERGY)
 								{
-									board.getOwnerXY(i, j).addEnergy(3);
+									board.getOwnerXY(i, j).incrementEnergy(3);
 								}
 								else if(board.getMuleTypeXY(i, j)==Mule.Type.SMITHORE)
 								{
-									board.getOwnerXY(i, j).addSmithore(1);
+									board.getOwnerXY(i, j).incrementSmithore(1);
 								}
 								else if(board.getMuleTypeXY(i, j)==Mule.Type.CRYSTITE)
 								{
@@ -629,18 +629,18 @@ public class GameController implements Serializable {
 						else if(board.getTypeXY(i,j)==Tile.Type.MOUNTAINONE)
 						{
 							if(board.getOwnerXY(i, j).getEnergy()>0){
-								board.getOwnerXY(i, j).addEnergy(-1);
+								board.getOwnerXY(i, j).incrementEnergy(-1);
 								if(board.getMuleTypeXY(i, j)==Mule.Type.FOOD)
 								{
-									board.getOwnerXY(i, j).addFood(1);
+									board.getOwnerXY(i, j).incrementFood(1);
 								}
 								else if(board.getMuleTypeXY(i, j)==Mule.Type.ENERGY)
 								{
-									board.getOwnerXY(i, j).addEnergy(1);
+									board.getOwnerXY(i, j).incrementEnergy(1);
 								}
 								else if(board.getMuleTypeXY(i, j)==Mule.Type.SMITHORE)
 								{
-									board.getOwnerXY(i, j).addSmithore(2);
+									board.getOwnerXY(i, j).incrementSmithore(2);
 								}
 								else if(board.getMuleTypeXY(i, j)==Mule.Type.CRYSTITE)
 								{
@@ -651,18 +651,18 @@ public class GameController implements Serializable {
 						else if(board.getTypeXY(i,j)==Tile.Type.MOUNTAINTWO)
 						{
 							if(board.getOwnerXY(i, j).getEnergy()>0){
-								board.getOwnerXY(i, j).addEnergy(-1);
+								board.getOwnerXY(i, j).incrementEnergy(-1);
 								if(board.getMuleTypeXY(i, j)==Mule.Type.FOOD)
 								{
-									board.getOwnerXY(i, j).addFood(1);
+									board.getOwnerXY(i, j).incrementFood(1);
 								}
 								else if(board.getMuleTypeXY(i, j)==Mule.Type.ENERGY)
 								{
-									board.getOwnerXY(i, j).addEnergy(1);
+									board.getOwnerXY(i, j).incrementEnergy(1);
 								}
 								else if(board.getMuleTypeXY(i, j)==Mule.Type.SMITHORE)
 								{
-									board.getOwnerXY(i, j).addSmithore(3);
+									board.getOwnerXY(i, j).incrementSmithore(3);
 								}
 								else if(board.getMuleTypeXY(i, j)==Mule.Type.CRYSTITE)
 								{
@@ -673,18 +673,18 @@ public class GameController implements Serializable {
 						else if(board.getTypeXY(i,j)==Tile.Type.MOUNTAINTHREE)
 						{
 							if(board.getOwnerXY(i, j).getEnergy()>0){
-								board.getOwnerXY(i, j).addEnergy(-1);
+								board.getOwnerXY(i, j).incrementEnergy(-1);
 								if(board.getMuleTypeXY(i, j)==Mule.Type.FOOD)
 								{
-									board.getOwnerXY(i, j).addFood(1);
+									board.getOwnerXY(i, j).incrementFood(1);
 								}
 								else if(board.getMuleTypeXY(i, j)==Mule.Type.ENERGY)
 								{
-									board.getOwnerXY(i, j).addEnergy(1);
+									board.getOwnerXY(i, j).incrementEnergy(1);
 								}
 								else if(board.getMuleTypeXY(i, j)==Mule.Type.SMITHORE)
 								{
-									board.getOwnerXY(i, j).addSmithore(4);
+									board.getOwnerXY(i, j).incrementSmithore(4);
 								}
 								else if(board.getMuleTypeXY(i, j)==Mule.Type.CRYSTITE)
 								{
@@ -720,7 +720,7 @@ public class GameController implements Serializable {
 				int timeLeft = timer.getTimeRemaining();
 				int moneyFromPub = 1+rand.nextInt(timeLeft);
 				System.out.println(moneyFromPub);
-				currentPlayer.addMoney(moneyFromPub);
+				currentPlayer.incrementMoney(moneyFromPub);
 
 				System.out.println("YOU HAVE GAMBLED YOUR TIME AWAY IN THE PUB, GOOD JOB");
 				//players.next();
