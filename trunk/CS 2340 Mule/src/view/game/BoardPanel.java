@@ -175,14 +175,6 @@ public class BoardPanel extends JPanel {
 		this.inTownCenter = false;
 	}
 	
-	/**
-     * METHOD that adds a mouse listener to the market panel exit button
-     * @param mouseAdapter the mouse listener to add
-     */
-    protected void onClickExit(MouseAdapter mouseAdapter) {
-        marketPanel.onClickExit(mouseAdapter);
-    }
-	
 	public boolean isInTownCenter()
 	{
 		return this.inTownCenter;

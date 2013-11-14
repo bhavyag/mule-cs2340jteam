@@ -170,12 +170,4 @@ public class GameFrame extends JFrame {
     {
     	return this.boardPanel.marketPanel;
     }
-    
-    /**
-     * METHOD that adds a mouse listener to the market panel exit button
-     * @param mouseAdapter the mouse listener to add
-     */
-    public void onClickExit(MouseAdapter mouseAdapter) {
-        boardPanel.onClickExit(mouseAdapter);
-    }
 }

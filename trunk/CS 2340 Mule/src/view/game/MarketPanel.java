@@ -24,6 +24,7 @@ public class MarketPanel extends JPanel{
 
 	private JLabel marketLabel;
 	private JButton exitButton = new JButton("");
+	JButton tradeButton;
 	
 	JButton sellCrystite;
 	JButton sellEnergy;
@@ -159,7 +160,7 @@ public class MarketPanel extends JPanel{
 		exitButton.setIcon(new ImageIcon(MarketPanel.class.getResource("/sprites/market/Exit-Button-RED.png")));
 		this.add(exitButton);
 		
-		JButton tradeButton = new JButton("");
+		tradeButton = new JButton("");
 		tradeButton.setIcon(new ImageIcon(MarketPanel.class.getResource("/sprites/market/Trade-Button.png")));
 		tradeButton.setBounds(new Rectangle(10, 340, 168, 53));
 		tradeButton.setBounds(648, 340, 168, 53);
@@ -359,29 +360,6 @@ public class MarketPanel extends JPanel{
 		marketLabel.setIcon(new ImageIcon(MarketPanel.class.getResource("/sprites/market/Market-Screen.png")));
 		marketLabel.setBounds(0, 0, 832, 400);
 		this.add(marketLabel);
-    }
-	
-	public void setUpMarket(int[][] data)
-	{
-		this.playerFood.setText(""+data[0][0]);
-		this.playerSmithore.setText(""+data[0][1]);
-		this.playerEnergy.setText(""+data[0][2]);
-		this.playerCrystite.setText(""+data[0][3]);
-		
-		this.storeFood.setText(""+data[1][0]);
-		this.storeSmithore.setText(""+data[1][1]);
-		this.storeEnergy.setText(""+data[1][2]);
-		this.storeCrystite.setText(""+data[1][3]);
-		
-		buyFoodPrice.setText(""+data[2][0]);
-		buySmithorePrice.setText(""+data[2][1]);
-		buyEnergyPrice.setText(""+data[2][2]);
-		buyCrystitePrice.setText(""+data[2][3]);
-		
-		sellFoodPrice.setText(""+data[3][0]);
-		sellSmithorePrice.setText(""+data[3][1]);
-		sellEnergyPrice.setText(""+data[3][2]);
-		sellCrystitePrice.setText(""+data[3][3]);
 		
 		sellCrystite.addMouseListener(new MouseAdapter() 
 		{
@@ -489,7 +467,18 @@ public class MarketPanel extends JPanel{
 			@Override
 			public void mouseClicked(MouseEvent e) 
 			{
-
+				int totalAmount = Integer.parseInt(total.getText());
+				int playerSmithoreAmount = Integer.parseInt(playerSmithore.getText());
+				int storeSmithoreAmount = Integer.parseInt(storeSmithore.getText());
+				if(storeSmithoreAmount != 0)
+				{
+					playerSmithoreAmount++;
+					playerSmithore.setText(""+(playerSmithoreAmount));
+					storeSmithoreAmount--;
+					storeSmithore.setText(""+storeSmithoreAmount);
+					totalAmount += Integer.parseInt(buySmithorePrice.getText());
+					total.setText(""+totalAmount);
+				}
 			}
 		});
 		
@@ -498,7 +487,18 @@ public class MarketPanel extends JPanel{
 			@Override
 			public void mouseClicked(MouseEvent e) 
 			{
-
+				int totalAmount = Integer.parseInt(total.getText());
+				int playerEnergyAmount = Integer.parseInt(playerEnergy.getText());
+				int storeEnergyAmount = Integer.parseInt(storeEnergy.getText());
+				if(storeEnergyAmount != 0)
+				{
+					playerEnergyAmount++;
+					playerEnergy.setText(""+(playerEnergyAmount));
+					storeEnergyAmount--;
+					storeEnergy.setText(""+storeEnergyAmount);
+					totalAmount += Integer.parseInt(buyEnergyPrice.getText());
+					total.setText(""+totalAmount);
+				}
 			}
 		});
 		
@@ -507,16 +507,84 @@ public class MarketPanel extends JPanel{
 			@Override
 			public void mouseClicked(MouseEvent e) 
 			{
-
+				int totalAmount = Integer.parseInt(total.getText());
+				int playerCrystiteAmount = Integer.parseInt(playerCrystite.getText());
+				int storeCrystiteAmount = Integer.parseInt(storeCrystite.getText());
+				if(storeCrystiteAmount != 0)
+				{
+					playerCrystiteAmount++;
+					playerCrystite.setText(""+(playerCrystiteAmount));
+					storeCrystiteAmount--;
+					storeCrystite.setText(""+storeCrystiteAmount);
+					totalAmount += Integer.parseInt(buyCrystitePrice.getText());
+					total.setText(""+totalAmount);
+				}
 			}
 		});
+    }
+	
+	public int[][] getMarketData()
+	{
+		int[][] data = new int[3][4];
+		
+		data[0][0] = Integer.parseInt(this.playerFood.getText());
+		data[0][1] = Integer.parseInt(this.playerSmithore.getText());
+		data[0][2] = Integer.parseInt(this.playerEnergy.getText());
+		data[0][3] = Integer.parseInt(this.playerCrystite.getText());
+		
+		data[1][0] = Integer.parseInt(this.storeFood.getText());
+		data[1][1] = Integer.parseInt(this.storeSmithore.getText());
+		data[1][2] = Integer.parseInt(this.storeEnergy.getText());
+		data[1][3] = Integer.parseInt(this.storeCrystite.getText());
+		
+		data[2][0] = Integer.parseInt(this.total.getText());
+		
+		return data;
+	}
+	
+	public void resetTotal()
+	{
+		this.total.setText("0");
+	}
+	
+	public void setUpMarket(int[][] data)
+	{
+		this.playerFood.setText(""+data[0][0]);
+		this.playerSmithore.setText(""+data[0][1]);
+		this.playerEnergy.setText(""+data[0][2]);
+		this.playerCrystite.setText(""+data[0][3]);
+		
+		this.storeFood.setText(""+data[1][0]);
+		this.storeSmithore.setText(""+data[1][1]);
+		this.storeEnergy.setText(""+data[1][2]);
+		this.storeCrystite.setText(""+data[1][3]);
+		
+		buyFoodPrice.setText(""+data[2][0]);
+		buySmithorePrice.setText(""+data[2][1]);
+		buyEnergyPrice.setText(""+data[2][2]);
+		buyCrystitePrice.setText(""+data[2][3]);
+		
+		sellFoodPrice.setText(""+data[3][0]);
+		sellSmithorePrice.setText(""+data[3][1]);
+		sellEnergyPrice.setText(""+data[3][2]);
+		sellCrystitePrice.setText(""+data[3][3]);
+		
+		
 	}
 	
 	/**
      * METHOD that adds a mouse listener to the market panel exit button
      * @param mouseAdapter the mouse listener to add
      */
-    protected void onClickExit(MouseAdapter mouseAdapter) {
+    public void onClickExit(MouseAdapter mouseAdapter) {
         exitButton.addMouseListener(mouseAdapter);
+    }
+    
+    /**
+     * METHOD that adds a mouse listener to the market panel exit button
+     * @param mouseAdapter the mouse listener to add
+     */
+    public void onClickTrade(MouseAdapter mouseAdapter) {
+        tradeButton.addMouseListener(mouseAdapter);
     }
 }
