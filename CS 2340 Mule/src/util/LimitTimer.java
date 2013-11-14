@@ -3,11 +3,12 @@ package util;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.Serializable;
 
 /**
  * CLASS LIMITTIMER a swing timer that can be configured with a time limit
  */
-public class LimitTimer {
+public class LimitTimer implements Serializable {
     private Timer timer;
     private int limit;
     private int count;

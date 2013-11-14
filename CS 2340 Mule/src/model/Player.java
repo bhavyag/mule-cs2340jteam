@@ -1,6 +1,5 @@
 package model;
 
-import java.io.Serializable;
 import java.net.URL;
 import java.awt.Point;
 import java.util.ArrayList;
@@ -9,8 +8,9 @@ import java.util.ArrayList;
  * CLASS Player. Holds the data for each player.
  *
  */
-public class Player implements Serializable {
-	/**
+public class Player {
+
+    /**
 	 * ENUM for player color
 	 */
 	public static enum Color {

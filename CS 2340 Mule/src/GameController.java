@@ -2,8 +2,6 @@ import model.*;
 import util.LimitTimer;
 import view.game.DialogMessage;
 import view.game.GameFrame;
-import view.title.GameConfigPanel;
-import view.title.PlayerConfigPanel;
 import view.title.TitleFrame;
 
 import javax.swing.*;
@@ -13,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter; 
 import java.awt.event.MouseEvent;
+import java.io.*;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Random;
@@ -22,7 +21,7 @@ import java.awt.event.KeyListener;
 /**
  * CLASS GAMECONTROLLER controls the flow of the game
  */
-public class GameController {
+public class GameController implements Serializable {
 	private TitleFrame titleView;
 	private GameFrame gameView;
 	private static String phase;
@@ -32,13 +31,11 @@ public class GameController {
 	private LimitTimer timer;
 	private int minimumFood;
 	private DialogMessage randEvent;
-	private boolean randCheck;
-	private Thread waitThread;
 
 	/**
 	 * METHOD begins the title sequence
 	 */
-	private void startTitleSequence() {
+	public void startTitleSequence() {
 		titleView = new TitleFrame();
 		titleScreen();
 	}
@@ -50,13 +47,13 @@ public class GameController {
 		titleView.showTitlePanel();
 
 		titleView.onClickStart(
-				new MouseAdapter() {
-					@Override
-					public void mouseClicked(MouseEvent e) {
-						configureGame();
-					}
-				}
-				);
+                new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        configureGame();
+                    }
+                }
+        );
 	}
 
 	/**
@@ -66,18 +63,18 @@ public class GameController {
 		titleView.showGameConfigPanel();
 
 		titleView.onGameConfigNext(
-				new MouseAdapter() {
-					@Override
-					public void mouseClicked(MouseEvent e) {
-						difficulty = titleView.getGameConfigDifficulty();
-						board = BoardFactory.constructBoard(titleView.getGameConfigMap());
-						players = new PlayerQueue(titleView.getGameConfigNumPlayers(), 600 / difficulty);
-						minimumFood=3;
+                new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        difficulty = titleView.getGameConfigDifficulty();
+                        board = BoardFactory.constructBoard(titleView.getGameConfigMap());
+                        players = new PlayerQueue(titleView.getGameConfigNumPlayers(), 600 / difficulty);
+                        minimumFood = 3;
 
-						configurePlayers();
-					}
-				}
-				);
+                        configurePlayers();
+                    }
+                }
+        );
 	}
 
 	/**
@@ -110,7 +107,7 @@ public class GameController {
 	/**
 	 * METHOD starts the actual gameplay
 	 */
-	private void startGame() {
+	public void startGame() {
 		titleView.dispose();
 		gameView = new GameFrame(players.getNumPlayers());
 
@@ -448,7 +445,6 @@ public class GameController {
 	 * METHOD that sets up the market screen
 	 */
 	private void marketScreen() {
-
 		gameView.showMarketPanel();
 		sendMarketData();
 		gameView.getMarketPanel().onClickExit(
@@ -747,13 +743,5 @@ public class GameController {
 				currentPlayer.setInStore(false);
 			}
 		} 	
-	}
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		GameController gc = new GameController();
-		gc.startTitleSequence();
 	}
 }
