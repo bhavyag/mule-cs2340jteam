@@ -3,6 +3,8 @@
  */
 package model;
 
+import java.net.URL;
+
 /**
  * @author Bhavya
  *
@@ -11,17 +13,19 @@ public class Mule implements Purchasable{
 
 	public static enum Type
 	{
-		FOOD("food", 25),
-		ENERGY("energy", 50),
-		SMITHORE("smithore", 75),
-		CRYSTITE("crystite", 100);
+		FOOD("food", 25, Player.class.getResource("/sprites/tiles/food-mule-tile.png")),
+		ENERGY("energy", 50,  Player.class.getResource("/sprites/tiles/energy-mule-tile.png")),
+		SMITHORE("smithore", 75,  Player.class.getResource("/sprites/tiles/smithore-mule-tile.png")),
+		CRYSTITE("crystite", 100,  Player.class.getResource("/sprites/tiles/crystite-mule-tile.png"));
 
 		private String type;
 		private int cost;
+		private URL iconImagePath;
 
-		Type(String type, int cost) {
+		Type(String type, int cost, URL imagePath) {
 			this.type = type;
 			this.cost = cost;
+			this.iconImagePath = imagePath;
 		}
 
 		public String toString()
@@ -32,6 +36,11 @@ public class Mule implements Purchasable{
 		public int getCost()
 		{
 			return cost;
+		}
+		
+		public URL getIconImagePath()
+		{
+			return iconImagePath;
 		}
 
 		public boolean equals(Type type)
