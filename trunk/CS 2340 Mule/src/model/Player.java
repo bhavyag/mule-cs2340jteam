@@ -514,6 +514,7 @@ public class Player implements Savable {
 	public void updateScore() {
 		score = 0; //reset score
 		//Add land score
+		/*
 		for(int i = 0;i<playerTiles.size();i++){
     		
 	    	if(playerTiles.get(i).getMuleType()!=null)
@@ -541,6 +542,7 @@ public class Player implements Savable {
     		}
     		
     	}
+    	*/
 		//Add money score
 		score += money;
 		//Add goods score
