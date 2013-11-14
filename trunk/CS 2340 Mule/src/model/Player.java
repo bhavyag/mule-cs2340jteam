@@ -1,5 +1,6 @@
 package model;
 
+import java.io.Serializable;
 import java.net.URL;
 import java.awt.Point;
 import java.util.ArrayList;
@@ -8,7 +9,7 @@ import java.util.ArrayList;
  * CLASS Player. Holds the data for each player.
  *
  */
-public class Player {
+public class Player implements Serializable {
 	/**
 	 * ENUM for player color
 	 */
@@ -361,7 +362,7 @@ public class Player {
 	
 	/**
 	 * METHOD Set this players food
-	 * @param the food of the player
+	 * @param food the food of the player
 	 */
 	public void addFood(int food) {
 		this.food += food;
@@ -369,7 +370,7 @@ public class Player {
 	
 	/**
 	 * METHOD Set this players energy
-	 * @param the energy of the player
+	 * @param energy the energy of the player
 	 */
 	public void addEnergy(int energy) {
 		this.energy += energy;
@@ -377,7 +378,7 @@ public class Player {
 	
 	/**
 	 * METHOD Set this players smithore
-	 * @param the smithore of the player
+	 * @param smithore the smithore of the player
 	 */
 	public void addSmithore(int smithore) {
 		this.smithore += smithore;
@@ -385,7 +386,7 @@ public class Player {
 	
 	/**
 	 * METHOD Set this players crystite
-	 * @param the crystite of the player
+	 * @param crystite the crystite of the player
 	 */
 	public void addCrystite(int crystite) {
 		this.crystite += crystite;
