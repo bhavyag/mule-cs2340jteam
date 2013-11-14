@@ -242,7 +242,7 @@ public class Player {
 		return money;
 	}
 
-	public void addMoney(int m)
+	public void incrementMoney(int m)
 	{
 		this.money += m;
 	}
@@ -364,7 +364,7 @@ public class Player {
 	 * METHOD Set this players food
 	 * @param food the food of the player
 	 */
-	public void addFood(int food) {
+	public void incrementFood(int food) {
 		this.food += food;
 	}
 	
@@ -372,7 +372,7 @@ public class Player {
 	 * METHOD Set this players energy
 	 * @param energy the energy of the player
 	 */
-	public void addEnergy(int energy) {
+	public void incrementEnergy(int energy) {
 		this.energy += energy;
 	}
 	
@@ -380,7 +380,7 @@ public class Player {
 	 * METHOD Set this players smithore
 	 * @param smithore the smithore of the player
 	 */
-	public void addSmithore(int smithore) {
+	public void incrementSmithore(int smithore) {
 		this.smithore += smithore;
 	}
 	
@@ -388,7 +388,7 @@ public class Player {
 	 * METHOD Set this players crystite
 	 * @param crystite the crystite of the player
 	 */
-	public void addCrystite(int crystite) {
+	public void incrementCrystite(int crystite) {
 		this.crystite += crystite;
 	}
 	

@@ -41,32 +41,32 @@ public class RandomEvent {
 		switch (event)
 		{
 		case 0:
-			p.addFood(3);
-			p.addEnergy(2);
+			p.incrementFood(3);
+			p.incrementEnergy(2);
 			result = events[event];
 			break;
 		case 1:
-			p.addSmithore(2);
+			p.incrementSmithore(2);
 			result = events[event];
 			break;
 		case 2:
-			p.addMoney(8 * returnM(playerQ.getRound()));
+			p.incrementMoney(8 * returnM(playerQ.getRound()));
 			result = "THE MUSEUM BOUGHT YOUR ANTIQUE PERSONAL COMPUTER FOR $" + (8*returnM(playerQ.getRound()) + ".");
 			break;
 		case 3:
-			p.addMoney(2 * returnM(playerQ.getRound()));
+			p.incrementMoney(2 * returnM(playerQ.getRound()));
 			result = "YOU FOUND A DEAD MOOSE RAT AND SOLD THE HIDE FOR $" + (2*returnM(playerQ.getRound()) + ".");
 			break;
 		case 4:
-			p.addMoney(-4 * returnM(playerQ.getRound()));
+			p.incrementMoney(-4 * returnM(playerQ.getRound()));
 			result = "FLYING CAT-BUGS ATE THE ROOF OFF YOUR HOUSE. REPAIRS COST $" + (4*returnM(playerQ.getRound()) + ".");
 			break;
 		case 5:
-			p.addFood(-p.getFood()/2);
+			p.incrementFood(-p.getFood()/2);
 			result = events[event];
 			break;
 		case 6:
-			p.addMoney(-6 * returnM(playerQ.getRound()));
+			p.incrementMoney(-6 * returnM(playerQ.getRound()));
 			result = "YOUR SPACE GYPSY INLAWS MADE A MESS OF THE TOWN. IT COST YOU $" + (6*returnM(playerQ.getRound()) + " TO CLEAN IT UP.");
 			break;
 		}
