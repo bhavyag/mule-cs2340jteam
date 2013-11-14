@@ -359,6 +359,38 @@ public class Player {
 		return crystite;
 	}
 	
+	/**
+	 * METHOD Set this players food
+	 * @param the food of the player
+	 */
+	public void addFood(int food) {
+		this.food += food;
+	}
+	
+	/**
+	 * METHOD Set this players energy
+	 * @param the energy of the player
+	 */
+	public void addEnergy(int energy) {
+		this.energy += energy;
+	}
+	
+	/**
+	 * METHOD Set this players smithore
+	 * @param the smithore of the player
+	 */
+	public void addSmithore(int smithore) {
+		this.smithore += smithore;
+	}
+	
+	/**
+	 * METHOD Set this players crystite
+	 * @param the crystite of the player
+	 */
+	public void addCrystite(int crystite) {
+		this.crystite += crystite;
+	}
+	
 	public void setCrystite(int i) 
 	{
 		this.crystite = i;
