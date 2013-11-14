@@ -75,7 +75,7 @@ public class TilePanel extends JPanel {
      * METHOD to set the image to display as the icon of the Tile at x , y
      * @param imagePath the image to use as the icon to represent the mule that is on the tile
      * @param x the x coord of the tile
-     * @param y the y coord of the tile
+     * @param y the y coord of the tile          
      */
     protected void setIconImage(URL imagePath, int x, int y)
     {
