@@ -1,5 +1,7 @@
 package model;
 
+import util.Savable;
+
 import java.net.URL;
 import java.awt.Point;
 import java.util.ArrayList;
@@ -8,7 +10,7 @@ import java.util.ArrayList;
  * CLASS Player. Holds the data for each player.
  *
  */
-public class Player {
+public class Player implements Savable {
 
     /**
 	 * ENUM for player color
@@ -532,4 +534,46 @@ public class Player {
 	public int getScore(){
 		return score;
 	}
+
+    @Override
+    public String toDataString() {
+        return "" + name + " " + color.toString() + " " + race.toString() + " " + money + " " + energy + " " + food + " " + smithore + " " + crystite + "\n";
+    }
+
+    @Override
+    public Object fromDataString(String dataString) {
+        String[] dataStringArr = dataString.split(" ");
+        Player player = new Player(Integer.parseInt(dataStringArr[3]));
+        player.setName(dataStringArr[0]);
+
+        if (dataStringArr[1].equals(Color.RED.toString())) {
+            player.setColor(0);
+        } else if (dataStringArr[1].equals(Color.YELLOW.toString())) {
+            player.setColor(1);
+        } else if (dataStringArr[1].equals(Color.GREEN.toString())) {
+            player.setColor(2);
+        } else {
+            player.setColor(3);
+        }
+
+        if (dataStringArr[2].equals(Race.HUMAN.toString())) {
+            player.setColor(0);
+        } else if (dataStringArr[2].equals(Race.FLAPPER.toString())) {
+            player.setColor(1);
+        } else if (dataStringArr[2].equals(Race.BONZIOD.toString())) {
+            player.setColor(2);
+        } else if (dataStringArr[2].equals(Race.UGAITE.toString())) {
+            player.setColor(3);
+        } else {
+            player.setColor(4);
+        }
+
+        player.setEnergy(Integer.parseInt(dataStringArr[4]));
+        player.setFood(Integer.parseInt(dataStringArr[5]));
+        player.setSmithore(Integer.parseInt(dataStringArr[6]));
+        player.setCrystite(Integer.parseInt(dataStringArr[7]));
+
+        return player;
+    }
+
 }
