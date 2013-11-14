@@ -1,6 +1,7 @@
 package model;
 
 import java.awt.*;
+import java.io.Serializable;
 import java.net.URL;
 
 /**
