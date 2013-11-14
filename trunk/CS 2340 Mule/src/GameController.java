@@ -584,23 +584,113 @@ public class GameController implements Serializable {
 					{
 						if(board.getTypeXY(i,j)==Tile.Type.RIVER)
 						{
-
+							if(board.getOwnerXY(i, j).getEnergy()>0){
+								board.getOwnerXY(i, j).addEnergy(-1);
+								if(board.getMuleTypeXY(i, j)==Mule.Type.FOOD)
+								{
+									board.getOwnerXY(i, j).addFood(4);
+								}
+								else if(board.getMuleTypeXY(i, j)==Mule.Type.ENERGY)
+								{
+									board.getOwnerXY(i, j).addEnergy(2);
+								}
+								else if(board.getMuleTypeXY(i, j)==Mule.Type.SMITHORE)
+								{
+									//nothing
+								}
+								else if(board.getMuleTypeXY(i, j)==Mule.Type.CRYSTITE)
+								{
+									//nothing
+								}
+							}
 						}
 						else if(board.getTypeXY(i,j)==Tile.Type.PLAINS)
 						{
-
+							if(board.getOwnerXY(i, j).getEnergy()>0){
+								board.getOwnerXY(i, j).addEnergy(-1);
+								if(board.getMuleTypeXY(i, j)==Mule.Type.FOOD)
+								{
+									board.getOwnerXY(i, j).addFood(2);
+								}
+								else if(board.getMuleTypeXY(i, j)==Mule.Type.ENERGY)
+								{
+									board.getOwnerXY(i, j).addEnergy(3);
+								}
+								else if(board.getMuleTypeXY(i, j)==Mule.Type.SMITHORE)
+								{
+									board.getOwnerXY(i, j).addSmithore(1);
+								}
+								else if(board.getMuleTypeXY(i, j)==Mule.Type.CRYSTITE)
+								{
+									//TODO:Implement crystite
+								}
+							}
 						}
 						else if(board.getTypeXY(i,j)==Tile.Type.MOUNTAINONE)
 						{
-
+							if(board.getOwnerXY(i, j).getEnergy()>0){
+								board.getOwnerXY(i, j).addEnergy(-1);
+								if(board.getMuleTypeXY(i, j)==Mule.Type.FOOD)
+								{
+									board.getOwnerXY(i, j).addFood(1);
+								}
+								else if(board.getMuleTypeXY(i, j)==Mule.Type.ENERGY)
+								{
+									board.getOwnerXY(i, j).addEnergy(1);
+								}
+								else if(board.getMuleTypeXY(i, j)==Mule.Type.SMITHORE)
+								{
+									board.getOwnerXY(i, j).addSmithore(2);
+								}
+								else if(board.getMuleTypeXY(i, j)==Mule.Type.CRYSTITE)
+								{
+									//TODO:Implement crystite
+								}
+							}
 						}
 						else if(board.getTypeXY(i,j)==Tile.Type.MOUNTAINTWO)
 						{
-
+							if(board.getOwnerXY(i, j).getEnergy()>0){
+								board.getOwnerXY(i, j).addEnergy(-1);
+								if(board.getMuleTypeXY(i, j)==Mule.Type.FOOD)
+								{
+									board.getOwnerXY(i, j).addFood(1);
+								}
+								else if(board.getMuleTypeXY(i, j)==Mule.Type.ENERGY)
+								{
+									board.getOwnerXY(i, j).addEnergy(1);
+								}
+								else if(board.getMuleTypeXY(i, j)==Mule.Type.SMITHORE)
+								{
+									board.getOwnerXY(i, j).addSmithore(3);
+								}
+								else if(board.getMuleTypeXY(i, j)==Mule.Type.CRYSTITE)
+								{
+									//TODO:Implement crystite
+								}
+							}
 						}
 						else if(board.getTypeXY(i,j)==Tile.Type.MOUNTAINTHREE)
 						{
-
+							if(board.getOwnerXY(i, j).getEnergy()>0){
+								board.getOwnerXY(i, j).addEnergy(-1);
+								if(board.getMuleTypeXY(i, j)==Mule.Type.FOOD)
+								{
+									board.getOwnerXY(i, j).addFood(1);
+								}
+								else if(board.getMuleTypeXY(i, j)==Mule.Type.ENERGY)
+								{
+									board.getOwnerXY(i, j).addEnergy(1);
+								}
+								else if(board.getMuleTypeXY(i, j)==Mule.Type.SMITHORE)
+								{
+									board.getOwnerXY(i, j).addSmithore(4);
+								}
+								else if(board.getMuleTypeXY(i, j)==Mule.Type.CRYSTITE)
+								{
+									//TODO:Implement crystite
+								}
+							}
 						}
 					}
 				}
