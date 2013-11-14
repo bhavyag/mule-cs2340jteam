@@ -575,9 +575,9 @@ public class GameController implements Serializable {
 	 */
 	public void calculateProduction()
 	{
-		for(int i=0;i<9;i++)
+		for(int i=0;i<5;i++)
 		{
-			for(int j=0;j<5;j++)
+			for(int j=0;j<9;j++)
 			{
 				if(board.getOwnerXY(i,j)!=null)
 				{
