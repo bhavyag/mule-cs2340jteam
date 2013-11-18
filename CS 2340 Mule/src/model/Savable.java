@@ -1,6 +1,6 @@
 package model;
 
 public interface Savable {
-    public String toDataString();
-    public Object fromDataString(String dataString);
+    public String toJson();
+    public Object fromJson(String jsonString);
 }

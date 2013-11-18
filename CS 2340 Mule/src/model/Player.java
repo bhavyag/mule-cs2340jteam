@@ -1,5 +1,7 @@
 package model;
 
+import org.json.simple.JSONObject;
+
 import java.net.URL;
 import java.awt.Point;
 import java.util.ArrayList;
@@ -558,44 +560,15 @@ public class Player implements Savable {
 	}
 
     @Override
-    public String toDataString() {
-        return "";
+    public String toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        return json.toString();
     }
 
     @Override
-    public Object fromDataString(String dataString) {
-        String[] dataStringArr = dataString.split(" ");
-        Player player = new Player(Integer.parseInt(dataStringArr[3]));
-        player.setName(dataStringArr[0]);
-
-        if (dataStringArr[1].equals(Color.RED.toString())) {
-            player.setColor(0);
-        } else if (dataStringArr[1].equals(Color.YELLOW.toString())) {
-            player.setColor(1);
-        } else if (dataStringArr[1].equals(Color.GREEN.toString())) {
-            player.setColor(2);
-        } else {
-            player.setColor(3);
-        }
-
-        if (dataStringArr[2].equals(Race.HUMAN.toString())) {
-            player.setColor(0);
-        } else if (dataStringArr[2].equals(Race.FLAPPER.toString())) {
-            player.setColor(1);
-        } else if (dataStringArr[2].equals(Race.BONZIOD.toString())) {
-            player.setColor(2);
-        } else if (dataStringArr[2].equals(Race.UGAITE.toString())) {
-            player.setColor(3);
-        } else {
-            player.setColor(4);
-        }
-
-        player.setEnergy(Integer.parseInt(dataStringArr[4]));
-        player.setFood(Integer.parseInt(dataStringArr[5]));
-        player.setSmithore(Integer.parseInt(dataStringArr[6]));
-        player.setCrystite(Integer.parseInt(dataStringArr[7]));
-
-        return player;
+    public Object fromJson(String jsonStr) {
+        return null;
     }
 
 }
