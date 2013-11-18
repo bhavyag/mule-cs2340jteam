@@ -113,7 +113,6 @@ public class Player implements Savable {
 	private Race race;
 	private int money;
 	private int energy, smithore, food, crystite;
-	private ArrayList<Tile> playerTiles;
 	private int score;
 	private ArrayList<Mule> mules;
 	private Mule holdingMule;
