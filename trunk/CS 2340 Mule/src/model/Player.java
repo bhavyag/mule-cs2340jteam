@@ -1,7 +1,5 @@
 package model;
 
-import util.Savable;
-
 import java.net.URL;
 import java.awt.Point;
 import java.util.ArrayList;
@@ -561,7 +559,7 @@ public class Player implements Savable {
 
     @Override
     public String toDataString() {
-        return "" + name + " " + color.toString() + " " + race.toString() + " " + money + " " + energy + " " + food + " " + smithore + " " + crystite + "\n";
+        return "";
     }
 
     @Override

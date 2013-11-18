@@ -1,4 +1,4 @@
-package util;
+package model;
 
 public interface Savable {
     public String toDataString();
