@@ -47,13 +47,13 @@ public class GameController implements Serializable {
 		titleView.showTitlePanel();
 
 		titleView.onClickStart(
-                new MouseAdapter() {
-                    @Override
-                    public void mouseClicked(MouseEvent e) {
-                        configureGame();
-                    }
-                }
-        );
+				new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						configureGame();
+					}
+				}
+				);
 	}
 
 	/**
@@ -63,18 +63,18 @@ public class GameController implements Serializable {
 		titleView.showGameConfigPanel();
 
 		titleView.onGameConfigNext(
-                new MouseAdapter() {
-                    @Override
-                    public void mouseClicked(MouseEvent e) {
-                        difficulty = titleView.getGameConfigDifficulty();
-                        board = BoardFactory.constructBoard(titleView.getGameConfigMap());
-                        players = new PlayerQueue(titleView.getGameConfigNumPlayers(), 600 / difficulty);
-                        minimumFood = 3;
+				new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						difficulty = titleView.getGameConfigDifficulty();
+						board = BoardFactory.constructBoard(titleView.getGameConfigMap());
+						players = new PlayerQueue(titleView.getGameConfigNumPlayers(), 600 / difficulty);
+						minimumFood = 3;
 
-                        configurePlayers();
-                    }
-                }
-        );
+						configurePlayers();
+					}
+				}
+				);
 	}
 
 	/**
@@ -304,7 +304,7 @@ public class GameController implements Serializable {
 	private void townPhase() {
 
 		phase = "town";
-
+		gameView.onTileClick(null);
 
 		int currentPlayerFood = players.getCurrentPlayer().getFood();
 		int turnLength = 50;
@@ -356,7 +356,7 @@ public class GameController implements Serializable {
 				Player currentPlayer = players.getCurrentPlayer();
 				int key = e.getKeyCode();
 				int maxHeight = 348, maxWidth = 780, minHeight = 20, minWidth = 0;
-				
+
 				if (!gameView.getBoardPanel().isInTownCenter())
 				{
 					minWidth = 92;
@@ -364,7 +364,7 @@ public class GameController implements Serializable {
 					maxWidth = 668 + 20;
 					maxHeight = 308 + 20;
 				}
-				
+
 				if(key == KeyEvent.VK_W && currentPlayer.getPlayerPos().y >= minHeight)
 				{
 					currentPlayer.moveUp();
@@ -389,13 +389,13 @@ public class GameController implements Serializable {
 				{
 
 					Point whereAt = currentPlayer.getPlayerPos();
-					
-					
-					
+
+
+
 					Point tileIndex = gameView.getTileIndex(whereAt);
 					//tileIndex.setX();
 					Tile t = board.map[(int)tileIndex.getX()][(int)tileIndex.getY()];
-					if(t.getOwner() != null && currentPlayer.toString().equals(t.getOwner().toString()));
+					if(t.getOwner() != null && currentPlayer.toString().equals(t.getOwner().toString()))
 					{
 						if(currentPlayer.isHoldingMule())
 						{
@@ -410,10 +410,11 @@ public class GameController implements Serializable {
 								//NOT take in a pixel coordinate)
 							}
 						}
-						System.out.println("OWNED");
-
+						else
+							System.out.println("Player is not holding a mule");
 					}
-					//please make this actually do something
+					else
+						System.out.println("Player doesn't own this tile!");
 				}
 			}
 
@@ -498,7 +499,7 @@ public class GameController implements Serializable {
 					}
 				}
 				);
-    }
+	}
 
 	/**
 	 * METHOD for updating two main components: the JLabels of the Status Panel for each player

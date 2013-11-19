@@ -47,6 +47,7 @@ public class Tile implements Purchasable
     {
     	this.type = type;
         this.ownable = true;
+        this.owner = null;
     }
 
     /**
