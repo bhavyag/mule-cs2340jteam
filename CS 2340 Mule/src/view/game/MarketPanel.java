@@ -24,16 +24,16 @@ public class MarketPanel extends JPanel{
 
 	private JLabel marketLabel;
 	private JButton exitButton = new JButton("");
-	JButton tradeButton;
+	private JButton tradeButton;
 	
-	JButton sellCrystite;
-	JButton sellEnergy;
-	JButton sellSmithore;
-	JButton sellFood;
-	JButton buyFood;
-	JButton buySmithore;
-	JButton buyEnergy;
-	JButton buyCrystite;
+	private JButton sellCrystite;
+	private JButton sellEnergy;
+	private JButton sellSmithore;
+	private JButton sellFood;
+	private JButton buyFood;
+	private JButton buySmithore;
+	private JButton buyEnergy;
+	private JButton buyCrystite;
 	
 	private JLabel playerFood;
 	private JLabel playerSmithore;
@@ -45,16 +45,16 @@ public class MarketPanel extends JPanel{
 	private JLabel storeCrystite;
 	private JLabel total;
 	
-	JLabel sellEnergyPrice;
-	JLabel sellFoodPrice;
-	JLabel buySmithorePrice;
-	JLabel sellCrystitePrice;
-	JLabel buyCrystitePrice;
-	JLabel buyEnergyPrice;
-	JLabel sellSmithorePrice;
-	JLabel buyFoodPrice;
+	private JLabel sellEnergyPrice;
+	private JLabel sellFoodPrice;
+	private JLabel buySmithorePrice;
+	private JLabel sellCrystitePrice;
+	private JLabel buyCrystitePrice;
+	private JLabel buyEnergyPrice;
+	private JLabel sellSmithorePrice;
+	private JLabel buyFoodPrice;
 	
-	protected MarketPanel() 
+	public MarketPanel() 
 	{
 		this.setLayout(null);
         this.setBounds(168, 0, 832, 400);
@@ -587,4 +587,49 @@ public class MarketPanel extends JPanel{
     public void onClickTrade(MouseAdapter mouseAdapter) {
         tradeButton.addMouseListener(mouseAdapter);
     }
+    
+    public JButton getTradeButton()
+    {
+    	return this.tradeButton;
+    }
+    
+    public JButton getSellCrystiteButton()
+    {
+    	return this.sellCrystite;
+    }
+    
+    public JButton getSellEnergyButton()
+    {
+    	return this.sellEnergy;
+    }
+    
+    public JButton getSellSmithoreButton()
+    {
+    	return this.sellSmithore;
+    }
+    
+    public JButton getSellFoodButton()
+    {
+    	return this.sellFood;
+    }
+    
+    public JButton getBuyCrystiteButton()
+    {
+    	return this.buyCrystite;
+    }
+    
+    public JButton getBuyEnergyButton()
+    {
+    	return this.buyEnergy;
+    }
+    
+    public JButton getBuySmithoreButton()
+    {
+    	return this.buySmithore;
+    }
+    
+    public JButton getBuyFoodButton()
+    {
+    	return this.buyFood;
+    } 
 }
