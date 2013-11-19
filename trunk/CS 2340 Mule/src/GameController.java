@@ -384,7 +384,7 @@ public class GameController implements Serializable {
 					
 					
 					Point tileIndex = gameView.getTileIndex(whereAt);
-					tileIndex.setX();
+					//tileIndex.setX();
 					Tile t = board.map[(int)tileIndex.getX()][(int)tileIndex.getY()];
 					if(t.getOwner() != null && currentPlayer.toString().equals(t.getOwner().toString()));
 					{
