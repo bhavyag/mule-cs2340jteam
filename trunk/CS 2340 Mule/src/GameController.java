@@ -151,7 +151,7 @@ public class GameController implements Serializable {
 	private void randomEvent(final String state)
 	{
 		Random rand = new Random();
-		if (rand.nextDouble() > 0.97) //change this to 0.27 later
+		if (rand.nextDouble() > 0.07) //change this to 0.27 later
 		{
 			if (state.equals("land grant"))
 			{
@@ -355,23 +355,32 @@ public class GameController implements Serializable {
 			{
 				Player currentPlayer = players.getCurrentPlayer();
 				int key = e.getKeyCode();
-
-				if(key == KeyEvent.VK_W)
+				int maxHeight = 348, maxWidth = 780, minHeight = 20, minWidth = 0;
+				
+				if (!gameView.getBoardPanel().isInTownCenter())
+				{
+					minWidth = 92;
+					minHeight = 25;
+					maxWidth = 668 + 20;
+					maxHeight = 308 + 20;
+				}
+				
+				if(key == KeyEvent.VK_W && currentPlayer.getPlayerPos().y >= minHeight)
 				{
 					currentPlayer.moveUp();
 					//System.out.println("UP");
 				}
-				else if(key == KeyEvent.VK_A)
+				else if(key == KeyEvent.VK_A && currentPlayer.getPlayerPos().x >= minWidth)
 				{
 					currentPlayer.moveLeft();
 					//System.out.println("LEFT");
 				}
-				else if(key == KeyEvent.VK_S)
+				else if(key == KeyEvent.VK_S && currentPlayer.getPlayerPos().y <= maxHeight)
 				{
 					currentPlayer.moveDown();
 					//System.out.println("DOWN");
 				}
-				else if(key == KeyEvent.VK_D)
+				else if(key == KeyEvent.VK_D && currentPlayer.getPlayerPos().x <= maxWidth)
 				{
 					currentPlayer.moveRight();
 					//System.out.println("RIGHT");
