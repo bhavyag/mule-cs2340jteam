@@ -399,12 +399,17 @@ public class GameController implements Serializable {
 					{
 						if(currentPlayer.isHoldingMule())
 						{
-							if(!currentPlayer.getHoldingMule().getType().equals(""))
+							if(currentPlayer.getHoldingMule().getType() != null)
 							{
 								System.out.println("MULE Placed on tile");
+								
+								gameView.getBoardPanel().getTilePanel().setIconImage(
+										currentPlayer.getHoldingMule().getType().getIconImagePath(), (int)tileIndex.getX(), (int)tileIndex.getY());
+								currentPlayer.placeMule();
+								
 								//call setIconImage(URL,x,y) in tile panel 
 								//to set the image displayed on the tile based 
-								//on the type of mule placed on it. get the imaage 
+								//on the type of mule placed on it. get the image 
 								//out of the enum for the mule, x and y are the same 
 								//as the x and y of the tile array(5 x 9, this does 
 								//NOT take in a pixel coordinate)

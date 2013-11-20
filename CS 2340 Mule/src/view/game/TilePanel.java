@@ -77,7 +77,7 @@ public class TilePanel extends JPanel {
      * @param x the x coord of the tile
      * @param y the y coord of the tile          
      */
-    protected void setIconImage(URL imagePath, int x, int y)
+    public void setIconImage(URL imagePath, int x, int y)
     {
         if (imagePath == null) {
             imagePath = TilePanel.class.getResource("/sprites/tiles/Border-Default.png");
