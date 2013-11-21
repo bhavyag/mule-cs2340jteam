@@ -33,8 +33,7 @@ public class TownCenterPanel extends JPanel {
 	/**
 	 * CONSTRUCTOR for the Town Center, instantiates the town centers label.
 	 */
-	protected TownCenterPanel() 
-	{
+	protected TownCenterPanel() {
 		this.townCenterPanel = new JLabel("");
 		townCenterPanel.setBounds(5, 5, 832, 400);
 

@@ -113,55 +113,56 @@ public abstract class Board implements Savable {
 		return map[(int) point.getX()][(int) point.getY()].getBorderPath();
 	}
 
-    public void loadPlayerOwnership (List<Player> playerList, List mules) {
-        for (int i = 0; i < map.length; i++) {
-            for (int j = 0; j < map[0].length; j++) {
-                for (Player p : playerList) {
-                    if (p.toString().equals(map[i][j].getOwnerId())) {
-                        map[i][j].setOwner(p);
-                    }
-                }
+	public void loadPlayerOwnership(List<Player> playerList, List mules) {
+		for (int i = 0; i < map.length; i++) {
+			for (int j = 0; j < map[0].length; j++) {
+				for (Player p : playerList) {
+					if (p.toString().equals(map[i][j].getOwnerId())) {
+						map[i][j].setOwner(p);
+					}
+				}
 
-                for (Mule m : (List<Mule>)mules) {
-                    if (m.getId().equals(map[i][j].getMuleId())) {
-                        map[i][j].setMule(m);
-                    }
-                }
-            }
-        }
-    }
+				for (Mule m : (List<Mule>) mules) {
+					if (m.getId().equals(map[i][j].getMuleId())) {
+						map[i][j].setMule(m);
+					}
+				}
+			}
+		}
+	}
 
-    @Override
-    public String toJson() {
-        JSONParser parser = new JSONParser();
-        JSONArray outer = new JSONArray();
+	@Override
+	public String toJson() {
+		JSONParser parser = new JSONParser();
+		JSONArray outer = new JSONArray();
 
-        for (int i = 0; i < map.length; i++) {
-            JSONArray inner = new JSONArray();
-            outer.add(inner);
-            for (int j = 0; j < map[0].length; j++) {
-                try {
-                    inner.add(parser.parse(map[i][j].toJson()));
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
+		for (int i = 0; i < map.length; i++) {
+			JSONArray inner = new JSONArray();
+			outer.add(inner);
+			for (int j = 0; j < map[0].length; j++) {
+				try {
+					inner.add(parser.parse(map[i][j].toJson()));
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+			}
+		}
 
-        return outer.toString();
-    }
+		return outer.toString();
+	}
 
-    @Override
-    public Object fromJson(String jsonString) throws ParseException {
-        JSONParser parser = new JSONParser();
-        JSONArray arr = (JSONArray) parser.parse(jsonString);
+	@Override
+	public Object fromJson(String jsonString) throws ParseException {
+		JSONParser parser = new JSONParser();
+		JSONArray arr = (JSONArray) parser.parse(jsonString);
 
-        for (int i = 0; i < map.length; i++) {
-            for (int j = 0; j < map[0].length; j++) {
-                map[i][j] = (Tile) new Tile().fromJson((((JSONArray) arr.get(i)).get(j)).toString());
-            }
-        }
+		for (int i = 0; i < map.length; i++) {
+			for (int j = 0; j < map[0].length; j++) {
+				map[i][j] = (Tile) new Tile()
+						.fromJson((((JSONArray) arr.get(i)).get(j)).toString());
+			}
+		}
 
-        return this;
-    }
+		return this;
+	}
 }

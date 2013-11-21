@@ -71,8 +71,8 @@ public class GameController implements Serializable {
 				difficulty = titleView.getGameConfigDifficulty();
 				board = BoardFactory.constructBoard(titleView
 						.getGameConfigMap());
-                mapCode = titleView.getGameConfigMap();
-                players = new PlayerQueue(titleView.getGameConfigNumPlayers(),
+				mapCode = titleView.getGameConfigMap();
+				players = new PlayerQueue(titleView.getGameConfigNumPlayers(),
 						600 / difficulty);
 				minimumFood = 3;
 
@@ -114,9 +114,9 @@ public class GameController implements Serializable {
 	 * METHOD starts the actual gameplay
 	 */
 	public void startGame() {
-        if (titleView != null) {
-		    titleView.dispose();
-        }
+		if (titleView != null) {
+			titleView.dispose();
+		}
 		gameView = new GameFrame(players.getNumPlayers());
 
 		configureTimer();
@@ -288,7 +288,7 @@ public class GameController implements Serializable {
 						calculateProduction();
 						timer.stop();
 						save();
-                        randomEvent("land grant");
+						randomEvent("land grant");
 					} else {
 						timer.reset();
 						gameView.showTownCenterPanel();
@@ -775,96 +775,98 @@ public class GameController implements Serializable {
 		}
 	}
 
-    private void save() {
-        JSONObject json = new JSONObject();
-        JSONParser parser = new JSONParser();
-        JSONArray mules = new JSONArray();
+	private void save() {
+		JSONObject json = new JSONObject();
+		JSONParser parser = new JSONParser();
+		JSONArray mules = new JSONArray();
 
-        json.put("mules", mules);
+		json.put("mules", mules);
 
-        json.put("difficulty", difficulty);
-        try {
-            json.put("players", parser.parse(players.toJson()));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        json.put("mapCode", mapCode);
-        json.put("map", board.toJson());
-        json.put("minFood", minimumFood);
+		json.put("difficulty", difficulty);
+		try {
+			json.put("players", parser.parse(players.toJson()));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		json.put("mapCode", mapCode);
+		json.put("map", board.toJson());
+		json.put("minFood", minimumFood);
 
-        for (Player p : players.getPlayers()) {
-            for (Mule m : p.getMules()) {
-                try {
-                    mules.add(parser.parse(m.toJson()));
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
+		for (Player p : players.getPlayers()) {
+			for (Mule m : p.getMules()) {
+				try {
+					mules.add(parser.parse(m.toJson()));
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+			}
+		}
 
-        BufferedWriter writer = null;
-        try {
-            writer = new BufferedWriter( new FileWriter("save_file.json"));
-            writer.write(json.toString());
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (writer != null) {
-                try {
-                    writer.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
+		BufferedWriter writer = null;
+		try {
+			writer = new BufferedWriter(new FileWriter("save_file.json"));
+			writer.write(json.toString());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (writer != null) {
+				try {
+					writer.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
 
-    public void load() {
-        BufferedReader reader = null;
-        String jsonString = null;
+	public void load() {
+		BufferedReader reader = null;
+		String jsonString = null;
 
-        try {
-            reader = new BufferedReader(new FileReader("save_file.json"));
-            jsonString = reader.readLine();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (reader != null) {
-                try {
-                    reader.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
+		try {
+			reader = new BufferedReader(new FileReader("save_file.json"));
+			jsonString = reader.readLine();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (reader != null) {
+				try {
+					reader.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
 
-        JSONObject json;
-        try {
-            json = (JSONObject) new JSONParser().parse(jsonString);
-            JSONArray mules = (JSONArray)json.get("mules");
-            this.players = (PlayerQueue)(new PlayerQueue().fromJson(json.get("players").toString()));
-            for (Object muleObj : mules) {
-                Mule m = (Mule) new Mule().fromJson((muleObj).toString());
-                for (Player p : players.getPlayers()) {
-                    if (p.toString().equals(m.getOwnerId())) {
-                        m.setOwner(p);
-                        p.addMule(m);
-                    }
-                }
-            }
-            this.board = BoardFactory.constructBoard(((Long)json.get("mapCode")).intValue());
-            this.board = (Board) this.board.fromJson(json.get("map").toString());
-            this.board.loadPlayerOwnership(players.getPlayers(), mules);
-        } catch (ParseException e) {
-            e.printStackTrace();
-            return;
-        }
+		JSONObject json;
+		try {
+			json = (JSONObject) new JSONParser().parse(jsonString);
+			JSONArray mules = (JSONArray) json.get("mules");
+			this.players = (PlayerQueue) (new PlayerQueue().fromJson(json.get(
+					"players").toString()));
+			for (Object muleObj : mules) {
+				Mule m = (Mule) new Mule().fromJson((muleObj).toString());
+				for (Player p : players.getPlayers()) {
+					if (p.toString().equals(m.getOwnerId())) {
+						m.setOwner(p);
+						p.addMule(m);
+					}
+				}
+			}
+			this.board = BoardFactory.constructBoard(((Long) json
+					.get("mapCode")).intValue());
+			this.board = (Board) this.board
+					.fromJson(json.get("map").toString());
+			this.board.loadPlayerOwnership(players.getPlayers(), mules);
+		} catch (ParseException e) {
+			e.printStackTrace();
+			return;
+		}
 
-
-        this.difficulty = ((Long)json.get("difficulty")).intValue();
-        this.mapCode = ((Long)json.get("mapCode")).intValue();
-        this.minimumFood = ((Long)json.get("minFood")).intValue();
-    }
+		this.difficulty = ((Long) json.get("difficulty")).intValue();
+		this.mapCode = ((Long) json.get("mapCode")).intValue();
+		this.minimumFood = ((Long) json.get("minFood")).intValue();
+	}
 }
