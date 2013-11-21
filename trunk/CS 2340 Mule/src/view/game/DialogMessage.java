@@ -53,7 +53,7 @@ public class DialogMessage extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public DialogMessage(String text) {
+	public DialogMessage(final String text) {
 		setFont(new Font("Arial", Font.BOLD, 13));
 		setTitle("Random Event");
 		setName("RandomEvent");
@@ -75,7 +75,7 @@ public class DialogMessage extends JDialog {
 		textLabel.setBounds(10, 0, 434, 71);
 		getContentPane().add(textLabel);
 		{
-			JPanel buttonPane = new JPanel();
+			buttonPane = new JPanel();
 			buttonPane.setBackground(new Color(255, 140, 0));
 			buttonPane.setBounds(377, 38, 67, 33);
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));

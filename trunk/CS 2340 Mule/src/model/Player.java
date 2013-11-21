@@ -14,6 +14,23 @@ import java.util.ArrayList;
  */
 public class Player implements Savable {
 
+	private static int totalPlayers = 0;
+	private static final Race[] races = {Race.HUMAN, Race.FLAPPER, Race.BONZIOD, Race.UGAITE, Race.BUZZITE};
+	private static final Color[] colors = {Color.RED, Color.YELLOW, Color.GREEN, Color.PURPLE};
+
+	private int playerNum;
+	private String name;
+	private Color color;
+	private Race race;
+	private int money;
+	private int energy, smithore, food, crystite;
+	private int score;
+	private ArrayList<Mule> mules;
+	private Mule holdingMule;
+	private boolean inStore;
+	private boolean facingRight;
+	private Point playerPos;
+	
 	/**
 	 * ENUM for player color
 	 */
@@ -104,23 +121,6 @@ public class Player implements Savable {
 			return name;
 		}
 	}
-
-	private static int totalPlayers = 0;
-	private static final Race[] races = {Race.HUMAN, Race.FLAPPER, Race.BONZIOD, Race.UGAITE, Race.BUZZITE};
-	private static final Color[] colors = {Color.RED, Color.YELLOW, Color.GREEN, Color.PURPLE};
-
-	private int playerNum;
-	private String name;
-	private Color color;
-	private Race race;
-	private int money;
-	private int energy, smithore, food, crystite;
-	private int score;
-	private ArrayList<Mule> mules;
-	private Mule holdingMule;
-	private boolean inStore;
-	private boolean facingRight;
-	private Point playerPos;
 
     private Player() {}
 
