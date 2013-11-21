@@ -12,53 +12,53 @@ import java.util.ArrayList;
  */
 public class Player implements Savable {
 
-    /**
+	/**
 	 * ENUM for player color
 	 */
 	public static enum Color {
 		RED(
-                "red",
-                Player.class.getResource("/sprites/tiles/Border-Red.png"),
-                Player.class.getResource("/sprites/players/PlayerRed.png"),
-                Player.class.getResource("/sprites/mule/player-with-mule-RED.png"),
-                Player.class.getResource("/sprites/mule/player-with-mule-RED-FLIPPED.png")
-        ),
-		YELLOW(
-                "yellow",
-                Player.class.getResource("/sprites/tiles/Border-Yellow.png"),
-                Player.class.getResource("/sprites/players/PlayerYellow.png"),
-                Player.class.getResource("/sprites/mule/player-with-mule-YELLOW.png"),
-                Player.class.getResource("/sprites/mule/player-with-mule-YELLOW-FLIPPED.png")
+				"red",
+				Player.class.getResource("/sprites/tiles/Border-Red.png"),
+				Player.class.getResource("/sprites/players/PlayerRed.png"),
+				Player.class.getResource("/sprites/mule/player-with-mule-RED.png"),
+				Player.class.getResource("/sprites/mule/player-with-mule-RED-FLIPPED.png")
+				),
+				YELLOW(
+						"yellow",
+						Player.class.getResource("/sprites/tiles/Border-Yellow.png"),
+						Player.class.getResource("/sprites/players/PlayerYellow.png"),
+						Player.class.getResource("/sprites/mule/player-with-mule-YELLOW.png"),
+						Player.class.getResource("/sprites/mule/player-with-mule-YELLOW-FLIPPED.png")
 
-        ),
-		GREEN(
-                "green",
-                Player.class.getResource("/sprites/tiles/Border-Green.png"),
-                Player.class.getResource("/sprites/players/PlayerGreen.png"),
-                Player.class.getResource("/sprites/mule/player-with-mule-GREEN.png"),
-                Player.class.getResource("/sprites/mule/player-with-mule-GREEN-FLIPPED.png")
+						),
+						GREEN(
+								"green",
+								Player.class.getResource("/sprites/tiles/Border-Green.png"),
+								Player.class.getResource("/sprites/players/PlayerGreen.png"),
+								Player.class.getResource("/sprites/mule/player-with-mule-GREEN.png"),
+								Player.class.getResource("/sprites/mule/player-with-mule-GREEN-FLIPPED.png")
 
-        ),
-		PURPLE(
-                "purple",
-                Player.class.getResource("/sprites/tiles/Border-Purple.png"),
-                Player.class.getResource("/sprites/players/PlayerPurple.png"),
-                Player.class.getResource("/sprites/mule/player-with-mule-PURPLE.png"),
-                Player.class.getResource("/sprites/mule/player-with-mule-PURPLE-FLIPPED.png")
-        );
+								),
+								PURPLE(
+										"purple",
+										Player.class.getResource("/sprites/tiles/Border-Purple.png"),
+										Player.class.getResource("/sprites/players/PlayerPurple.png"),
+										Player.class.getResource("/sprites/mule/player-with-mule-PURPLE.png"),
+										Player.class.getResource("/sprites/mule/player-with-mule-PURPLE-FLIPPED.png")
+										);
 
 		private String name;
 		private URL borderImagePath;
 		private URL playerImagePath;
-        private URL muleImagePath;
-        private URL flippedMuleImagePath;
+		private URL muleImagePath;
+		private URL flippedMuleImagePath;
 
 		Color(String name, URL borderImagePath, URL playerImagePath, URL muleImagePath, URL flippedMuleImagePath) {
 			this.name = name;
 			this.borderImagePath = borderImagePath;
 			this.playerImagePath = playerImagePath;
-            this.muleImagePath = muleImagePath;
-            this.flippedMuleImagePath = flippedMuleImagePath;
+			this.muleImagePath = muleImagePath;
+			this.flippedMuleImagePath = flippedMuleImagePath;
 		}
 
 		public String toString() {
@@ -73,13 +73,13 @@ public class Player implements Savable {
 			return playerImagePath;
 		}
 
-        public URL getMuleImagePath() {
-            return muleImagePath;
-        }
+		public URL getMuleImagePath() {
+			return muleImagePath;
+		}
 
-        public URL getFlippedMuleImagePath() {
-            return flippedMuleImagePath;
-        }
+		public URL getFlippedMuleImagePath() {
+			return flippedMuleImagePath;
+		}
 	}
 
 	/**
@@ -117,7 +117,7 @@ public class Player implements Savable {
 	private ArrayList<Mule> mules;
 	private Mule holdingMule;
 	private boolean inStore;
-    private boolean facingRight;
+	private boolean facingRight;
 	private Point playerPos;
 
 	/**
@@ -138,9 +138,9 @@ public class Player implements Savable {
 		this.holdingMule = null;
 		this.score = startingMoney; //should use proper formula based on starting goods
 		this.inStore = false;
-        this.facingRight = true;
+		this.facingRight = true;
 	}
-	
+
 	public Mule getHoldingMule()
 	{
 		return holdingMule;
@@ -176,7 +176,7 @@ public class Player implements Savable {
 			return false;
 		}
 	}
-	
+
 	public boolean deOutfitMule (Mule.Type type)
 	{
 		if (holdingMule != null)
@@ -193,11 +193,12 @@ public class Player implements Savable {
 		}
 	}
 
-	public boolean placeMule()
+	public boolean placeMule(Tile tile)
 	{
 		if (holdingMule != null)
 		{
 			mules.add(holdingMule);
+			tile.setMule(holdingMule);
 			holdingMule = null;
 			return true; 
 		}
@@ -208,9 +209,9 @@ public class Player implements Savable {
 		}
 	}
 
-    public URL getImagePath() {
-        return this.holdingMule == null ? this.color.getPlayerImagePath() : this.facingRight ? this.color.getFlippedMuleImagePath() : this.color.getMuleImagePath();
-    }
+	public URL getImagePath() {
+		return this.holdingMule == null ? this.color.getPlayerImagePath() : this.facingRight ? this.color.getFlippedMuleImagePath() : this.color.getMuleImagePath();
+	}
 
 	/**
 	 * METHOD to get this player's position on the board
@@ -320,7 +321,7 @@ public class Player implements Savable {
 	public int getEnergy() {
 		return energy;
 	}
-	
+
 	public void setEnergy(int i) 
 	{
 		if(i < 0)
@@ -338,7 +339,7 @@ public class Player implements Savable {
 	public int getSmithore() {
 		return smithore;
 	}
-	
+
 	public void setSmithore(int i) 
 	{
 		if(i < 0)
@@ -357,7 +358,7 @@ public class Player implements Savable {
 	public int getFood() {
 		return food;
 	}
-	
+
 	public void setFood(int i) 
 	{
 		if(i < 0)
@@ -375,7 +376,7 @@ public class Player implements Savable {
 	public int getCrystite() {
 		return crystite;
 	}
-	
+
 	/**
 	 * METHOD Set this players food
 	 * @param food the food of the player
@@ -388,7 +389,7 @@ public class Player implements Savable {
 		}
 		this.food += food;
 	}
-	
+
 	/**
 	 * METHOD Set this players energy
 	 * @param energy the energy of the player
@@ -401,7 +402,7 @@ public class Player implements Savable {
 		}
 		this.energy += energy;
 	}
-	
+
 	/**
 	 * METHOD Set this players smithore
 	 * @param smithore the smithore of the player
@@ -414,7 +415,7 @@ public class Player implements Savable {
 		}
 		this.smithore += smithore;
 	}
-	
+
 	/**
 	 * METHOD Set this players crystite
 	 * @param crystite the crystite of the player
@@ -428,7 +429,7 @@ public class Player implements Savable {
 		this.crystite += crystite;
 		
 	}
-	
+
 	public void setCrystite(int i) 
 	{
 		if(i < 0)
@@ -501,9 +502,12 @@ public class Player implements Savable {
 	 */
 	public void moveUp()
 	{
-		int x = (int)this.playerPos.getX();
-		int y = (int)this.playerPos.getY();
-		this.playerPos.setLocation(x, y-5);
+		if (this.playerPos.y > 0)
+		{
+			int x = (int)this.playerPos.getX();
+			int y = (int)this.playerPos.getY();
+			this.playerPos.setLocation(x, y-5);
+		}
 	}
 
 	/**
@@ -511,10 +515,13 @@ public class Player implements Savable {
 	 */
 	public void moveLeft()
 	{
-        this.facingRight = false;
-		int x = (int)this.playerPos.getX();
-		int y = (int)this.playerPos.getY();
-		this.playerPos.setLocation(x-5, y);
+		if (this.playerPos.x > 0)
+		{
+			this.facingRight = false;
+			int x = (int)this.playerPos.getX();
+			int y = (int)this.playerPos.getY();
+			this.playerPos.setLocation(x-5, y);
+		}
 	}
 
 	/**
@@ -522,9 +529,12 @@ public class Player implements Savable {
 	 */
 	public void moveDown()
 	{
-		int x = (int)this.playerPos.getX();
-		int y = (int)this.playerPos.getY();
-		this.playerPos.setLocation(x, y+5);
+		if (this.playerPos.y < 349)
+		{
+			int x = (int)this.playerPos.getX();
+			int y = (int)this.playerPos.getY();
+			this.playerPos.setLocation(x, y+5);
+		}
 	}
 
 	/**
@@ -532,10 +542,13 @@ public class Player implements Savable {
 	 */
 	public void moveRight()
 	{
-        this.facingRight = true;
-		int x = (int)this.playerPos.getX();
-		int y = (int)this.playerPos.getY();
-		this.playerPos.setLocation(x+5, y);
+		if (this.playerPos.x < 781)
+		{
+			this.facingRight = true;
+			int x = (int)this.playerPos.getX();
+			int y = (int)this.playerPos.getY();
+			this.playerPos.setLocation(x+5, y);
+		}
 	}
 
 	/**
@@ -556,7 +569,7 @@ public class Player implements Savable {
 		//Add land score
 		/*
 		for(int i = 0;i<playerTiles.size();i++){
-    		
+
 	    	if(playerTiles.get(i).getMuleType()!=null)
 	    	{	
 				if(playerTiles.get(i).getMuleType()==Mule.Type.FOOD)
@@ -580,9 +593,9 @@ public class Player implements Savable {
     		{
     			score+=500;
     		}
-    		
+
     	}
-    	*/
+		 */
 		//Add money score
 		score += money;
 		//Add goods score
@@ -599,16 +612,16 @@ public class Player implements Savable {
 		return score;
 	}
 
-    @Override
-    public String toJson() {
-        JSONObject json = new JSONObject();
-        json.put("name", name);
-        return json.toString();
-    }
+	@Override
+	public String toJson() {
+		JSONObject json = new JSONObject();
+		json.put("name", name);
+		return json.toString();
+	}
 
-    @Override
-    public Object fromJson(String jsonStr) {
-        return null;
-    }
+	@Override
+	public Object fromJson(String jsonStr) {
+		return null;
+	}
 
 }
