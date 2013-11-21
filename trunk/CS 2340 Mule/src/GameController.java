@@ -427,7 +427,7 @@ public class GameController implements Serializable {
 				);
 	}
 
-	private void sendMarketData()
+	protected void sendMarketData()
 	{
 		int[][] marketInfo = new int[4][4];
 		Player player = players.getCurrentPlayer();
