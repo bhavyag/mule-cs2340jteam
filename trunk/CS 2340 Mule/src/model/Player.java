@@ -323,6 +323,11 @@ public class Player implements Savable {
 	
 	public void setEnergy(int i) 
 	{
+		if(i < 0)
+		{
+			this.energy = 0;
+			return;
+		}
 		this.energy = i;
 	}
 
@@ -336,6 +341,11 @@ public class Player implements Savable {
 	
 	public void setSmithore(int i) 
 	{
+		if(i < 0)
+		{
+			this.smithore = 0;
+			return;
+		}
 		this.smithore = i;
 	}
 
@@ -350,6 +360,11 @@ public class Player implements Savable {
 	
 	public void setFood(int i) 
 	{
+		if(i < 0)
+		{
+			this.food = 0;
+			return;
+		}
 		this.food = i;
 	}
 
@@ -366,6 +381,11 @@ public class Player implements Savable {
 	 * @param food the food of the player
 	 */
 	public void incrementFood(int food) {
+		if(this.food + food < 0 )
+		{
+			this.food = 0;
+			return;
+		}
 		this.food += food;
 	}
 	
@@ -374,6 +394,11 @@ public class Player implements Savable {
 	 * @param energy the energy of the player
 	 */
 	public void incrementEnergy(int energy) {
+		if(this.energy + energy < 0 )
+		{
+			this.energy = 0;
+			return;
+		}
 		this.energy += energy;
 	}
 	
@@ -382,6 +407,11 @@ public class Player implements Savable {
 	 * @param smithore the smithore of the player
 	 */
 	public void incrementSmithore(int smithore) {
+		if(this.smithore + smithore < 0 )
+		{
+			this.smithore = 0;
+			return;
+		}
 		this.smithore += smithore;
 	}
 	
@@ -390,11 +420,22 @@ public class Player implements Savable {
 	 * @param crystite the crystite of the player
 	 */
 	public void incrementCrystite(int crystite) {
+		if(this.crystite + crystite < 0 )
+		{
+			this.crystite = 0;
+			return;
+		}
 		this.crystite += crystite;
+		
 	}
 	
 	public void setCrystite(int i) 
 	{
+		if(i < 0)
+		{
+			this.crystite = 0;
+			return;
+		}
 		this.crystite = i;
 	}
 
