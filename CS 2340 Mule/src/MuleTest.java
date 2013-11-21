@@ -114,24 +114,23 @@ public class MuleTest {
 		p1.deOutfitMule(Mule.Type.FOOD);
 		assertEquals(null, p1.getHoldingMule().getType());
 	}
-	
+
 	/**
 	 * Test Placing a mule on a tile
 	 */
 	@Test
-	public void testPlacingMule()
-	{
+	public void testPlacingMule() {
 		Player p1 = new Player(100000);
 		p1.purchase(new Mule(p1));
 		p1.outfitMule(Mule.Type.FOOD);
-		
+
 		Tile t = new Tile(Tile.Type.PLAINS);
-		
+
 		p1.placeMule(t);
 		assertEquals(false, p1.isHoldingMule());
 		assertEquals(Mule.Type.FOOD, t.getMuleType());
 	}
-	
+
 	/**
 	 * Test player color and race
 	 */
@@ -163,12 +162,13 @@ public class MuleTest {
 	}
 
 	/**
-	 * Test setting the player sprite correctly, their color and whether they have a mule determines it
+	 * Test setting the player sprite correctly, their color and whether they
+	 * have a mule determines it
 	 */
 	@Test
 	public void testPlayerSprites() {
 		Player p1 = new Player();
-		p1.incrementMoney(100000);	
+		p1.incrementMoney(100000);
 		p1.setColor(0);
 		assertEquals(
 				Player.class.getResource("/sprites/players/PlayerRed.png"),
@@ -185,9 +185,12 @@ public class MuleTest {
 		assertEquals(
 				Player.class.getResource("/sprites/players/PlayerPurple.png"),
 				p1.getImagePath());
-		
+
 		p1.purchase(new Mule(p1));
-		assertEquals(Player.class.getResource("/sprites/mule/player-with-mule-PURPLE.png"), p1.getImagePath());
+		assertEquals(
+				Player.class
+						.getResource("/sprites/mule/player-with-mule-PURPLE.png"),
+				p1.getImagePath());
 	}
 
 	/**
@@ -356,9 +359,6 @@ public class MuleTest {
 		playerQ2.getCurrentPlayer().setCrystite(30);
 
 		board = BoardFactory.constructBoard(0);
-
-		checkEdgeCollisions();
-		checkBuyingLand();
 		// call tests after this
 	}
 
@@ -368,8 +368,17 @@ public class MuleTest {
 	 */
 
 	// player collision checking with edge of screen:
-
+	@Test
 	public void checkEdgeCollisions() {
+		playerQ2 = new PlayerQueue(1, 600);
+
+		playerQ2.getCurrentPlayer().setFood(30);
+		playerQ2.getCurrentPlayer().setEnergy(30);
+		playerQ2.getCurrentPlayer().setSmithore(30);
+		playerQ2.getCurrentPlayer().setCrystite(30);
+
+		board = BoardFactory.constructBoard(0);
+
 		boolean topCheck = true, bottomCheck = true, leftCheck = true, rightCheck = true;
 		for (int i = 0; i < 401; i++) {
 			playerQ2.getCurrentPlayer().moveUp();
@@ -401,7 +410,20 @@ public class MuleTest {
 		assertTrue(leftCheck);
 	}
 
+	/**
+	 * Test the player buying land
+	 */
+	@Test
 	public void checkBuyingLand() {
+		playerQ2 = new PlayerQueue(1, 600);
+
+		playerQ2.getCurrentPlayer().setFood(30);
+		playerQ2.getCurrentPlayer().setEnergy(30);
+		playerQ2.getCurrentPlayer().setSmithore(30);
+		playerQ2.getCurrentPlayer().setCrystite(30);
+
+		board = BoardFactory.constructBoard(0);
+
 		board.setOwner(playerQ2.getCurrentPlayer(), new Point(0, 0));
 		board.setOwner(playerQ2.getCurrentPlayer(), new Point(1, 1));
 		board.setOwner(playerQ2.getCurrentPlayer(), new Point(2, 2));
