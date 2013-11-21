@@ -71,7 +71,7 @@ public class RandomEvent {
 			result = "YOUR SPACE GYPSY INLAWS MADE A MESS OF THE TOWN. IT COST YOU $"
 					+ (6 * returnM(playerQ.getRound()) + " TO CLEAN IT UP.");
 			break;
-		default: 
+		default:
 			break;
 		}
 

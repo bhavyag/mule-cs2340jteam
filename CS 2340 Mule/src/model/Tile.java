@@ -7,7 +7,7 @@ import org.json.simple.parser.ParseException;
 import java.net.URL;
 
 public class Tile implements Purchasable, Savable {
-    /**
+	/**
 	 * ENUM for Tile type
 	 */
 	public static enum Type {
@@ -50,7 +50,9 @@ public class Tile implements Purchasable, Savable {
 	private boolean ownable;
 	private Mule mule;
 
-    public Tile() {}
+	public Tile() {
+	}
+
 	/**
 	 * CONTRUCTOR for Tiles
 	 */
@@ -125,9 +127,9 @@ public class Tile implements Purchasable, Savable {
 		mule = m;
 	}
 
-    public String getMuleId() {
-        return muleId;
-    }
+	public String getMuleId() {
+		return muleId;
+	}
 
 	/**
 	 * METHOD that gets the mule from the tile if there is one
@@ -174,52 +176,52 @@ public class Tile implements Purchasable, Savable {
 		return this.type.imgPath;
 	}
 
-    public String getOwnerId() {
-        return ownerId;
-    }
+	public String getOwnerId() {
+		return ownerId;
+	}
 
 	@Override
 	public int getPrice() {
 		return this.type.getPrice();
 	}
 
-    @Override
-    public String toJson() {
-        JSONObject json = new JSONObject();
+	@Override
+	public String toJson() {
+		JSONObject json = new JSONObject();
 
-        if (owner != null) {
-            json.put("playerId", owner.toString());
-        } else {
-            json.put("playerId", null);
-        }
+		if (owner != null) {
+			json.put("playerId", owner.toString());
+		} else {
+			json.put("playerId", null);
+		}
 
-        if (mule != null) {
-            json.put("muleId", mule.toString());
-        } else {
-            json.put("muleId", null);
-        }
+		if (mule != null) {
+			json.put("muleId", mule.toString());
+		} else {
+			json.put("muleId", null);
+		}
 
-        json.put("type", type.toString());
-        json.put("ownable", ownable);
+		json.put("type", type.toString());
+		json.put("ownable", ownable);
 
-        return json.toString();
-    }
+		return json.toString();
+	}
 
-    @Override
-    public Object fromJson(String jsonString) throws ParseException {
-        JSONObject json = (JSONObject) new JSONParser().parse(jsonString);
-        Tile tile = new Tile();
+	@Override
+	public Object fromJson(String jsonString) throws ParseException {
+		JSONObject json = (JSONObject) new JSONParser().parse(jsonString);
+		Tile tile = new Tile();
 
-        tile.ownable = (Boolean)json.get("ownable");
-        tile.ownerId = (String)json.get("playerId");
-        tile.muleId = (String)json.get("muleId");
+		tile.ownable = (Boolean) json.get("ownable");
+		tile.ownerId = (String) json.get("playerId");
+		tile.muleId = (String) json.get("muleId");
 
-        for (Type t : Type.values()) {
-            if (json.get("type").equals(t.toString())) {
-                tile.type = t;
-            }
-        }
+		for (Type t : Type.values()) {
+			if (json.get("type").equals(t.toString())) {
+				tile.type = t;
+			}
+		}
 
-        return tile;
-    }
+		return tile;
+	}
 }

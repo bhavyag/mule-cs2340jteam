@@ -15,7 +15,7 @@ import java.net.URL;
  */
 public class Mule implements Purchasable, Savable {
 
-    public static enum Type {
+	public static enum Type {
 		FOOD("food", 25, Player.class
 				.getResource("/sprites/tiles/food-mule-tile.png")), ENERGY(
 				"energy", 50, Player.class
@@ -56,23 +56,23 @@ public class Mule implements Purchasable, Savable {
 		}
 	}
 
-    private static int numMules = 0;
+	private static int numMules = 0;
 
 	private Player owner;
 	private String ownerId;
-    private int id;
+	private int id;
 	private Type type;
 	private int price;
 
-    public Mule() {
+	public Mule() {
 
-    }
+	}
 
 	public Mule(Player owner) {
 		this.owner = owner;
 		this.price = 150;
 		this.type = null;
-        numMules ++;
+		numMules++;
 	}
 
 	public Player getOwner() {
@@ -94,54 +94,54 @@ public class Mule implements Purchasable, Savable {
 		return price;
 	}
 
-    public String getOwnerId() {
-        return ownerId;
-    }
+	public String getOwnerId() {
+		return ownerId;
+	}
 
-    public void setOwner(Player p) {
-        this.owner = p;
-    }
+	public void setOwner(Player p) {
+		this.owner = p;
+	}
 
-    public String getId() {
-        return new Integer(id).toString();
-    }
+	public String getId() {
+		return new Integer(id).toString();
+	}
 
-    @Override
-    public String toJson() {
-        JSONObject json = new JSONObject();
+	@Override
+	public String toJson() {
+		JSONObject json = new JSONObject();
 
-        if (owner != null) {
-            json.put("playerId", owner.toString());
-        } else {
-            json.put("playerId", null);
-        }
+		if (owner != null) {
+			json.put("playerId", owner.toString());
+		} else {
+			json.put("playerId", null);
+		}
 
-        json.put("type", type.toString());
-        json.put("price", price);
-        json.put("id", id);
+		json.put("type", type.toString());
+		json.put("price", price);
+		json.put("id", id);
 
-        return json.toString();
-    }
+		return json.toString();
+	}
 
-    @Override
-    public Object fromJson(String jsonString) throws ParseException {
-        JSONObject json = (JSONObject) new JSONParser().parse(jsonString);
-        Mule mule = new Mule();
+	@Override
+	public Object fromJson(String jsonString) throws ParseException {
+		JSONObject json = (JSONObject) new JSONParser().parse(jsonString);
+		Mule mule = new Mule();
 
-        mule.price = ((Long)json.get("price")).intValue();
-        mule.ownerId = (String)json.get("playerId");
-        mule.id = ((Long)json.get("id")).intValue();
+		mule.price = ((Long) json.get("price")).intValue();
+		mule.ownerId = (String) json.get("playerId");
+		mule.id = ((Long) json.get("id")).intValue();
 
-        if (((Long)json.get("id")).intValue() > numMules) {
-            numMules = ((Long)json.get("id")).intValue();
-        }
+		if (((Long) json.get("id")).intValue() > numMules) {
+			numMules = ((Long) json.get("id")).intValue();
+		}
 
-        for (Type t : Type.values()) {
-            if (json.get("type").equals(t.toString())) {
-                mule.type = t;
-            }
-        }
+		for (Type t : Type.values()) {
+			if (json.get("type").equals(t.toString())) {
+				mule.type = t;
+			}
+		}
 
-        return mule;
-    }
+		return mule;
+	}
 }
