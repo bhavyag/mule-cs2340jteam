@@ -26,7 +26,6 @@ public class MuleTest
 	{
 		int[][] marketInfo = new int[4][4];
 		
-
 		marketInfo[0][0] = player.getFood();
 		marketInfo[0][1] = player.getSmithore();
 		marketInfo[0][2] = player.getEnergy();

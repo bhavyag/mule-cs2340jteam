@@ -21,36 +21,34 @@ public class DialogMessage extends JDialog {
 	private JLabel textLabel;
 	private JPanel buttonPane;
 	private JButton okButton;
-	
+
 	/**
 	 * Launch the application.
 	 */
-	/*public static void main(String[] args) {
-		try {
-			DialogMessage dialog = new DialogMessage();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}*/
-	
+	/*
+	 * public static void main(String[] args) { try { DialogMessage dialog = new
+	 * DialogMessage();
+	 * dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+	 * dialog.setVisible(true); } catch (Exception e) { e.printStackTrace(); } }
+	 */
+
 	/**
 	 * Sets the text for the textLabel
 	 */
-	public void setDialogText(String text)
-	{
-		//<html> tag helps wrap the text so it doesn't overflow
+	public void setDialogText(String text) {
+		// <html> tag helps wrap the text so it doesn't overflow
 		textLabel.setText("<html>" + text);
 	}
-	
+
 	/**
-     * METHOD that adds a mouse listener to the OK button
-     * @param mouseAdapter the mouse adapter to add.
-     */
-    public void onClickNext(MouseAdapter mouseAdapter) {
-        okButton.addMouseListener(mouseAdapter);
-    }
+	 * METHOD that adds a mouse listener to the OK button
+	 * 
+	 * @param mouseAdapter
+	 *            the mouse adapter to add.
+	 */
+	public void onClickNext(MouseAdapter mouseAdapter) {
+		okButton.addMouseListener(mouseAdapter);
+	}
 
 	/**
 	 * Create the dialog.
@@ -60,15 +58,16 @@ public class DialogMessage extends JDialog {
 		setTitle("Random Event");
 		setName("RandomEvent");
 		getContentPane().setBackground(new Color(255, 140, 0));
-		setIconImage(Toolkit.getDefaultToolkit().getImage(DialogMessage.class.getResource("/sprites/muleIcon.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(
+				DialogMessage.class.getResource("/sprites/muleIcon.png")));
 		setResizable(false);
 		setType(Type.POPUP);
 		setAlwaysOnTop(true);
 		setBounds(503, 296, 450, 100);
 		getContentPane().setLayout(null);
-		
+
 		textLabel = new JLabel("");
-		//<html> tag helps wrap the text so it doesn't overflow
+		// <html> tag helps wrap the text so it doesn't overflow
 		textLabel.setText("<html>" + text);
 		textLabel.setBackground(new Color(255, 140, 0));
 		textLabel.setForeground(Color.WHITE);
@@ -82,14 +81,14 @@ public class DialogMessage extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane);
 			{
-				okButton = new JButton("OK");				
+				okButton = new JButton("OK");
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
 			}
 		}
-		
-		//instantiate the dialog box
+
+		// instantiate the dialog box
 		try {
 			this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			this.setVisible(true);
