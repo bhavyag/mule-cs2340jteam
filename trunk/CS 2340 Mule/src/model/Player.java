@@ -16,7 +16,7 @@ public class Player implements Savable {
 
 	private static int totalPlayers = 0;
 	private static final Race[] races = { Race.HUMAN, Race.FLAPPER,
-			Race.BONZIOD, Race.UGAITE, Race.BUZZITE };
+			Race.BONZOID, Race.UGAITE, Race.BUZZITE };
 	private static final Color[] colors = { Color.RED, Color.YELLOW,
 			Color.GREEN, Color.PURPLE };
 
@@ -111,7 +111,7 @@ public class Player implements Savable {
 	 * ENUM for player race
 	 */
 	public static enum Race {
-		BUZZITE("Buzzite"), UGAITE("Ugaite"), BONZIOD("Bonziod"), FLAPPER(
+		BUZZITE("Buzzite"), UGAITE("Ugaite"), BONZOID("Bonzoid"), FLAPPER(
 				"Flapper"), HUMAN("Human");
 
 		private String name;

@@ -6,6 +6,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import model.*;
+import model.Player.Color;
+import model.Player.Race;
 import view.game.*;
 
 import javax.swing.*;
@@ -14,14 +16,168 @@ import org.junit.Test;
 
 public class MuleTest {
 
-	GameFrame gameView;
-	PlayerQueue players;
-	Player player;
-
 	/*
 	 * Chris's Tests
 	 */
 
+	/**
+	 * Test Map 1 Generation
+	 */
+	@Test
+	public void testMapOneGen() {
+		Board board = BoardFactory.constructBoard(0);
+		assertEquals(Tile.Type.PLAINS, board.getMap()[0][0].getType());
+		assertEquals(Tile.Type.MOUNTAINONE, board.getMap()[0][2].getType());
+		assertEquals(Tile.Type.MOUNTAINTWO, board.getMap()[3][1].getType());
+		assertEquals(Tile.Type.MOUNTAINTHREE, board.getMap()[0][6].getType());
+		assertEquals(Tile.Type.RIVER, board.getMap()[0][4].getType());
+		assertEquals(Tile.Type.TOWN, board.getMap()[2][4].getType());
+	}
+
+	/**
+	 * Test Map 2 Generation
+	 */
+	@Test
+	public void testMapTwoGen() {
+		Board board = BoardFactory.constructBoard(1);
+		assertEquals(Tile.Type.PLAINS, board.getMap()[0][0].getType());
+		assertEquals(Tile.Type.MOUNTAINONE, board.getMap()[0][3].getType());
+		assertEquals(Tile.Type.MOUNTAINTWO, board.getMap()[3][1].getType());
+		assertEquals(Tile.Type.MOUNTAINTHREE, board.getMap()[0][8].getType());
+		assertEquals(Tile.Type.RIVER, board.getMap()[1][0].getType());
+		assertEquals(Tile.Type.TOWN, board.getMap()[2][4].getType());
+	}
+
+	/**
+	 * Test setting of the tile sprites
+	 */
+	@Test
+	public void testTileSprites() {
+		Tile p = new Tile(Tile.Type.PLAINS);
+		Tile m1 = new Tile(Tile.Type.MOUNTAINONE);
+		Tile m2 = new Tile(Tile.Type.MOUNTAINTWO);
+		Tile m3 = new Tile(Tile.Type.MOUNTAINTHREE);
+		Tile r = new Tile(Tile.Type.RIVER);
+		Tile t = new Tile(Tile.Type.TOWN);
+
+		assertEquals(Tile.class.getResource("/sprites/tiles/Plains-Tile.png"),
+				p.getImagePath());
+		assertEquals(
+				Tile.class.getResource("/sprites/tiles/Mountain-Tile.png"),
+				m1.getImagePath());
+		assertEquals(
+				Tile.class.getResource("/sprites/tiles/Mountain-2-Tile.png"),
+				m2.getImagePath());
+		assertEquals(
+				Tile.class.getResource("/sprites/tiles/Mountain-3-Tile.png"),
+				m3.getImagePath());
+		assertEquals(Tile.class.getResource("/sprites/tiles/River-Tile.png"),
+				r.getImagePath());
+		assertEquals(
+				Tile.class.getResource("/sprites/tiles/Town-Center-Tile.png"),
+				t.getImagePath());
+	}
+
+	/**
+	 * Test holding mule
+	 */
+	@Test
+	public void testMuleOwners() {
+		Player p1 = new Player();
+		p1.incrementMoney(100000);
+		assertEquals(false, p1.isHoldingMule());
+	}
+
+	/**
+	 * Test buying a mule
+	 */
+	@Test
+	public void testBuyingMule() {
+		Player p1 = new Player();
+		p1.incrementMoney(100000);
+		p1.purchase(new Mule(p1));
+		assertEquals(true, p1.isHoldingMule());
+		assertEquals(null, p1.getHoldingMule().getType());
+	}
+
+	/**
+	 * Test selling a mule/deoutfitting it
+	 */
+	@Test
+	public void testSellingMule() {
+		Player p1 = new Player();
+		p1.incrementMoney(100000);
+		p1.purchase(new Mule(p1));
+		p1.outfitMule(Mule.Type.FOOD);
+
+		// test deoutfitting
+		p1.deOutfitMule(Mule.Type.FOOD);
+		assertEquals(null, p1.getHoldingMule().getType());
+	}
+
+	/**
+	 * Test player color and race
+	 */
+	@Test
+	public void testPlayerSettings() {
+		Player p1 = new Player();
+		p1.setColor(0);
+		p1.setRace(0);
+		assertEquals(Color.RED, p1.getColor());
+		assertEquals(Race.HUMAN, p1.getRace());
+
+		p1.setColor(1);
+		p1.setRace(1);
+		assertEquals(Color.YELLOW, p1.getColor());
+		assertEquals(Race.FLAPPER, p1.getRace());
+
+		p1.setColor(2);
+		p1.setRace(2);
+		assertEquals(Color.GREEN, p1.getColor());
+		assertEquals(Race.BONZOID, p1.getRace());
+
+		p1.setColor(3);
+		p1.setRace(3);
+		assertEquals(Color.PURPLE, p1.getColor());
+		assertEquals(Race.UGAITE, p1.getRace());
+
+		p1.setRace(4);
+		assertEquals(Race.BUZZITE, p1.getRace());
+	}
+
+	/**
+	 * Test setting the player sprite correctly
+	 */
+	@Test
+	public void testPlayerSprites() {
+		Player p1 = new Player();
+
+		p1.setColor(0);
+		assertEquals(
+				Player.class.getResource("/sprites/players/PlayerRed.png"),
+				p1.getImagePath());
+		p1.setColor(1);
+		assertEquals(
+				Player.class.getResource("/sprites/players/PlayerYellow.png"),
+				p1.getImagePath());
+		p1.setColor(2);
+		assertEquals(
+				Player.class.getResource("/sprites/players/PlayerGreen.png"),
+				p1.getImagePath());
+		p1.setColor(3);
+		assertEquals(
+				Player.class.getResource("/sprites/players/PlayerPurple.png"),
+				p1.getImagePath());
+	}
+
+	/**
+	 * Used to test market
+	 * 
+	 * @param player
+	 *            the current player
+	 * @param gameView
+	 *            the market panel we are modifying
+	 */
 	private static void sendData(Player player, GameFrame gameView) {
 		int[][] marketInfo = new int[4][4];
 
@@ -45,7 +201,13 @@ public class MuleTest {
 		gameView.getMarketPanel().setUpMarket(marketInfo);
 	}
 
-	// test buying from market
+	GameFrame gameView;
+	PlayerQueue players;
+	Player player;
+
+	/**
+	 * Test buying from the market
+	 */
 	@Test
 	public void testMarketBuy() {
 		gameView = new GameFrame(1);
@@ -121,9 +283,17 @@ public class MuleTest {
 		assertEquals(0, player.getSmithore());
 		assertEquals(0, player.getEnergy());
 		assertEquals(0, player.getCrystite());
+	}
 
-		// selling when there is nothing to sell
-
+	/**
+	 * Test selling to the market
+	 */
+	@Test
+	public void testMarketSell() {
+		gameView = new GameFrame(1);
+		players = new PlayerQueue(1, 0);
+		player = players.getCurrentPlayer();
+		player.setName("CHRIS");
 		player.setFood(0);
 		player.setSmithore(0);
 		player.setEnergy(0);
@@ -145,48 +315,6 @@ public class MuleTest {
 		assertEquals(0, Market.getMarketSmithore());
 		assertEquals(0, Market.getMarketEnergy());
 		assertEquals(0, Market.getMarketCrystite());
-	}
-	
-	@Test
-	public void testMapOneGen()
-	{
-		Board board = BoardFactory.constructBoard(0);
-		assertEquals(Tile.Type.PLAINS, board.getMap()[0][0].getType());
-		assertEquals(Tile.Type.MOUNTAINONE, board.getMap()[0][2].getType());
-		assertEquals(Tile.Type.MOUNTAINTWO, board.getMap()[3][1].getType());
-		assertEquals(Tile.Type.MOUNTAINTHREE, board.getMap()[0][6].getType());
-		assertEquals(Tile.Type.RIVER, board.getMap()[0][4].getType());
-		assertEquals(Tile.Type.TOWN, board.getMap()[2][4].getType());
-	}
-	
-	@Test
-	public void testMapTwoGen()
-	{
-		Board board = BoardFactory.constructBoard(1);
-		assertEquals(Tile.Type.PLAINS, board.getMap()[0][0].getType());
-		assertEquals(Tile.Type.MOUNTAINONE, board.getMap()[0][3].getType());
-		assertEquals(Tile.Type.MOUNTAINTWO, board.getMap()[3][1].getType());
-		assertEquals(Tile.Type.MOUNTAINTHREE, board.getMap()[0][8].getType());
-		assertEquals(Tile.Type.RIVER, board.getMap()[1][0].getType());
-		assertEquals(Tile.Type.TOWN, board.getMap()[2][4].getType());
-	}
-	
-	@Test
-	public void testTileSprites()
-	{
-		Tile p = new Tile(Tile.Type.PLAINS);
-		Tile m1 = new Tile(Tile.Type.MOUNTAINONE);
-		Tile m2 = new Tile(Tile.Type.MOUNTAINTWO);
-		Tile m3 = new Tile(Tile.Type.MOUNTAINTHREE);
-		Tile r = new Tile(Tile.Type.RIVER);
-		Tile t = new Tile(Tile.Type.TOWN);
-		
-		assertEquals(Tile.class.getResource("/sprites/tiles/Plains-Tile.png"), p.getImagePath());
-		assertEquals(Tile.class.getResource("/sprites/tiles/Mountain-Tile.png"), m1.getImagePath());
-		assertEquals(Tile.class.getResource("/sprites/tiles/Mountain-2-Tile.png"), m2.getImagePath());
-		assertEquals(Tile.class.getResource("/sprites/tiles/Mountain-3-Tile.png"), m3.getImagePath());
-		assertEquals(Tile.class.getResource("/sprites/tiles/River-Tile.png"), r.getImagePath());
-		assertEquals(Tile.class.getResource("/sprites/tiles/Town-Center-Tile.png"), t.getImagePath());
 	}
 
 	/*
@@ -220,7 +348,7 @@ public class MuleTest {
 	 */
 
 	// player collision checking with edge of screen:
-	
+
 	public void checkEdgeCollisions() {
 		boolean topCheck = true, bottomCheck = true, leftCheck = true, rightCheck = true;
 		for (int i = 0; i < 401; i++) {
@@ -252,9 +380,7 @@ public class MuleTest {
 		assertTrue(rightCheck);
 		assertTrue(leftCheck);
 	}
-	
-	 
-	
+
 	public void checkBuyingLand() {
 		board.setOwner(playerQ2.getCurrentPlayer(), new Point(0, 0));
 		board.setOwner(playerQ2.getCurrentPlayer(), new Point(1, 1));
@@ -289,54 +415,54 @@ public class MuleTest {
 				.getCurrentPlayer());
 
 	}
-	
+
 	/*
 	 * T.J.'s tests
-	 *
-	 * scoreSort
 	 * 
+	 * scoreSort
 	 */
-	
+
 	PlayerQueue playerQ3 = new PlayerQueue(4, 600);
-	
-	public void testsTJ(){		
-		boolean one=false,two=true,three=true,four=true;
-		
+
+	@Test
+	public void testsTJ() {
+		boolean one = true, two = true, three = true, four = true;
+
 		playerQ3.get(0).setName("P1");
 		playerQ3.get(1).setName("P2");
 		playerQ3.get(2).setName("P3");
 		playerQ3.get(3).setName("P4");
-		
+
 		playerQ3.get(0).setRace(0);
 		playerQ3.get(1).setRace(1);
 		playerQ3.get(2).setRace(2);
 		playerQ3.get(3).setRace(3);
-		
+
 		playerQ3.get(0).setColor(0);
 		playerQ3.get(1).setColor(1);
 		playerQ3.get(2).setColor(2);
 		playerQ3.get(3).setColor(3);
-		
+
 		playerQ3.get(0).setFood(10);
 		playerQ3.get(1).setFood(20);
 		playerQ3.get(2).setFood(0);
 		playerQ3.get(3).setFood(5);
-		
+
 		playerQ3.scoreSort();
-		
-		if(playerQ3.get(0).getRace().equals(Player.Race.BONZIOD)){
-			if(playerQ3.get(1).getRace().equals(Player.Race.UGAITE)){
-				if(playerQ3.get(2).getRace().equals(Player.Race.HUMAN)){
-					one=true;
+
+		if (playerQ3.get(0).getRace().equals(Player.Race.BONZOID)) {
+			if (playerQ3.get(1).getRace().equals(Player.Race.UGAITE)) {
+				if (playerQ3.get(2).getRace().equals(Player.Race.HUMAN)) {
+					one = true;
 				}
 			}
 		}
-		
+
 		playerQ3.get(0).setRace(0);
 		playerQ3.get(1).setRace(1);
 		playerQ3.get(2).setRace(2);
 		playerQ3.get(3).setRace(3);
-		
+
 		playerQ3.get(0).setFood(2);
 		playerQ3.get(1).setFood(5);
 		playerQ3.get(2).setFood(1);
@@ -345,22 +471,22 @@ public class MuleTest {
 		playerQ3.get(1).setEnergy(5);
 		playerQ3.get(2).setEnergy(1);
 		playerQ3.get(3).setEnergy(0);
-		
+
 		playerQ3.scoreSort();
-		
-		if(playerQ3.get(0).getRace().equals(Player.Race.UGAITE)){
-			if(playerQ3.get(1).getRace().equals(Player.Race.BONZIOD)){
-				if(playerQ3.get(2).getRace().equals(Player.Race.HUMAN)){
-					two=true;
+
+		if (playerQ3.get(0).getRace().equals(Player.Race.UGAITE)) {
+			if (playerQ3.get(1).getRace().equals(Player.Race.BONZOID)) {
+				if (playerQ3.get(2).getRace().equals(Player.Race.HUMAN)) {
+					two = true;
 				}
 			}
 		}
-		
+
 		playerQ3.get(0).setRace(0);
 		playerQ3.get(1).setRace(1);
 		playerQ3.get(2).setRace(2);
 		playerQ3.get(3).setRace(3);
-		
+
 		playerQ3.get(0).setFood(1);
 		playerQ3.get(1).setFood(2);
 		playerQ3.get(2).setFood(3);
@@ -373,42 +499,41 @@ public class MuleTest {
 		playerQ3.get(1).setSmithore(10);
 		playerQ3.get(2).setSmithore(12);
 		playerQ3.get(3).setSmithore(11);
-		//P1 -> 1*30 + 8*25 + 9*50  = 680 HUMAN
-		//P2 -> 2*30 + 7*25 + 10*50 = 735 FLAPPER
-		//P3 -> 3*30 + 6*25 + 12*50 = 840 BONZIOD
-		//P3 -> 4*30 + 5*25 + 11*50 = 795 UGAITE
-		
+		// P1 -> 1*30 + 8*25 + 9*50 = 680 HUMAN
+		// P2 -> 2*30 + 7*25 + 10*50 = 735 FLAPPER
+		// P3 -> 3*30 + 6*25 + 12*50 = 840 BONZIOD
+		// P3 -> 4*30 + 5*25 + 11*50 = 795 UGAITE
+
 		playerQ3.scoreSort();
-		
-		if(playerQ3.get(0).getRace().equals(Player.Race.HUMAN)){
-			if(playerQ3.get(1).getRace().equals(Player.Race.FLAPPER)){
-				if(playerQ3.get(2).getRace().equals(Player.Race.UGAITE)){
-					three=true;
+
+		if (playerQ3.get(0).getRace().equals(Player.Race.HUMAN)) {
+			if (playerQ3.get(1).getRace().equals(Player.Race.FLAPPER)) {
+				if (playerQ3.get(2).getRace().equals(Player.Race.UGAITE)) {
+					three = true;
 				}
 			}
 		}
-		
+
 		playerQ3.get(0).setRace(0);
 		playerQ3.get(1).setRace(1);
 		playerQ3.get(2).setRace(2);
 		playerQ3.get(3).setRace(3);
-		
+
 		playerQ3.get(0).incrementMoney(10000);
 		playerQ3.get(1).incrementMoney(5000);
 		playerQ3.get(2).incrementMoney(2500);
 		playerQ3.get(3).incrementMoney(1000);
-		
+
 		playerQ3.scoreSort();
-		
-		if(playerQ3.get(0).getRace().equals(Player.Race.UGAITE)){
-			if(playerQ3.get(1).getRace().equals(Player.Race.BONZIOD)){
-				if(playerQ3.get(2).getRace().equals(Player.Race.FLAPPER)){
-					four=true;
+
+		if (playerQ3.get(0).getRace().equals(Player.Race.UGAITE)) {
+			if (playerQ3.get(1).getRace().equals(Player.Race.BONZOID)) {
+				if (playerQ3.get(2).getRace().equals(Player.Race.FLAPPER)) {
+					four = true;
 				}
 			}
 		}
-		
-		
+
 		assertTrue(one);
 		assertTrue(two);
 		assertTrue(three);
