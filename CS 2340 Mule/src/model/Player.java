@@ -515,7 +515,7 @@ public class Player implements Savable {
 	 */
 	public void moveLeft()
 	{
-		if (this.playerPos.x > 0)
+		if (this.playerPos.x - 5 > 0)
 		{
 			this.facingRight = false;
 			int x = (int)this.playerPos.getX();
