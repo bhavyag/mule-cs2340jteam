@@ -18,6 +18,7 @@ public class BoardPanel extends JPanel {
     private TilePanel tilePanel;
 	private TownCenterPanel townCenterPanel;
 	protected MarketPanel marketPanel;
+	protected EndGamePanel endGamePanel;
 	private CardLayout cardLayout;
     protected JLabel playerLabel;
     protected boolean inTownCenter;
@@ -25,7 +26,8 @@ public class BoardPanel extends JPanel {
 	private final String
 	TILES = "Tiles",
 	TOWN_CENTER = "Town Center",
-	MARKET = "Market";
+	MARKET = "Market",
+	ENDGAME ="End Game";
 	
 
 	/**
@@ -35,6 +37,7 @@ public class BoardPanel extends JPanel {
 		this.tilePanel = new TilePanel();
 		this.townCenterPanel = new TownCenterPanel();
 		this.marketPanel = new MarketPanel();
+		this.endGamePanel = new EndGamePanel();
 		this.cardLayout = new CardLayout();
 		this.initialize();
 	}
@@ -48,10 +51,10 @@ public class BoardPanel extends JPanel {
         this.add(townCenterPanel, TOWN_CENTER);
         this.add(tilePanel, TILES);
         this.add(marketPanel,MARKET);
+        this.add(endGamePanel, ENDGAME);
 	}
 	
-	public int checkCollisions()
-	{
+	public int checkCollisions(){
 		int collisionCode;
 		
 		if(this.intersects(this.townCenterPanel.playerLabel, this.townCenterPanel.pubLabel))
@@ -172,6 +175,19 @@ public class BoardPanel extends JPanel {
 	protected void showMarketPanel() {
 		System.out.println("SHOW MARKET PANEL");
 		cardLayout.show(this, MARKET);
+		this.inTownCenter = false;
+	}
+	
+	public EndGamePanel getEndGamePanel() {
+		return this.endGamePanel;
+	}
+
+	/**
+	 * METHOD that tells this BoardPanel to display the TownCenterPanel
+	 */
+	protected void showEndGamePanel() {
+		System.out.println("SHOW END GAME PANEL");
+		cardLayout.show(this, ENDGAME);
 		this.inTownCenter = false;
 	}
 	

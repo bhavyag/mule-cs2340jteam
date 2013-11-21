@@ -130,9 +130,9 @@ public class Player implements Savable {
 		// This is the standard starting set-up
 		// TODO: Should change based on difficulty level
 		this.money = startingMoney;
-		this.food = 4;
+		this.food = 0;
 		this.smithore = 0;
-		this.energy = 2;
+		this.energy = 0;
 		this.crystite = 0;
 		this.mules = new ArrayList<Mule>();
 		this.holdingMule = null;
