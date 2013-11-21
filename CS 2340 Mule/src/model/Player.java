@@ -579,8 +579,7 @@ public class Player implements Savable {
 		score += money;
 		// Add goods score
 		// TODO: Needs to multiply goods by their current price
-		// this.score += (mules.size() *35 + smithore*50 + food*30 + energy*25 +
-		// crystite*50);
+		score += (mules.size() *35 + smithore*50 + food*30 + energy*25 + crystite*50);
 	}
 
 	/**
