@@ -1,4 +1,5 @@
 import static org.junit.Assert.*;
+
 import java.awt.Point;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -145,6 +146,48 @@ public class MuleTest {
 		assertEquals(0, Market.getMarketEnergy());
 		assertEquals(0, Market.getMarketCrystite());
 	}
+	
+	@Test
+	public void testMapOneGen()
+	{
+		Board board = BoardFactory.constructBoard(0);
+		assertEquals(Tile.Type.PLAINS, board.getMap()[0][0].getType());
+		assertEquals(Tile.Type.MOUNTAINONE, board.getMap()[0][2].getType());
+		assertEquals(Tile.Type.MOUNTAINTWO, board.getMap()[3][1].getType());
+		assertEquals(Tile.Type.MOUNTAINTHREE, board.getMap()[0][6].getType());
+		assertEquals(Tile.Type.RIVER, board.getMap()[0][4].getType());
+		assertEquals(Tile.Type.TOWN, board.getMap()[2][4].getType());
+	}
+	
+	@Test
+	public void testMapTwoGen()
+	{
+		Board board = BoardFactory.constructBoard(1);
+		assertEquals(Tile.Type.PLAINS, board.getMap()[0][0].getType());
+		assertEquals(Tile.Type.MOUNTAINONE, board.getMap()[0][3].getType());
+		assertEquals(Tile.Type.MOUNTAINTWO, board.getMap()[3][1].getType());
+		assertEquals(Tile.Type.MOUNTAINTHREE, board.getMap()[0][8].getType());
+		assertEquals(Tile.Type.RIVER, board.getMap()[1][0].getType());
+		assertEquals(Tile.Type.TOWN, board.getMap()[2][4].getType());
+	}
+	
+	@Test
+	public void testTileSprites()
+	{
+		Tile p = new Tile(Tile.Type.PLAINS);
+		Tile m1 = new Tile(Tile.Type.MOUNTAINONE);
+		Tile m2 = new Tile(Tile.Type.MOUNTAINTWO);
+		Tile m3 = new Tile(Tile.Type.MOUNTAINTHREE);
+		Tile r = new Tile(Tile.Type.RIVER);
+		Tile t = new Tile(Tile.Type.TOWN);
+		
+		assertEquals(Tile.class.getResource("/sprites/tiles/Plains-Tile.png"), p.getImagePath());
+		assertEquals(Tile.class.getResource("/sprites/tiles/Mountain-Tile.png"), m1.getImagePath());
+		assertEquals(Tile.class.getResource("/sprites/tiles/Mountain-2-Tile.png"), m2.getImagePath());
+		assertEquals(Tile.class.getResource("/sprites/tiles/Mountain-3-Tile.png"), m3.getImagePath());
+		assertEquals(Tile.class.getResource("/sprites/tiles/River-Tile.png"), r.getImagePath());
+		assertEquals(Tile.class.getResource("/sprites/tiles/Town-Center-Tile.png"), t.getImagePath());
+	}
 
 	/*
 	 * Bhavya's Tests:
@@ -177,6 +220,7 @@ public class MuleTest {
 	 */
 
 	// player collision checking with edge of screen:
+	
 	public void checkEdgeCollisions() {
 		boolean topCheck = true, bottomCheck = true, leftCheck = true, rightCheck = true;
 		for (int i = 0; i < 401; i++) {
@@ -210,7 +254,7 @@ public class MuleTest {
 	}
 	
 	 
-
+	
 	public void checkBuyingLand() {
 		board.setOwner(playerQ2.getCurrentPlayer(), new Point(0, 0));
 		board.setOwner(playerQ2.getCurrentPlayer(), new Point(1, 1));
