@@ -585,6 +585,7 @@ public class GameController implements Serializable {
 	 */
 	public void calculateProduction()
 	{
+		System.out.println("****CALCULATING PRODUCTION****");
 		for(int i=0;i<5;i++)
 		{
 			for(int j=0;j<9;j++)
@@ -593,111 +594,111 @@ public class GameController implements Serializable {
 				{
 					if(board.getMuleTypeXY(i,j)!=null)
 					{
-						if(board.getTypeXY(i,j)==Tile.Type.RIVER)
+						if(board.getTypeXY(i,j).equals(Tile.Type.RIVER))
 						{
 							if(board.getOwnerXY(i, j).getEnergy()>0){
 								board.getOwnerXY(i, j).incrementEnergy(-1);
-								if(board.getMuleTypeXY(i, j)==Mule.Type.FOOD)
+								if(board.getMuleTypeXY(i, j).equals(Mule.Type.FOOD))
 								{
 									board.getOwnerXY(i, j).incrementFood(4);
 								}
-								else if(board.getMuleTypeXY(i, j)==Mule.Type.ENERGY)
+								else if(board.getMuleTypeXY(i, j).equals(Mule.Type.ENERGY))
 								{
 									board.getOwnerXY(i, j).incrementEnergy(2);
 								}
-								else if(board.getMuleTypeXY(i, j)==Mule.Type.SMITHORE)
+								else if(board.getMuleTypeXY(i, j).equals(Mule.Type.SMITHORE))
 								{
 									//nothing
 								}
-								else if(board.getMuleTypeXY(i, j)==Mule.Type.CRYSTITE)
+								else if(board.getMuleTypeXY(i, j).equals(Mule.Type.CRYSTITE))
 								{
 									//nothing
 								}
 							}
 						}
-						else if(board.getTypeXY(i,j)==Tile.Type.PLAINS)
+						else if(board.getTypeXY(i,j).equals(Tile.Type.PLAINS))
 						{
 							if(board.getOwnerXY(i, j).getEnergy()>0){
 								board.getOwnerXY(i, j).incrementEnergy(-1);
-								if(board.getMuleTypeXY(i, j)==Mule.Type.FOOD)
+								if(board.getMuleTypeXY(i, j).equals(Mule.Type.FOOD))
 								{
 									board.getOwnerXY(i, j).incrementFood(2);
 								}
-								else if(board.getMuleTypeXY(i, j)==Mule.Type.ENERGY)
+								else if(board.getMuleTypeXY(i, j).equals(Mule.Type.ENERGY))
 								{
 									board.getOwnerXY(i, j).incrementEnergy(3);
 								}
-								else if(board.getMuleTypeXY(i, j)==Mule.Type.SMITHORE)
+								else if(board.getMuleTypeXY(i, j).equals(Mule.Type.SMITHORE))
 								{
 									board.getOwnerXY(i, j).incrementSmithore(1);
 								}
-								else if(board.getMuleTypeXY(i, j)==Mule.Type.CRYSTITE)
+								else if(board.getMuleTypeXY(i, j).equals(Mule.Type.CRYSTITE))
 								{
 									//TODO:Implement crystite
 								}
 							}
 						}
-						else if(board.getTypeXY(i,j)==Tile.Type.MOUNTAINONE)
+						else if(board.getTypeXY(i,j).equals(Tile.Type.MOUNTAINONE))
 						{
 							if(board.getOwnerXY(i, j).getEnergy()>0){
 								board.getOwnerXY(i, j).incrementEnergy(-1);
-								if(board.getMuleTypeXY(i, j)==Mule.Type.FOOD)
+								if(board.getMuleTypeXY(i, j).equals(Mule.Type.FOOD))
 								{
 									board.getOwnerXY(i, j).incrementFood(1);
 								}
-								else if(board.getMuleTypeXY(i, j)==Mule.Type.ENERGY)
+								else if(board.getMuleTypeXY(i, j).equals(Mule.Type.ENERGY))
 								{
 									board.getOwnerXY(i, j).incrementEnergy(1);
 								}
-								else if(board.getMuleTypeXY(i, j)==Mule.Type.SMITHORE)
+								else if(board.getMuleTypeXY(i, j).equals(Mule.Type.SMITHORE))
 								{
 									board.getOwnerXY(i, j).incrementSmithore(2);
 								}
-								else if(board.getMuleTypeXY(i, j)==Mule.Type.CRYSTITE)
+								else if(board.getMuleTypeXY(i, j).equals(Mule.Type.CRYSTITE))
 								{
 									//TODO:Implement crystite
 								}
 							}
 						}
-						else if(board.getTypeXY(i,j)==Tile.Type.MOUNTAINTWO)
+						else if(board.getTypeXY(i,j).equals(Tile.Type.MOUNTAINTWO))
 						{
 							if(board.getOwnerXY(i, j).getEnergy()>0){
 								board.getOwnerXY(i, j).incrementEnergy(-1);
-								if(board.getMuleTypeXY(i, j)==Mule.Type.FOOD)
+								if(board.getMuleTypeXY(i, j).equals(Mule.Type.FOOD))
 								{
 									board.getOwnerXY(i, j).incrementFood(1);
 								}
-								else if(board.getMuleTypeXY(i, j)==Mule.Type.ENERGY)
+								else if(board.getMuleTypeXY(i, j).equals(Mule.Type.ENERGY))
 								{
 									board.getOwnerXY(i, j).incrementEnergy(1);
 								}
-								else if(board.getMuleTypeXY(i, j)==Mule.Type.SMITHORE)
+								else if(board.getMuleTypeXY(i, j).equals(Mule.Type.SMITHORE))
 								{
 									board.getOwnerXY(i, j).incrementSmithore(3);
 								}
-								else if(board.getMuleTypeXY(i, j)==Mule.Type.CRYSTITE)
+								else if(board.getMuleTypeXY(i, j).equals(Mule.Type.CRYSTITE))
 								{
 									//TODO:Implement crystite
 								}
 							}
 						}
-						else if(board.getTypeXY(i,j)==Tile.Type.MOUNTAINTHREE)
+						else if(board.getTypeXY(i,j).equals(Tile.Type.MOUNTAINTHREE))
 						{
 							if(board.getOwnerXY(i, j).getEnergy()>0){
 								board.getOwnerXY(i, j).incrementEnergy(-1);
-								if(board.getMuleTypeXY(i, j)==Mule.Type.FOOD)
+								if(board.getMuleTypeXY(i, j).equals(Mule.Type.FOOD))
 								{
 									board.getOwnerXY(i, j).incrementFood(1);
 								}
-								else if(board.getMuleTypeXY(i, j)==Mule.Type.ENERGY)
+								else if(board.getMuleTypeXY(i, j).equals(Mule.Type.ENERGY))
 								{
 									board.getOwnerXY(i, j).incrementEnergy(1);
 								}
-								else if(board.getMuleTypeXY(i, j)==Mule.Type.SMITHORE)
+								else if(board.getMuleTypeXY(i, j).equals(Mule.Type.SMITHORE))
 								{
 									board.getOwnerXY(i, j).incrementSmithore(4);
 								}
-								else if(board.getMuleTypeXY(i, j)==Mule.Type.CRYSTITE)
+								else if(board.getMuleTypeXY(i, j).equals(Mule.Type.CRYSTITE))
 								{
 									//TODO:Implement crystite
 								}
@@ -738,6 +739,7 @@ public class GameController implements Serializable {
 
 				if (players.pass()) {
 					timer.stop();
+					calculateProduction();
 					System.out.println("entering land grant");
 					phase = "land grant";
 					randomEvent("land grant");
