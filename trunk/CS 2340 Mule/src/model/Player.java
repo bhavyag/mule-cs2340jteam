@@ -17,35 +17,35 @@ public class Player implements Savable {
 	 */
 	public static enum Color {
 		RED(
-				"red",
-				Player.class.getResource("/sprites/tiles/Border-Red.png"),
-				Player.class.getResource("/sprites/players/PlayerRed.png"),
-				Player.class.getResource("/sprites/mule/player-with-mule-RED.png"),
-				Player.class.getResource("/sprites/mule/player-with-mule-RED-FLIPPED.png")
-				),
-				YELLOW(
-						"yellow",
-						Player.class.getResource("/sprites/tiles/Border-Yellow.png"),
-						Player.class.getResource("/sprites/players/PlayerYellow.png"),
-						Player.class.getResource("/sprites/mule/player-with-mule-YELLOW.png"),
-						Player.class.getResource("/sprites/mule/player-with-mule-YELLOW-FLIPPED.png")
+            "red",
+            Player.class.getResource("/sprites/tiles/Border-Red.png"),
+            Player.class.getResource("/sprites/players/PlayerRed.png"),
+            Player.class.getResource("/sprites/mule/player-with-mule-RED.png"),
+            Player.class.getResource("/sprites/mule/player-with-mule-RED-FLIPPED.png")
+        ),
+        YELLOW(
+            "yellow",
+            Player.class.getResource("/sprites/tiles/Border-Yellow.png"),
+            Player.class.getResource("/sprites/players/PlayerYellow.png"),
+            Player.class.getResource("/sprites/mule/player-with-mule-YELLOW.png"),
+            Player.class.getResource("/sprites/mule/player-with-mule-YELLOW-FLIPPED.png")
 
-						),
-						GREEN(
-								"green",
-								Player.class.getResource("/sprites/tiles/Border-Green.png"),
-								Player.class.getResource("/sprites/players/PlayerGreen.png"),
-								Player.class.getResource("/sprites/mule/player-with-mule-GREEN.png"),
-								Player.class.getResource("/sprites/mule/player-with-mule-GREEN-FLIPPED.png")
+        ),
+        GREEN(
+            "green",
+            Player.class.getResource("/sprites/tiles/Border-Green.png"),
+            Player.class.getResource("/sprites/players/PlayerGreen.png"),
+            Player.class.getResource("/sprites/mule/player-with-mule-GREEN.png"),
+            Player.class.getResource("/sprites/mule/player-with-mule-GREEN-FLIPPED.png")
 
-								),
-								PURPLE(
-										"purple",
-										Player.class.getResource("/sprites/tiles/Border-Purple.png"),
-										Player.class.getResource("/sprites/players/PlayerPurple.png"),
-										Player.class.getResource("/sprites/mule/player-with-mule-PURPLE.png"),
-										Player.class.getResource("/sprites/mule/player-with-mule-PURPLE-FLIPPED.png")
-										);
+        ),
+        PURPLE(
+            "purple",
+            Player.class.getResource("/sprites/tiles/Border-Purple.png"),
+            Player.class.getResource("/sprites/players/PlayerPurple.png"),
+            Player.class.getResource("/sprites/mule/player-with-mule-PURPLE.png"),
+            Player.class.getResource("/sprites/mule/player-with-mule-PURPLE-FLIPPED.png")
+        );
 
 		private String name;
 		private URL borderImagePath;
