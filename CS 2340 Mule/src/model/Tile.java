@@ -46,6 +46,7 @@ public class Tile implements Purchasable, Savable {
 	private Type type;
 	private Player owner;
 	private String ownerId;
+	private String muleId;
 	private boolean ownable;
 	private Mule mule;
 
@@ -124,6 +125,10 @@ public class Tile implements Purchasable, Savable {
 		mule = m;
 	}
 
+    public String getMuleId() {
+        return muleId;
+    }
+
 	/**
 	 * METHOD that gets the mule from the tile if there is one
 	 * 
@@ -188,6 +193,12 @@ public class Tile implements Purchasable, Savable {
             json.put("playerId", null);
         }
 
+        if (mule != null) {
+            json.put("muleId", mule.toString());
+        } else {
+            json.put("muleId", null);
+        }
+
         json.put("type", type.toString());
         json.put("ownable", ownable);
 
@@ -201,6 +212,7 @@ public class Tile implements Purchasable, Savable {
 
         tile.ownable = (Boolean)json.get("ownable");
         tile.ownerId = (String)json.get("playerId");
+        tile.muleId = (String)json.get("muleId");
 
         for (Type t : Type.values()) {
             if (json.get("type").equals(t.toString())) {

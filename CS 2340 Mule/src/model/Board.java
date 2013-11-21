@@ -113,12 +113,18 @@ public abstract class Board implements Savable {
 		return map[(int) point.getX()][(int) point.getY()].getBorderPath();
 	}
 
-    public void loadPlayerOwnership (List<Player> playerList) {
+    public void loadPlayerOwnership (List<Player> playerList, List mules) {
         for (int i = 0; i < map.length; i++) {
             for (int j = 0; j < map[0].length; j++) {
                 for (Player p : playerList) {
                     if (p.toString().equals(map[i][j].getOwnerId())) {
                         map[i][j].setOwner(p);
+                    }
+                }
+
+                for (Mule m : (List<Mule>)mules) {
+                    if (m.getId().equals(map[i][j].getMuleId())) {
+                        map[i][j].setMule(m);
                     }
                 }
             }
