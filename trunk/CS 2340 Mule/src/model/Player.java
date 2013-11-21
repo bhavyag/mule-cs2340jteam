@@ -1,6 +1,8 @@
 package model;
 
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 import java.net.URL;
 import java.awt.Point;
@@ -119,6 +121,8 @@ public class Player implements Savable {
 	private boolean inStore;
 	private boolean facingRight;
 	private Point playerPos;
+
+    private Player() {}
 
 	/**
 	 */
@@ -615,13 +619,46 @@ public class Player implements Savable {
 	@Override
 	public String toJson() {
 		JSONObject json = new JSONObject();
+
+        json.put("playerNum", new Integer(playerNum));
 		json.put("name", name);
-		return json.toString();
+		json.put("color", color.toString());
+		json.put("race", race.toString());
+        json.put("energy", new Integer(playerNum));
+        json.put("food", new Integer(food));
+        json.put("crystite", new Integer(crystite));
+        json.put("money", new Integer(money));
+        json.put("score", new Integer(food));
+
+        return json.toString();
 	}
 
 	@Override
-	public Object fromJson(String jsonStr) {
-		return null;
+	public Object fromJson(String jsonStr) throws ParseException {
+        JSONObject json = (JSONObject) new JSONParser().parse(jsonStr);
+        Player player = new Player();
+
+        player.playerNum = (Integer)json.get("playerNum");
+        player.name = (String)json.get("name");
+        player.energy = (Integer)json.get("energy");
+        player.food = (Integer)json.get("food");
+        player.crystite = (Integer)json.get("crystite");
+        player.money = (Integer)json.get("money");
+        player.score = (Integer)json.get("score");
+
+        for (Color c : Color.values()) {
+            if (json.get("color") == c.toString()) {
+                player.color = c;
+            }
+        }
+
+        for (Race r : Race.values()) {
+            if (json.get("race") == r.toString()) {
+                player.race = r;
+            }
+        }
+
+        return player;
 	}
 
 }
