@@ -245,7 +245,7 @@ public class GameController implements Serializable {
 			}
 		});
 
-		timer = new LimitTimer(5, 1000, new ActionListener() {
+		timer = new LimitTimer(10, 1000, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent actionEvent) {
 
@@ -272,9 +272,9 @@ public class GameController implements Serializable {
 		gameView.onTileClick(null);
 
 		int currentPlayerFood = players.getCurrentPlayer().getFood();
-		int turnLength = 5;
+		int turnLength = 50;
 		if (currentPlayerFood > 0 && currentPlayerFood < minimumFood) {
-			turnLength = 5;
+			turnLength = 30;
 		} else if (currentPlayerFood == 0) {
 			turnLength = 5;
 		}
@@ -778,6 +778,9 @@ public class GameController implements Serializable {
     private void save() {
         JSONObject json = new JSONObject();
         JSONParser parser = new JSONParser();
+        JSONArray mules = new JSONArray();
+
+        json.put("mules", mules);
 
         json.put("difficulty", difficulty);
         try {
@@ -788,6 +791,16 @@ public class GameController implements Serializable {
         json.put("mapCode", mapCode);
         json.put("map", board.toJson());
         json.put("minFood", minimumFood);
+
+        for (Player p : players.getPlayers()) {
+            for (Mule m : p.getMules()) {
+                try {
+                    mules.add(parser.parse(m.toJson()));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
 
         BufferedWriter writer = null;
         try {
@@ -830,10 +843,20 @@ public class GameController implements Serializable {
         JSONObject json;
         try {
             json = (JSONObject) new JSONParser().parse(jsonString);
+            JSONArray mules = (JSONArray)json.get("mules");
             this.players = (PlayerQueue)(new PlayerQueue().fromJson(json.get("players").toString()));
+            for (Object muleObj : mules) {
+                Mule m = (Mule) new Mule().fromJson((muleObj).toString());
+                for (Player p : players.getPlayers()) {
+                    if (p.toString().equals(m.getOwnerId())) {
+                        m.setOwner(p);
+                        p.addMule(m);
+                    }
+                }
+            }
             this.board = BoardFactory.constructBoard(((Long)json.get("mapCode")).intValue());
             this.board = (Board) this.board.fromJson(json.get("map").toString());
-            this.board.loadPlayerOwnership(players.getPlayers());
+            this.board.loadPlayerOwnership(players.getPlayers(), mules);
         } catch (ParseException e) {
             e.printStackTrace();
             return;

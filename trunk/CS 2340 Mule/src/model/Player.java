@@ -197,6 +197,10 @@ public class Player implements Savable {
 		}
 	}
 
+    public void addMule(Mule m) {
+        mules.add(m);
+    }
+
 	public boolean placeMule(Tile tile)
 	{
 		if (holdingMule != null)
@@ -560,7 +564,7 @@ public class Player implements Savable {
 	 * @return a string describing the player's attributes
 	 */
 	public String toString() {
-		return "Player " + playerNum + " is a " + color + " " + race + " named " + name + "\n" + "money: " + money +"\n" + "score: " + score;
+		return "" + color + race + name;
 	}
 
 	/**
@@ -634,6 +638,10 @@ public class Player implements Savable {
 
         return json.toString();
 	}
+
+    public ArrayList<Mule> getMules() {
+        return mules;
+    }
 
 	@Override
 	public Object fromJson(String jsonStr) throws ParseException {

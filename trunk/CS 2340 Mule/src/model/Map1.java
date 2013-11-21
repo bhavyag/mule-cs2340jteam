@@ -1,11 +1,5 @@
 package model;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
-import sun.org.mozilla.javascript.internal.json.JsonParser;
-
 /**
  * CLASS Map1 for the default map
  * 
