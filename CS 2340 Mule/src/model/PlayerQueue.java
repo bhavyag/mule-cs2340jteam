@@ -34,10 +34,8 @@ public class PlayerQueue {
         newRound = false;
     }
     
-    public void resetPlayers()
-    {
-    	for(Player player : players)
-    	{
+    public void resetPlayers(){
+    	for(Player player : players){
     		player.resetPlayerPos();
     	}
     }

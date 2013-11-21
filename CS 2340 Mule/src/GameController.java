@@ -148,13 +148,11 @@ public class GameController implements Serializable {
 	 * METHOD creates a random event and notifies the user through
 	 * a DialogMessage box
 	 */
-	private void randomEvent(final String state)
-	{
+	private void randomEvent(final String state){
 		Random rand = new Random();
-		if (rand.nextDouble() > 0.07) //change this to 0.27 later
-		{
-			if (state.equals("land grant"))
-			{
+		 //change this to 0.27 later
+		if (rand.nextDouble() > 0.07){
+			if (state.equals("land grant")){
 				phase = "land grant";
 				gameView.getBoardPanel().resetPlayerPos();
 				players.resetPlayers();
@@ -167,10 +165,8 @@ public class GameController implements Serializable {
 			else if (state.equals("timer"))
 				timer.reset();
 		}
-		else
-		{
-			if (state.equals("land grant"))
-			{
+		else{
+			if (state.equals("land grant")){
 				phase = "land grant";
 				gameView.getBoardPanel().resetPlayerPos();
 				players.resetPlayers();
@@ -333,8 +329,7 @@ public class GameController implements Serializable {
 
 		timer.start();
 
-		Timer updateTimer = new Timer(10, new ActionListener() 
-		{
+		Timer updateTimer = new Timer(10, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent actionEvent) {
 				updateStatus();
@@ -349,16 +344,13 @@ public class GameController implements Serializable {
 		calculateProduction();
 		players.beginRotation();
 
-		gameView.onKeyMove( new KeyListener() 
-		{
-			public void keyPressed(KeyEvent e)
-			{
+		gameView.onKeyMove( new KeyListener() {
+			public void keyPressed(KeyEvent e){
 				Player currentPlayer = players.getCurrentPlayer();
 				int key = e.getKeyCode();
 				int maxHeight = 348, maxWidth = 780, minHeight = 20, minWidth = 0;
 
-				if (!gameView.getBoardPanel().isInTownCenter())
-				{
+				if (!gameView.getBoardPanel().isInTownCenter()){
 					minWidth = 92;
 					minHeight = 25;
 					maxWidth = 668 + 20;
