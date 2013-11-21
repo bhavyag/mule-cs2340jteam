@@ -114,7 +114,24 @@ public class MuleTest {
 		p1.deOutfitMule(Mule.Type.FOOD);
 		assertEquals(null, p1.getHoldingMule().getType());
 	}
-
+	
+	/**
+	 * Test Placing a mule on a tile
+	 */
+	@Test
+	public void testPlacingMule()
+	{
+		Player p1 = new Player(100000);
+		p1.purchase(new Mule(p1));
+		p1.outfitMule(Mule.Type.FOOD);
+		
+		Tile t = new Tile(Tile.Type.PLAINS);
+		
+		p1.placeMule(t);
+		assertEquals(false, p1.isHoldingMule());
+		assertEquals(Mule.Type.FOOD, t.getMuleType());
+	}
+	
 	/**
 	 * Test player color and race
 	 */
@@ -146,12 +163,12 @@ public class MuleTest {
 	}
 
 	/**
-	 * Test setting the player sprite correctly
+	 * Test setting the player sprite correctly, their color and whether they have a mule determines it
 	 */
 	@Test
 	public void testPlayerSprites() {
 		Player p1 = new Player();
-
+		p1.incrementMoney(100000);	
 		p1.setColor(0);
 		assertEquals(
 				Player.class.getResource("/sprites/players/PlayerRed.png"),
@@ -168,6 +185,9 @@ public class MuleTest {
 		assertEquals(
 				Player.class.getResource("/sprites/players/PlayerPurple.png"),
 				p1.getImagePath());
+		
+		p1.purchase(new Mule(p1));
+		assertEquals(Player.class.getResource("/sprites/mule/player-with-mule-PURPLE.png"), p1.getImagePath());
 	}
 
 	/**
