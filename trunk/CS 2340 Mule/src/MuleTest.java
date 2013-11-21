@@ -75,7 +75,7 @@ public class MuleTest
 		assertEquals(0,player.getEnergy());
 		assertEquals(0, player.getCrystite());
 		
-	//buying when there's nothing to buy
+		//buying when there's nothing to buy
 		player.incrementMoney(10000);
 		
 		Market.setMarketFood(0);
