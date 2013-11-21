@@ -316,6 +316,7 @@ public class GameController implements Serializable {
 				if (timer.isOutOfTime()) {
 					players.next();
 					if (players.isNewRound()) {
+						calculateProduction();
 						timer.stop();
 						//nextPhase();
 						randomEvent("land grant");
@@ -341,7 +342,6 @@ public class GameController implements Serializable {
 		System.out.println("starting town phase");
 
 		gameView.showTownCenterPanel();
-		calculateProduction();
 		players.beginRotation();
 
 		gameView.onKeyMove( new KeyListener() {
