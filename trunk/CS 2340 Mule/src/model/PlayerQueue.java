@@ -151,7 +151,8 @@ public class PlayerQueue {
     	/*DEBUG
     	 */
     	for(int j=0;j<players.size();j++){
-    		System.out.println("Player" + players.get(j).getPlayerNum() + " with score: " + players.get(j).getScore());
+			System.out.println("Player" + players.get(j).getPlayerNum()
+					+ " with score: " + players.get(j).getScore());
     	}
     	
     }

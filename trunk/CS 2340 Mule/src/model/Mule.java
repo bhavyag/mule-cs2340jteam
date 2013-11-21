@@ -7,16 +7,19 @@ import java.net.URL;
 
 /**
  * @author Bhavya
- *
+ * 
  */
-public class Mule implements Purchasable{
+public class Mule implements Purchasable {
 
-	public static enum Type
-	{
-		FOOD("food", 25, Player.class.getResource("/sprites/tiles/food-mule-tile.png")),
-		ENERGY("energy", 50,  Player.class.getResource("/sprites/tiles/energy-mule-tile.png")),
-		SMITHORE("smithore", 75,  Player.class.getResource("/sprites/tiles/smithore-mule-tile.png")),
-		CRYSTITE("crystite", 100,  Player.class.getResource("/sprites/tiles/crystite-mule-tile.png"));
+	public static enum Type {
+		FOOD("food", 25, Player.class
+				.getResource("/sprites/tiles/food-mule-tile.png")), ENERGY(
+				"energy", 50, Player.class
+						.getResource("/sprites/tiles/energy-mule-tile.png")), SMITHORE(
+				"smithore", 75, Player.class
+						.getResource("/sprites/tiles/smithore-mule-tile.png")), CRYSTITE(
+				"crystite", 100, Player.class
+						.getResource("/sprites/tiles/crystite-mule-tile.png"));
 
 		private String type;
 		private int cost;
@@ -28,65 +31,53 @@ public class Mule implements Purchasable{
 			this.iconImagePath = imagePath;
 		}
 
-		public String toString()
-		{
+		public String toString() {
 			return type;
 		}
 
-		public int getCost()
-		{
+		public int getCost() {
 			return cost;
 		}
-		
-		public URL getIconImagePath()
-		{
+
+		public URL getIconImagePath() {
 			return iconImagePath;
 		}
 
-		public boolean equals(Type type)
-		{
-			if (type == null)
-			{
+		public boolean equals(Type type) {
+			if (type == null) {
 				return false;
-			}
-			else
-			{
+			} else {
 				return this.type.equals(type.toString());
 			}
 		}
 	}
 
-
 	private Player owner;
 	private Type type;
 	private int price;
 
-	public Mule(Player owner)
-	{
+	public Mule(Player owner) {
 		this.owner = owner;
 		this.price = 150;
 		this.type = null;
 	}
 
-	public Player getOwner()
-	{
+	public Player getOwner() {
 		return owner;
 	}
 
-	public Type getType()
-	{
+	public Type getType() {
 		return type;
 	}
 
-	public void setType(Type type)
-	{
+	public void setType(Type type) {
 		this.type = type;
-		if (type != null)
+		if (type != null) {
 			this.price += type.getCost();
+		}
 	}
 
-	public int getPrice()
-	{
+	public int getPrice() {
 		return price;
 	}
 

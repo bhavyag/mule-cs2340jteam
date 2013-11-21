@@ -485,7 +485,7 @@ public class MarketPanel extends JPanel{
 		buyEnergy.addMouseListener(new MouseAdapter() 
 		{
 			@Override
-			public void mouseClicked(MouseEvent e) 
+			public void mouseClicked(MouseEvent e)
 			{
 				int totalAmount = Integer.parseInt(total.getText());
 				int playerEnergyAmount = Integer.parseInt(playerEnergy.getText());
