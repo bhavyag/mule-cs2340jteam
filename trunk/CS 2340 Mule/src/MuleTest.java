@@ -13,16 +13,17 @@ public class MuleTest
 
 	MarketPanel marketPanel = new MarketPanel();
 	GameFrame gameView = new GameFrame(4);
-	PlayerQueue players = new PlayerQueue(1, 600);
+	PlayerQueue players = new PlayerQueue(1, 0);
 
 	/*
 	 * Chris's Tests
 	 */
 	
 	//test buying from market
-	public void marketBuyTest()
+	@Test
+	public void testMarketBuy()
 	{
-		
+		Player player = players.getCurrentPlayer();
 		gameView.getMarketPanel().onClickTrade(
 				new MouseAdapter() 
 				{
@@ -48,6 +49,13 @@ public class MuleTest
 				}
 				);
 
+		//set player resources
+		player.setFood(0);
+		player.setSmithore(0);
+		player.setEnergy(0);
+		player.setCrystite(0);
+		player.incrementMoney(-10000);
+		
 		//set store resources
 		Market.setMarketFood(10);
 		Market.setMarketSmithore(10);
@@ -61,7 +69,11 @@ public class MuleTest
 		marketPanel.getBuyCrystiteButton().doClick();
 		marketPanel.getTradeButton().doClick();
 		
-		assertEquals();
+		assertEquals(player.getFood(), 0);
+		assertEquals(player.getSmithore(), 0);
+		assertEquals(player.getEnergy(), 0);
+		assertEquals(player.getCrystite(), 0);
+		
 
 		//buying when there's nothing to buy
 		
