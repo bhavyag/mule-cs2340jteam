@@ -1,4 +1,8 @@
 import static org.junit.Assert.*;
+
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 import model.*;
 import view.game.*;
 
@@ -7,24 +11,42 @@ import org.junit.Test;
 public class MuleTest 
 {
 
-	@Test
-	public void test() {
-		fail("Not yet implemented");
-	}
+	MarketPanel marketPanel = new MarketPanel();
+	GameFrame gameView = new GameFrame(4);
+	PlayerQueue players = new PlayerQueue(1, 600);
 
 	/*
 	 * Chris's Tests
 	 */
-	Player playerChris = new Player(0);
+	
 	//test buying from market
 	public void marketBuyTest()
 	{
-		MarketPanel marketPanel = new MarketPanel();
-		//set player resources
-		playerChris.setFood(0);
-		playerChris.setSmithore(0);
-		playerChris.setEnergy(0);
-		playerChris.setCrystite(0);
+		
+		gameView.getMarketPanel().onClickTrade(
+				new MouseAdapter() 
+				{
+					@Override
+					public void mouseClicked(MouseEvent e) 
+					{
+						int[][] data = gameView.getMarketPanel().getMarketData();
+						Player player = players.getCurrentPlayer();
+						if(player.getMoney() + data[2][0] >= 0)
+						{
+							player.setFood(data[0][0]);
+							player.setSmithore(data[0][1]);
+							player.setEnergy(data[0][2]);
+							player.setCrystite(data[0][3]);
+							Market.setMarketFood(data[1][0]); 
+							Market.setMarketSmithore(data[1][1]);
+							Market.setMarketEnergy(data[1][2]);
+							Market.setMarketCrystite(data[1][3]);
+							player.incrementMoney(data[2][0]);
+							gameView.getMarketPanel().resetTotal();
+						}	
+					}
+				}
+				);
 
 		//set store resources
 		Market.setMarketFood(10);
@@ -38,7 +60,6 @@ public class MuleTest
 		marketPanel.getBuyEnergyButton().doClick();
 		marketPanel.getBuyCrystiteButton().doClick();
 		marketPanel.getTradeButton().doClick();
-
 
 		//buying when there's nothing to buy
 
