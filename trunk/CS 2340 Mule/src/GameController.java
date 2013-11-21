@@ -397,7 +397,7 @@ public class GameController implements Serializable {
 								
 								gameView.getBoardPanel().getTilePanel().setIconImage(
 										currentPlayer.getHoldingMule().getType().getIconImagePath(), (int)tileIndex.getX(), (int)tileIndex.getY());
-								currentPlayer.placeMule();
+								currentPlayer.placeMule(t);
 								
 								//call setIconImage(URL,x,y) in tile panel 
 								//to set the image displayed on the tile based 

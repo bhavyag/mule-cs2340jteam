@@ -68,13 +68,12 @@ public class MuleTest
 		marketPanel.getBuyEnergyButton().doClick();
 		marketPanel.getBuyCrystiteButton().doClick();
 		marketPanel.getTradeButton().doClick();
-		
+
 		assertEquals(player.getFood(), 0);
 		assertEquals(player.getSmithore(), 0);
 		assertEquals(player.getEnergy(), 0);
 		assertEquals(player.getCrystite(), 0);
 		
-
 		//buying when there's nothing to buy
 		
 
@@ -95,6 +94,7 @@ public class MuleTest
 
 	PlayerQueue playerQ2 = new PlayerQueue(1, 600);
 	
+	@Test
 	public void initializeTestsBhavya()
 	{
 		playerQ2.getCurrentPlayer().setFood(30);
@@ -102,14 +102,53 @@ public class MuleTest
 		playerQ2.getCurrentPlayer().setSmithore(30);
 		playerQ2.getCurrentPlayer().setCrystite(30);
 		
+		checkEdgeCollisions();
 		//call tests after this
 	}
 
+	/*
 	private String testRandomEvents()
 	{
 		return RandomEvent.performRandom(playerQ2, playerQ2.getCurrentIndex());
-	}
+	}*/
+	
 	
 	//player collision checking with edge of screen:
+	public void checkEdgeCollisions()
+	{
+		boolean topCheck = true, bottomCheck = true, leftCheck = true, rightCheck = true;
+		for (int i = 0; i < 401; i++)
+		{
+			playerQ2.getCurrentPlayer().moveUp();
+			if (playerQ2.getCurrentPlayer().getPlayerPos().y < 0)
+				topCheck = false;
+		}
+		
+		for (int i = 0; i < 401; i++)
+		{
+			playerQ2.getCurrentPlayer().moveDown();
+			if (playerQ2.getCurrentPlayer().getPlayerPos().y > 400)
+				bottomCheck = false;
+		}
+		
+		for (int i = 0; i < 785; i++)
+		{
+			playerQ2.getCurrentPlayer().moveRight();
+			if (playerQ2.getCurrentPlayer().getPlayerPos().x > 781)
+				rightCheck = false;
+		}
+		
+		for (int i = 0; i < 785; i++)
+		{
+			playerQ2.getCurrentPlayer().moveLeft();
+			if (playerQ2.getCurrentPlayer().getPlayerPos().x < 0)
+				leftCheck = false;
+		}
+		
+		assertTrue(topCheck);
+		assertTrue(bottomCheck);
+		assertTrue(rightCheck);
+		assertTrue(leftCheck);
+	}
 
 }
