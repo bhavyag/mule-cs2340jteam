@@ -195,44 +195,6 @@ public class GameController implements Serializable {
 	 * METHOD begins the land grant portion of the game
 	 */
 	private void landGrant() {
-		//		phase = "land grant";
-		//		gameView.getBoardPanel().resetPlayerPos();
-		//		players.resetPlayers();
-		//
-		//		gameView.showTilePanel();
-		//		displayMap();
-
-		/*
-		if (!randCheck)
-		{
-			randEvent = new DialogMessage(RandomEvent.performRandom(players, players.getCurrentIndex()));
-
-			randEvent.onClickNext(
-					new MouseAdapter() {
-						public void mouseClicked(MouseEvent e) {
-							randEvent.dispose();
-							randCheck = true;
-							synchronized(waitThread)
-							{
-								waitThread.notify();
-							}
-						}
-					}
-					);
-			synchronized(waitThread)
-			{
-				try 
-				{
-					waitThread.wait();
-				} 
-				catch (Exception e) 
-				{
-					e.printStackTrace();
-				}
-			}
-		}
-		 */
-
 		updateStatus();
 		gameView.onTileClick(
 				new MouseAdapter() {
