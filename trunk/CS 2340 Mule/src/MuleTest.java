@@ -208,6 +208,8 @@ public class MuleTest {
 		assertTrue(rightCheck);
 		assertTrue(leftCheck);
 	}
+	
+	 
 
 	public void checkBuyingLand() {
 		board.setOwner(playerQ2.getCurrentPlayer(), new Point(0, 0));
@@ -242,6 +244,131 @@ public class MuleTest {
 		assertTrue(board.getMap()[1][5].getOwner() == playerQ2
 				.getCurrentPlayer());
 
+	}
+	
+	/*
+	 * T.J.'s tests
+	 *
+	 * scoreSort
+	 * 
+	 */
+	
+	PlayerQueue playerQ3 = new PlayerQueue(4, 600);
+	
+	public void testsTJ(){		
+		boolean one=false,two=true,three=true,four=true;
+		
+		playerQ3.get(0).setName("P1");
+		playerQ3.get(1).setName("P2");
+		playerQ3.get(2).setName("P3");
+		playerQ3.get(3).setName("P4");
+		
+		playerQ3.get(0).setRace(0);
+		playerQ3.get(1).setRace(1);
+		playerQ3.get(2).setRace(2);
+		playerQ3.get(3).setRace(3);
+		
+		playerQ3.get(0).setColor(0);
+		playerQ3.get(1).setColor(1);
+		playerQ3.get(2).setColor(2);
+		playerQ3.get(3).setColor(3);
+		
+		playerQ3.get(0).setFood(10);
+		playerQ3.get(1).setFood(20);
+		playerQ3.get(2).setFood(0);
+		playerQ3.get(3).setFood(5);
+		
+		playerQ3.scoreSort();
+		
+		if(playerQ3.get(0).getRace().equals(Player.Race.BONZIOD)){
+			if(playerQ3.get(1).getRace().equals(Player.Race.UGAITE)){
+				if(playerQ3.get(2).getRace().equals(Player.Race.HUMAN)){
+					one=true;
+				}
+			}
+		}
+		
+		playerQ3.get(0).setRace(0);
+		playerQ3.get(1).setRace(1);
+		playerQ3.get(2).setRace(2);
+		playerQ3.get(3).setRace(3);
+		
+		playerQ3.get(0).setFood(2);
+		playerQ3.get(1).setFood(5);
+		playerQ3.get(2).setFood(1);
+		playerQ3.get(3).setFood(0);
+		playerQ3.get(0).setEnergy(2);
+		playerQ3.get(1).setEnergy(5);
+		playerQ3.get(2).setEnergy(1);
+		playerQ3.get(3).setEnergy(0);
+		
+		playerQ3.scoreSort();
+		
+		if(playerQ3.get(0).getRace().equals(Player.Race.UGAITE)){
+			if(playerQ3.get(1).getRace().equals(Player.Race.BONZIOD)){
+				if(playerQ3.get(2).getRace().equals(Player.Race.HUMAN)){
+					two=true;
+				}
+			}
+		}
+		
+		playerQ3.get(0).setRace(0);
+		playerQ3.get(1).setRace(1);
+		playerQ3.get(2).setRace(2);
+		playerQ3.get(3).setRace(3);
+		
+		playerQ3.get(0).setFood(1);
+		playerQ3.get(1).setFood(2);
+		playerQ3.get(2).setFood(3);
+		playerQ3.get(3).setFood(4);
+		playerQ3.get(0).setEnergy(8);
+		playerQ3.get(1).setEnergy(7);
+		playerQ3.get(2).setEnergy(6);
+		playerQ3.get(3).setEnergy(5);
+		playerQ3.get(0).setSmithore(9);
+		playerQ3.get(1).setSmithore(10);
+		playerQ3.get(2).setSmithore(12);
+		playerQ3.get(3).setSmithore(11);
+		//P1 -> 1*30 + 8*25 + 9*50  = 680 HUMAN
+		//P2 -> 2*30 + 7*25 + 10*50 = 735 FLAPPER
+		//P3 -> 3*30 + 6*25 + 12*50 = 840 BONZIOD
+		//P3 -> 4*30 + 5*25 + 11*50 = 795 UGAITE
+		
+		playerQ3.scoreSort();
+		
+		if(playerQ3.get(0).getRace().equals(Player.Race.HUMAN)){
+			if(playerQ3.get(1).getRace().equals(Player.Race.FLAPPER)){
+				if(playerQ3.get(2).getRace().equals(Player.Race.UGAITE)){
+					three=true;
+				}
+			}
+		}
+		
+		playerQ3.get(0).setRace(0);
+		playerQ3.get(1).setRace(1);
+		playerQ3.get(2).setRace(2);
+		playerQ3.get(3).setRace(3);
+		
+		playerQ3.get(0).incrementMoney(10000);
+		playerQ3.get(1).incrementMoney(5000);
+		playerQ3.get(2).incrementMoney(2500);
+		playerQ3.get(3).incrementMoney(1000);
+		
+		playerQ3.scoreSort();
+		
+		if(playerQ3.get(0).getRace().equals(Player.Race.UGAITE)){
+			if(playerQ3.get(1).getRace().equals(Player.Race.BONZIOD)){
+				if(playerQ3.get(2).getRace().equals(Player.Race.FLAPPER)){
+					four=true;
+				}
+			}
+		}
+		
+		
+		assertTrue(one);
+		assertTrue(two);
+		assertTrue(three);
+		assertTrue(four);
 	}
 
 }
