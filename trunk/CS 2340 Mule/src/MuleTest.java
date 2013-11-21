@@ -60,8 +60,11 @@ public class MuleTest
 		marketPanel.getBuyEnergyButton().doClick();
 		marketPanel.getBuyCrystiteButton().doClick();
 		marketPanel.getTradeButton().doClick();
+		
+		assertEquals();
 
 		//buying when there's nothing to buy
+		
 
 	}
 
