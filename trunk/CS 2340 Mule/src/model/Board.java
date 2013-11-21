@@ -123,6 +123,7 @@ public abstract class Board implements Savable {
 				}
 
 				for (Mule m : (List<Mule>) mules) {
+					System.out.println("m.getID: " + m.getId() + " map.getMuleID: " + map[i][j].getMuleId());
 					if (m.getId().equals(map[i][j].getMuleId())) {
 						map[i][j].setMule(m);
 					}

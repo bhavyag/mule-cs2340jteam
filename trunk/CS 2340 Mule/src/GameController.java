@@ -665,6 +665,7 @@ public class GameController implements Serializable {
 				if (players.pass()) {
 					timer.stop();
 					calculateProduction();
+					save();
 					System.out.println("entering land grant");
 					phase = "land grant";
 					randomEvent("land grant");
@@ -792,10 +793,15 @@ public class GameController implements Serializable {
 		json.put("map", board.toJson());
 		json.put("minFood", minimumFood);
 
+		System.out.println("SAVING TEST");
+		
 		for (Player p : players.getPlayers()) {
+			if (p.getMules().size() == 0)
+				System.out.println("MULE LIST EMPTY");
 			for (Mule m : p.getMules()) {
 				try {
 					mules.add(parser.parse(m.toJson()));
+					System.out.println("Mules saved!");
 				} catch (ParseException e) {
 					e.printStackTrace();
 				}
@@ -843,11 +849,14 @@ public class GameController implements Serializable {
 		JSONObject json;
 		try {
 			json = (JSONObject) new JSONParser().parse(jsonString);
-			JSONArray mules = (JSONArray) json.get("mules");
+			JSONArray JSONmules = (JSONArray) json.get("mules");
 			this.players = (PlayerQueue) (new PlayerQueue().fromJson(json.get(
 					"players").toString()));
-			for (Object muleObj : mules) {
+			ArrayList <Mule> mules = new ArrayList<>();
+			for (Object muleObj : JSONmules) {
 				Mule m = (Mule) new Mule().fromJson((muleObj).toString());
+				System.out.println(m.getId());
+				mules.add(m);
 				for (Player p : players.getPlayers()) {
 					if (p.toString().equals(m.getOwnerId())) {
 						m.setOwner(p);
