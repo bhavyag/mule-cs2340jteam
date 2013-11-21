@@ -122,7 +122,7 @@ public class Player implements Savable {
 		}
 	}
 
-    private Player() {}
+    public Player() {}
 
 	/**
 	 */
@@ -628,6 +628,7 @@ public class Player implements Savable {
         json.put("food", new Integer(food));
         json.put("crystite", new Integer(crystite));
         json.put("money", new Integer(money));
+        json.put("smithore", new Integer(smithore));
         json.put("score", new Integer(food));
 
         return json.toString();
@@ -638,25 +639,31 @@ public class Player implements Savable {
         JSONObject json = (JSONObject) new JSONParser().parse(jsonStr);
         Player player = new Player();
 
-        player.playerNum = (Integer)json.get("playerNum");
+        player.playerNum = ((Long)json.get("playerNum")).intValue();
         player.name = (String)json.get("name");
-        player.energy = (Integer)json.get("energy");
-        player.food = (Integer)json.get("food");
-        player.crystite = (Integer)json.get("crystite");
-        player.money = (Integer)json.get("money");
-        player.score = (Integer)json.get("score");
+        player.energy = ((Long)json.get("energy")).intValue();
+        player.food = ((Long)json.get("food")).intValue();
+        player.crystite = ((Long)json.get("crystite")).intValue();
+        player.money = ((Long)json.get("money")).intValue();
+        player.score = ((Long)json.get("score")).intValue();
+        player.score = ((Long)json.get("smithore")).intValue();
 
         for (Color c : Color.values()) {
-            if (json.get("color") == c.toString()) {
+            if (json.get("color").equals(c.toString())) {
                 player.color = c;
             }
         }
 
         for (Race r : Race.values()) {
-            if (json.get("race") == r.toString()) {
+            if (json.get("race").equals(r.toString())) {
                 player.race = r;
             }
         }
+
+        player.mules = new ArrayList<Mule>();
+        player.playerPos = new Point(396,180);
+        player.inStore = false;
+        player.facingRight = true;
 
         return player;
 	}
