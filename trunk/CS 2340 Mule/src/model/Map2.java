@@ -1,5 +1,7 @@
 package model;
 
+import org.json.simple.parser.ParseException;
+
 /**
  * CLASS Map2 for the default map
  * 

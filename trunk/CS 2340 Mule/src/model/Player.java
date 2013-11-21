@@ -630,6 +630,7 @@ public class Player implements Savable {
         json.put("money", new Integer(money));
         json.put("smithore", new Integer(smithore));
         json.put("score", new Integer(food));
+        json.put("id", this.toString());
 
         return json.toString();
 	}
