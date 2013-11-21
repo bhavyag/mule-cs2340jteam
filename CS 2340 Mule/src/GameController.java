@@ -786,6 +786,7 @@ public class GameController implements Serializable {
             e.printStackTrace();
         }
         json.put("mapCode", mapCode);
+        json.put("map", board.toJson());
         json.put("minFood", minimumFood);
 
         BufferedWriter writer = null;
@@ -816,6 +817,14 @@ public class GameController implements Serializable {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            if (reader != null) {
+                try {
+                    reader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
 
         JSONObject json;
@@ -823,6 +832,8 @@ public class GameController implements Serializable {
             json = (JSONObject) new JSONParser().parse(jsonString);
             this.players = (PlayerQueue)(new PlayerQueue().fromJson(json.get("players").toString()));
             this.board = BoardFactory.constructBoard(((Long)json.get("mapCode")).intValue());
+            this.board = (Board) this.board.fromJson(json.get("map").toString());
+            this.board.loadPlayerOwnership(players.getPlayers());
         } catch (ParseException e) {
             e.printStackTrace();
             return;

@@ -1,10 +1,13 @@
 package model;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
 import java.net.URL;
 
-public class Tile implements Purchasable {
-
-	/**
+public class Tile implements Purchasable, Savable {
+    /**
 	 * ENUM for Tile type
 	 */
 	public static enum Type {
@@ -42,9 +45,11 @@ public class Tile implements Purchasable {
 
 	private Type type;
 	private Player owner;
+	private String ownerId;
 	private boolean ownable;
 	private Mule mule;
 
+    public Tile() {}
 	/**
 	 * CONTRUCTOR for Tiles
 	 */
@@ -164,8 +169,45 @@ public class Tile implements Purchasable {
 		return this.type.imgPath;
 	}
 
+    public String getOwnerId() {
+        return ownerId;
+    }
+
 	@Override
 	public int getPrice() {
 		return this.type.getPrice();
 	}
+
+    @Override
+    public String toJson() {
+        JSONObject json = new JSONObject();
+
+        if (owner != null) {
+            json.put("playerId", owner.toString());
+        } else {
+            json.put("playerId", null);
+        }
+
+        json.put("type", type.toString());
+        json.put("ownable", ownable);
+
+        return json.toString();
+    }
+
+    @Override
+    public Object fromJson(String jsonString) throws ParseException {
+        JSONObject json = (JSONObject) new JSONParser().parse(jsonString);
+        Tile tile = new Tile();
+
+        tile.ownable = (Boolean)json.get("ownable");
+        tile.ownerId = (String)json.get("playerId");
+
+        for (Type t : Type.values()) {
+            if (json.get("type").equals(t.toString())) {
+                tile.type = t;
+            }
+        }
+
+        return tile;
+    }
 }
