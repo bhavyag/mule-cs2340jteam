@@ -1,5 +1,11 @@
 package model;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -7,14 +13,16 @@ import java.util.Random;
  * CLASS PlayerQueue contains an arrayList of current players in the game 
  * and increments the current player and round based on the progression of the game.
  */
-public class PlayerQueue {
+public class PlayerQueue implements Savable {
     private ArrayList<Player> players;
     private int currentIndex;
     private int round;
     private int passes;
     private boolean newRound;
     private Random rand; //for debugging
-    
+
+    public PlayerQueue() {}
+
     /**
      * CONSTRUCTOR adds a specified number of players to the rotation
      * @param numPlayers the amount of players to rotate
@@ -155,5 +163,46 @@ public class PlayerQueue {
 					+ " with score: " + players.get(j).getScore());
     	}
     	
+    }
+
+    @Override
+    public String toJson() {
+        JSONObject json = new JSONObject();
+        JSONArray playerArr = new JSONArray();
+        JSONParser parser = new JSONParser();
+
+        for (Player p : players) {
+            try {
+                playerArr.add(parser.parse(p.toJson()));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+
+        json.put("players", playerArr);
+        json.put("round", round);
+
+        return json.toString();
+    }
+
+    @Override
+    public Object fromJson(String jsonString) throws ParseException {
+        JSONObject json = (JSONObject) new JSONParser().parse(jsonString);
+        PlayerQueue playerQueue = new PlayerQueue();
+        players = new ArrayList<Player>();
+
+        for (Object playerObj : (JSONArray)json.get("players")) {
+            players.add((Player)new Player().fromJson(playerObj.toString()));
+        }
+
+        playerQueue.round = ((Long)json.get("round")).intValue();
+
+        playerQueue.players = players;
+        playerQueue.rand = new Random();//for debugging
+        playerQueue.currentIndex = 0;
+        playerQueue.passes = 0;
+        playerQueue.newRound = false;
+
+        return playerQueue;
     }
 }

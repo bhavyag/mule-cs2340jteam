@@ -1,4 +1,8 @@
 import model.*;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import util.LimitTimer;
 import view.game.DialogMessage;
 import view.game.GameFrame;
@@ -30,6 +34,7 @@ public class GameController implements Serializable {
 	private Board board;
 	private LimitTimer timer;
 	private int minimumFood;
+	private int mapCode;
 	private DialogMessage randEvent;
 
 	/**
@@ -66,7 +71,8 @@ public class GameController implements Serializable {
 				difficulty = titleView.getGameConfigDifficulty();
 				board = BoardFactory.constructBoard(titleView
 						.getGameConfigMap());
-				players = new PlayerQueue(titleView.getGameConfigNumPlayers(),
+                mapCode = titleView.getGameConfigMap();
+                players = new PlayerQueue(titleView.getGameConfigNumPlayers(),
 						600 / difficulty);
 				minimumFood = 3;
 
@@ -108,7 +114,9 @@ public class GameController implements Serializable {
 	 * METHOD starts the actual gameplay
 	 */
 	public void startGame() {
-		titleView.dispose();
+        if (titleView != null) {
+		    titleView.dispose();
+        }
 		gameView = new GameFrame(players.getNumPlayers());
 
 		configureTimer();
@@ -237,7 +245,7 @@ public class GameController implements Serializable {
 			}
 		});
 
-		timer = new LimitTimer(15, 1000, new ActionListener() {
+		timer = new LimitTimer(5, 1000, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent actionEvent) {
 
@@ -264,9 +272,9 @@ public class GameController implements Serializable {
 		gameView.onTileClick(null);
 
 		int currentPlayerFood = players.getCurrentPlayer().getFood();
-		int turnLength = 50;
+		int turnLength = 5;
 		if (currentPlayerFood > 0 && currentPlayerFood < minimumFood) {
-			turnLength = 30;
+			turnLength = 5;
 		} else if (currentPlayerFood == 0) {
 			turnLength = 5;
 		}
@@ -279,8 +287,8 @@ public class GameController implements Serializable {
 					if (players.isNewRound()) {
 						calculateProduction();
 						timer.stop();
-						// nextPhase();
-						randomEvent("land grant");
+						save();
+                        randomEvent("land grant");
 					} else {
 						timer.reset();
 						gameView.showTownCenterPanel();
@@ -766,4 +774,63 @@ public class GameController implements Serializable {
 			}
 		}
 	}
+
+    private void save() {
+        JSONObject json = new JSONObject();
+        JSONParser parser = new JSONParser();
+
+        json.put("difficulty", difficulty);
+        try {
+            json.put("players", parser.parse(players.toJson()));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        json.put("mapCode", mapCode);
+        json.put("minFood", minimumFood);
+
+        BufferedWriter writer = null;
+        try {
+            writer = new BufferedWriter( new FileWriter("save_file.json"));
+            writer.write(json.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (writer != null) {
+                try {
+                    writer.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public void load() {
+        BufferedReader reader = null;
+        String jsonString = null;
+
+        try {
+            reader = new BufferedReader(new FileReader("save_file.json"));
+            jsonString = reader.readLine();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        JSONObject json;
+        try {
+            json = (JSONObject) new JSONParser().parse(jsonString);
+            this.players = (PlayerQueue)(new PlayerQueue().fromJson(json.get("players").toString()));
+            this.board = BoardFactory.constructBoard(((Long)json.get("mapCode")).intValue());
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return;
+        }
+
+
+        this.difficulty = ((Long)json.get("difficulty")).intValue();
+        this.mapCode = ((Long)json.get("mapCode")).intValue();
+        this.minimumFood = ((Long)json.get("minFood")).intValue();
+    }
 }
