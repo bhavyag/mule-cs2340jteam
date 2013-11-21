@@ -5,6 +5,7 @@ import java.awt.event.MouseEvent;
 
 import model.*;
 import view.game.*;
+import javax.swing.*;
 
 import org.junit.Test;
 
@@ -12,7 +13,7 @@ public class MuleTest
 {
 
 	MarketPanel marketPanel = new MarketPanel();
-	GameFrame gameView = new GameFrame(4);
+	GameFrame gameView = new GameFrame(1);
 	PlayerQueue players = new PlayerQueue(1, 0);
 
 	/*
@@ -62,21 +63,77 @@ public class MuleTest
 		Market.setMarketEnergy(10);
 		Market.setMarketCrystite(10);
 
-		//buying when player has no money
+	//buying when player has no money
 		marketPanel.getBuyFoodButton().doClick();
 		marketPanel.getBuySmithoreButton().doClick();
 		marketPanel.getBuyEnergyButton().doClick();
 		marketPanel.getBuyCrystiteButton().doClick();
 		marketPanel.getTradeButton().doClick();
 
-		assertEquals(player.getFood(), 0);
-		assertEquals(player.getSmithore(), 0);
-		assertEquals(player.getEnergy(), 0);
-		assertEquals(player.getCrystite(), 0);
+		assertEquals(0, player.getFood());
+		assertEquals(0, player.getSmithore() );
+		assertEquals(0,player.getEnergy());
+		assertEquals(0, player.getCrystite());
 		
-		//buying when there's nothing to buy
+	//buying when there's nothing to buy
+		player.incrementMoney(10000);
 		
-
+		Market.setMarketFood(0);
+		Market.setMarketSmithore(0);
+		Market.setMarketEnergy(0);
+		Market.setMarketCrystite(0);
+		
+		marketPanel.getBuyFoodButton().doClick();
+		marketPanel.getBuySmithoreButton().doClick();
+		marketPanel.getBuyEnergyButton().doClick();
+		marketPanel.getBuyCrystiteButton().doClick();
+		marketPanel.getTradeButton().doClick();
+		
+		assertEquals(0, player.getFood());
+		assertEquals(0, player.getSmithore() );
+		assertEquals(0,player.getEnergy());
+		assertEquals(0, player.getCrystite());
+		
+	//general buying
+		
+		Market.setMarketFood(2);
+		Market.setMarketSmithore(2);
+		Market.setMarketEnergy(2);
+		Market.setMarketCrystite(2);
+		
+		marketPanel.getBuyFoodButton().doClick();
+		marketPanel.getBuySmithoreButton().doClick();
+		marketPanel.getBuyEnergyButton().doClick();
+		marketPanel.getBuyCrystiteButton().doClick();
+		marketPanel.getTradeButton().doClick();
+		
+		assertEquals(1, player.getFood());
+		assertEquals(1, player.getSmithore() );
+		assertEquals(1,player.getEnergy());
+		assertEquals(1, player.getCrystite());
+		
+	//selling when there is nothing to sell
+		
+		player.setFood(0);
+		player.setSmithore(0);
+		player.setEnergy(0);
+		player.setCrystite(0);
+		
+		Market.setMarketFood(0);
+		Market.setMarketSmithore(0);
+		Market.setMarketEnergy(0);
+		Market.setMarketCrystite(0);
+		
+		marketPanel.getSellFoodButton().doClick();
+		marketPanel.getSellSmithoreButton().doClick();
+		marketPanel.getSellEnergyButton().doClick();
+		marketPanel.getSellCrystiteButton().doClick();
+		marketPanel.getTradeButton().doClick();
+		
+		assertEquals( 0, Market.getMarketFood());
+		assertEquals(0, Market.getMarketSmithore());
+		assertEquals(0, Market.getMarketEnergy());
+		assertEquals( 0, Market.getMarketCrystite());
 	}
 
 

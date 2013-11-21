@@ -382,8 +382,6 @@ public class GameController implements Serializable {
 
 					Point whereAt = currentPlayer.getPlayerPos();
 
-
-
 					Point tileIndex = gameView.getTileIndex(whereAt);
 					//tileIndex.setX();
 					Tile t = board.map[(int)tileIndex.getX()][(int)tileIndex.getY()];
@@ -398,6 +396,7 @@ public class GameController implements Serializable {
 								gameView.getBoardPanel().getTilePanel().setIconImage(
 										currentPlayer.getHoldingMule().getType().getIconImagePath(), (int)tileIndex.getX(), (int)tileIndex.getY());
 								currentPlayer.placeMule(t);
+								
 								
 								//call setIconImage(URL,x,y) in tile panel 
 								//to set the image displayed on the tile based 
