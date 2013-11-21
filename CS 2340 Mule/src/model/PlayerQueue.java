@@ -93,11 +93,11 @@ public class PlayerQueue {
      * @return true if all players passed in one round, false otherwise
      */
     public boolean pass() {
-        int _passes;
+        int passesA;
         passes ++;
-        _passes = passes;
+        passesA = passes;
         next();
-        return _passes == players.size();
+        return passesA == players.size();
     }
 
     /**

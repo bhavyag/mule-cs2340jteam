@@ -13,12 +13,15 @@ public class RandomEvent {
 			"YOUR SPACE GYPSY INLAWS MADE A MESS OF THE TOWN. IT COST YOU $6*m TO CLEAN IT UP." };
 
 	private static int returnM(int round) {
-		if (round < 3)
+		if (round < 3) {
 			return 25;
-		if (round < 8)
+		}
+		if (round < 8) {
 			return 50;
-		if (round < 12)
+		}
+		if (round < 12) {
 			return 75;
+		}
 		return 100;
 	}
 
@@ -67,6 +70,8 @@ public class RandomEvent {
 			p.incrementMoney(-6 * returnM(playerQ.getRound()));
 			result = "YOUR SPACE GYPSY INLAWS MADE A MESS OF THE TOWN. IT COST YOU $"
 					+ (6 * returnM(playerQ.getRound()) + " TO CLEAN IT UP.");
+			break;
+		default: 
 			break;
 		}
 

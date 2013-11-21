@@ -33,7 +33,8 @@ public class TownCenterPanel extends JPanel {
 	/**
 	 * CONSTRUCTOR for the Town Center, instantiates the town centers label.
 	 */
-	protected TownCenterPanel() {
+	protected TownCenterPanel() 
+	{
 		this.townCenterPanel = new JLabel("");
 		townCenterPanel.setBounds(5, 5, 832, 400);
 
@@ -56,7 +57,7 @@ public class TownCenterPanel extends JPanel {
 	 * @param y
 	 * @param imagePath
 	 */
-	public void drawPlayer(int x, int y, URL imagePath) {
+	public void drawPlayer(final int x, final int y, URL imagePath) {
 		ImageIcon icon = new ImageIcon(imagePath);
 		this.playerLabel.setIcon(icon);
 		this.playerLabel.setBounds(x, y, icon.getIconWidth(),
