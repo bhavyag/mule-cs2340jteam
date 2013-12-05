@@ -7,6 +7,11 @@ package model;
  */
 public class Market 
  {
+	
+	private Market()
+	{
+		
+	}
 	protected static int energy = 0,
 						smithore = 0,
 						food = 0,
